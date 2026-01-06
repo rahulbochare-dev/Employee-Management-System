@@ -1,0 +1,24 @@
+{
+  "name": "employee-management-system",
+  "version": "1.0.0",
+  "description": "An ems",
+  "keywords": [
+    "Full",
+    "stack"
+  ],
+  "homepage": "https://github.com/rahulbochare-dev/Employee-Management-System#readme",
+  "bugs": {
+    "url": "https://github.com/rahulbochare-dev/Employee-Management-System/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rahulbochare-dev/Employee-Management-System.git"
+  },
+  "license": "ISC",
+  "author": "Rahul Bochare",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
