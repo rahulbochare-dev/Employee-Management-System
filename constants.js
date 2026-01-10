@@ -1,3 +1,3 @@
-const DB_NAME = "Employee-Management-System"
+const DB_NAME = "employeeManagementSystem"
 
 export { DB_NAME }
