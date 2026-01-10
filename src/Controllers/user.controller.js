@@ -15,6 +15,10 @@ const registerUser = asyncHandler( async (req, res) => {
         throw new ApiError(400, "All fields are required!")
     }
 
+    if(password.length() < 8){
+        throw new ApiError(400, "Password must be 8 charecters long")
+    }
+
     const existedUser = await User.findOne({
         $:[{userName}, {email}]
     })
