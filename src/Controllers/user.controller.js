@@ -51,7 +51,7 @@ const registerUser = asyncHandler( async (req, res) => {
         adminSecret
     })
 
-    const createdUser = await user.findById(user._id).select(
+    const createdUser = await User.findById(user._id).select(
         "-password -adminSecret -refreshToken"
     )
 
