@@ -19,6 +19,10 @@ const registerUser = asyncHandler( async (req, res) => {
         throw new ApiError(400, "Password must be 8 charecters long")
     }
 
+    if(!email.includes("@")){
+        throw new ApiError(400, "Email is not valid!")
+    }
+
     const existedUser = await User.findOne({
         $or:[{userName}, {email}]
     })
