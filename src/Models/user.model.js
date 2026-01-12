@@ -1,6 +1,7 @@
 import { mongoose, Schema } from "mongoose";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken"
+import { type } from "os";
 
 const userSchema = new Schema({
     firstName: {
@@ -33,6 +34,18 @@ const userSchema = new Schema({
     dateOfBirth: {
         type: Date,
         required: true
+    },
+    country: {
+        type: String,
+        required: true
+    },
+    city: {
+        type: String,
+        required: true
+    },
+    timezone: {
+        type: String,
+        default: "UTC"
     },
     role: {
         type: String,
