@@ -81,15 +81,15 @@ userSchema.pre("save", async function(){
     this.adminSecret = await bcrypt.hash(this.adminSecret, 12)
 })
 
-userSchema.method.isPasswordCorrect = async function(password){
+userSchema.methods.isPasswordCorrect = async function(password){
     return await bcrypt.compare(password, this.password)
 }
 
-userSchema.method.isAdminSecretCorrect = async function(adminSecret){
+userSchema.methods.isAdminSecretCorrect = async function(adminSecret){
     return await bcrypt.compare(adminSecret, this.adminSecret)
 }
 
-userSchema.method.generateAccessToken = async function(){
+userSchema.methods.generateAccessToken = async function(){
     return jwt.sign(
         {
             _id: this._id,
@@ -104,7 +104,7 @@ userSchema.method.generateAccessToken = async function(){
     )
 }
 
-userSchema.method.generateAccessToken = async function(){
+userSchema.methods.generateRefreshToken = async function(){
     return jwt.sign(
         {
             _id: this._id
