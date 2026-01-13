@@ -2,6 +2,7 @@ import { Router } from "express";
 import { registerUser, loginUser } from "../Controllers/user.controller.js";
 import { upload } from "../Middleware/multer.middleware.js"
 import { protectAdminRegister } from "../Middleware/protectAdminRegister.js";
+import { verifyToken } from "../Middleware/auth.middleware.js"
 
 const router = Router()
 
@@ -15,5 +16,6 @@ router.route("/register").post(upload.fields(
 ),protectAdminRegister, registerUser)
 
 router.route("/login").post(loginUser)
+router.route("/logout").post(verifyToken)
 
 export default router
