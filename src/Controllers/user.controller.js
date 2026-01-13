@@ -108,6 +108,11 @@ const loginUser = asyncHandler( async (req, res) => {
         throw new ApiError(404, "User not found!")
     }
 
+    const passwordCompareResult = await registerdUser.isPasswordCorrect(password)
+    
+    if(!passwordCompareResult){
+        throw new ApiError(400, "Invalid password!")
+    }
 
 })
 
