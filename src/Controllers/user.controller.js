@@ -10,13 +10,13 @@ const generateAccessTokenAndRefreshToken = async (userId) => {
     try {
         const user = await User.findById(userId)
         
-        const accessToken = user.generateAccessToken()
-        const refreshToken = user.generateRefreshToken()
-    
+        const accessToken = await user.generateAccessToken()
+        const refreshToken = await user.generateRefreshToken()
+        
         user.refreshToken = refreshToken
         await user.save({validateBeforeSave: false})
-    
         return {accessToken, refreshToken}
+    
         
     } catch (error) {
         throw new ApiError(500, "Something went wrong while generating tokens!")
@@ -114,6 +114,26 @@ const loginUser = asyncHandler( async (req, res) => {
         throw new ApiError(400, "Invalid password!")
     }
 
+    const {accessToken, refreshToken} = await generateAccessTokenAndRefreshToken(registerdUser._id)
+    
+    const loggedInUser = await User.findById(registerdUser._id).select("-password -adminSecret -refreshToken")
+
+    const options = {
+        httpOnly: true,
+        secure: true
+    }
+
+    return res.status(200)
+    .cookie("accessToken", accessToken, options)
+    .cookie("refreshToken", refreshToken, options)
+    .json(new ApiResponse(200,
+        {
+            user: loggedInUser, accessToken, refreshToken
+        },
+        "User logged in successfully"
+    ))
+    
+    
 })
 
 
