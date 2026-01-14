@@ -22,6 +22,10 @@ const employeeSchema = new Schema({
         lowercase: true,
         trim: true
     },
+    contactNo: {
+        type: Number,
+        required: true
+    },
     avatar: {
         type: String,
         default: ""
