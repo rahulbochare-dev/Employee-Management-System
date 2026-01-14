@@ -18,6 +18,6 @@ router.route("/register").post(upload.fields(
 router.route("/login").post(loginUser)
 
 // secured routes
-router.route("/logout").post(verifyToken, loginUser)
+router.route("/logout").post(verifyToken, logoutUser)
 
 export default router
