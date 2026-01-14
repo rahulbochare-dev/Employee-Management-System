@@ -7,3 +7,5 @@ import { Employee } from "../Models/employee.model.js"
 const onboardEmployee = asyncHandler( async (req, res) => {
     
 })
+
+export { onboardEmployee }
