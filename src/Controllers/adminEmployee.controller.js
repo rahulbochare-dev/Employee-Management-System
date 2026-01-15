@@ -26,6 +26,12 @@ const onboardEmployee = asyncHandler( async (req, res) => {
     if(alreadyExistEmployee){
         throw new ApiError(400, "Employee already exists!")
     }
+
+    const avatarLocalPath = req.files?.avatar[0].path
+    
+    if(!avatarLocalPath){
+        throw new ApiError(400, "Avatar is required!")
+    }
 })
 
 export { onboardEmployee }
