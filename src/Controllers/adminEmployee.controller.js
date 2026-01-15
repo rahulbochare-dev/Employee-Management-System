@@ -32,6 +32,39 @@ const onboardEmployee = asyncHandler( async (req, res) => {
     if(!avatarLocalPath){
         throw new ApiError(400, "Avatar is required!")
     }
+
+    const avatarUploadResponse = await uploadOnCloudinary(avatarLocalPath)
+
+    if(!avatarUploadResponse){
+        throw new ApiError(409, "An error occured while uploading avatar!")
+    }
+
+    const createdEmployee = await Employee.create({
+        empID,
+        firstName,
+        lastName,
+        email: email.toLowerCase(),
+        gender,
+        contactNo,
+        workMode,
+        avatar,
+        dateOfBirth,
+        country,
+        city,
+        pinCode,
+        address,
+        role,
+        isActive,
+        salary,
+        salaryCurrency,
+        joinedAt,
+        password
+    })
+
+    return res.status(200)
+    .json(
+        new ApiResponse(200, createdEmployee, "Employee created successfully")
+    )
 })
 
 export { onboardEmployee }
