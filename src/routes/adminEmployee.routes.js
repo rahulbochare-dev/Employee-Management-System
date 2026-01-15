@@ -12,6 +12,6 @@ router.route("/onboard-employee").post(upload.fields(
             maxCount: 1
         }
     ]
-), checkIsAdmin)
+), checkIsAdmin, onboardEmployee)
 
 export default router
