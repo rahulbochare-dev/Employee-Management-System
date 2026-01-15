@@ -22,8 +22,17 @@ const employeeSchema = new Schema({
         lowercase: true,
         trim: true
     },
+    gender: {
+        type: String,
+        required: true
+    },
+
     contactNo: {
         type: Number,
+        required: true
+    },
+    workMode: {
+        type: String,
         required: true
     },
     avatar: {
@@ -39,6 +48,14 @@ const employeeSchema = new Schema({
         required: true
     },
     city: {
+        type: String,
+        required: true
+    },
+    pinCode: {
+        type: String,
+        required: true
+    },
+    address: {
         type: String,
         required: true
     },
