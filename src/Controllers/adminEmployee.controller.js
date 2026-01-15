@@ -12,6 +12,14 @@ const onboardEmployee = asyncHandler( async (req, res) => {
     ){
         throw new ApiError(400, "Empty fields are not accepted!")
     }
+
+    if(password.length < 8){
+        throw new ApiError(400, "Password length must be minimum of 8 charecters!")
+    }
+    
+    if(!email.includes("@")){
+        throw new ApiError(400, "Please enter a valid email!")
+    }
 })
 
 export { onboardEmployee }
