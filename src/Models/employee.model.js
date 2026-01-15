@@ -26,7 +26,6 @@ const employeeSchema = new Schema({
         type: String,
         required: true
     },
-
     contactNo: {
         type: Number,
         required: true
