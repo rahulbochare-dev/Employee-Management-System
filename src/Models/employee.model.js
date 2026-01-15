@@ -70,6 +70,10 @@ const employeeSchema = new Schema({
         type: Number,
         required: true
     },
+    salaryCurrency: {
+        type: String,
+        required: true
+    },
     joinedAt: {
         type: Date,
         required: true
