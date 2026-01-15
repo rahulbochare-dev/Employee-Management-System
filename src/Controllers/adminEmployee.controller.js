@@ -20,6 +20,12 @@ const onboardEmployee = asyncHandler( async (req, res) => {
     if(!email.includes("@")){
         throw new ApiError(400, "Please enter a valid email!")
     }
+
+    const alreadyExistEmployee = await Employee.findOne({email}).lean()
+    
+    if(alreadyExistEmployee){
+        throw new ApiError(400, "Employee already exists!")
+    }
 })
 
 export { onboardEmployee }
