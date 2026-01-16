@@ -68,7 +68,10 @@ const onboardEmployee = asyncHandler( async (req, res) => {
 })
 
 const getAllEmployees = asyncHandler( async (req, res) => {
-
+    const allEmployees = await Employee.find({}).select("-password -refreshToken")
+    
+    return res.status(200)
+    .json(new ApiResponse(200, allEmployees, "Employees fetched succesfully"))
 })
 
 export { onboardEmployee, getAllEmployees }
