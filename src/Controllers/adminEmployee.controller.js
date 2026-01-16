@@ -67,4 +67,8 @@ const onboardEmployee = asyncHandler( async (req, res) => {
     )
 })
 
-export { onboardEmployee }
+const getAllEmployees = asyncHandler( async (req, res) => {
+
+})
+
+export { onboardEmployee, getAllEmployees }
