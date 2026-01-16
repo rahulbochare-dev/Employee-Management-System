@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { upload } from "../Middleware/multer.middleware.js"
-import { onboardEmployee, getAllEmployees } from "../Controllers/adminEmployee.controller.js"
+import { onboardEmployee, getEmployees } from "../Controllers/adminEmployee.controller.js"
 import { checkIsAdmin } from "../Middleware/checkAdmin.middleware.js";
 
 const router = Router()
@@ -14,6 +14,6 @@ router.route("/onboard-employee").post(upload.fields(
     ]
 ), checkIsAdmin, onboardEmployee)
 
-router.route("/all-employees").get(checkIsAdmin, getAllEmployees)
+router.route("/employees").get(checkIsAdmin, getEmployees)
 
 export default router
