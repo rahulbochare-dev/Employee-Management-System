@@ -75,7 +75,12 @@ const getEmployees = asyncHandler( async (req, res) => {
 })
 
 const terminateEmployee = asyncHandler( async (req, res) => {
-    
+    const id = req.body.id
+
+    const terminatedEmployee = await Employee.findByIdAndUpdate(id, {isActive: false}, {new: true}).select("-password -refreshToken")
+
+    return res.status(200)
+    .json(new ApiResponse(200, {terminatedEmployee}, "Employee terminated successfully"))
 })
 
 export { onboardEmployee, getEmployees, terminateEmployee }
