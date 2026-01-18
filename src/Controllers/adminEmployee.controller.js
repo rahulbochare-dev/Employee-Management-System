@@ -83,4 +83,8 @@ const terminateEmployee = asyncHandler( async (req, res) => {
     .json(new ApiResponse(200, {terminatedEmployee}, "Employee terminated successfully"))
 })
 
-export { onboardEmployee, getEmployees, terminateEmployee }
+const getEnployeeBySalary = asyncHandler( async (req, res) => {
+    
+})
+
+export { onboardEmployee, getEmployees, terminateEmployee, getEnployeeBySalary }
