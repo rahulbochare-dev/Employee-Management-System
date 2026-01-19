@@ -16,6 +16,6 @@ router.route("/onboard-employee").post(upload.fields(
 
 router.route("/employees").get(checkIsAdmin, getEmployees)
 router.route("/terminate-employee").get(checkIsAdmin, terminateEmployee)
-router.route("/employee-by-salary").get(checkIsAdmin, getEnployeeBySalary)
+router.route("/employee-by-filter").get(checkIsAdmin, getEnployeeBySalary)
 
 export default router
