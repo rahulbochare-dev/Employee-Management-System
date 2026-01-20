@@ -99,6 +99,10 @@ const getEnployeeBySalary = asyncHandler( async (req, res) => {
     if(pinCode) filterParams.pinCode = {$regex: pinCode, $options: "i"}
     if(role) filterParams.role = {$regex: role, $options: "i"}
 
+    const employeeFound = await Employee.find(filterParams)
+
+    return res.status(200)
+    .json(new ApiResponse(200, employeeFound, "Employees fetched by filter successfully"))
 })
 
 export { onboardEmployee, getEmployees, terminateEmployee, getEnployeeBySalary }
