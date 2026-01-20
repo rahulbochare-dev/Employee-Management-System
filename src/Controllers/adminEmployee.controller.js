@@ -84,7 +84,10 @@ const terminateEmployee = asyncHandler( async (req, res) => {
 })
 
 const getEnployeeBySalary = asyncHandler( async (req, res) => {
-    const {empID, firstName, lastName, email, gender, workMode, country, city, pinCode, role} = req.query
+    const {empID, firstName, lastName, email, gender, workMode, country, city, pinCode, role} =req.query
+
+    let filterParams = {};
+
 })
 
 export { onboardEmployee, getEmployees, terminateEmployee, getEnployeeBySalary }
