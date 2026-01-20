@@ -84,7 +84,7 @@ const terminateEmployee = asyncHandler( async (req, res) => {
 })
 
 const getEnployeeBySalary = asyncHandler( async (req, res) => {
-    
+    const {empID, firstName, lastName, email, gender, workMode, country, city, pinCode, role} = req.query
 })
 
 export { onboardEmployee, getEmployees, terminateEmployee, getEnployeeBySalary }
