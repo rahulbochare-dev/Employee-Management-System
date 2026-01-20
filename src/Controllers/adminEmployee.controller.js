@@ -87,6 +87,17 @@ const getEnployeeBySalary = asyncHandler( async (req, res) => {
     const {empID, firstName, lastName, email, gender, workMode, country, city, pinCode, role} =req.query
 
     let filterParams = {};
+    
+    if(empID) filterParams.empID = {$regex: empID, $options: "i"}
+    if(firstName) filterParams.firstName = {$regex: firstName, $options: "i"}
+    if(lastName) filterParams.lastName = {$regex: lastName, $options: "i"}
+    if(email) filterParams.email = {$regex: email, $options: "i"}
+    if(gender) filterParams.gender = {$regex: gender, $options: "i"}
+    if(workMode) filterParams.workMode = {$regex: workMode, $options: "i"}
+    if(country) filterParams.country = {$regex: country, $options: "i"}
+    if(city) filterParams.city = {$regex: city, $options: "i"}
+    if(pinCode) filterParams.pinCode = {$regex: pinCode, $options: "i"}
+    if(role) filterParams.role = {$regex: role, $options: "i"}
 
 })
 
