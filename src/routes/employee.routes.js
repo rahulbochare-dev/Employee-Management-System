@@ -3,3 +3,7 @@ import { checkIsEmployee } from "../Middleware/checkEmployee.middleware.js";
 import { loginEmployee } from "../Controllers/employee.controller.js"
 
 const router = Router()
+
+router.route("/login").post(checkIsEmployee, loginEmployee)
+
+export default router
