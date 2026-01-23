@@ -29,7 +29,7 @@ const loginEmployee = asyncHandler( async (req, res) => {
     if(!email.includes("@")){
         throw new ApiError(400, "Please enter and valid email!")
     }
-    if(!password.length < 8){
+    if(password.length < 8){
         throw new ApiError(400, "Password must be 8 charecters long!")
     }
 
