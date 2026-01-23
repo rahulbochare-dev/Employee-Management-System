@@ -20,7 +20,7 @@ import adminEmployeeRouter from "./src/routes/adminEmployee.routes.js"
 import employeeRouter from "./src/routes/employee.routes.js"
 
 app.use("/api/v1/user", userRouter)
-app.use("/api/v1/admin/employee", ad)
+app.use("/api/v1/admin/employee", adminEmployeeRouter)
 app.use("/api/v1/employee", employeeRouter)
 
 export { app }
