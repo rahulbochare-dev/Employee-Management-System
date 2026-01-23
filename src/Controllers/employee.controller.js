@@ -53,6 +53,17 @@ const loginEmployee = asyncHandler( async (req, res) => {
         httpOnly: true,
         secure: true
     }
+
+    return res.status(200)
+    .cookie("accessToken", accessToken, options)
+    .cookie("refreshToken", refreshToken, options)
+    .cookie("role", "employee", options)
+    .json(new ApiResponse(200,
+        {
+            employee: loggedInEmployee, accessToken, refreshToken
+        },
+        "Employee logged in successfully"
+    ))
 })
 
 export { loginEmployee }
