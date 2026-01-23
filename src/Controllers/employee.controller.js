@@ -4,7 +4,17 @@ import { ApiError } from "../utils/ApiError.js";
 import { Employee } from "../Models/employee.model.js"
 
 const loginEmployee = asyncHandler( async (req, res) => {
+    const {email, password} = req.body
 
+    if(!email && !password){
+        throw new ApiError(400, "Email and username is required!")
+    }
+    if(!email.includes("@")){
+        throw new ApiError(400, "Please enter and valid email!")
+    }
+    if(!password.length < 8){
+        throw new ApiError(400, "Password must be 8 charecters long!")
+    }
 })
 
 export { loginEmployee }
