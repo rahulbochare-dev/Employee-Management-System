@@ -79,7 +79,7 @@ const resetPassword = asyncHandler( async (req, res) => {
         throw new ApiError(400, "Passwords must be 8 charecters long!")
     }
     
-    const loggedInEmployee = await Employee.findById(req.employee._id).select("-password")
+    const loggedInEmployee = await Employee.findById(req.employee._id)
 
     const passwordCompareResult = loggedInEmployee.isPasswordCorrect(oldPassword)
     
