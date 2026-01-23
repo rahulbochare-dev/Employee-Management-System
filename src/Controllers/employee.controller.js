@@ -3,15 +3,15 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 import { ApiError } from "../utils/ApiError.js";
 import { Employee } from "../Models/employee.model.js"
 
-const generateAccessTokenAndRefreshToken = async (userId) => {
+const generateAccessTokenAndRefreshToken = async (empId) => {
     try {
-        const user = await User.findById(userId)
+        const employee = await Employee.findById(empId)
         
-        const accessToken = await user.generateAccessToken()
-        const refreshToken = await user.generateRefreshToken()
+        const accessToken = await employee.generateAccessToken()
+        const refreshToken = await employee.generateRefreshToken()
         
-        user.refreshToken = refreshToken
-        await user.save({validateBeforeSave: false})
+        employee.refreshToken = refreshToken
+        await employee.save({validateBeforeSave: false})
         return {accessToken, refreshToken}
     
         
