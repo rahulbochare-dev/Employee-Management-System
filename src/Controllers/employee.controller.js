@@ -44,6 +44,15 @@ const loginEmployee = asyncHandler( async (req, res) => {
     if(!passwordCompareResult){
         throw new ApiError(400, "Invalid password")
     }
+
+    const {accessToken, refreshToken} = await generateAccessTokenAndRefreshToken(registerdEmployee._id)
+
+    const loggedInEmployee = await Employee.findById(registerdEmployee._id).select("-password -refreshToken")
+
+    const options = {
+        httpOnly: true,
+        secure: true
+    }
 })
 
 export { loginEmployee }
