@@ -21,7 +21,6 @@ const checkIsEmployee = asyncHandler( async (req, res, next) => {
         if(req.cookies.role !== "employee"){
             throw new ApiError(401, "You dont have employee access!")
         }
-        console.log(req.cookies.role)
     
         req.employee = employee
         next()
