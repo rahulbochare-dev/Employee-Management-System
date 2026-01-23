@@ -10,22 +10,24 @@ const checkIsEmployee = asyncHandler( async (req, res, next) => {
             throw new ApiError(401, "Unauthorized request!")
         }
     
-        const decodedToken = jwt.sign(accessToken, process.env.ACCESS_TOKEN_SECRET)
-        const user = Employee.findOne(decodedToken._id).select("-password -refreshToken")
+        const decodedToken = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET)
         
-        if(!user){
+        if(!decodedToken){
             throw new ApiError(404, "Invalid access token!")
         }
+
+        const employee = await Employee.findById(decodedToken._id).select("-password -refreshToken")
     
-        if(!user.role === "employee"){
+        if(req.cookies.role !== "employee"){
             throw new ApiError(401, "You dont have employee access!")
         }
+        console.log(req.cookies.role)
     
-        req.user = user
+        req.employee = employee
         next()
         
     } catch (error) {
-        throw new ApiError(401, "Something went wrong while parsing token!")
+        throw new ApiError(401, error)
     }
 })
 
