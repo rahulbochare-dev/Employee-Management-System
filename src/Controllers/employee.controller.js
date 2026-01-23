@@ -81,7 +81,7 @@ const resetPassword = asyncHandler( async (req, res) => {
     
     const loggedInEmployee = await Employee.findById(req.employee._id)
 
-    const passwordCompareResult = loggedInEmployee.isPasswordCorrect(oldPassword)
+    const passwordCompareResult = await loggedInEmployee.isPasswordCorrect(oldPassword)
     
     if(!passwordCompareResult){
         throw new ApiError(400, "Invalid old password!")
