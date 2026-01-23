@@ -66,4 +66,31 @@ const loginEmployee = asyncHandler( async (req, res) => {
     ))
 })
 
+const resetPassword = asyncHandler( async (req, res) => {
+    const {email, oldPassword, newPassword} = req.body
+
+    if(!email && !password){
+        throw new ApiError(400, "Email and username is required!")
+    }
+    if(!email.includes("@")){
+        throw new ApiError(400, "Please enter and valid email!")
+    }
+    if((oldPassword.length && newPassword.length) < 8){
+        throw new ApiError(400, "Passwords must be 8 charecters long!")
+    }
+    
+    const loggedInEmployee = await Employee.findById(req.employee._id).select("-password")
+
+    const passwordCompareResult = loggedInEmployee.isPasswordCorrect(oldPassword)
+    
+    if(!passwordCompareResult){
+        throw new ApiError(400, "Invalid old password!")
+    }
+
+    loggedInEmployee.password = newPassword
+    await loggedInEmployee.save({validateBeforeSave: false})
+
+    return res.status(200).json(new ApiResponse(200, {}, "Password has changed successfully"))
+})
+
 export { loginEmployee }
