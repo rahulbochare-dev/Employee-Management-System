@@ -97,4 +97,12 @@ const getCurrentEmployeeDetails = asyncHandler( async (req, res) => {
     return res.status(200).json(new ApiResponse(200, req.employee, "Employee fetched successfuly"))
 })
 
-export { loginEmployee, resetPassword, getCurrentEmployeeDetails }
+const logoutEmployee = asyncHandler( async (req, res) => {
+    return res.status(200)
+    .clearCookie("accessToken", accessToken, options)
+    .clearCookie("refreshToken", refreshToken, options)
+    .clearCookie("role", "employee", options)
+    .json(new ApiResponse(200, {}, "Employee logged out successfully"))
+})
+
+export { loginEmployee, resetPassword, getCurrentEmployeeDetails, logoutEmployee }
