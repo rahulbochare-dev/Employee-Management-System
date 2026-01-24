@@ -93,4 +93,8 @@ const resetPassword = asyncHandler( async (req, res) => {
     return res.status(200).json(new ApiResponse(200, {}, "Password has changed successfully"))
 })
 
+const getCurrentEmployeeDetails = asyncHandler( async (req, res) => {
+    return res.status(200).json(new ApiResponse(200, req.employee, "Employee fetched successfuly"))
+})
+
 export { loginEmployee, resetPassword }
