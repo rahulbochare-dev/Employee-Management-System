@@ -99,9 +99,9 @@ const getCurrentEmployeeDetails = asyncHandler( async (req, res) => {
 
 const logoutEmployee = asyncHandler( async (req, res) => {
     return res.status(200)
-    .clearCookie("accessToken", accessToken, options)
-    .clearCookie("refreshToken", refreshToken, options)
-    .clearCookie("role", "employee", options)
+    .clearCookie("accessToken")
+    .clearCookie("refreshToken")
+    .clearCookie("role")
     .json(new ApiResponse(200, {}, "Employee logged out successfully"))
 })
 
