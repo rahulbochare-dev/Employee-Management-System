@@ -2,7 +2,7 @@ import { mongoose, Schema } from "mongoose";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken"
 
-const employeeSchema = new Schema({
+const leaveSchema = new Schema({
     employee: {
         type: Schema.Types.ObjectId,
         ref: "Employee",
@@ -34,3 +34,5 @@ const employeeSchema = new Schema({
     timestamps: true
 }
 )
+
+export const Leave = mongoose.model("Leave", leaveSchema)
