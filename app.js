@@ -18,11 +18,11 @@ app.use(cookieParser())
 import userRouter from "./src/routes/user.routes.js";
 import adminEmployeeRouter from "./src/routes/adminEmployee.routes.js"
 import employeeRouter from "./src/routes/employee.routes.js"
-import leaveRouter from "./src/routes/leave.routes.js"
+import EmployeeLeaveRouter from "./src/routes/employeeLeave.routes.js"
 
 app.use("/api/v1/user", userRouter)
 app.use("/api/v1/admin/employee", adminEmployeeRouter)
 app.use("/api/v1/employee", employeeRouter)
-app.use("/api/v1/leave", leaveRouter)
+app.use("/api/v1/leave", EmployeeLeaveRouter)
 
 export { app }
