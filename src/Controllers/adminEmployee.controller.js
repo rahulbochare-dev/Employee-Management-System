@@ -103,4 +103,17 @@ const getEnployeeBySalary = asyncHandler( async (req, res) => {
     .json(new ApiResponse(200, employeeFound, "Employees fetched by filter successfully"))
 })
 
+const searchEmployee = asyncHandler( async (req, res) => {
+    const {firstName, lastName} = req.query
+
+    let searchParams = {};
+
+    if(firstName) searchParams.firstName = {$regex: firstName, $options: "i"}
+    if(lastName) searchParams.lastName = {$regex: lastName, $options: "i"}
+
+    const employeeFound = await Employee.find(searchParams).select("-password -refreshToken")
+
+    return res.status(200).json(new ApiResponse(200, {employee: employeeFound}, "Employee searched successfully"))
+})
+
 export { onboardEmployee, getEmployees, terminateEmployee, getEnployeeBySalary }
