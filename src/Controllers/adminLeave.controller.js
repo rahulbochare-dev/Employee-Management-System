@@ -11,9 +11,9 @@ const updateLeaveStatus = asyncHandler( async (req, res) => {
     }
 
     const leaveInDB = await Leave.findById(leaveId)
-
+    
     if(!leaveInDB){
-        throw new ApiResponse(404, "Leave does not exists!")
+        throw new ApiError(404, "Leave does not exists!")
     }
 
     if(leaveInDB.status === status){
