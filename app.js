@@ -19,10 +19,12 @@ import userRouter from "./src/routes/user.routes.js";
 import adminEmployeeRouter from "./src/routes/adminEmployee.routes.js"
 import employeeRouter from "./src/routes/employee.routes.js"
 import EmployeeLeaveRouter from "./src/routes/employeeLeave.routes.js"
+import adminLeaveRouter from "./src/routes/adminLeave.routes.js"
 
 app.use("/api/v1/user", userRouter)
 app.use("/api/v1/admin/employee", adminEmployeeRouter)
 app.use("/api/v1/employee", employeeRouter)
 app.use("/api/v1/leave", EmployeeLeaveRouter)
+app.use("/api/v1/admin/leave", adminLeaveRouter)
 
 export { app }
