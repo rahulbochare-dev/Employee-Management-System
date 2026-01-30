@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { checkIsAdmin } from "../Middleware/checkIsAdmin.middleware.js";
+import { checkIsAdmin } from "../Middleware/checkAdmin.middleware.js";
 import { updateLeaveStatus } from "../Controllers/adminLeave.controller.js"
 
 const router = Router()
