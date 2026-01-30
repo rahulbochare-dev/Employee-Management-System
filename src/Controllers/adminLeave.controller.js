@@ -16,9 +16,8 @@ const updateLeaveStatus = asyncHandler( async (req, res) => {
         throw new ApiResponse(404, "Leave does not exists!")
     }
 
-    const upadtedLeave = await leaveId.save({
-        status: status
-    })
+    leaveInDB.status = status
+    const upadtedLeave = await leaveInDB.save({validateBeforeSave: false})
 
     return res.status(200).json(new ApiResponse(200, {leave: upadtedLeave}, "Leave updated successfully"))
 
