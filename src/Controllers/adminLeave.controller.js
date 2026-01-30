@@ -16,6 +16,10 @@ const updateLeaveStatus = asyncHandler( async (req, res) => {
         throw new ApiResponse(404, "Leave does not exists!")
     }
 
+    if(leaveInDB.status === status){
+        throw new ApiError(400, "Leave already updated!")
+    }
+
     leaveInDB.status = status
     const upadtedLeave = await leaveInDB.save({validateBeforeSave: false})
 
