@@ -5,6 +5,6 @@ import { addLeave, getLeaves } from "../Controllers/employeeLeave.controller.js"
 const router = Router()
 
 router.route("/add-leave").post(checkIsEmployee, addLeave)
-router.route("/leaves").post(checkIsEmployee, getLeaves)
+router.route("/leaves").get(checkIsEmployee, getLeaves)
 
 export default router
