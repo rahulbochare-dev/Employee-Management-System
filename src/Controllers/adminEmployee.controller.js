@@ -68,10 +68,19 @@ const onboardEmployee = asyncHandler( async (req, res) => {
 })
 
 const getEmployees = asyncHandler( async (req, res) => {
+    const page = req.query || 1
+    const limit = req.query || 10
+
+    const offset = (page - 1) * limit
     const allEmployees = await Employee.find({}).select("-password -refreshToken")
+    .sort({createdAt: -1})
+    .skip(offset)
+    .limit(limit)
+
+    const totalNoOfEmployees = await Employee.countDocuments({})
     
     return res.status(200)
-    .json(new ApiResponse(200, allEmployees, "Employees fetched succesfully"))
+    .json(new ApiResponse(200, {emploees: allEmployees, totalEmployees: totalNoOfEmployees}, "Employees fetched succesfully"))
 })
 
 const terminateEmployee = asyncHandler( async (req, res) => {
