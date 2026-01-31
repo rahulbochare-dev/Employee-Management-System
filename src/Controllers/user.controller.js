@@ -134,7 +134,6 @@ const loginUser = asyncHandler( async (req, res) => {
         "User logged in successfully"
     ))
     
-    
 })
 
 const logoutUser = asyncHandler( async (req, res,) => {
@@ -155,10 +154,10 @@ const logoutUser = asyncHandler( async (req, res,) => {
         secure: true
     }
 
-
     res.status(200)
     .clearCookie("accessToken", options)
     .clearCookie("refreshToken", options)
+    .clearCookie("role", options)
     .json(new ApiResponse(200, {}, "User logged out successfully"))
     
 })
