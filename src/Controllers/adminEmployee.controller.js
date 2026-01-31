@@ -125,4 +125,4 @@ const searchEmployee = asyncHandler( async (req, res) => {
     return res.status(200).json(new ApiResponse(200, {employee: employeeFound}, "Employee searched successfully"))
 })
 
-export { onboardEmployee, getEmployees, terminateEmployee, getEnployeeBySalary, searchEmployee }
+export { onboardEmployee, getEmployees, terminateEmployee, getEmployeeByFilter, searchEmployee }
