@@ -5,7 +5,7 @@ import { loginEmployee, resetPassword, getCurrentEmployeeDetails, logoutEmployee
 const router = Router()
 
 router.route("/login").post(loginEmployee)
-router.route("/reset-password").post(checkIsEmployee, resetPassword)
+router.route("/reset-password").patch(checkIsEmployee, resetPassword)
 router.route("/employee-details").post(checkIsEmployee, getCurrentEmployeeDetails)
 router.route("/logout").post(checkIsEmployee, logoutEmployee)
 
