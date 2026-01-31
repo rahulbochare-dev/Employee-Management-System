@@ -68,8 +68,9 @@ const onboardEmployee = asyncHandler( async (req, res) => {
 })
 
 const getEmployees = asyncHandler( async (req, res) => {
-    const page = req.query || 1
-    const limit = req.query || 10
+    const page = req.query.page || 1
+    const limit = req.query.limit || 10
+    console.log(page, limit)
 
     const offset = (page - 1) * limit
     const allEmployees = await Employee.find({}).select("-password -refreshToken")
