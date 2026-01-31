@@ -116,7 +116,7 @@ const getEmployeeByFilter = asyncHandler( async (req, res) => {
 const getEmployeeBySalary = asyncHandler( async (req,res) => {
     const {minSalary, maxSalary} = req.query
 
-    const employeeFound = await Employee.find({$gte: minSalary, $lte: maxSalary})
+    const employeeFound = await Employee.find({salary: {$gte: minSalary, $lte: maxSalary}})
 
     return res.status(200).json(new ApiResponse(200, {employees: employeeFound}, "Employee fetched by salary successfully"))
 })
