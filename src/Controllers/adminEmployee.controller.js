@@ -83,7 +83,7 @@ const terminateEmployee = asyncHandler( async (req, res) => {
     .json(new ApiResponse(200, {terminatedEmployee}, "Employee terminated successfully"))
 })
 
-const getEnployeeBySalary = asyncHandler( async (req, res) => {
+const getEmployeeByFilter = asyncHandler( async (req, res) => {
     const {empID, email, gender, workMode, country, city, pinCode, role} =req.query
 
     let filterParams = {};
