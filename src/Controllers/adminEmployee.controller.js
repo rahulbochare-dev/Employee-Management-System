@@ -113,6 +113,14 @@ const getEmployeeByFilter = asyncHandler( async (req, res) => {
     .json(new ApiResponse(200, employeeFound, "Employees fetched by filter successfully"))
 })
 
+const getEmployeeBySalary = asyncHandler( async (req,res) => {
+    const {minSalary, maxSalary} = req.query
+
+    const employeeFound = await Employee.find({$gte: minSalary, $lte: maxSalary})
+
+    return res.status(200).json(new ApiResponse(200, {employees: employeeFound}, "Employee fetched by salary successfully"))
+})
+
 const searchEmployee = asyncHandler( async (req, res) => {
     const {firstName, lastName} = req.query
 
@@ -126,4 +134,4 @@ const searchEmployee = asyncHandler( async (req, res) => {
     return res.status(200).json(new ApiResponse(200, {employee: employeeFound}, "Employee searched successfully"))
 })
 
-export { onboardEmployee, getEmployees, terminateEmployee, getEmployeeByFilter, searchEmployee }
+export { onboardEmployee, getEmployees, terminateEmployee, getEmployeeByFilter, getEmployeeBySalary, searchEmployee }
