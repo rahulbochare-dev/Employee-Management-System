@@ -169,7 +169,11 @@ const resetPassword = asyncHandler( async (req, res) => {
         throw new ApiError(400, "Old and new password is required!")
     }
 
-    const user = findById({_id: req.user._id})
+    if(newPassword.length < 8){
+        throw new ApiError(400, "New password must be 8 charecters long!")
+    }
+
+    const user = await User.findById({_id: req.user._id})
 
     const passwordCompareResult = await user.isPasswordCorrect(oldPassword)
 
@@ -178,9 +182,9 @@ const resetPassword = asyncHandler( async (req, res) => {
     }
 
     user.password = newPassword
-    User.save({validateBeforeSave: false})
+    user.save({validateBeforeSave: false})
 
-    return ApiResponse(200).json(new ApiResponse(200, {}, "Password has changed successfully"))
+    return res.status(200).json(new ApiResponse(200, {}, "Password has changed successfully"))
 })
 
 export { registerUser, loginUser, logoutUser, resetPassword }
