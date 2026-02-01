@@ -136,7 +136,7 @@ const loginUser = asyncHandler( async (req, res) => {
     
 })
 
-const logoutUser = asyncHandler( async (req, res,) => {
+const logoutUser = asyncHandler( async (req, res) => {
     const user = await User.findByIdAndUpdate(req.user._id,
         {
             $unset: {
@@ -162,5 +162,25 @@ const logoutUser = asyncHandler( async (req, res,) => {
     
 })
 
+const resetPassword = asyncHandler( async (req, res) => {
+    const {oldPassword, newPassword} = req.body
 
-export { registerUser, loginUser, logoutUser }
+    if(!oldPassword && !newPassword){
+        throw new ApiError(400, "Old and new password is required!")
+    }
+
+    const user = findById({_id: req.user._id})
+
+    const passwordCompareResult = await user.isPasswordCorrect(oldPassword)
+
+    if(!passwordCompareResult){
+        throw new ApiError(400, "Invalid old password!")
+    }
+
+    user.password = newPassword
+    User.save({validateBeforeSave: false})
+
+    return ApiResponse(200).json(new ApiResponse(200, {}, "Password has changed successfully"))
+})
+
+export { registerUser, loginUser, logoutUser, resetPassword }
