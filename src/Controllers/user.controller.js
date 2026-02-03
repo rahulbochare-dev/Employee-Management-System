@@ -163,14 +163,18 @@ const logoutUser = asyncHandler( async (req, res) => {
 })
 
 const resetPassword = asyncHandler( async (req, res) => {
-    const {oldPassword, newPassword} = req.body
+    const {email, oldPassword, newPassword} = req.body
 
-    if(!oldPassword && !newPassword){
-        throw new ApiError(400, "Old and new password is required!")
+    if(!oldPassword && !newPassword && !email){
+        throw new ApiError(400, "All fields are required!")
     }
 
-    if(newPassword.length < 8){
-        throw new ApiError(400, "New password must be 8 charecters long!")
+    if(!email.includes("@")){
+        throw new ApiError(400, "Please enter a valid email!")
+    }
+
+    if((oldPassword.length && newPassword.length) < 8){
+        throw new ApiError(400, "Passwords must be 8 charecters long!")
     }
 
     const user = await User.findById({_id: req.user._id})

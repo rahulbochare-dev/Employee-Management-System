@@ -69,12 +69,14 @@ const loginEmployee = asyncHandler( async (req, res) => {
 const resetPassword = asyncHandler( async (req, res) => {
     const {email, oldPassword, newPassword} = req.body
 
-    if(!email && !password){
-        throw new ApiError(400, "Email and username is required!")
+    if(!oldPassword && !newPassword && !email){
+        throw new ApiError(400, "All fields are required!")
     }
+
     if(!email.includes("@")){
-        throw new ApiError(400, "Please enter and valid email!")
+        throw new ApiError(400, "Please enter a valid email!")
     }
+    
     if((oldPassword.length && newPassword.length) < 8){
         throw new ApiError(400, "Passwords must be 8 charecters long!")
     }
