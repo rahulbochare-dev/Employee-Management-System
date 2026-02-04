@@ -179,6 +179,10 @@ const resetPassword = asyncHandler( async (req, res) => {
 
     const user = await User.findById({_id: req.user._id})
 
+    if(email !== user.email){
+        throw new ApiError(400, "Invalid email!")
+    }
+
     const passwordCompareResult = await user.isPasswordCorrect(oldPassword)
 
     if(!passwordCompareResult){
