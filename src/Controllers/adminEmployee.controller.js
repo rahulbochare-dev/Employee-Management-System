@@ -90,7 +90,7 @@ const terminateEmployee = asyncHandler( async (req, res) => {
     const terminatedEmployee = await Employee.findByIdAndUpdate(id, {isActive: false}, {new: true}).select("-password -refreshToken")
 
     return res.status(200)
-    .json(new ApiResponse(200, {terminatedEmployee}, "Employee terminated successfully"))
+    .json(new ApiResponse(200, {terminateEmployee: terminatedEmployee}, "Employee terminated successfully"))
 })
 
 const getEmployeeByFilter = asyncHandler( async (req, res) => {
