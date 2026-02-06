@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { upload } from "../Middleware/multer.middleware.js"
-import { onboardEmployee, getEmployees, terminateEmployee, getEmployeeByFilter, searchEmployee, getEmployeeBySalary } from "../Controllers/adminEmployee.controller.js"
-import { checkIsAdmin } from "../Middleware/checkAdmin.middleware.js";
+import { upload } from "../middlewares/multer.middleware.js"
+import { onboardEmployee, getEmployees, terminateEmployee, getEmployeeByFilter, searchEmployee, getEmployeeBySalary } from "../controllers/adminEmployee.controller.js"
+import { checkIsAdmin } from "../middlewares/checkAdmin.middleware.js";
 
 const router = Router()
 
