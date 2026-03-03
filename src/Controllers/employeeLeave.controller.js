@@ -1,7 +1,7 @@
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { ApiError } from "../utils/ApiError.js";
-import { Leave } from "../Models/leave.model.js"
+import { Leave } from "../models/leave.model.js";
 
 const addLeave = asyncHandler( async (req, res) => {
     const {leaveType, description, from, to} = req.body
