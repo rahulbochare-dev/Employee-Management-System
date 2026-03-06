@@ -25,6 +25,9 @@ const departmentSchema = new Schema({
         type: Number,
         default: 0
     }
+},
+{
+    timestamps: true
 })
 
 export const Department = mongoose.models.Department || mongoose.model("Department", departmentSchema)
