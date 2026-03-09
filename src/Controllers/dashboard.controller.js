@@ -14,10 +14,14 @@ const getEmployeeGenderRatio = asyncHandler( async (req, res) => {
     }])
 
     if(!employeeRatio){
-        throw new ApiError(400, "Employees now found!")
+        throw new ApiError(400, "Employees not found!")
     }
 
     res.status(200).json(new ApiResponse(200, employeeRatio, "Employee ratio fetched succesfully"))
+})
+
+const getPendingLeaveApplications = asyncHandler( async (req, res) => {
+    
 })
 
 export { getEmployeeGenderRatio }
