@@ -2,6 +2,7 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { ApiError } from "../utils/ApiError.js";
 import { Employee } from "../models/employee.model.js"
+import { Leave } from "../models/leave.model.js"
 
 const getEmployeeGenderRatio = asyncHandler( async (req, res) => {
     const employeeRatio = await Employee.aggregate([{
@@ -21,7 +22,13 @@ const getEmployeeGenderRatio = asyncHandler( async (req, res) => {
 })
 
 const getPendingLeaveApplications = asyncHandler( async (req, res) => {
-    
+    const pendingLeaveApplications = await Leave.find({status: "pending"})
+
+    if(!pendingLeaveApplications){
+        throw new ApiError(400, "Leaves not found!")
+    }
+
+    res.status(200).json(new ApiResponse(200, pendingLeaveApplications, "Pending leave applications fetched successfully"))
 })
 
 export { getEmployeeGenderRatio }
