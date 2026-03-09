@@ -31,4 +31,4 @@ const getPendingLeaveApplications = asyncHandler( async (req, res) => {
     res.status(200).json(new ApiResponse(200, pendingLeaveApplications, "Pending leave applications fetched successfully"))
 })
 
-export { getEmployeeGenderRatio }
+export { getEmployeeGenderRatio, getPendingLeaveApplications }
