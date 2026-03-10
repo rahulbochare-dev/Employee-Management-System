@@ -22,7 +22,23 @@ const getEmployeeGenderRatio = asyncHandler( async (req, res) => {
 })
 
 const getPendingLeaveApplications = asyncHandler( async (req, res) => {
-    const pendingLeaveApplications = await Leave.find({status: "pending"})
+    const pendingLeaveApplications = await Leave.aggregate([{
+        $facet: {
+                "catagoryTotal": [{
+                    $group: {
+                        _id: "$leaveType",
+                        total: {
+                            $sum: 1
+                        }
+                    }
+                }],
+                "allCatagoryTotal": [{
+                    $count: "totalLeaves"
+                }]
+            }
+        
+    }])
+
 
     if(!pendingLeaveApplications){
         throw new ApiError(400, "Leaves not found!")
