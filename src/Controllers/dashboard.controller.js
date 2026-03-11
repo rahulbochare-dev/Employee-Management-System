@@ -36,9 +36,7 @@ const getPendingLeaveApplications = asyncHandler( async (req, res) => {
                     $count: "totalLeaves"
                 }]
             }
-        
-    }])
-
+        }])
 
     if(!pendingLeaveApplications){
         throw new ApiError(400, "Leaves not found!")
@@ -47,4 +45,8 @@ const getPendingLeaveApplications = asyncHandler( async (req, res) => {
     res.status(200).json(new ApiResponse(200, pendingLeaveApplications, "Pending leave applications fetched successfully"))
 })
 
-export { getEmployeeGenderRatio, getPendingLeaveApplications }
+const getOnLeaveToday = asyncHandler( async (req, res) => {
+    
+})
+
+export { getEmployeeGenderRatio, getPendingLeaveApplications, getOnLeaveToday }
