@@ -56,7 +56,6 @@ const getOnLeaveToday = asyncHandler( async (req, res) => {
     const today = Date()
     const onLeaveToday = await Leave.find({from: {$lte: today}, to: {$gte: today}, status: "Approved"})
 
-    console.log(onLeaveToday)
-})
+    res.status(200).json(new ApiResponse(200, onLeaveToday, "Employees on leave today fetched successfully"))})
 
 export { getEmployeeGenderRatio, getPendingLeaveApplications, getOnLeaveToday }
