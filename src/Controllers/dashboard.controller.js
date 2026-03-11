@@ -6,11 +6,18 @@ import { Leave } from "../models/leave.model.js"
 
 const getEmployeeGenderRatio = asyncHandler( async (req, res) => {
     const employeeRatio = await Employee.aggregate([{
-        $group: {
-            _id: "$gender",
-            total: {
-                $sum: 1
-            }
+        $facet: {
+            "genderTotal": [{
+                $group: {
+                    _id: "$gender",
+                    total: {
+                        $sum: 1
+                    }
+                }
+            }],
+            "totalEmplyees": [{
+                $count: "totalEmployees"
+            }]
         }
     }])
 
@@ -46,7 +53,10 @@ const getPendingLeaveApplications = asyncHandler( async (req, res) => {
 })
 
 const getOnLeaveToday = asyncHandler( async (req, res) => {
-    
+    const today = Date()
+    const onLeaveToday = await Leave.find({from: {$lte: today}, to: {$gte: today}, status: "Approved"})
+
+    console.log(onLeaveToday)
 })
 
 export { getEmployeeGenderRatio, getPendingLeaveApplications, getOnLeaveToday }
