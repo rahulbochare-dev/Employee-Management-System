@@ -81,7 +81,44 @@ const getOnLeaveToday = asyncHandler(async (req, res) => {
 })
 
 const getNewJoinesThisMonth = asyncHandler(async (req, res) => {
+    const newJoinesThisMonth = await Employee.aggregate([{
+        $match: {
+            $expr: {
+                $and: {
+                    $eq: [
+                        { $month: "$joinedAt" },
+                        { $month: new Date() }
+                    ],
+                    $eq: [
+                        { $year: "$joinedAt" },
+                        { $year: new Date() }
+                    ]
+                }
+            }
+        },
+    },
+    {
+        $facet: {
+            "genderWiseTotal": [{
+                $group: {
+                    _id: "$gender",
+                    total: {
+                        $sum: 1
+                    }
+                }
+            }],
+            "totalNewJoines": [{
+                $count: "totalNewJoines"
+            }]
+        }
+    }
+])
 
+    if(!newJoinesThisMonth){
+        throw new ApiError(400, "New joines not found")
+    }
+
+    res.status(200).json(new ApiResponse(200, newJoinesThisMonth, "New joines this month fetched successfully"))
 })
 
 export { getEmployeeGenderRatio, getPendingLeaveApplications, getOnLeaveToday, getNewJoinesThisMonth }
