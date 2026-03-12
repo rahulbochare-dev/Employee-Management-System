@@ -80,4 +80,8 @@ const getOnLeaveToday = asyncHandler(async (req, res) => {
     res.status(200).json(new ApiResponse(200, onLeaveToday, "Employees on leave today fetched successfully"))
 })
 
-export { getEmployeeGenderRatio, getPendingLeaveApplications, getOnLeaveToday }
+const getNewJoinesThisMonth = asyncHandler(async (req, res) => {
+
+})
+
+export { getEmployeeGenderRatio, getPendingLeaveApplications, getOnLeaveToday, getNewJoinesThisMonth }
