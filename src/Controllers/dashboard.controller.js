@@ -4,7 +4,7 @@ import { ApiError } from "../utils/ApiError.js";
 import { Employee } from "../models/employee.model.js"
 import { Leave } from "../models/leave.model.js"
 
-const getEmployeeGenderRatio = asyncHandler( async (req, res) => {
+const getEmployeeGenderRatio = asyncHandler(async (req, res) => {
     const employeeRatio = await Employee.aggregate([{
         $facet: {
             "genderTotal": [{
@@ -21,41 +21,63 @@ const getEmployeeGenderRatio = asyncHandler( async (req, res) => {
         }
     }])
 
-    if(!employeeRatio){
+    if (!employeeRatio) {
         throw new ApiError(400, "Employees not found!")
     }
 
     res.status(200).json(new ApiResponse(200, employeeRatio, "Employee ratio fetched succesfully"))
 })
 
-const getPendingLeaveApplications = asyncHandler( async (req, res) => {
+const getPendingLeaveApplications = asyncHandler(async (req, res) => {
     const pendingLeaveApplications = await Leave.aggregate([{
         $facet: {
-                "catagoryTotal": [{
-                    $group: {
-                        _id: "$leaveType",
-                        total: {
-                            $sum: 1
-                        }
+            "catagoryTotal": [{
+                $group: {
+                    _id: "$leaveType",
+                    total: {
+                        $sum: 1
                     }
-                }],
-                "allCatagoryTotal": [{
-                    $count: "totalLeaves"
-                }]
-            }
-        }])
+                }
+            }],
+            "allCatagoryTotal": [{
+                $count: "totalLeaves"
+            }]
+        }
+    }])
 
-    if(!pendingLeaveApplications){
+    if (!pendingLeaveApplications) {
         throw new ApiError(400, "Leaves not found!")
     }
 
     res.status(200).json(new ApiResponse(200, pendingLeaveApplications, "Pending leave applications fetched successfully"))
 })
 
-const getOnLeaveToday = asyncHandler( async (req, res) => {
+const getOnLeaveToday = asyncHandler(async (req, res) => {
     const today = Date()
-    const onLeaveToday = await Leave.find({from: {$lte: today}, to: {$gte: today}, status: "Approved"})
+    const onLeaveToday = await Leave.aggregate([{
+        $match: {
+            status: "Approved",
+            from: { $lte: new Date() },
+            to: { $gte: new Date() }
+        }
+    },
+    {
+        $facet: {
+            "catagoryTotal": [{
+                $group: {
+                    _id: "$leaveType",
+                    catagoryTotal: {
+                        $sum: 1
+                    }
+                }
+            }],
+            "todayTotalLeaves": [{
+                $count: "totalLeaves"
+            }]
+        }
+    }])
 
-    res.status(200).json(new ApiResponse(200, onLeaveToday, "Employees on leave today fetched successfully"))})
+    res.status(200).json(new ApiResponse(200, onLeaveToday, "Employees on leave today fetched successfully"))
+})
 
 export { getEmployeeGenderRatio, getPendingLeaveApplications, getOnLeaveToday }
