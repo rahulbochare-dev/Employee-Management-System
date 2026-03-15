@@ -121,4 +121,8 @@ const getNewJoinesThisMonth = asyncHandler(async (req, res) => {
     res.status(200).json(new ApiResponse(200, newJoinesThisMonth, "New joines this month fetched successfully"))
 })
 
-export { getEmployeeGenderRatio, getPendingLeaveApplications, getOnLeaveToday, getNewJoinesThisMonth }
+const getLastWeeksLeaves = asyncHandler( async (req, res) => {
+    
+})
+
+export { getEmployeeGenderRatio, getPendingLeaveApplications, getOnLeaveToday, getNewJoinesThisMonth, getLastWeeksLeaves }
