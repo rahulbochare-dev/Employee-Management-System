@@ -122,7 +122,30 @@ const getNewJoinesThisMonth = asyncHandler(async (req, res) => {
 })
 
 const getLastWeeksLeaves = asyncHandler( async (req, res) => {
-    
+    let lastWeekDates = []
+
+    for (let i = 1; i <= 7; i++) {
+        let date = new Date()
+        date.setDate(date.getDate() - i)
+        lastWeekDates.push(date.toISOString())
+    }
+
+    const leastWeekLeaves = await Leave.aggregate([{
+        $match: {
+            $expr: {
+                $eq: [
+                    {
+                        $month: { date: "$from" }
+                    },
+                    {
+                        $month: { $toDate: lastWeekDates[0] }
+                    }
+                ]
+            }
+        }
+    }])
+
+    console.log(leastWeekLeaves)
 })
 
 export { getEmployeeGenderRatio, getPendingLeaveApplications, getOnLeaveToday, getNewJoinesThisMonth, getLastWeeksLeaves }
