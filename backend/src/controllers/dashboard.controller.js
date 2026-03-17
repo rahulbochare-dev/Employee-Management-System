@@ -122,30 +122,23 @@ const getNewJoinesThisMonth = asyncHandler(async (req, res) => {
 })
 
 const getLastWeeksLeaves = asyncHandler( async (req, res) => {
-    let lastWeekDates = []
-
-    for (let i = 1; i <= 7; i++) {
-        let date = new Date()
-        date.setDate(date.getDate() - i)
-        lastWeekDates.push(date.toISOString())
-    }
+    const date = new Date()
+    date.setDate(date.getDate() - 7)
+    date.setHours(0, 0, 0, 0)
 
     const leastWeekLeaves = await Leave.aggregate([{
         $match: {
-            $expr: {
-                $eq: [
-                    {
-                        $month: { date: "$from" }
-                    },
-                    {
-                        $month: { $toDate: lastWeekDates[0] }
-                    }
-                ]
+            status: "Approved"
+        },
+        $match: {
+            from: {
+                $gte: date,
+                $lte: new Date()
             }
         }
     }])
 
-    console.log(leastWeekLeaves)
+    res.status(200).json(new ApiResponse(200, leastWeekLeaves, "Least week leaves fetched successfully"))
 })
 
 export { getEmployeeGenderRatio, getPendingLeaveApplications, getOnLeaveToday, getNewJoinesThisMonth, getLastWeeksLeaves }
