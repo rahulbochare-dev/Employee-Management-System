@@ -135,6 +135,12 @@ const getLastWeeksLeaves = asyncHandler( async (req, res) => {
                 $gte: date,
                 $lte: new Date()
             }
+        },
+        $group: {
+            _id: "$from",
+            total: {
+                $sum: 1
+            }
         }
     }])
 
