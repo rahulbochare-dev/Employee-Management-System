@@ -5,7 +5,8 @@ function App() {
 
   return (
     <>
-     <KPICard/> 
+     <KPICard
+     title={"Total Employees"}/> 
     </>
   )
 }
