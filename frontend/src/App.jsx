@@ -1,12 +1,10 @@
 import './App.css'
-import  KPICard  from "./components/KPICard.jsx";
-
+import Profile from "./components/Profile.jsx";
 function App() {
 
   return (
     <>
-     <KPICard
-     title={"Total Employees"}/> 
+      <Profile/>
     </>
   )
 }
