@@ -1,10 +1,12 @@
 import './App.css'
-import Profile from "./components/Profile.jsx";
+import SidebarButton from './components/SidebarButton.jsx';
 function App() {
 
   return (
     <>
-      <Profile/>
+      <SidebarButton/>
+      <SidebarButton/>
+      <SidebarButton/>
     </>
   )
 }
