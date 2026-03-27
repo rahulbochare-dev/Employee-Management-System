@@ -1,10 +1,10 @@
 import './App.css'
-import SidebarButton from './components/SidebarButton.jsx';
+import WelcomeText from './components/WelcomeText.jsx';
 function App() {
 
   return (
     <>
-      <SidebarButton/>
+      <WelcomeText/>
     </>
   )
 }
