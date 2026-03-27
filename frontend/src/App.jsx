@@ -1,10 +1,10 @@
 import './App.css'
-import WelcomeText from './components/WelcomeText.jsx';
+import LogoutButton from './components/LogoutButton.jsx';
 function App() {
 
   return (
     <>
-      <WelcomeText/>
+      <LogoutButton/>
     </>
   )
 }
