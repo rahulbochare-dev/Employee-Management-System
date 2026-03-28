@@ -1,10 +1,11 @@
 import './App.css'
-import LogoutButton from './components/LogoutButton.jsx';
+import Input from "./components/Input.jsx";
+
 function App() {
 
   return (
     <>
-      <LogoutButton/>
+      <Input placeholder={"Email"} type={"text"}/>
     </>
   )
 }
