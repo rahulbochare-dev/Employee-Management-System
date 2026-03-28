@@ -1,11 +1,11 @@
 import './App.css'
-import Input from "./components/Input.jsx";
+import Sidebar from './components/Sidebar.jsx';
 
 function App() {
 
   return (
     <>
-      <Input placeholder={"Email"} type={"text"}/>
+      <Sidebar/>
     </>
   )
 }
