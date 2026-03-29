@@ -1,11 +1,11 @@
 import './App.css'
-import LeaveChart from "./components/LeaveChart.jsx";
+import NewJoiningChart from './components/NewJoiningChart'
 
 function App() {
 
   return (
     <>
-      <LeaveChart/>
+      <NewJoiningChart/>
     </>
   )
 }
