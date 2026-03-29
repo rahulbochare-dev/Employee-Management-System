@@ -38,7 +38,7 @@ const LeaveChart = () => {
                             type="category"
                             axisLine={false}
                             tickLine={false}
-                            tick={{ fill: '#707070', fontSize: 16 }}
+                            tick={{ fill: '#707070', fontSize: 17 }}
                             width={60}
                         />
                         <Bar
