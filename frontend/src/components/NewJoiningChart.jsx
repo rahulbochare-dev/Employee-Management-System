@@ -1,27 +1,27 @@
 import React from 'react'
-import { ResponsiveContainer, BarChart, CartesianGrid, XAxis, YAxis, Bar } from 'recharts'
+import { ResponsiveContainer, BarChart, CartesianGrid, XAxis, YAxis, Bar, Tooltip } from 'recharts'
 
 const data = [
-    { month: 'Jan', count: 2 },
-    { month: 'Feb', count: 2 },
-    { month: 'Mar', count: 12 },
-    { month: 'Apr', count: 6 },
-    { month: 'May', count: 1 },
-    { month: 'June', count: 23 },
-    { month: 'July', count: 1 },
-    { month: 'Aug', count: 21 },
-    { month: 'Sep', count: 20 },
-    { month: 'Oct', count: 22 },
-    { month: 'Nov', count: 11 },
-    { month: 'Dec', count: 20 },
+    { month: 'Jan', joinings: 2 },
+    { month: 'Feb', joinings: 2 },
+    { month: 'Mar', joinings: 12 },
+    { month: 'Apr', joinings: 6 },
+    { month: 'May', joinings: 1 },
+    { month: 'June', joinings: 23 },
+    { month: 'July', joinings: 1 },
+    { month: 'Aug', joinings: 21 },
+    { month: 'Sep', joinings: 20 },
+    { month: 'Oct', joinings: 22 },
+    { month: 'Nov', joinings: 11 },
+    { month: 'Dec', joinings: 20 },
 ];
 
 const NewJoiningChart = () => {
     return (
         <div className='w-238 h-103.5 border border-[#707070] rounded-[0.9375rem]'>
             <div className="w-full h-12 flex justify-between pl-6.25 pr-6.25 pt-3.5">
-                <h2 className='text-[1.375rem] font-semibold'>Past Leaves</h2>
-                <h2 className='text-[1.3rem] text-[#707070]'>Last 7 Days</h2>
+                <h2 className='text-[1.375rem] font-semibold'>New joinings by month</h2>
+                <h2 className='text-[1.3rem] text-[#707070]'>Last 12 months</h2>
             </div>
             <div className='w-full h-fit'>
                 <h1 className="text-[2.8125rem] font-medium pl-6.25">54
@@ -41,10 +41,12 @@ const NewJoiningChart = () => {
                         <XAxis dataKey='month' type='category' axisLine={false} tickLine={false} padding={{ left: 10, right: 10 }}/>
                         <YAxis type='number' axisLine={false} tickLine={false} domain={[0, 'auto']} allowDataOverflow={false}/>
                         <Bar 
-                         dataKey='count'
+                         dataKey='joinings'
                          fill="#9E6EFF"
                          radius={[5, 5, 0, 0]}
                          barSize={35}/>
+
+                         <Tooltip/>
                     </BarChart>
                 </ResponsiveContainer>
             </div>

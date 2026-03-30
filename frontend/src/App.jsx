@@ -1,5 +1,6 @@
 import './App.css'
-import NewJoiningChart from './components/NewJoiningChart'
+import LeaveChart from './components/LeaveChart.jsx'
+import NewJoiningChart from './components/NewJoiningChart.jsx'
 
 function App() {
 
