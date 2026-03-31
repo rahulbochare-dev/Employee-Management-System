@@ -1,12 +1,11 @@
 import './App.css'
-import LeaveChart from './components/LeaveChart.jsx'
-import NewJoiningChart from './components/NewJoiningChart.jsx'
+import Dashboard from './pages/Dashboard.jsx'
 
 function App() {
 
   return (
     <>
-      <NewJoiningChart/>
+      <Dashboard/>
     </>
   )
 }
