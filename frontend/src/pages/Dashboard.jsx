@@ -1,6 +1,7 @@
 import React from 'react'
 import Sidebar from '../components/Sidebar.jsx'
 import WelcomeText from '../components/WelcomeText.jsx'
+import DateTime from '../components/DateTime.jsx'
 
 const Dashboard = () => {
   return (
@@ -12,6 +13,7 @@ const Dashboard = () => {
         <div className="w-392.75 h-screen bg-red-200">
           <div className="w-full h-25.25 bg-blue-300">
             <WelcomeText/>
+            <DateTime/>
           </div>
         </div>
       </div>

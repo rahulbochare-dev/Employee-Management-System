@@ -2,12 +2,7 @@ import React, { useState } from 'react'
 import dayjs, { Dayjs } from 'dayjs'
 
 const DateTime = () => {
-    const [date, setDate] = useState(null)
-    setDate(dayjs().format(`ddd MMM DD YYYY hh:mm:ss A`))
-    
-
-    
-    
+    const date = dayjs().format(`ddd MMM DD YYYY hh:mm:ss A`)
     
   return (
     <div className='w-fit h-fit'>
