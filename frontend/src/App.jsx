@@ -1,11 +1,11 @@
 import './App.css'
-import DateTime from './components/DateTime.jsx'
+import Dashboard from './pages/Dashboard.jsx'
 
 function App() {
 
   return (
     <>
-      <DateTime/>
+      <Dashboard/>
     </>
   )
 }
