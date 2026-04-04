@@ -15,11 +15,11 @@ const KPICard = ({title, mainIcon, icon2, icon3}) => {
         </div>
         <div className='w-full h-[3.610rem] rounded-b-2xl overflow-clip flex'>
           <div className='w-4/8 h-full flex pl-4 justify-start items-center'>
-            <img className='w-8 mr-2' src="/src/assets/male.svg" alt="" srcset="" />
+            <img className='w-9 mr-2' src="/src/assets/male.svg" alt="" srcset="" />
             <h3 className='text-md font-semibold border-r border-[#b6b6b6] w-22 text-[#7D7D7D]'>70 Male</h3>
           </div>
           <div className='w-2/3 h-full flex pl-4 justify-start items-center'>
-            <img className='w-8 mr-2' src="/src/assets/female.svg" alt="" srcset="" />
+            <img className='w-9 mr-2' src="/src/assets/female.svg" alt="" srcset="" />
             <h3 className='text-md font-semibold text-[#7D7D7D]'>61 Female</h3>
           </div>
         </div>
