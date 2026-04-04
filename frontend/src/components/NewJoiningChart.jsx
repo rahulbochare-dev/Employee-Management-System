@@ -18,7 +18,7 @@ const data = [
 
 const NewJoiningChart = () => {
     return (
-        <div className='w-238 h-103.5 border border-[#b6b6b6] rounded-[0.9375rem]'>
+        <div className='w-248 h-103.5 border border-[#b6b6b6] rounded-[0.9375rem]'>
             <div className="w-full h-12 flex justify-between pl-6.25 pr-6.25 pt-3.5">
                 <h2 className='text-[1.375rem] font-semibold'>New joinings by month</h2>
                 <h2 className='text-[1.3rem] text-[#707070]'>Last 12 months</h2>
