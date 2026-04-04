@@ -3,6 +3,7 @@ import Sidebar from '../components/Sidebar.jsx'
 import WelcomeText from '../components/WelcomeText.jsx'
 import DateTime from '../components/DateTime.jsx'
 import KPICard from '../components/KPICard.jsx'
+import NewJoiningChart from '../components/NewJoiningChart.jsx'
 
 const Dashboard = () => {
   return (
@@ -16,16 +17,19 @@ const Dashboard = () => {
             <WelcomeText/>
             <DateTime/>
           </div>
-          <div className="w-full h-63.5 ">
+          <div className="w-full h-64 ">
             <div className="w-full h-15.25  flex items-baseline-last">
               <h2 className="text-[1.875rem] font-semibold">Dashboard</h2>
             </div>
-            <div className="w-full h-48.25  flex items-center gap-12">
+            <div className="w-full h-48.25 flex items-center gap-12">
               <KPICard/>
               <KPICard/>
               <KPICard/>
               <KPICard/>
             </div>
+          </div>
+          <div className="w-full h-[36.2rem] bg-red-300">
+            
           </div>
         </div>
       </div>
