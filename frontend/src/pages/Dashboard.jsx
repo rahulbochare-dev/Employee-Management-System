@@ -4,6 +4,7 @@ import WelcomeText from '../components/WelcomeText.jsx'
 import DateTime from '../components/DateTime.jsx'
 import KPICard from '../components/KPICard.jsx'
 import NewJoiningChart from '../components/NewJoiningChart.jsx'
+import LeaveChart from '../components/LeaveChart.jsx'
 
 const Dashboard = () => {
   return (
@@ -28,8 +29,9 @@ const Dashboard = () => {
               <KPICard/>
             </div>
           </div>
-          <div className="w-full h-[36.2rem] bg-red-300">
-            
+          <div className="w-full h-[36.2rem] flex justify-between pr-8">
+            <NewJoiningChart/>
+            <LeaveChart/>
           </div>
         </div>
       </div>
