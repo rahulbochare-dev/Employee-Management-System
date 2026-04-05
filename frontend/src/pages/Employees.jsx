@@ -1,15 +1,9 @@
 import React from 'react'
-import Sidebar from '../components/Sidebar.jsx'
-import WelcomeText from '../components/WelcomeText.jsx'
-import DateTime from '../components/DateTime.jsx'
-import KPICard from '../components/KPICard.jsx'
-import NewJoiningChart from '../components/NewJoiningChart.jsx'
-import LeaveChart from '../components/LeaveChart.jsx'
 
-const Dashboard = () => {
+const Employees = () => {
   return (
     <>
-      <div className="w-screen h-screen flex">
+    <div className="w-screen h-screen flex">
         <div className="w-87.75 h-screen p-4">
           <Sidebar />
         </div>
@@ -39,4 +33,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default Employees
