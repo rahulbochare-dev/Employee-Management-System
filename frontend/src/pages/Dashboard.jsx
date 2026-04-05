@@ -24,10 +24,10 @@ const Dashboard = () => {
               <h2 className="text-[1.875rem] font-semibold">Dashboard</h2>
             </div>
             <div className="w-full h-48.25 flex items-center gap-12">
-              <KPICard/>
-              <KPICard/>
-              <KPICard/>
-              <KPICard/>
+              <KPICard title={"Total Employees"}/>
+              <KPICard title={"On Leave Today"}/>
+              <KPICard title={"Hires this Month"}/>
+              <KPICard title={"Leave Requests"}/>
             </div>
           </div>
           <div className="w-full h-[36.2rem] flex justify-between pr-8">
