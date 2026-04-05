@@ -1,5 +1,6 @@
 import React from 'react'
 import Sidebar from '../components/Sidebar.jsx'
+import SidebarButton from '../components/SidebarButton.jsx'
 import WelcomeText from '../components/WelcomeText.jsx'
 import DateTime from '../components/DateTime.jsx'
 import KPICard from '../components/KPICard.jsx'
