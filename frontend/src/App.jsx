@@ -9,6 +9,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='admin/dashboard' element={<Dashboard/>}/>
+          <Route path='admin/employees' element={"<Employees/>"}/>
         </Routes>
       </BrowserRouter>
     </>

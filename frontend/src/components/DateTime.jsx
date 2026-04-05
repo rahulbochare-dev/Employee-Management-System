@@ -6,8 +6,7 @@ const DateTime = () => {
     
   return (
     <div className='w-fit h-fit'>
-        <h2 className='text-[2.5rem] text-black'>{date}
-        </h2>
+        <h2 className='text-[2.5rem] text-black'>{date}</h2>
     </div>
   )
 }

@@ -15,7 +15,7 @@ const Dashboard = () => {
           <Sidebar />
         </div>
         <div className="w-392.75 h-screen">
-          <div className="w-full h-25.25 flex justify-between p-5 border-b border-[#b6b6b6]">
+          <div className="w-full h-25.25 flex justify-between pt-5 pr-6 border-b border-[#b6b6b6]">
             <WelcomeText/>
             <DateTime/>
           </div>
