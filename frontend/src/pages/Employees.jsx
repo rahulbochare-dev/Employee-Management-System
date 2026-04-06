@@ -2,6 +2,7 @@ import React from 'react'
 import Sidebar from '../components/Sidebar.jsx'
 import WelcomeText from '../components/WelcomeText.jsx'
 import DateTime from '../components/DateTime.jsx'
+import EmployeeListItem from '../components/EmployeeListItem.jsx'
 
 const Employees = () => {
   return (
@@ -16,7 +17,10 @@ const Employees = () => {
             <DateTime />
           </div>
           <div className="w-full h-15.25  flex items-baseline-last">
-            <h2 className="text-[1.875rem] font-semibold">Manage Employees</h2>
+              <h2 className="text-[1.875rem] font-semibold">Dashboard</h2>
+            </div>
+          <div className="w-full h-196 flex items-baseline-last">
+            <div className="w-386 h-[98%] bg-white border border-[#b6b6b6] rounded-[0.9375rem]"></div>
           </div>
         </div>
       </div>
