@@ -14,7 +14,7 @@ const SidebarButton = ({name, iconDark, iconLight, to}) => {
       ${isActive ? 'bg-black' : 'hover:bg-gray-100'}`}>
         <div className='w-56 h-6 flex gap-3'>
             <img className='w-5' src={isActive? iconLight : iconDark} alt="" srcset="" />
-            <h3 className={`font-normal ${isActive? "text-white" : "text-black"}`}>{name}</h3>
+            <h3 className={`font-medium ${isActive? "text-white" : "text-black"}`}>{name}</h3>
         </div>
     </div>
   )
