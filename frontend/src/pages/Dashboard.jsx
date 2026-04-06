@@ -53,10 +53,11 @@ const Dashboard = () => {
                 icon3Text={"Casual"}/>
             </div>
           </div>
-          <div className="w-full h-[36.2rem] flex justify-between pr-8 pt-5">
+          <div className="w-full h-112 flex justify-between pr-8 pt-5">
             <NewJoiningChart/>
             <LeaveChart/>
           </div>
+          <div className="w-full h-36 bg-red-200"></div>
         </div>
       </div>
     </>
