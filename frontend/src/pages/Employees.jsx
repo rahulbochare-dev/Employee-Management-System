@@ -2,7 +2,6 @@ import React from 'react'
 import Sidebar from '../components/Sidebar.jsx'
 import WelcomeText from '../components/WelcomeText.jsx'
 import DateTime from '../components/DateTime.jsx'
-import EmployeeListItem from '../components/EmployeeListItem.jsx'
 
 const Employees = () => {
   return (
