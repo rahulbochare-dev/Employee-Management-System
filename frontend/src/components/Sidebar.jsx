@@ -10,7 +10,7 @@ const Sidebar = () => {
       <div>
         <div className='w-full h-10 mb-6 bg-gray-200'></div>
         <Seperator width={'w-66'} />
-        <h3 className='text-[0.80rem] text-[#707070] font-medium mb-3 mt-3'>Manage</h3>
+        <h3 className='text-[0.80rem] text-[#707070] font-medium mb-3 mt-5'>Manage</h3>
         <SidebarButton
           name={"Dashboard"}
           to={"/admin/dashboard"}
