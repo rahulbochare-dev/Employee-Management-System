@@ -1,5 +1,5 @@
 import React from 'react'
-import { BarChart, CartesianGrid, ResponsiveContainer, XAxis, YAxis, Bar } from 'recharts'
+import { BarChart, CartesianGrid, ResponsiveContainer, XAxis, YAxis, Bar, Tooltip } from 'recharts'
 
 const data = [
     { day: 'Mon', count: 28 },
@@ -47,6 +47,7 @@ const LeaveChart = () => {
                             radius={[0, 5, 5, 0]}
                             barSize={25}
                         />
+                        <Tooltip/>
                     </BarChart>
                 </ResponsiveContainer>
             </div>
