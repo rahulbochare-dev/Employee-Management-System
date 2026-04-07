@@ -5,6 +5,7 @@ import DateTime from '../components/DateTime.jsx'
 import KPICard from '../components/KPICard.jsx'
 import NewJoiningChart from '../components/NewJoiningChart.jsx'
 import LeaveChart from '../components/LeaveChart.jsx'
+import dataCard from '../components/dataCard.jsx'
 
 const Dashboard = () => {
   return (
@@ -58,7 +59,9 @@ const Dashboard = () => {
             <LeaveChart/>
           </div>
           <div className="w-full h-36 flex items-baseline-last">
-            <div className="w-384 h-[90%] bg-white border border-[#b6b6b6] rounded-2xl"></div>
+            <div className="w-384 h-[90%] bg-white border border-[#b6b6b6] rounded-2xl">
+              <dataCard/>
+            </div>
           </div>
         </div>
       </div>
