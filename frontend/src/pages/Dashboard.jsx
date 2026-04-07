@@ -57,7 +57,9 @@ const Dashboard = () => {
             <NewJoiningChart/>
             <LeaveChart/>
           </div>
-          <div className="w-full h-36 bg-red-200"></div>
+          <div className="w-full h-36 bg-red-200">
+            <div className="w-384 h-full bg-white border border-[#b6b6b6] rounded-2xl"></div>
+          </div>
         </div>
       </div>
     </>
