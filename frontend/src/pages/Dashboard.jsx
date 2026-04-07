@@ -9,7 +9,7 @@ import LeaveChart from '../components/LeaveChart.jsx'
 const Dashboard = () => {
   return (
     <>
-      <div className="w-screen h-screen flex bg-[#f5f5f5]">
+      <div className="w-screen h-screen flex bg-[#f9f9f9]">
         <div className="w-87.75 h-screen p-4">
           <Sidebar />
         </div>
@@ -57,8 +57,8 @@ const Dashboard = () => {
             <NewJoiningChart/>
             <LeaveChart/>
           </div>
-          <div className="w-full h-36 bg-red-200">
-            <div className="w-384 h-full bg-white border border-[#b6b6b6] rounded-2xl"></div>
+          <div className="w-full h-36 flex items-baseline-last">
+            <div className="w-384 h-[90%] bg-white border border-[#b6b6b6] rounded-2xl"></div>
           </div>
         </div>
       </div>
