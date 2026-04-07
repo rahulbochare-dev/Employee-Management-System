@@ -69,12 +69,12 @@ const Dashboard = () => {
                 title={"Total Payroll this Month"}
                 icon={"/src/assets/globe.svg"}
                 iconBgColor={"bg-[#A32AFF]/15 "}
-                data={"$10,32,398"}/>
+                data={"India - 48%"}/>
               <InsightCard
                 title={"Total Payroll this Month"}
                 icon={"/src/assets/home-office.svg"}
                 iconBgColor={"bg-[#00B212]/15 "}
-                data={"$10,32,398"}/>
+                data={"35% / 65%"}/>
               <InsightCard
                 title={"Total Payroll this Month"}
                 icon={"/src/assets/dollar.svg"}
