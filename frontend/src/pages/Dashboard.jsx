@@ -5,7 +5,7 @@ import DateTime from '../components/DateTime.jsx'
 import KPICard from '../components/KPICard.jsx'
 import NewJoiningChart from '../components/NewJoiningChart.jsx'
 import LeaveChart from '../components/LeaveChart.jsx'
-import dataCard from '../components/dataCard.jsx'
+import InsightCard from '../components/InsightCard.jsx'
 
 const Dashboard = () => {
   return (
@@ -59,8 +59,27 @@ const Dashboard = () => {
             <LeaveChart/>
           </div>
           <div className="w-full h-36 flex items-baseline-last">
-            <div className="w-384 h-[90%] bg-white border border-[#b6b6b6] rounded-2xl">
-              <dataCard/>
+            <div className="w-384 h-[90%] bg-white border border-[#b6b6b6] rounded-2xl flex justify-evenly items-center">
+              <InsightCard
+                title={"Total Payroll this Month"}
+                icon={"/src/assets/dollar.svg"}
+                iconBgColor={"bg-[#6464FF]/15 "}
+                data={"$10,32,398"}/>
+              <InsightCard
+                title={"Total Payroll this Month"}
+                icon={"/src/assets/globe.svg"}
+                iconBgColor={"bg-[#A32AFF]/15 "}
+                data={"$10,32,398"}/>
+              <InsightCard
+                title={"Total Payroll this Month"}
+                icon={"/src/assets/home-office.svg"}
+                iconBgColor={"bg-[#00B212]/15 "}
+                data={"$10,32,398"}/>
+              <InsightCard
+                title={"Total Payroll this Month"}
+                icon={"/src/assets/dollar.svg"}
+                iconBgColor={"bg-[#FF824B]/15 "}
+                data={"$10,32,398"}/>
             </div>
           </div>
         </div>
