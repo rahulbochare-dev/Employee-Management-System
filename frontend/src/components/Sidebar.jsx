@@ -30,7 +30,7 @@ const Sidebar = () => {
       <div className="w-full h-30 flex flex-col">
         <Seperator/>
         <Profile/>
-        <Button marginY={"mt-5"} name={"Log Out"} icon={"/src/assets/logout.svg"}/>
+        <Button marginY={"mt-5"} title={"Log Out"} icon={"/src/assets/logout.svg"}/>
       </div>
     </div>
   )

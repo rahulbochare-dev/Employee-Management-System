@@ -40,7 +40,7 @@ const Dashboard = () => {
                 icon3Text={"Casual"}/>
               <KPICard
                 title={"Hires this Month"}
-                mainIcon={"/src/assets/employeeAdd.svg"}
+                mainIcon={"/src/assets/employeeAdd-Dark.svg"}
                 icon2={"/src/assets/male.svg"}
                 icon3={"/src/assets/female.svg"}
                 icon2Text={"Male"}

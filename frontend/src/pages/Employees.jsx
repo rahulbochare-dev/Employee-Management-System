@@ -39,7 +39,7 @@ const Employees = () => {
                   <DropdownModal/>
                 </div>
                 <div className='h-full w-1/4 pr-7 flex justify-end items-center'>
-                  <Button/>
+                  <Button title={"Onboard Employee"} icon={"/src/assets/employeeAdd.svg"}/>
                 </div>
               </div>
               <Seperator marginY={"my-2"} width='w-369'/>
