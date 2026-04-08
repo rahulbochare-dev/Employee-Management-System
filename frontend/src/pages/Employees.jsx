@@ -6,7 +6,8 @@ import EmployeeCard from '../components/EmployeeCard.jsx'
 import Seperator from '../components/Seperator.jsx'
 import Search from '../components/Search.jsx'
 import Dropdown from '../components/Dropdown.jsx'
-import DropdownInputs from '../components/DropdownInputs.jsx'
+import DropdownInputs from '../components/DropdownModal.jsx'
+import DropdownModal from '../components/DropdownModal.jsx'
 
 const Employees = () => {
   return (
@@ -33,6 +34,7 @@ const Employees = () => {
                 <Search/>
                 <Dropdown title={"Gender"} values={["Male", "Female"]}/>
                 <Dropdown title={"Workmode"} values={["On-Site", "Remote", "Hybrid"]}/>
+                <DropdownModal/>
               </div>
               <Seperator marginY={"my-2"} width='w-369'/>
             </div>
