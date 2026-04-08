@@ -35,7 +35,6 @@ const Employees = () => {
                 <Dropdown title={"Workmode"} values={["On-Site", "Remote", "Hybrid"]}/>
               </div>
               <Seperator marginY={"my-2"} width='w-369'/>
-              <DropdownInputs/>
             </div>
           </div>
         </div>
