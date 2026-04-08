@@ -6,6 +6,7 @@ import EmployeeCard from '../components/EmployeeCard.jsx'
 import Seperator from '../components/Seperator.jsx'
 import Search from '../components/Search.jsx'
 import Dropdown from '../components/Dropdown.jsx'
+import DropdownInputs from '../components/DropdownInputs.jsx'
 
 const Employees = () => {
   return (
@@ -34,6 +35,7 @@ const Employees = () => {
                 <Dropdown title={"Workmode"} values={["On-Site", "Remote", "Hybrid"]}/>
               </div>
               <Seperator marginY={"my-2"} width='w-369'/>
+              <DropdownInputs/>
             </div>
           </div>
         </div>
