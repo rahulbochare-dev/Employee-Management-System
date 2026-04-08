@@ -18,14 +18,10 @@ const Employees = () => {
           <Sidebar />
         </div>
         <div className="w-392.75 h-screen">
-          <div className="w-full h-22 flex justify-between items-center pr-6 border-b border-[#b6b6b6]">
-            <WelcomeText />
-            <DateTime />
-          </div>
           <div className="w-full h-15.25  flex items-baseline-last">
               <h2 className="text-[1.875rem] font-semibold">Manage Employees</h2>
             </div>
-          <div className="w-full h-196 flex items-baseline-last">
+          <div className="w-full h-219 flex items-baseline-last">
             <div className="w-384 h-[98%] bg-white border border-[#b6b6b6] rounded-[0.9375rem]">
               <div className="w-full h-10 flex gap-3 items-center pl-7 pt-2">
                 <img className='w-8' src="/src/assets/employee-dark.svg" alt="" />
