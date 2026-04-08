@@ -8,6 +8,7 @@ import Search from '../components/Search.jsx'
 import Dropdown from '../components/Dropdown.jsx'
 import DropdownInputs from '../components/DropdownModal.jsx'
 import DropdownModal from '../components/DropdownModal.jsx'
+import Button from '../components/Button.jsx'
 
 const Employees = () => {
   return (
@@ -31,10 +32,15 @@ const Employees = () => {
                 <h2 className="text-xl font-semibold">All Employees</h2>
               </div>
               <div className="w-full h-15 flex gap-3 items-center pl-7">
-                <Search/>
-                <Dropdown title={"Gender"} values={["Male", "Female"]}/>
-                <Dropdown title={"Workmode"} values={["On-Site", "Remote", "Hybrid"]}/>
-                <DropdownModal/>
+                <div className="h-full w-3/4 flex justify-start items-center gap-6">
+                  <Search/>
+                  <Dropdown title={"Gender"} values={["Male", "Female"]}/>
+                  <Dropdown title={"Workmode"} values={["On-Site", "Remote", "Hybrid"]}/>
+                  <DropdownModal/>
+                </div>
+                <div className='h-full w-1/4 pr-7 flex justify-end items-center'>
+                  <Button/>
+                </div>
               </div>
               <Seperator marginY={"my-2"} width='w-369'/>
             </div>
