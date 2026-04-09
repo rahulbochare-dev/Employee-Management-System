@@ -35,7 +35,7 @@ const EmployeeCard = () => {
                     <h2 className="text-lg font-semibold">$10,32,398</h2>
                     <h3 className="text-sm text-[#929292] font-medium">Salary</h3>
                 </div>
-                <button className='w-[45%] h-[45%] text-white bg-blue-400 rounded-xl'>View Details</button>
+                <button className='w-[45%] h-[45%] text-white bg-blue-400 rounded-xl transition-all hover:bg-blue-500 active:bg-blue-600'>View Details</button>
             </div>
         </div>
     )
