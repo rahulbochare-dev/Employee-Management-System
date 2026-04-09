@@ -26,7 +26,7 @@ const Employees = () => {
             <Sidebar />
           </div>
           <div className="w-392.75 h-screen">
-            <div className="w-full h-15.25  flex items-baseline-last">
+            <div className="w-full h-15.25 flex items-baseline-last">
               <h2 className="text-[1.875rem] font-semibold">Manage Employees</h2>
             </div>
             <div className="w-full h-219 flex items-baseline-last">
@@ -47,7 +47,7 @@ const Employees = () => {
                   </div>
                 </div>
                 <Seperator marginY={"my-2"} width='w-369' />
-                <div className="w-full h-170 grid grid-cols-4 gap-y-7 justify-center items-center overflow-y-scroll pl-7">
+                <div className="w-full h-170 grid grid-cols-4 gap-y-7 justify-center items-center overflow-y-scroll pl-7 pt-3">
                   <EmployeeCard/>
                   <EmployeeCard/>
                   <EmployeeCard/>
