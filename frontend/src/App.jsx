@@ -1,4 +1,5 @@
 import './App.css'
+import AddEmployeeModal from './components/AddEmployeeModal.jsx';
 import Dashboard from './pages/Dashboard.jsx'
 import Employees from './pages/Employees.jsx'
 import Leaves from './pages/Leaves.jsx';
@@ -8,13 +9,14 @@ function App() {
 
   return (
     <>
-      <BrowserRouter>
+      {/* <BrowserRouter>
         <Routes>
           <Route path='admin/dashboard' element={<Dashboard/>}/>
           <Route path='admin/employees' element={<Employees/>}/>
           <Route path='admin/leaves' element={<Leaves/>}/>
         </Routes>
-      </BrowserRouter>
+      </BrowserRouter> */}
+      <AddEmployeeModal/>
     </>
   )
 }
