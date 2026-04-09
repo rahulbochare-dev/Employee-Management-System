@@ -9,7 +9,7 @@ const AddEmployeeModal = () => {
   return (
     <>
         <div className="w-screen h-screen z-10 flex justify-center items-center">
-            <div className="w-330.5 h-173 bg-white border border-[#b6b6b6] rounded-2xl">
+            <div className="w-330.5 h-173 bg-white border border-[#b6b6b6] rounded-2xl overflow-clip">
                 <div className="w-full h-12 flex items-center pt-3">
                     <h1 className='text-[1.75rem] font-semibold pl-10'>Onboard Employee</h1>
                 </div>
@@ -36,6 +36,12 @@ const AddEmployeeModal = () => {
                     <DropdownAddEmployee label={"Country:"} title={"Country"} values={countries}/>
                     <DropdownAddEmployee label={"Workmode:"} title={"Workmode"} values={["On-Site", "Remote", "Hybrid"]}/>
                     <DropdownAddEmployee label={"Employement Type:"} title={"Employement Type"} values={["Full Time", "Contract", "Freelance", "Intern"]}/>
+                </div>
+                <div className="w-full h-21 bg-amber-200 flex">
+                    <div className="w-4/6 h-full bg-blue-300"></div>
+                    <div className="w-2/6 h-full bg-blue-500">
+                    
+                    </div>
                 </div>
             </div>
         </div>
