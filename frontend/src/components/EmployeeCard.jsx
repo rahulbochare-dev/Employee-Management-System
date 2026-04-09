@@ -3,15 +3,15 @@ import Separator from './Seperator'
 
 const EmployeeCard = () => {
     return (
-        <div className='w-70 h-65 bg-white border border-[#b6b6b6] rounded-xl'>
-            <div className="w-full h-17 flex justify-between items-center pl-5">
+        <div className='w-85 h-65 bg-white border border-[#b6b6b6] rounded-xl'>
+            <div className="w-full h-17 flex justify-start gap-3 items-center pl-5">
                 <img className='w-11 h-11' src="/src/assets/businessman.png" alt="" />
                 <div className="w-[78%] h-[75%] flex flex-col">
                     <h2 className="text-lg font-semibold">Eren Yeager</h2>
                     <h2 className="text-sm text-[#929292] font-medium">erenyeager45@gmail.com</h2>
                 </div>
             </div>
-            <Separator width='w-60' />
+            <Separator width='w-74' />
             <div className="w-full h-[45%] flex flex-col gap-2 pt-2">
                 <div className='w-full h-[20%] flex pl-5 justify-between pr-10'>
                     <h3 className="text-sm text-[#929292] font-medium">Role:</h3>
