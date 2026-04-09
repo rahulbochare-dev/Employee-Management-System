@@ -9,14 +9,13 @@ function App() {
 
   return (
     <>
-      {/* <BrowserRouter>
+      <BrowserRouter>
         <Routes>
           <Route path='admin/dashboard' element={<Dashboard/>}/>
           <Route path='admin/employees' element={<Employees/>}/>
           <Route path='admin/leaves' element={<Leaves/>}/>
         </Routes>
-      </BrowserRouter> */}
-      <AddEmployeeModal/>
+      </BrowserRouter>
     </>
   )
 }
