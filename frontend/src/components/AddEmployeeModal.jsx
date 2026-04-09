@@ -3,6 +3,7 @@ import Separator from './Seperator.jsx'
 import TextInput from './TextInput.jsx'
 import DropdownAddEmployee from './DropdownAddEmployee.jsx'
 import countries from "../data/contries.json";
+import FileSelect from './FileSelect.jsx';
 
 const AddEmployeeModal = () => {
   return (
@@ -19,19 +20,22 @@ const AddEmployeeModal = () => {
                     <TextInput label={"City:"} placeholder={"City"}/>
                     <TextInput label={"Salary:"} placeholder={"Salary"}/>
                     <TextInput label={"First Name:"} placeholder={"First Name"}/>
-                    <TextInput label={"Other Field:"} placeholder={"Other Field"}/>
                     <TextInput label={"Postal Code:"} placeholder={"Postal Code"}/>
                     <TextInput label={"Education:"} placeholder={"Education"}/>
-                    <TextInput label={"Last Name:"} placeholder={"Last Name"}/>
                     <TextInput label={"Other Field:"} placeholder={"Other Field"}/>
+                    <TextInput label={"Middle Name:"} placeholder={"Middle Name"}/>
+                    <TextInput label={"Email:"} placeholder={"Email"}/>
                     <TextInput label={"Address:"} placeholder={"Address"}/>
                     <TextInput label={"Years of Experience:"} placeholder={"Years of Experience"}/>
-                    <TextInput label={"Email:"} placeholder={"Email"}/>
+                    <TextInput label={"Last Name:"} placeholder={"Last Name"}/>
                     <TextInput label={"Date of Birth:"} placeholder={"Date of Birth"}/>
                     <TextInput label={"Role:"} placeholder={"Role"}/>
-                    <TextInput label={"Avatar:"} placeholder={"Avatar"}/>
+                    {/* <TextInput label={"Avatar:"} placeholder={"Avatar"}/> */}
+                    <FileSelect label={"Avatar:"} placeholder={"Choose Avatar"}/>
                     <DropdownAddEmployee label={"Gender:"} title={"Gender"} values={["Male", "Female"]}/>
                     <DropdownAddEmployee label={"Country:"} title={"Country"} values={countries}/>
+                    <DropdownAddEmployee label={"Workmode:"} title={"Workmode"} values={["On-Site", "Remote", "Hybrid"]}/>
+                    <DropdownAddEmployee label={"Employement Type:"} title={"Employement Type"} values={["Full Time", "Contract", "Freelance", "Intern"]}/>
                 </div>
             </div>
         </div>
