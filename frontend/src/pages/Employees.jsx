@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Sidebar from '../components/Sidebar.jsx'
 import WelcomeText from '../components/WelcomeText.jsx'
 import DateTime from '../components/DateTime.jsx'
@@ -9,11 +9,19 @@ import Dropdown from '../components/Dropdown.jsx'
 import DropdownInputs from '../components/DropdownModal.jsx'
 import DropdownModal from '../components/DropdownModal.jsx'
 import Button from '../components/Button.jsx'
+import AddEmployeeModal from '../components/AddEmployeeModal.jsx'
 
 const Employees = () => {
+  const [showModal, setShowModal] = useState(false)
+
+    const handleShowModal = (e) => {
+        setShowModal(!showModal)
+    }
+
   return (
     <>
-      <div className="w-screen h-screen flex bg-[#f9f9f9]">
+      <div className="w-screen h-screen relative">
+        <div className="w-screen h-screen flex bg-[#f9f9f9]">
         <div className="w-87.75 h-screen p-4">
           <Sidebar />
         </div>
@@ -35,13 +43,17 @@ const Employees = () => {
                   <DropdownModal/>
                 </div>
                 <div className='h-full w-1/4 pr-7 flex justify-end items-center'>
-                  <Button title={"Onboard Employee"} icon={"/src/assets/employeeAdd-Light.svg"}/>
+                  <Button title={"Onboard Employee"} icon={"/src/assets/employeeAdd-Light.svg"} onClick={handleShowModal}/>
                 </div>
               </div>
               <Seperator marginY={"my-2"} width='w-369'/>
             </div>
           </div>
         </div>
+        </div>
+        {showModal && <div className="w-screen h-screen flex justify-center items-center bg-black/25 backdrop-blur-md fixed inset-0">
+            <AddEmployeeModal handleShowModal={handleShowModal}/>
+        </div>}
       </div>
     </>
   )
