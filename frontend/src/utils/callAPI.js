@@ -1,5 +1,5 @@
 import axios from "axios";
-import dotenv from "dotenv";
+import dotenv, { config } from "dotenv";
 
 dotenv.config({
     path: "./.env"
@@ -7,7 +7,7 @@ dotenv.config({
 
 const BASE_URL = process.env.BASE_URL
 
-const callApi = async function(method, url, data = null){
+const callApi = async function(method, url, data){
     try {
         const response = await axios({
             method: method,
@@ -15,6 +15,10 @@ const callApi = async function(method, url, data = null){
             data: data,
             headers: data instanceof FormData ? {"Content-Type": "multipart/form-data"} : {"Content-Type": "application/json"}
         })
+
+        if(method != "GET"){
+            config.data = data
+        }
         
     return response
 
