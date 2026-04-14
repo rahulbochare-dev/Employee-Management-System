@@ -7,8 +7,6 @@ dotenv.config({
 
 const BASE_URL = process.env.BASE_URL
 
-console.log(BASE_URL)
-
 const callApi = async function(method, url, data = null){
     try {
         const response = await axios({
