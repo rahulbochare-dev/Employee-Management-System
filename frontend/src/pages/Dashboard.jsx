@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Sidebar from '../components/Sidebar.jsx'
 import WelcomeText from '../components/WelcomeText.jsx'
 import DateTime from '../components/DateTime.jsx'
@@ -6,8 +6,18 @@ import KPICard from '../components/KPICard.jsx'
 import NewJoiningChart from '../components/NewJoiningChart.jsx'
 import LeaveChart from '../components/LeaveChart.jsx'
 import InsightCard from '../components/InsightCard.jsx'
+import { useEmployeeStore } from '../store/employeeStore.js'
 
 const Dashboard = () => {
+
+  const { employees, getEmployees } = useEmployeeStore()
+
+  useEffect(()=>{
+    getEmployees()
+  },[])
+
+  console.log(employees)
+
   return (
     <>
       <div className="w-screen h-screen flex bg-[#f9f9f9]">

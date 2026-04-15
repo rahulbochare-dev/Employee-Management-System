@@ -1,10 +1,10 @@
 import { create } from "zustand";
 import { getEmployees } from "../services/employeeApi.js";
 
-const useEmployeeStore = create((set) => {
-    employees: null;
-    loading: true;
-    error: null;
+const useEmployeeStore = create((set) => ({
+    employees: null,
+    loading: true,
+    error: null,
 
     getEmployees: () => {
         try {
@@ -14,6 +14,6 @@ const useEmployeeStore = create((set) => {
             set({ error: err.messege, loading: false })
         }
     }
-})
+}))
 
 export { useEmployeeStore }

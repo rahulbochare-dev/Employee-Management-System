@@ -1,11 +1,6 @@
 import axios from "axios";
-import dotenv, { config } from "dotenv";
 
-dotenv.config({
-    path: "./.env"
-})
-
-const BASE_URL = process.env.BASE_URL
+const BASE_URL = import.meta.env
 
 const callApi = async function(method, url, data){
     try {
