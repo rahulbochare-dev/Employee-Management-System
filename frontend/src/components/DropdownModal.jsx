@@ -8,7 +8,7 @@ const DropdownModal = () => {
         <div>
             <div onClick={()=>{setShowModal(!showModal)}} className="w-37.5 h-9 border border-[#b6b6b6] rounded-xl pr-2 pl-3 flex justify-between items-center relative">
                 <h3>Salary</h3>
-                <img className='w-5' src="/src/assets/arrowDown.svg" alt="" srcset="" />
+                <img className='w-5' src="/src/assets/arrowDown.svg" alt=""/>
             </div>
             { showModal && <div className='w-50 h-60 border bg-white mt-2 z-10 absolute border-[#b6b6b6] rounded-xl flex flex-col items-center pt-2'>
                 <h2 className="text-[1rem] font-semibold mb-3">Select Salary Range</h2>
