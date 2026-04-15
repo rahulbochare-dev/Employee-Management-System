@@ -7,7 +7,7 @@ const InsightCard = ({ title, icon, iconBgColor, data }) => {
                 <div className={`rounded-full ${iconBgColor} w-13.5 h-13.5 flex justify-center items-center`}>
                     <img className='w-10 h-10' src={icon} alt="" />
                 </div>
-                <div className='w-[75%] ml-2 h-full flex flex-col justify-evenly justify-center'>
+                <div className='w-[75%] ml-2 h-full flex flex-col justify-evenly'>
                     <h3 className="text-sm font-medium text-[#979797]">{title}</h3>
                     <h1 className='text-2xl font-semibold'>{data}</h1>
                 </div>

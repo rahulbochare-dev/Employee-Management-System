@@ -17,11 +17,11 @@ const KPICard = ({title, mainIcon, icon2, icon3, icon2Text, icon3Text}) => {
         <Separator width={'w-76'}/>
         <div className='w-full h-[3.610rem] rounded-b-2xl overflow-clip flex'>
           <div className='w-4/8 h-full flex pl-4 justify-start items-center'>
-            <img className='w-7 mr-2' src={icon2} alt="" srcset="" />
+            <img className='w-7 mr-2' src={icon2} alt=""/>
             <h3 className='text-md font-semibold border-r border-[#b6b6b6] w-22 text-[#7D7D7D]'>70 {icon2Text}</h3>
           </div>
           <div className='w-2/3 h-full flex pl-4 justify-start items-center'>
-            <img className='w-7 mr-2' src={icon3} alt="" srcset="" />
+            <img className='w-7 mr-2' src={icon3} alt=""/>
             <h3 className='text-md font-semibold text-[#7D7D7D]'>61 {icon3Text}</h3>
           </div>
         </div>
