@@ -6,7 +6,6 @@ const SidebarButton = ({name, iconDark, iconLight, to}) => {
   const location = useLocation();
 
   const isActive = location.pathname === to;
-  console.log(isActive)
 
   return (
     <div onClick={() => navigate(to)}
