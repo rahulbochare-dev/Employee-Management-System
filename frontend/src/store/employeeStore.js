@@ -6,9 +6,9 @@ const useEmployeeStore = create((set) => ({
     loading: true,
     error: null,
 
-    getEmployees: () => {
+    getEmployees: async () => {
         try {
-            const response = getEmployees()
+            const response = await getEmployees()
             set({ employees: response.data, loading: false })
         } catch (err) {
             set({ error: err.messege, loading: false })

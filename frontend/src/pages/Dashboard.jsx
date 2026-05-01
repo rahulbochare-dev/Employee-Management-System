@@ -14,9 +14,9 @@ const Dashboard = () => {
 
   useEffect(()=>{
     getEmployees()
+    console.log(employees)
   },[])
 
-  console.log(employees)
 
   return (
     <>
