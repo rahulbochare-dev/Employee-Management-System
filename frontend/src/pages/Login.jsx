@@ -17,7 +17,7 @@ const Login = () => {
             <TextInput label={"Email:"} placeholder={"Email"}/>
             <PasswordInput label={"Enter Password:"} placeholder={"Password"}/>
         <div className="w-full h-38 flex justify-center items-center flex-col gap-5">
-            <Button width='w-64' title={"Signup"} icon={"/src/assets/login.svg"}/>
+            <Button width='w-64' title={"Login"} icon={"/src/assets/login.svg"}/>
             <h3>Don't have an account <span onClick={navigate("/signup")} className='text-blue-500 cursor-pointer underline'>signup</span></h3>
         </div>
         </div>
