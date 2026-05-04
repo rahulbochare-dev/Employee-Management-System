@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import TextInput from '../components/TextInput.jsx'
 import FileSelect from '../components/FileSelect.jsx'
 import DateSelect from '../components/DateSelect.jsx'
@@ -30,7 +30,7 @@ const Signup = () => {
         </div>
         <div className="w-full h-47 flex justify-center items-center flex-col gap-5">
             <Button width='w-64' title={"Signup"} icon={"/src/assets/login.svg"}/>
-            <h3>Already have an account <span onClick={navigate("/login")} className='text-blue-500 cursor-pointer underline'>login</span></h3>
+            <h3>Already have an account <Link to={"/login"} className='text-blue-500 cursor-pointer underline'>login</Link></h3>
         </div>
         </div>
     </div>
