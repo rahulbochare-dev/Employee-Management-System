@@ -25,9 +25,9 @@ const Signup = () => {
     
     const handleSignup = (e) => {
         e.preventDefault()
+        console.log(formData)
     }
 
-    console.log(formData)
 
   return (
     <div className='w-screen h-screen flex justify-center items-center bg-[#f9f9f9]'>
@@ -41,21 +41,21 @@ const Signup = () => {
             <TextInput label={"Last Name:"} placeholder={"Last Name"}
                 onChange={(e) => (setFromData({ ...formData, lastName: e.target.value }))}/>
             <TextInput label={"Email:"} placeholder={"Email"}
-            onChange={(e) => (setFromData({ ...formData, email: e.target.value }))}/>
+                onChange={(e) => (setFromData({ ...formData, email: e.target.value }))}/>
             <FileSelect label={"Choose Avatar:"} placeholder={"Choose Avatar"}
-            onChange={(e) => (setFromData({ ...formData, avatar: e.target.value }))}/>
+                onChange={(e) => (setFromData({ ...formData, avatar: e.target.value }))}/>
             <DateSelect label={"Date of Birth:"}
-            onChange={(e) => (setFromData({ ...formData, dob: e.target.value }))}/>
+                onChange={(e) => (setFromData({ ...formData, dob: e.target.value }))}/>
             <TextInput label={"Country:"} placeholder={"Country"}
-            onChange={(e) => (setFromData({ ...formData, country: e.target.value }))}/>
+                onChange={(e) => (setFromData({ ...formData, country: e.target.value }))}/>
             <TextInput label={"City:"} placeholder={"City"}
-            onChange={(e) => (setFromData({ ...formData, city: e.target.value }))}/>
+                onChange={(e) => (setFromData({ ...formData, city: e.target.value }))}/>
             <DropdownAddEmployee label={"Select Role:"} values={["admin", "employee"]}
-            onChange={(e) => (setFromData({ ...formData, role: e.target.value }))}/>
+                onChange={(e) => (setFromData({ ...formData, role: e.target.value }))}/>
             <PasswordInput placeholder={"Password"} label={"Enter Password"}
-            onChange={(e) => (setFromData({ ...formData, password: e.target.value }))}/>
+                onChange={(e) => (setFromData({ ...formData, password: e.target.value }))}/>
             <PasswordInput label={"Enter Admin Secret:"} placeholder={"Admin Secret"}
-            onChange={(e) => (setFromData({ ...formData, adminSecret: e.target.value }))}/>
+                onChange={(e) => (setFromData({ ...formData, adminSecret: e.target.value }))}/>
         </form>
         <div className="w-full h-47 flex justify-center items-center flex-col gap-5">
             <Button width='w-64' title={"Signup"} icon={"/src/assets/login.svg"}/>

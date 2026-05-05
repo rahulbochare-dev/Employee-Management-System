@@ -6,7 +6,7 @@ const DateSelect = ({ label, placeholder, value, onChange }) => {
     const handleDateChange = (e) => {
         setInputValue(e.target.value)
     }
-
+    
   return (
     <div className="w-56.5 h-16 flex flex-col justify-between">
         <label className='text-[0.9375rem] font-medium' htmlFor="selectFile">{label}</label>
@@ -15,7 +15,7 @@ const DateSelect = ({ label, placeholder, value, onChange }) => {
                 <h3 className={`text-[0.90rem] truncate ${inputValue? "text-black" : "text-[#787878]"} font-medium`}>{inputValue || "Select Date"}</h3>
                 <img className='w-5 pointer-events-none' src="/src/assets/calender.svg" alt="" srcset="" />
             </div>
-            <input className='absolute w-full h-6 text-[0.90rem] text font-medium pl-3'  placeholder={placeholder} type="date" name="selectFile" id="selectFile" value={value} onChange={onChange}/>
+            <input className='absolute w-full h-6 text-[0.90rem] text font-medium pl-3'  placeholder={placeholder} type="date" name="selectFile" id="selectFile" value={value} onInput={handleDateChange} onChange={onChange}/>
         </div>
     </div>  
   )
