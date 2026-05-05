@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const DateSelect = ({ label, placeholder }) => {
+const DateSelect = ({ label, placeholder, value, onChange }) => {
     const [inputValue, setInputValue] = useState("")
 
     const handleDateChange = (e) => {
@@ -15,7 +15,7 @@ const DateSelect = ({ label, placeholder }) => {
                 <h3 className={`text-[0.90rem] truncate ${inputValue? "text-black" : "text-[#787878]"} font-medium`}>{inputValue || "Select Date"}</h3>
                 <img className='w-5 pointer-events-none' src="/src/assets/calender.svg" alt="" srcset="" />
             </div>
-            <input className='absolute w-full h-6 text-[0.90rem] text font-medium pl-3'  placeholder='JD' type="date" name="selectFile" id="selectFile" onChange={handleDateChange}/>
+            <input className='absolute w-full h-6 text-[0.90rem] text font-medium pl-3'  placeholder={placeholder} type="date" name="selectFile" id="selectFile" value={value} onChange={onChange}/>
         </div>
     </div>  
   )

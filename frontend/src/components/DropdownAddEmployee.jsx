@@ -1,11 +1,11 @@
 import React from 'react'
 
-const DropdownAddEmployee = ({  title, label, values }) => {
+const DropdownAddEmployee = ({  title, label, values, value, onChange }) => {
   return (
     <div className="w-56.5 h-16 flex flex-col justify-between">
         <label className='text-[0.9375rem] font-medium' htmlFor="select">{label}</label>
         <div className="w-56.5 h-8.75 flex bg-white border border-[#b6b6b6] rounded-xl pl-3 pr-3">
-          <select className='w-full h-full text-[0.8125rem] font-medium appearance-none' defaultValue="" name="select" id="select">
+          <select className='w-full h-full text-[0.8125rem] font-medium appearance-none' defaultValue="" name="select" id="select" value={value} onChange={onChange}>
             <option disabled hidden value="">{title}</option>
             {values.map((value, index) => {
               return <option key={index} value={value}>{value}</option>
