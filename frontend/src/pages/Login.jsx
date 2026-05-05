@@ -27,7 +27,7 @@ const Login = () => {
                     <PasswordInput onChange={(e) => (setFromData({ ...formData, password: e.target.value }))} label={"Enter Password:"} placeholder={"Password"} />
                     <div className="w-full h-26 flex justify-center items-center flex-col gap-5">
                         <Button width='w-64' title={"Login"} icon={"/src/assets/login.svg"} />
-                        <h3>Don't have an account <Link to={"/signup"} className='text-blue-500 cursor-pointer underline'>signup</Link></h3>
+                        <h3>Don't have an account? <Link to={"/signup"} className='text-blue-500 cursor-pointer underline'>signup</Link></h3>
                     </div>
                 </form>
             </div>

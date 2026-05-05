@@ -60,7 +60,7 @@ const Signup = () => {
             </div>
             <div className="w-full h-36 flex justify-center items-center flex-col gap-5">
                 <Button width='w-64' title={"Signup"} icon={"/src/assets/login.svg"}/>
-                <h3>Already have an account <Link to={"/login"} className='text-blue-500 cursor-pointer underline'>login</Link></h3>
+                <h3>Already have an account? <Link to={"/login"} className='text-blue-500 cursor-pointer underline'>login</Link></h3>
             </div>
             
         </form>
