@@ -30,12 +30,13 @@ const Signup = () => {
 
 
   return (
-    <div className='w-screen h-screen flex justify-center items-center bg-[#f9f9f9]'>
+    <div className='w-screen h-screen flex flex-col justify-center items-center bg-[#f9f9f9]'>
         <div className="bg-white w-2/5 h-4/5 rounded-3xl">
         <div className='w-full h-20 flex justify-center items-center'>
             <h1 className="text-4xl">Signup</h1>
         </div>
-        <form onSubmit={handleSignup} className="w-full h-123 grid grid-cols-3 items-center justify-items-center">
+        <form onSubmit={handleSignup} className="w-full h-64 items-center justify-items-center">
+            <div className='w-full h-126 pt-5 grid grid-cols-3 justify-items-center items-center'>
             <TextInput label={"First Name:"} placeholder={"First Name"}
                 onChange={(e) => (setFromData({ ...formData, firstName: e.target.value }))}/>
             <TextInput label={"Last Name:"} placeholder={"Last Name"}
@@ -56,11 +57,13 @@ const Signup = () => {
                 onChange={(e) => (setFromData({ ...formData, password: e.target.value }))}/>
             <PasswordInput label={"Enter Admin Secret:"} placeholder={"Admin Secret"}
                 onChange={(e) => (setFromData({ ...formData, adminSecret: e.target.value }))}/>
+            </div>
+            <div className="w-full h-36 flex justify-center items-center flex-col gap-5">
+                <Button width='w-64' title={"Signup"} icon={"/src/assets/login.svg"}/>
+                <h3>Already have an account <Link to={"/login"} className='text-blue-500 cursor-pointer underline'>login</Link></h3>
+            </div>
+            
         </form>
-        <div className="w-full h-47 flex justify-center items-center flex-col gap-5">
-            <Button width='w-64' title={"Signup"} icon={"/src/assets/login.svg"}/>
-            <h3>Already have an account <Link to={"/login"} className='text-blue-500 cursor-pointer underline'>login</Link></h3>
-        </div>
         </div>
     </div>
   )
