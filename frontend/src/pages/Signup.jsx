@@ -24,13 +24,9 @@ const Signup = () => {
         adminSecret: "",
     })
     
-    // const handleSignup = (e) => {
-    //     e.preventDefault()
-    //     console.log(formData)
-    // }
     const { user, signup } = useUserStore()
 
-    const handleFormSubmit = async(e, formData) => {
+    const handleFormSubmit = async(e) => {
         e.preventDefault()
         console.log(formData)
         const result = await signup(formData)
