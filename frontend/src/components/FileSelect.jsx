@@ -16,7 +16,7 @@ const FileSelect = ({ label, placeholder, value, onChange }) => {
             <div className="w-full h-full bg-[#F1F1F1] rounded-xl flex items-center bg pl-3 pr-3 z-3 pointer-events-none">
                 <h3 className={`text-[0.90rem] truncate ${inputValue? "text-black" : "text-[#787878]"} font-medium`}>{inputValue || "Choose Avatar File"}</h3>
             </div>
-            <input className='absolute w-full h-6 text-[0.90rem] text font-medium pl-3'  placeholder={placeholder} type="file" name="selectFile" id="selectFile" value={value} onChange={onChange}/>
+            <input className='absolute w-full h-6 text-[0.90rem] text font-medium pl-3'  placeholder={placeholder} type="file" name="selectFile" id="selectFile" value={value} onInput={handleFileChange} onChange={onChange}/>
         </div>
     </div>  
   )
