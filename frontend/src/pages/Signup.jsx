@@ -6,6 +6,7 @@ import DateSelect from '../components/DateSelect.jsx'
 import DropdownAddEmployee from '../components/DropdownAddEmployee.jsx'
 import PasswordInput from '../components/PasswordInput.jsx'
 import Button from '../components/Button.jsx'
+import { useUserStore } from '../store/userStore.js'
 
 const Signup = () => {
     const navigate = useNavigate()
@@ -23,11 +24,18 @@ const Signup = () => {
         adminSecret: "",
     })
     
-    const handleSignup = (e) => {
+    // const handleSignup = (e) => {
+    //     e.preventDefault()
+    //     console.log(formData)
+    // }
+    const { user, signup } = useUserStore()
+
+    const handleFormSubmit = async(e, formData) => {
         e.preventDefault()
         console.log(formData)
+        const result = await signup(formData)
+        console.log(result)
     }
-
 
   return (
     <div className='w-screen h-screen flex flex-col justify-center items-center bg-[#f9f9f9]'>
@@ -35,7 +43,7 @@ const Signup = () => {
         <div className='w-full h-20 flex justify-center items-center'>
             <h1 className="text-4xl">Signup</h1>
         </div>
-        <form onSubmit={handleSignup} className="w-full h-64 items-center justify-items-center">
+        <form onSubmit={handleFormSubmit} className="w-full h-64 items-center justify-items-center">
             <div className='w-full h-126 pt-5 grid grid-cols-3 justify-items-center items-center'>
             <TextInput label={"First Name:"} placeholder={"First Name"}
                 onChange={(e) => (setFromData({ ...formData, firstName: e.target.value }))}/>
