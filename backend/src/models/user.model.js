@@ -42,10 +42,6 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    timezone: {
-        type: String,
-        default: "UTC"
-    },
     role: {
         type: String,
         required: true,

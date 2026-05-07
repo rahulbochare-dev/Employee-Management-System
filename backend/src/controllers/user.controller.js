@@ -24,10 +24,10 @@ const generateAccessTokenAndRefreshToken = async (userId) => {
 }
 
 const registerUser = asyncHandler( async (req, res) => {
-    const {firstName, lastName, userName, email, avatar, dateOfBirth, country, city, timezone, role, password, adminSecret} = req.body
+    const {firstName, lastName, userName, email, avatar, dateOfBirth, country, city, role, password, adminSecret} = req.body
 
     if(
-        [firstName, lastName, userName, email, avatar, dateOfBirth, country, city, timezone, role, password, adminSecret].some((fields) => (fields?.trim() === ""))
+        [firstName, lastName, userName, email, avatar, dateOfBirth, country, city, role, password, adminSecret].some((fields) => (fields?.trim() === ""))
     ){
         throw new ApiError(400, "All fields are required!")
     }
