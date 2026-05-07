@@ -6,17 +6,8 @@ import KPICard from '../components/KPICard.jsx'
 import NewJoiningChart from '../components/NewJoiningChart.jsx'
 import LeaveChart from '../components/LeaveChart.jsx'
 import InsightCard from '../components/InsightCard.jsx'
-import { useEmployeeStore } from '../store/employeeStore.js'
 
 const Dashboard = () => {
-
-  const { employees, getEmployees } = useEmployeeStore()
-
-  useEffect(()=>{
-    getEmployees()
-    console.log(employees)
-  },[])
-
 
   return (
     <>
