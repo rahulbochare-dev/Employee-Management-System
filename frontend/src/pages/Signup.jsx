@@ -15,8 +15,8 @@ const Signup = () => {
         firstName: "",
         lastName: "",
         email: "",
-        avatar: "",
-        dob: "",
+        // avatar: "",
+        dateOfBirth: "",
         country: "",
         city: "",
         role: "",
@@ -29,8 +29,16 @@ const Signup = () => {
     const handleFormSubmit = async(e) => {
         e.preventDefault()
         console.log(formData)
-        const result = await signup(formData)
-        console.log(result)
+        try {
+            const response = await signup(formData)
+            if(response.error){
+                console.log("Signup failed:", response.error)
+            } else {
+                console.log("Signup response:", response)
+            }
+        } catch (error) {
+            console.log("Signup error:", error.response)
+        }
     }
 
   return (
@@ -47,10 +55,10 @@ const Signup = () => {
                 onChange={(e) => (setFromData({ ...formData, lastName: e.target.value }))}/>
             <TextInput label={"Email:"} placeholder={"Email"}
                 onChange={(e) => (setFromData({ ...formData, email: e.target.value }))}/>
-            <FileSelect label={"Choose Avatar:"} placeholder={"Choose Avatar"}
-                onChange={(e) => (setFromData({ ...formData, avatar: e.target.value }))}/>
+            {/* <FileSelect label={"Choose Avatar:"} placeholder={"Choose Avatar"}
+                onChange={(e) => (setFromData({ ...formData, avatar: e.target.value }))}/> */}
             <DateSelect label={"Date of Birth:"}
-                onChange={(e) => (setFromData({ ...formData, dob: e.target.value }))}/>
+                onChange={(e) => (setFromData({ ...formData, dateOfBirth: e.target.value }))}/>
             <TextInput label={"Country:"} placeholder={"Country"}
                 onChange={(e) => (setFromData({ ...formData, country: e.target.value }))}/>
             <TextInput label={"City:"} placeholder={"City"}

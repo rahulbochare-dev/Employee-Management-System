@@ -12,15 +12,14 @@ const callApi = async function(method, url, data){
             headers: data instanceof FormData ? {"Content-Type": "multipart/form-data"} : {"Content-Type": "application/json"},
             withCredentials: true
         })
-
-        if(method != "GET"){
-            config.data = data
-        }
         
     return response
 
     } catch (error) {
-        console.log("apiError:", error)
+        if(error.response){
+            console.log("API Error:", error.response.data)
+            throw error.response
+        }
     }
 }
 

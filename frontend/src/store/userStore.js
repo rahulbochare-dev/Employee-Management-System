@@ -11,9 +11,11 @@ const useUserStore = create((set) => ({
         try {
             const response = await signup(data)
             set({ user: response.data, loading: false, isLoggedIn: true })
-            console.log(data)
+            return response
         } catch (err) {
+            const errorMessage = err.messege || "Signup failed"
             set({ error: err.messege, loading: false })
+            return { error: errorMessage }
         }
     }
 }))
