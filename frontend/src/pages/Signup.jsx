@@ -46,12 +46,7 @@ const Signup = () => {
         
         try {
             const response = await signup(submitData)
-            
-            if(response.error){
-                console.log("Signup failed:", response.error)
-            } else {
-                console.log("Signup response:", response)
-            }
+            console.log("Signup response", response)
         } catch (error) {
             console.log("Signup error:", error.response)
         }
