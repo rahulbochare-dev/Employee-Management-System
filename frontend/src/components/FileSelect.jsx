@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 
 const FileSelect = ({ label, placeholder, value, onChange }) => {
-    const [inputValue, setInputValue] = useState("")
+    const [inputValue, setInputValue] = useState(null)
 
     const handleFileChange = (e) => {
-        if(e.target.files.length > 0){
-            setInputValue(e.target.files[0].name)
+        const file = e.target.files[0]
+
+        if (file) {
+            setInputValue(file.name)
+            onChange(file)
         }
     }
 
@@ -16,7 +19,7 @@ const FileSelect = ({ label, placeholder, value, onChange }) => {
             <div className="w-full h-full bg-[#F1F1F1] rounded-xl flex items-center bg pl-3 pr-3 z-3 pointer-events-none">
                 <h3 className={`text-[0.90rem] truncate ${inputValue? "text-black" : "text-[#787878]"} font-medium`}>{inputValue || "Choose Avatar File"}</h3>
             </div>
-            <input className='absolute w-full h-6 text-[0.90rem] text font-medium pl-3'  placeholder={placeholder} type="file" name="selectFile" id="selectFile" value={value} onInput={handleFileChange} onChange={onChange}/>
+            <input className='absolute w-full h-6 text-[0.90rem] text font-medium pl-3'  placeholder={placeholder} type="file" name="avatar" id="selectFile" onInput={handleFileChange}/>
         </div>
     </div>  
   )

@@ -9,7 +9,7 @@ const callApi = async function(method, url, data){
             method: method,
             url: `${BASE_URL}${url}`,
             data: data,
-            headers: data instanceof FormData ? {"Content-Type": "multipart/form-data"} : {"Content-Type": "application/json"},
+            headers: data instanceof FormData ? {} : {"Content-Type": "application/json"},
             withCredentials: true
         })
         

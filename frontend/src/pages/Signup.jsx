@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, useNavigate } from "react-router-dom";
+import { Form, Link, useNavigate } from "react-router-dom";
 import TextInput from '../components/TextInput.jsx'
 import FileSelect from '../components/FileSelect.jsx'
 import DateSelect from '../components/DateSelect.jsx'
@@ -15,7 +15,7 @@ const Signup = () => {
         firstName: "",
         lastName: "",
         email: "",
-        // avatar: "",
+        avatar: File,
         dateOfBirth: "",
         country: "",
         city: "",
@@ -26,19 +26,26 @@ const Signup = () => {
     
     const { user, signup } = useUserStore()
 
-    const handleFormSubmit = async(e) => {
+    const handleFormSubmit = async (e) => {
+
         e.preventDefault()
-        console.log(formData)
-        try {
-            const response = await signup(formData)
-            if(response.error){
-                console.log("Signup failed:", response.error)
-            } else {
-                console.log("Signup response:", response)
-            }
-        } catch (error) {
-            console.log("Signup error:", error.response)
-        }
+    
+        const submitData = new FormData()
+    
+        submitData.append("firstName", formData.firstName)
+        submitData.append("lastName", formData.lastName)
+        submitData.append("userName", formData.userName)
+        submitData.append("email", formData.email)
+        submitData.append("dateOfBirth", formData.dateOfBirth)
+        submitData.append("country", formData.country)
+        submitData.append("city", formData.city)
+        submitData.append("role", formData.role)
+        submitData.append("password", formData.password)
+        submitData.append("adminSecret", formData.adminSecret)
+    
+        submitData.append("avatar", formData.avatar)
+    
+        console.log(await signup(submitData))
     }
 
   return (
@@ -55,8 +62,8 @@ const Signup = () => {
                 onChange={(e) => (setFromData({ ...formData, lastName: e.target.value }))}/>
             <TextInput label={"Email:"} placeholder={"Email"}
                 onChange={(e) => (setFromData({ ...formData, email: e.target.value }))}/>
-            {/* <FileSelect label={"Choose Avatar:"} placeholder={"Choose Avatar"}
-                onChange={(e) => (setFromData({ ...formData, avatar: e.target.value }))}/> */}
+            <FileSelect label={"Choose Avatar:"} placeholder={"Choose Avatar"}
+                onChange={(file) => (setFromData({ ...formData, avatar: file }))}/>
             <DateSelect label={"Date of Birth:"}
                 onChange={(e) => (setFromData({ ...formData, dateOfBirth: e.target.value }))}/>
             <TextInput label={"Country:"} placeholder={"Country"}
