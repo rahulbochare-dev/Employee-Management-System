@@ -27,7 +27,6 @@ const Signup = () => {
     const { user, signup } = useUserStore()
 
     const handleFormSubmit = async (e) => {
-
         e.preventDefault()
     
         const submitData = new FormData()
@@ -42,10 +41,19 @@ const Signup = () => {
         submitData.append("role", formData.role)
         submitData.append("password", formData.password)
         submitData.append("adminSecret", formData.adminSecret)
-    
         submitData.append("avatar", formData.avatar)
-    
-        console.log(await signup(submitData))
+        
+        try {
+            const response = await signup(formData)
+            
+            if(response.error){
+                console.log("Signup failed:", response.error)
+            } else {
+                console.log("Signup response:", response)
+            }
+        } catch (error) {
+            console.log("Signup error:", error.response)
+        }
     }
 
   return (
