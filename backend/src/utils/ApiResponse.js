@@ -1,12 +1,13 @@
 class ApiResponse{
     constructor(
-        code,
+        statusCode,
         data,
         messege
     ){
-        this.code = code,
-        this.data = data,
+        this.success = true
+        this.statusCode = statusCode
         this.messege = messege
+        this.data = data
     }
 }
 
