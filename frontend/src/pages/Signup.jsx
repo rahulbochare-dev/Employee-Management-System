@@ -41,10 +41,11 @@ const Signup = () => {
         submitData.append("role", formData.role)
         submitData.append("password", formData.password)
         submitData.append("adminSecret", formData.adminSecret)
+        
         submitData.append("avatar", formData.avatar)
         
         try {
-            const response = await signup(formData)
+            const response = await signup(submitData)
             
             if(response.error){
                 console.log("Signup failed:", response.error)

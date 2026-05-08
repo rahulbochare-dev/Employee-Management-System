@@ -17,9 +17,9 @@ const callApi = async function(method, url, data){
 
     } catch (error) {
         if(error.response){
-            console.log("API Error:", error.response.data)
-            throw error.response
+            throw error.response.data
         }
+        throw error
     }
 }
 

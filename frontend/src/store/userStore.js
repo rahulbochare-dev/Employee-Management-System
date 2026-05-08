@@ -13,9 +13,9 @@ const useUserStore = create((set) => ({
             set({ user: response.data, loading: false, isLoggedIn: true })
             return response
         } catch (err) {
-            const errorMessage = err.messege || "Signup failed"
-            set({ error: err.messege, loading: false })
-            return { error: errorMessage }
+            const errorMessage = err.message || "Signup failed"
+            set({ error: err.errorMessage, loading: false, isLoggedIn: false })
+            return { success: false, errorMessage }
         }
     }
 }))
