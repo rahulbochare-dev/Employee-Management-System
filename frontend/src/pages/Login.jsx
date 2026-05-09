@@ -17,15 +17,11 @@ const Login = () => {
 
     const handleFormSubmit = async (e) => {
         e.preventDefault()
-        const submitData = new FormData()
 
-        submitData.email = formData.email
-        submitData.password = formData.password
-
-        const response = await login(submitData)
+        const response = await login(formData)
         console.log(response)
     }
-    console.log(user)
+    console.log(user, loading, error, isLoggedIn)
 
     return (
         <div className='w-screen h-screen flex justify-center items-center bg-[#f9f9f9]'>
