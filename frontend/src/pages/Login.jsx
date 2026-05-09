@@ -13,7 +13,7 @@ const Login = () => {
         password: ""
     })
 
-    const { user, login } = useUserStore()
+    const { user, loading, error, isLoggedIn, login } = useUserStore()
 
     const handleFormSubmit = async (e) => {
         e.preventDefault()
