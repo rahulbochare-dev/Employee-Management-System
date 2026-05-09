@@ -44,7 +44,11 @@ const Sidebar = () => {
       </div>
       <div className="w-full h-30 flex flex-col">
         <Seperator/>
-        <Profile/>
+        <Profile
+          firstName={user.firstName}
+          lastName={user.lastName}
+          email={user.email}
+        />
         <Button onClick={handleLogout} marginY={"mt-5"} title={"Log Out"} icon={"/src/assets/logout.svg"}/>
       </div>
     </div>
