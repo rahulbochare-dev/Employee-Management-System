@@ -14,6 +14,7 @@ const Signup = () => {
 
     const [formData, setFromData] = useState({
         firstName: "",
+        middleName: "",
         lastName: "",
         userName: "",
         email: "",
@@ -34,6 +35,7 @@ const Signup = () => {
         const submitData = new FormData()
     
         submitData.append("firstName", formData.firstName)
+        submitData.append("middleName", formData.middleName)
         submitData.append("lastName", formData.lastName)
         submitData.append("userName", formData.userName)
         submitData.append("email", formData.email)
@@ -50,6 +52,7 @@ const Signup = () => {
             const response = await signup(submitData)
             if(response.success){
                 toast.success(response.message)
+                navigate("/admin/dashboard")
             } else {
                 toast.error(response.message)
             }
@@ -70,6 +73,8 @@ const Signup = () => {
             <div className='w-full h-126 pt-5 grid grid-cols-3 justify-items-center items-center'>
             <TextInput label={"First Name:"} placeholder={"First Name"}
                 onChange={(e) => (setFromData({ ...formData, firstName: e.target.value }))}/>
+            <TextInput label={"Middle Name:"} placeholder={"Middle Name"}
+                onChange={(e) => (setFromData({ ...formData, middleName: e.target.value }))}/>
             <TextInput label={"Last Name:"} placeholder={"Last Name"}
                 onChange={(e) => (setFromData({ ...formData, lastName: e.target.value }))}/>
             <TextInput label={"Username:"} placeholder={"Username"}

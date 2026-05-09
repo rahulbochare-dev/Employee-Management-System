@@ -4,6 +4,7 @@ import TextInput from '../components/TextInput.jsx'
 import PasswordInput from '../components/PasswordInput.jsx'
 import Button from '../components/Button.jsx'
 import { useUserStore } from '../store/userStore.js';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Login = () => {
     const navigate = useNavigate()
@@ -18,12 +19,16 @@ const Login = () => {
     const handleFormSubmit = async (e) => {
         e.preventDefault()
 
-        const response = await login(formData)
-        console.log(response)
-        if(response.data.success == "false"){
-            console.log("failed")
-        } else {
-            console.log("success")
+        try {
+            const response = await login(formData)
+            if(response.success){
+                toast.success(response.message)
+            } else {
+                toast.error(response.message)
+            }
+            
+        } catch (error) {
+            toast.error("Something went wrong!")
         }
     }
     
