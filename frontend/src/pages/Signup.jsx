@@ -7,6 +7,7 @@ import DropdownAddEmployee from '../components/DropdownAddEmployee.jsx'
 import PasswordInput from '../components/PasswordInput.jsx'
 import Button from '../components/Button.jsx'
 import { useUserStore } from '../store/userStore.js'
+import toast, { Toaster } from 'react-hot-toast';
 
 const Signup = () => {
     const navigate = useNavigate()
@@ -47,14 +48,20 @@ const Signup = () => {
         
         try {
             const response = await signup(submitData)
-            console.log("Signup response", response)
+            if(response.success){
+                toast.success(response.message)
+            } else {
+                toast.error(response.message)
+            }
+            
         } catch (error) {
-            console.log("Signup error:", error.response)
+            console.log(error)
         }
     }
 
   return (
     <div className='w-screen h-screen flex flex-col justify-center items-center bg-[#f9f9f9]'>
+        <Toaster position='bottom-center'/>
         <div className="bg-white w-2/5 h-4/5 rounded-3xl">
         <div className='w-full h-20 flex justify-center items-center'>
             <h1 className="text-4xl">Signup</h1>

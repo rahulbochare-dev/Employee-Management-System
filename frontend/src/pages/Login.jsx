@@ -20,11 +20,16 @@ const Login = () => {
 
         const response = await login(formData)
         console.log(response)
+        if(response.data.success == "false"){
+            console.log("failed")
+        } else {
+            console.log("success")
+        }
     }
-    console.log(user, loading, error, isLoggedIn)
-
+    
     return (
         <div className='w-screen h-screen flex justify-center items-center bg-[#f9f9f9]'>
+            <Toaster position='bottom-center'/>
             <div className="bg-white w-1/5 h-106 rounded-3xl">
                 <div className='w-full h-20 flex justify-center items-center'>
                     <h1 className="text-4xl">Login</h1>

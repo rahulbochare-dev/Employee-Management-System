@@ -11,7 +11,7 @@ const useUserStore = create((set) => ({
         try {
             const response = await signup(data)
             set({ user: response.data, loading: false, isLoggedIn: true })
-            return response
+            return response.data
         } catch (err) {
             set({error: err, loading: false})
             return err
