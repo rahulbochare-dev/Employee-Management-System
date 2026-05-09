@@ -20,6 +20,6 @@ router.route("/login").post(loginUser)
 // secured routes
 router.route("/logout").post(verifyToken, logoutUser)
 router.route("/reset-password").post(verifyToken, resetPassword)
-router.route("/current-user").post(verifyToken, getCurrentUser)
+router.route("/current-user").get(verifyToken, getCurrentUser)
 
 export default router

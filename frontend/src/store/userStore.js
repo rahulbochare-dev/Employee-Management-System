@@ -43,7 +43,7 @@ const useUserStore = create((set) => ({
     getCurrentUser: async () => {
         try {
             const response = await getCurrentUser()
-            set({ user: response.data, loading: false, isLoggedIn: true })
+            set({ user: response.data.data, loading: false, isLoggedIn: true })
             return response
         } catch (err) {
             set({error: err, loading: false})
