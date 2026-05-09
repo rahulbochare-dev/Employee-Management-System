@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { getEmployees } from "../services/employeeApi.js";
 
-const useEmployeeStore = create((set) => ({
+const useDashboardStore = create((set) => ({
     employees: null,
     loading: true,
     error: null,
@@ -16,4 +16,4 @@ const useEmployeeStore = create((set) => ({
     }
 }))
 
-export { useEmployeeStore }
+export { useDashboardStore }
