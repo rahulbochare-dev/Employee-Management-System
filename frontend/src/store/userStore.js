@@ -29,9 +29,9 @@ const useUserStore = create((set) => ({
         }
     },
 
-    logout: async (data) => {
+    logout: async () => {
         try {
-            const response = await logout(data)
+            const response = await logout()
             set({ user: null, loading: false, isLoggedIn: false })
             return response.data
         } catch (err) {
