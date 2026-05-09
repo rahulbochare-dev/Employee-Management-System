@@ -15,4 +15,9 @@ const logout = async function(data){
     return response
 }
 
+const getCurrentUser = async function(data){
+    const response = await callApi("GET", "/user/current-user")
+    return response
+}
+
 export { signup, login, logout }

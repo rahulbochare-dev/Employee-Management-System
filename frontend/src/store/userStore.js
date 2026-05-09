@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { signup, login } from "../services/auth.js"
+import { signup, login, logout, getCurrentUser } from "../services/auth.js"
 
 const useUserStore = create((set) => ({
     user: null,
@@ -33,6 +33,17 @@ const useUserStore = create((set) => ({
         try {
             const response = await logout(data)
             set({ user: response.data, loading: false, isLoggedIn: false })
+            return response
+        } catch (err) {
+            set({error: err, loading: false})
+            return err
+        }
+    },
+
+    getCurrentUser: async () => {
+        try {
+            const response = await getCurrentUser()
+            set({ user: response.data, loading: false, isLoggedIn: true })
             return response
         } catch (err) {
             set({error: err, loading: false})
