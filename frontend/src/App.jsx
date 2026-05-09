@@ -9,7 +9,7 @@ import { useUserStore } from "./store/userStore.js";
 import { useEffect } from 'react';
 
 function App() {
-  const { user, getCurrentUser } = useUserStore()
+  const { user, loading, getCurrentUser } = useUserStore()
 
   useEffect(() => {
     getCurrentUser()
@@ -18,7 +18,7 @@ function App() {
 
   return (
     <>
-      <BrowserRouter>
+      {loading || <BrowserRouter>
         <Routes>
           <Route path='/signup' element={<Signup/>}/>
           <Route path='/login' element={<Login/>}/>
@@ -26,7 +26,7 @@ function App() {
           <Route path='admin/employees' element={<Employees/>}/>
           <Route path='admin/leaves' element={<Leaves/>}/>
         </Routes>
-      </BrowserRouter>
+      </BrowserRouter>}
     </>
   )
 }
