@@ -20,4 +20,4 @@ const getCurrentUser = async function(data){
     return response
 }
 
-export { signup, login, logout }
+export { signup, login, logout, getCurrentUser }

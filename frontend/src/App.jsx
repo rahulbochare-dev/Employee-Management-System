@@ -5,8 +5,16 @@ import Leaves from './pages/Leaves.jsx';
 import Signup from './pages/Signup.jsx';
 import Login from './pages/Login.jsx';
 import { BrowserRouter, Routes, Route } from "react-router";
+import { useUserStore } from "./store/userStore.js";
+import { useEffect } from 'react';
 
 function App() {
+  const { user, getCurrentUser } = useUserStore()
+
+  useEffect(() => {
+    getCurrentUser()
+  }, [])
+  
 
   return (
     <>
