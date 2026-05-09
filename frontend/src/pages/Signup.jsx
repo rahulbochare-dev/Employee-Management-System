@@ -52,7 +52,7 @@ const Signup = () => {
             const response = await signup(submitData)
             if(response.success){
                 toast.success(response.message)
-                navigate("/admin/dashboard")
+                navigate("/login")
             } else {
                 toast.error(response.message)
             }
