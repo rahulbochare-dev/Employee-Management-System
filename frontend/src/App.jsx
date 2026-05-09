@@ -7,6 +7,7 @@ import Login from './pages/Login.jsx';
 import { BrowserRouter, Routes, Route } from "react-router";
 import { useUserStore } from "./store/userStore.js";
 import { useEffect } from 'react';
+import Loading from './components/Loading.jsx';
 
 function App() {
   const { user, loading, getCurrentUser } = useUserStore()
@@ -18,7 +19,7 @@ function App() {
 
   return (
     <>
-      {loading || <BrowserRouter>
+      {loading? <Loading/> : <BrowserRouter>
         <Routes>
           <Route path='/signup' element={<Signup/>}/>
           <Route path='/login' element={<Login/>}/>
