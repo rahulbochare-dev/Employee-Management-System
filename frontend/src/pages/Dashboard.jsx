@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { use, useEffect } from 'react'
 import Sidebar from '../components/Sidebar.jsx'
 import WelcomeText from '../components/WelcomeText.jsx'
 import DateTime from '../components/DateTime.jsx'
@@ -6,12 +6,20 @@ import KPICard from '../components/KPICard.jsx'
 import NewJoiningChart from '../components/NewJoiningChart.jsx'
 import LeaveChart from '../components/LeaveChart.jsx'
 import InsightCard from '../components/InsightCard.jsx'
+import { useUserStore } from '../store/userStore.js'
+import { Form, Link, useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
+  const { user } = useUserStore()
+  const navigate = useNavigate()
+
+  if(!user){
+    navigate("/login")
+  }
 
   return (
     <>
-      <div className="w-screen h-screen flex bg-[#f9f9f9]">
+      {user && <div className="w-screen h-screen flex bg-[#f9f9f9]">
         <div className="w-87.75 h-screen p-4">
           <Sidebar />
         </div>
@@ -84,7 +92,7 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div>}
     </>
   )
 }

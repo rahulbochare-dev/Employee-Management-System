@@ -3,10 +3,25 @@ import SidebarButton from "./SidebarButton";
 import Seperator from '../components/Seperator.jsx'
 import Profile from '../components/Profile.jsx'
 import Button from './Button.jsx';
+import { useUserStore } from '../store/userStore.js'
+import { Form, Link, useNavigate } from "react-router-dom";
+import toast , { Toaster } from 'react-hot-toast';
 
 const Sidebar = () => {
+  const { user, logout } = useUserStore()
+  const navigate = useNavigate()
+
+  const handleLogout = async () => {
+    const response = await logout()
+    if(response.success){
+      navigate("/login")
+      toast.success(response.message)
+    }
+  }
+
   return (
     <div className='p-6 w-78 h-230 bg-white border border-[#b6b6b6] rounded-[0.9375rem] flex flex-col justify-between'>
+      <Toaster position='bottom-center'/>
       <div>
         <div className='w-full h-10 mb-6 bg-gray-200'></div>
         <Seperator width={'w-66'} />
@@ -30,7 +45,7 @@ const Sidebar = () => {
       <div className="w-full h-30 flex flex-col">
         <Seperator/>
         <Profile/>
-        <Button marginY={"mt-5"} title={"Log Out"} icon={"/src/assets/logout.svg"}/>
+        <Button onClick={handleLogout} marginY={"mt-5"} title={"Log Out"} icon={"/src/assets/logout.svg"}/>
       </div>
     </div>
   )

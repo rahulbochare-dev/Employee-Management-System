@@ -11,7 +11,7 @@ const login = async function(data){
 }
 
 const logout = async function(data){
-    const response = await callApi("POST", "/user/login", data)
+    const response = await callApi("POST", "/user/logout", data)
     return response
 }
 
