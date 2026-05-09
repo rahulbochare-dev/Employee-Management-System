@@ -32,7 +32,7 @@ const useUserStore = create((set) => ({
     logout: async (data) => {
         try {
             const response = await logout(data)
-            set({ user: response.data, loading: false, isLoggedIn: false })
+            set({ user: null, loading: false, isLoggedIn: false })
             return response.data
         } catch (err) {
             set({error: err, loading: false})
