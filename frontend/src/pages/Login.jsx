@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import TextInput from '../components/TextInput.jsx'
 import PasswordInput from '../components/PasswordInput.jsx'
 import Button from '../components/Button.jsx'
+import { useUserStore } from '../store/userStore.js';
 
 const Login = () => {
     const navigate = useNavigate()
@@ -12,9 +13,19 @@ const Login = () => {
         password: ""
     })
 
-    const handleLogin = (e) => {
+    const { user, login } = useUserStore()
+
+    const handleFormSubmit = async (e) => {
         e.preventDefault()
+        const submitData = new FormData()
+
+        submitData.email = formData.email
+        submitData.password = formData.password
+
+        const response = await login(submitData)
+        console.log(response)
     }
+    console.log(user)
 
     return (
         <div className='w-screen h-screen flex justify-center items-center bg-[#f9f9f9]'>
@@ -22,7 +33,7 @@ const Login = () => {
                 <div className='w-full h-20 flex justify-center items-center'>
                     <h1 className="text-4xl">Login</h1>
                 </div>
-                <form onSubmit={handleLogin} className="w-full h-123 flex flex-col gap-8 items-center pt-8">
+                <form onSubmit={handleFormSubmit} className="w-full h-123 flex flex-col gap-8 items-center pt-8">
                     <TextInput onChange={(e) => (setFromData({ ...formData, email: e.target.value }))} label={"Email:"} placeholder={"Email"} />
                     <PasswordInput onChange={(e) => (setFromData({ ...formData, password: e.target.value }))} label={"Enter Password:"} placeholder={"Password"} />
                     <div className="w-full h-26 flex justify-center items-center flex-col gap-5">
