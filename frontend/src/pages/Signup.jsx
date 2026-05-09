@@ -14,6 +14,7 @@ const Signup = () => {
     const [formData, setFromData] = useState({
         firstName: "",
         lastName: "",
+        userName: "",
         email: "",
         avatar: File,
         dateOfBirth: "",
@@ -64,6 +65,8 @@ const Signup = () => {
                 onChange={(e) => (setFromData({ ...formData, firstName: e.target.value }))}/>
             <TextInput label={"Last Name:"} placeholder={"Last Name"}
                 onChange={(e) => (setFromData({ ...formData, lastName: e.target.value }))}/>
+            <TextInput label={"Username:"} placeholder={"Username"}
+                onChange={(e) => (setFromData({ ...formData, userName: e.target.value }))}/>
             <TextInput label={"Email:"} placeholder={"Email"}
                 onChange={(e) => (setFromData({ ...formData, email: e.target.value }))}/>
             <FileSelect label={"Choose Avatar:"} placeholder={"Choose Avatar"}
