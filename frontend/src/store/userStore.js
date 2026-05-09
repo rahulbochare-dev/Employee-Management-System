@@ -13,6 +13,29 @@ const useUserStore = create((set) => ({
             set({ user: response.data, loading: false, isLoggedIn: true })
             return response
         } catch (err) {
+            set({error: err, loading: false})
+            return err
+        }
+    },
+
+    login: async (data) => {
+        try {
+            const response = await login(data)
+            set({ user: response.data, loading: false, isLoggedIn: true })
+            return response
+        } catch (err) {
+            set({error: err, loading: false})
+            return err
+        }
+    },
+
+    logout: async (data) => {
+        try {
+            const response = await logout(data)
+            set({ user: response.data, loading: false, isLoggedIn: false })
+            return response
+        } catch (err) {
+            set({error: err, loading: false})
             return err
         }
     }

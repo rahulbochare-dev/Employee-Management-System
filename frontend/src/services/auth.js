@@ -10,4 +10,9 @@ const login = async function(data){
     return response
 }
 
-export { signup, login }
+const logout = async function(data){
+    const response = await callApi("POST", "/user/login", data)
+    return response
+}
+
+export { signup, login, logout }
