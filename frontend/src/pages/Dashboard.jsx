@@ -91,9 +91,6 @@ const Dashboard = () => {
                 icon2={"/src/assets/sick.svg"}
                 icon3={"/src/assets/casual.svg"}
                 icon2Text={"Sick"}
-                mainCount={KPICardThird.mainCount}
-                icon2Count={KPICardThird.icon2Count}
-                icon3Count={KPICardThird.icon3Count}
                 icon3Text={"Casual"}/>
               <KPICard
                 title={"Hires this Month"}
@@ -101,9 +98,9 @@ const Dashboard = () => {
                 icon2={"/src/assets/male.svg"}
                 icon3={"/src/assets/female.svg"}
                 icon2Text={"Male"}
-                mainCount={KPICardForth.mainCount}
-                icon2Count={KPICardForth.icon2Count}
-                icon3Count={KPICardForth.icon3Count}
+                mainCount={KPICardThird.mainCount}
+                icon2Count={KPICardThird.icon2Count}
+                icon3Count={KPICardThird.icon3Count}
                 icon3Text={"Female"}/>
               <KPICard
                 title={"Leave Requests"}
@@ -111,6 +108,9 @@ const Dashboard = () => {
                 icon2={"/src/assets/sick.svg"}
                 icon3={"/src/assets/casual.svg"}
                 icon2Text={"Sick"}
+                mainCount={KPICardForth.mainCount}
+                icon2Count={KPICardForth.icon2Count}
+                icon3Count={KPICardForth.icon3Count}
                 icon3Text={"Casual"}/>
             </div>
           </div>
