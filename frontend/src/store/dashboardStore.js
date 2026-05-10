@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { getEmployees } from "../services/employeeApi.js";
+import { getEmployees } from "../services/dashboard.js";
 
 const useDashboardStore = create((set) => ({
     employees: null,
