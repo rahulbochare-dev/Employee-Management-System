@@ -1,15 +1,27 @@
 import { create } from "zustand";
-import { getEmployees } from "../services/dashboard.js";
+import { getTotalEmployees, getOnLeaveToday, getNewJoines, getPendingLeave } from "../services/dashboard.js";
 
 const useDashboardStore = create((set) => ({
-    employees: null,
+    totalEmployees: null,
+    onLeaveToday: null,
+    newJoines: null,
+    pendingLeave: null,
     loading: true,
     error: null,
 
-    getEmployees: async () => {
+    getKPIData: async () => {
         try {
-            const response = await getEmployees()
-            set({ employees: response.data, loading: false })
+            const totalEmployeesResponse = await getTotalEmployees()
+            set({ totalEmployees: totalEmployeesResponse.data, loading: false })
+            
+            const onLeaveTodayResponse = await getOnLeaveToday()
+            set({ onLeaveToday: onLeaveTodayResponse.data, loading: false })
+            
+            const newJoinesResponse = await getNewJoines()
+            set({ newJoines: newJoinesResponse.data, loading: false })
+            
+            const pendingLeaveResponse = await getPendingLeave()
+            set({ pendingLeave: pendingLeaveResponse.data, loading: false })
         } catch (err) {
             set({ error: err.messege, loading: false })
         }
