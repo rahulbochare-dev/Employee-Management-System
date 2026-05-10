@@ -54,7 +54,7 @@ const Dashboard = () => {
     })
     setKPICardSecond({
       mainCount: onLeaveToday.data[0].todayTotalLeaves[0].totalLeaves,
-      onLeaveToday.data[0].catagoryTotal[1].catagoryTotal,
+      icon2Count: onLeaveToday.data[0].catagoryTotal[1].catagoryTotal,
       icon3Count: onLeaveToday.data[0].catagoryTotal[0].catagoryTotal
     })
     setKPICardThird({
@@ -101,6 +101,9 @@ const Dashboard = () => {
                 icon2={"/src/assets/sick.svg"}
                 icon3={"/src/assets/casual.svg"}
                 icon2Text={"Sick"}
+                mainCount={KPICardSecond.mainCount}
+                icon2Count={KPICardSecond.icon2Count}
+                icon3Count={KPICardSecond.icon3Count}
                 icon3Text={"Casual"}/>
               <KPICard
                 title={"Hires this Month"}
