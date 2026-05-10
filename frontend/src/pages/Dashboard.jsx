@@ -1,4 +1,4 @@
-import React, { use, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Sidebar from '../components/Sidebar.jsx'
 import WelcomeText from '../components/WelcomeText.jsx'
 import DateTime from '../components/DateTime.jsx'
@@ -7,16 +7,58 @@ import NewJoiningChart from '../components/NewJoiningChart.jsx'
 import LeaveChart from '../components/LeaveChart.jsx'
 import InsightCard from '../components/InsightCard.jsx'
 import { useUserStore } from '../store/userStore.js'
+import { useDashboardStore } from '../store/dashboardStore.js'
 import { Form, Link, useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const { user } = useUserStore()
+  const { totalEmployees, onLeaveToday, newJoines, pendingLeave, getKPIData } = useDashboardStore()
   const navigate = useNavigate()
 
-  if(!user){
-    navigate("/login")
-  }
+  const [KPICardFirst, setKPICardFirst] = useState({
+    mainCount: null ,
+    icon2Count: null,
+    icon3Count: null
+  })
+  const [KPICardThird, setKPICardThird] = useState({
+    mainCount: null ,
+    icon2Count: null,
+    icon3Count: null
+  })
+  const [KPICardForth, setKPICardForth] = useState({
+    mainCount: null ,
+    icon2Count: null,
+    icon3Count: null
+  })
 
+  useEffect(() => {
+    if (!user) {
+      navigate("/login")
+      return
+    }
+    getKPIData()
+  }, [user])
+  
+  useEffect(() => {
+    if(!totalEmployees || !newJoines || !pendingLeave) return
+
+    setKPICardFirst({
+      mainCount: totalEmployees.data[0].totalEmplyees[0].totalEmployees,
+      icon2Count: totalEmployees.data[0].genderTotal[1].total,
+      icon3Count: totalEmployees.data[0].genderTotal[0].total
+    })
+    setKPICardThird({
+      mainCount: newJoines.data[0].totalNewJoines[0].totalNewJoines,
+      icon2Count: newJoines.data[0].genderWiseTotal[1].total,
+      icon3Count: newJoines.data[0].genderWiseTotal[0].total
+    })
+    setKPICardForth({
+      mainCount: pendingLeave.data[0].allCatagoryTotal[0].totalLeaves,
+      icon2Count: pendingLeave.data[0].catagoryTotal[1].total,
+      icon3Count: pendingLeave.data[0].catagoryTotal[0].total
+    })
+  }, [totalEmployees, newJoines, pendingLeave])
+  
   return (
     <>
       {user && <div className="w-screen h-screen flex bg-[#f9f9f9]">
@@ -39,6 +81,9 @@ const Dashboard = () => {
                 icon2={"/src/assets/male.svg"}
                 icon3={"/src/assets/female.svg"}
                 icon2Text={"Male"}
+                mainCount={KPICardFirst.mainCount}
+                icon2Count={KPICardFirst.icon2Count}
+                icon3Count={KPICardFirst.icon3Count}
                 icon3Text={"Female"}/>
               <KPICard
                 title={"On Leave Today"}
@@ -46,6 +91,9 @@ const Dashboard = () => {
                 icon2={"/src/assets/sick.svg"}
                 icon3={"/src/assets/casual.svg"}
                 icon2Text={"Sick"}
+                mainCount={KPICardThird.mainCount}
+                icon2Count={KPICardThird.icon2Count}
+                icon3Count={KPICardThird.icon3Count}
                 icon3Text={"Casual"}/>
               <KPICard
                 title={"Hires this Month"}
@@ -53,6 +101,9 @@ const Dashboard = () => {
                 icon2={"/src/assets/male.svg"}
                 icon3={"/src/assets/female.svg"}
                 icon2Text={"Male"}
+                mainCount={KPICardForth.mainCount}
+                icon2Count={KPICardForth.icon2Count}
+                icon3Count={KPICardForth.icon3Count}
                 icon3Text={"Female"}/>
               <KPICard
                 title={"Leave Requests"}
