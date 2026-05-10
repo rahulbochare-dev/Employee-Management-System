@@ -1,7 +1,7 @@
 import React from 'react'
 import Separator from './Seperator'
 
-const KPICard = ({title, mainIcon, icon2, icon3, icon2Text, icon3Text}) => {
+const KPICard = ({title, mainIcon, icon2, icon3, icon2Text, icon3Text, data}) => {
   return (
     <>
     <div className='w-87 h-41.5 bg-white border border-[#b6b6b6] rounded-2xl overflow-clip'>
