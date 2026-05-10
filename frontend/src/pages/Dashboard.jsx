@@ -20,6 +20,11 @@ const Dashboard = () => {
     icon2Count: null,
     icon3Count: null
   })
+  const [KPICardSecond, setKPICardSecond] = useState({
+    mainCount: null ,
+    icon2Count: null,
+    icon3Count: null
+  })
   const [KPICardThird, setKPICardThird] = useState({
     mainCount: null ,
     icon2Count: null,
@@ -40,12 +45,17 @@ const Dashboard = () => {
   }, [user])
   
   useEffect(() => {
-    if(!totalEmployees || !newJoines || !pendingLeave) return
+    if(!totalEmployees || !onLeaveToday || !newJoines || !pendingLeave) return
 
     setKPICardFirst({
       mainCount: totalEmployees.data[0].totalEmplyees[0].totalEmployees,
       icon2Count: totalEmployees.data[0].genderTotal[1].total,
       icon3Count: totalEmployees.data[0].genderTotal[0].total
+    })
+    setKPICardSecond({
+      mainCount: onLeaveToday.data[0].todayTotalLeaves[0].totalLeaves,
+      onLeaveToday.data[0].catagoryTotal[1].catagoryTotal,
+      icon3Count: onLeaveToday.data[0].catagoryTotal[0].catagoryTotal
     })
     setKPICardThird({
       mainCount: newJoines.data[0].totalNewJoines[0].totalNewJoines,
@@ -57,7 +67,7 @@ const Dashboard = () => {
       icon2Count: pendingLeave.data[0].catagoryTotal[1].total,
       icon3Count: pendingLeave.data[0].catagoryTotal[0].total
     })
-  }, [totalEmployees, newJoines, pendingLeave])
+  }, [totalEmployees, onLeaveToday, newJoines, pendingLeave])
   
   return (
     <>
