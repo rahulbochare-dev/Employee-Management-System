@@ -9,7 +9,7 @@ import Button from './Button.jsx';
 const AddEmployeeModal = ({ handleShowModal }) => {
   const [showModal, setShowModal] = useState(true)
 
-  const [formData, setFromData] = useState({
+  const [formData, setFromData] = useState([{
           empId: "",
           contactNo: "",
           city: "",
@@ -30,13 +30,18 @@ const AddEmployeeModal = ({ handleShowModal }) => {
           country: "",
           workMode: "",
           empType: "",
-      })
+      }])
 
       const handleFormSubmit = async(e) => {
           e.preventDefault()
-        }
-        console.log(formData)
 
+          const submitData = new FormData()
+          for (const values of formData) {
+              console.log(values)
+        }
+        
+    }
+    
   return (
     <>
         {showModal && <div className="w-screen h-screen z-10 flex justify-center items-center">
@@ -45,7 +50,8 @@ const AddEmployeeModal = ({ handleShowModal }) => {
                     <h1 className='text-[1.75rem] font-semibold pl-10'>Onboard Employee</h1>
                 </div>
                 <Separator marginY={"my-4"} width={"w-310"}/>
-                <form onSubmit={handleFormSubmit} className='w-full h-128 grid grid-cols-4 grid-rows-5 pl-10 '>
+                <form onSubmit={handleFormSubmit} className='w-full h-full'>
+                    <div className="w-full h-128 grid grid-cols-4 grid-rows-5 pl-10">
                     <TextInput label={"Emp ID:"} placeholder={"Emp ID"}
                         onChange={(e) => (setFromData({ ...formData, empId: e.target.value }))}/>
                     <TextInput label={"Contact No:"} placeholder={"Contact No"}
@@ -85,8 +91,8 @@ const AddEmployeeModal = ({ handleShowModal }) => {
                     <DropdownAddEmployee label={"Workmode:"} title={"Workmode"} values={["On-Site", "Remote", "Hybrid"]}
                         onChange={(e) => (setFromData({ ...formData, workMode: e.target.value }))}/>
                     <DropdownAddEmployee label={"Employement Type:"} title={"Employement Type"} values={["Full Time", "Contract", "Freelance", "Intern"]}
-                        onChange={(e) => (setFromData({ ...formData, empType: e.target.value }))}/>
-                </form>
+                        onChange={(e) => (setFromData({ ...formData, empType: e.target.value }))}/> 
+                    </div>
                 <div className="w-full h-21 flex">
                     <div className="w-4/6 h-full pt-6 flex flex-col">
                         <Separator width={"w-199"}/>
@@ -97,6 +103,7 @@ const AddEmployeeModal = ({ handleShowModal }) => {
                         <Button title={"Add Employee"} icon={"/src/assets/employeeAdd-Light.svg"} width={"w-48"} onClick={handleShowModal}/>
                     </div>
                 </div>
+                </form>
             </div>
         </div>}
     </>
