@@ -11,6 +11,10 @@ const employeeSchema = new Schema({
         type: String,
         required: true
     },
+    middleName: {
+        type: String,
+        required: true
+    },
     lastName: {
         type: String,
         required: true
@@ -50,7 +54,11 @@ const employeeSchema = new Schema({
         type: String,
         required: true
     },
-    pinCode: {
+    postalCode: {
+        type: String,
+        required: true
+    },
+    education: {
         type: String,
         required: true
     },
@@ -62,9 +70,17 @@ const employeeSchema = new Schema({
         type: String,
         required: true,
     },
+    workMode: {
+        type: String,
+        required: true,
+    },
+    empType: {
+        type: String,
+        required: true,
+    },
     isActive: {
         type: Boolean,
-        required: true
+        default: true
     },
     salary: {
         type: Number,
