@@ -1,10 +1,10 @@
 import React from 'react'
 
-const Button = ({ title, icon, marginY, width = "w-63.5", onClick, secondary = false }) => {
+const Button = ({ title, icon, marginY, width = "w-63.5", onClick, secondary = false, type }) => {
 
   return (
     <button
-      type='button'
+      type={type}
       onClick={onClick}
       className={`${secondary ? `${width} h-10 rounded-lg flex items-center justify-center bg-white border border-[#b6b6b6] ${marginY} cursor-pointer transition-all duration-200 hover:bg-gray-200` : `${width} h-10 rounded-lg flex items-center justify-center gap-3 ${marginY} cursor-pointer transition-all duration-200 bg-black hover:bg-gray-900`}`}>
       {secondary || <img className='w-6' src={icon} alt=""/>}

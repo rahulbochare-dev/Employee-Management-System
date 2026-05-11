@@ -74,7 +74,7 @@ const Employees = () => {
           </div>
         </div>
         {showModal && <div className="w-screen h-screen flex justify-center items-center bg-black/25 backdrop-blur-md fixed inset-0">
-          <AddEmployeeModal handleShowModal={handleShowModal} />
+          {showModal && <AddEmployeeModal handleShowModal={handleShowModal} />}
         </div>}
       </div>
     </>
