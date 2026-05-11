@@ -17,13 +17,13 @@ const AddEmployeeModal = ({ handleShowModal }) => {
           firstName: "",
           postalCode: "",
           education: "",
-          otherField: "",
+          salaryCurrency: "",
           middleName: "",
           email: "",
           address: "",
-          yearsOfExp: "",
+          password: "",
           lastName: "",
-          dob: "",
+          dateOfBirth: "",
           role: "",
           avatar: "",
           gender: "",
@@ -60,16 +60,16 @@ const AddEmployeeModal = ({ handleShowModal }) => {
                         onChange={(e) => (setFromData({ ...formData, postalCode: e.target.value }))}/>
                     <TextInput label={"Education:"} placeholder={"Education"}
                         onChange={(e) => (setFromData({ ...formData, education: e.target.value }))}/>
-                    <TextInput label={"Other Field:"} placeholder={"Other Field"}
-                        onChange={(e) => (setFromData({ ...formData, otherField: e.target.value }))}/>
+                    <TextInput label={"Salary Currency:"} placeholder={"Salary Currency"}
+                        onChange={(e) => (setFromData({ ...formData, salaryCurrency: e.target.value }))}/>
                     <TextInput label={"Middle Name:"} placeholder={"Middle Name"}
                         onChange={(e) => (setFromData({ ...formData, middleName: e.target.value }))}/>
                     <TextInput label={"Email:"} placeholder={"Email"}
                         onChange={(e) => (setFromData({ ...formData, email: e.target.value }))}/>
                     <TextInput label={"Address:"} placeholder={"Address"}
                         onChange={(e) => (setFromData({ ...formData, address: e.target.value }))}/>
-                    <TextInput label={"Years of Experience:"} placeholder={"Years of Experience"}
-                        onChange={(e) => (setFromData({ ...formData, yearsOfExp: e.target.value }))}/>
+                    <TextInput label={"Password:"} placeholder={"Password"}
+                        onChange={(e) => (setFromData({ ...formData, password: e.target.value }))}/>
                     <TextInput label={"Last Name:"} placeholder={"Last Name"}
                         onChange={(e) => (setFromData({ ...formData, lastName: e.target.value }))}/>
                     <TextInput label={"Date of Birth:"} placeholder={"Date of Birth"}
