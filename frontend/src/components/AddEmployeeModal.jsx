@@ -5,9 +5,12 @@ import DropdownAddEmployee from './DropdownAddEmployee.jsx'
 import countries from "../data/contries.json";
 import FileSelect from './FileSelect.jsx';
 import Button from './Button.jsx';
+import { useAdminEmployeeStore } from '../store/adminEmployeeStore.js'
 
 const AddEmployeeModal = ({ handleShowModal }) => {
-    const [formData, setFormData] = useState({
+    const {onboardEmployee} = useAdminEmployeeStore()
+
+    const [formData, setFormData] = useState([{
         empId: "",
         contactNo: "",
         city: "",
@@ -23,15 +26,45 @@ const AddEmployeeModal = ({ handleShowModal }) => {
         lastName: "",
         dateOfBirth: "",
         role: "",
-        avatar: "",
+        avatar: File,
         gender: "",
         country: "",
         workMode: "",
         empType: "",
-    })
+    }])
 
     const handleFormSubmit = async (e) => {
         e.preventDefault()
+        const submitData = new FormData()
+
+        submitData.append("empID", formData.empID)
+        submitData.append("firstName", formData.firstName)
+        submitData.append("middleName", formData.middleName)
+        submitData.append("lastName", formData.lastName)
+        submitData.append("email", formData.email)
+        submitData.append("gender", formData.gender)
+        submitData.append("contactNo", formData.contactNo)
+        submitData.append("workMode", formData.workMode)
+        submitData.append("avatar", formData.avatar)
+        submitData.append("country", formData.country)
+        submitData.append("city", formData.city)
+        submitData.append("postalCode", formData.postalCode)
+        submitData.append("education", formData.education)
+        submitData.append("address", formData.address)
+        submitData.append("role", formData.role)
+        submitData.append("workMode", formData.workMode)
+        submitData.append("empType", formData.empType)
+        submitData.append("salary", formData.salary)
+        submitData.append("salaryCurrency", formData.salaryCurrency)
+        submitData.append("password", formData.password)
+
+        try {
+            const response = await onboardEmployee(submitData)
+            console.log(response)
+        } catch (error) {
+            console.log(error)
+        }
+
         handleShowModal()
     }
 
@@ -76,7 +109,7 @@ const AddEmployeeModal = ({ handleShowModal }) => {
                             <TextInput label={"Role:"} placeholder={"Role"}
                                 onChange={(e) => (setFormData({ ...formData, role: e.target.value }))} />
                             <FileSelect label={"Avatar:"} placeholder={"Choose Avatar"}
-                                onChange={(e) => (setFormData({ ...formData, avatar: e.target.value }))} />
+                                onChange={(file) => (setFormData({ ...formData, avatar: file }))} />
                             <DropdownAddEmployee label={"Gender:"} title={"Gender"} values={["Male", "Female"]}
                                 onChange={(e) => (setFormData({ ...formData, gender: e.target.value }))} />
                             <DropdownAddEmployee label={"Country:"} title={"Country"} values={countries}
