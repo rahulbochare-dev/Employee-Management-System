@@ -5,4 +5,9 @@ const onboardEmployee = function async(data){
     return response
 }
 
-export { onboardEmployee }
+const getEmployees = function async(page = 1, limit = 20){
+    const response = callApi("POST", `/admin/employee/employees?page=${page}&limit=${limit}`)
+    return response
+}
+
+export { onboardEmployee, getEmployees }
