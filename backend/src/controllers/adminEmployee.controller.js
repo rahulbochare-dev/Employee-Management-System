@@ -88,7 +88,7 @@ const getEmployees = asyncHandler( async (req, res) => {
     const totalPages = Math.ceil(totalNoOfEmployees / limit)
     
     return res.status(200)
-    .json(new ApiResponse(200, {emploees: allEmployees, totalEmployeesCount: totalNoOfEmployees, currentPage: Number(page), totalPages}, "Employees fetched succesfully"))
+    .json(new ApiResponse(200, {employees: allEmployees, totalEmployeesCount: totalNoOfEmployees, currentPage: Number(page), totalPages}, "Employees fetched succesfully"))
 })
 
 const terminateEmployee = asyncHandler( async (req, res) => {
