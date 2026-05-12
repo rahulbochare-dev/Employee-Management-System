@@ -12,7 +12,7 @@ import { Toaster, toast } from 'react-hot-toast';
 const AddEmployeeModal = ({ handleShowModal }) => {
     const {onboardEmployee} = useAdminEmployeeStore()
 
-    const [formData, setFormData] = useState([{
+    const [formData, setFormData] = useState({
         empId: "",
         contactNo: "",
         city: "",
@@ -33,7 +33,7 @@ const AddEmployeeModal = ({ handleShowModal }) => {
         country: "",
         workMode: "",
         empType: "",
-    }])
+    })
 
     const handleFormSubmit = async (e) => {
         e.preventDefault()
@@ -46,7 +46,6 @@ const AddEmployeeModal = ({ handleShowModal }) => {
         submitData.append("email", formData.email)
         submitData.append("gender", formData.gender)
         submitData.append("contactNo", formData.contactNo)
-        submitData.append("workMode", formData.workMode)
         submitData.append("avatar", formData.avatar)
         submitData.append("dateOfBirth", formData.dateOfBirth)
         submitData.append("country", formData.country)
@@ -60,6 +59,7 @@ const AddEmployeeModal = ({ handleShowModal }) => {
         submitData.append("salary", formData.salary)
         submitData.append("salaryCurrency", formData.salaryCurrency)
         submitData.append("password", formData.password)
+
         try {
             const response = await onboardEmployee(submitData)
             console.log(response)
@@ -71,10 +71,8 @@ const AddEmployeeModal = ({ handleShowModal }) => {
             if(error.statusCode == 500){
                 toast.error("Internal server error!")
             }
-            console.log(error)
+            toast.error(error.message)
         }
-        
-        
     }
 
     return (
