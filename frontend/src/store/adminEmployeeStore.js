@@ -3,6 +3,10 @@ import { onboardEmployee } from "../services/adminEmployee.js";
 
 const useAdminEmployeeStore = create((set) => ({
     employees: null,
+    employeesCount: null,
+    pages: null,
+    currentPage: null,
+    limit: null,
     loading: true,
     error: null,
 
