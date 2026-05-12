@@ -5,10 +5,10 @@ import { ApiError } from "../utils/ApiError.js";
 import { Employee } from "../models/employee.model.js"
 
 const onboardEmployee = asyncHandler( async (req, res) => {
-    const {empID, firstName, lastName, email, gender, contactNo, workMode, avatar, dateOfBirth, country, city, pinCode, address, role, isActive, salary, salaryCurrency, joinedAt, password} = req.body
+    const {empID, firstName, middleName, lastName, email, gender, contactNo, avatar, dateOfBirth, country, city, postalCode, education, address, role, workMode, empType, salary, salaryCurrency, password} = req.body
     
     if(
-        [empID, firstName, lastName, email, gender, contactNo, workMode, avatar, dateOfBirth, country, city, pinCode, address, role, isActive, salary, salaryCurrency, joinedAt, password].some((fields) => (fields === ""))
+        [empID, firstName, middleName, lastName, email, gender, contactNo, avatar, dateOfBirth, country, city, postalCode, education, address, role, workMode, empType, salary, salaryCurrency, password].some((fields) => (fields === ""))
     ){
         throw new ApiError(400, "Empty fields are not accepted!")
     }
@@ -39,26 +39,32 @@ const onboardEmployee = asyncHandler( async (req, res) => {
         throw new ApiError(409, "An error occured while uploading avatar!")
     }
 
+    const currentDate = new Date()
+    currentDate.toISOString
+
     const createdEmployee = await Employee.create({
         empID,
         firstName,
+        middleName,
         lastName,
         email: email.toLowerCase(),
         gender,
         contactNo,
-        workMode,
         avatar,
         dateOfBirth,
         country,
         city,
-        pinCode,
+        postalCode,
+        education,
         address,
         role,
-        isActive,
+        workMode,
+        empType,
         salary,
         salaryCurrency,
-        joinedAt,
-        password
+        password,
+        isActive: true,
+        joinedAt: currentDate,
     })
 
     return res.status(200)
