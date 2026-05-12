@@ -5,6 +5,7 @@ import DropdownAddEmployee from './DropdownAddEmployee.jsx'
 import countries from "../data/contries.json";
 import FileSelect from './FileSelect.jsx';
 import Button from './Button.jsx';
+import DateSelect from './DateSelect.jsx';
 import { useAdminEmployeeStore } from '../store/adminEmployeeStore.js'
 
 const AddEmployeeModal = ({ handleShowModal }) => {
@@ -57,15 +58,23 @@ const AddEmployeeModal = ({ handleShowModal }) => {
         submitData.append("salary", formData.salary)
         submitData.append("salaryCurrency", formData.salaryCurrency)
         submitData.append("password", formData.password)
+        console.log(submitData)
 
         try {
             const response = await onboardEmployee(submitData)
             console.log(response)
+            if(response.success){
+                toast.success(response.message)
+                handleShowModal()
+            }
         } catch (error) {
+            if(error.statusCode == 500){
+                toast.error("Internal server error!")
+            }
             console.log(error)
         }
-
-        handleShowModal()
+        
+        
     }
 
     return (
@@ -104,8 +113,8 @@ const AddEmployeeModal = ({ handleShowModal }) => {
                                 onChange={(e) => (setFormData({ ...formData, password: e.target.value }))} />
                             <TextInput label={"Last Name:"} placeholder={"Last Name"}
                                 onChange={(e) => (setFormData({ ...formData, lastName: e.target.value }))} />
-                            <TextInput label={"Date of Birth:"} placeholder={"Date of Birth"}
-                                onChange={(e) => (setFormData({ ...formData, dob: e.target.value }))} />
+                            <DateSelect label={"Date of Birth:"}
+                                onChange={(e) => (setFromData({ ...formData, dateOfBirth: e.target.value }))}/>
                             <TextInput label={"Role:"} placeholder={"Role"}
                                 onChange={(e) => (setFormData({ ...formData, role: e.target.value }))} />
                             <FileSelect label={"Avatar:"} placeholder={"Choose Avatar"}
