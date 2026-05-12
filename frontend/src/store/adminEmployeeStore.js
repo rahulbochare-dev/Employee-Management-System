@@ -1,10 +1,10 @@
 import { create } from "zustand";
-import { onboardEmployee } from "../services/adminEmployee.js";
+import { onboardEmployee, getEmployees } from "../services/adminEmployee.js";
 
 const useAdminEmployeeStore = create((set) => ({
     employees: null,
     employeesCount: null,
-    pages: null,
+    totalPages: null,
     currentPage: null,
     limit: null,
     loading: true,
@@ -14,6 +14,17 @@ const useAdminEmployeeStore = create((set) => ({
         try {
             const response = await onboardEmployee(data)
             set({ loading: false, isLoggedIn: true })
+            return response.data
+        } catch (err) {
+            set({error: err, loading: false})
+            return err
+        }
+    },
+
+    getEmployees: async (data) => {
+        try {
+            const response = await getEmployees(data)
+            set({ employees: response.data.employees, employeesCount: response.totalEmployeesCount, totalPages: response.totalPages, currentPage: response.currentPage, loading: false })
             return response.data
         } catch (err) {
             set({error: err, loading: false})
