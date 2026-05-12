@@ -10,7 +10,7 @@ import { useAdminEmployeeStore } from '../store/adminEmployeeStore.js'
 import { Toaster, toast } from 'react-hot-toast';
 
 const AddEmployeeModal = ({ handleShowModal }) => {
-    const {onboardEmployee} = useAdminEmployeeStore()
+    const { onboardEmployee } = useAdminEmployeeStore()
 
     const [formData, setFormData] = useState({
         empId: "",
@@ -62,23 +62,20 @@ const AddEmployeeModal = ({ handleShowModal }) => {
 
         try {
             const response = await onboardEmployee(submitData)
-            console.log(response)
-            if(response.success){
+            if (response.success) {
                 toast.success(response.message)
-                handleShowModal()
+            } else {
+                toast.error(response.message)
             }
         } catch (error) {
-            if(error.statusCode == 500){
-                toast.error("Internal server error!")
-            }
-            toast.error(error.message)
+            toast.error("Something went wrong!")
         }
     }
 
     return (
         <>
             <div className="w-screen h-screen z-10 flex justify-center items-center">
-                <Toaster position='bottom-center'/>
+                <Toaster position='bottom-center' />
                 <div className="w-330.5 h-173 bg-white border border-[#b6b6b6] rounded-2xl overflow-clip">
                     <div className="w-full h-15 flex items-center pt-5">
                         <h1 className='text-[1.75rem] font-semibold pl-10'>Onboard Employee</h1>
@@ -113,7 +110,7 @@ const AddEmployeeModal = ({ handleShowModal }) => {
                             <TextInput label={"Last Name:"} placeholder={"Last Name"}
                                 onChange={(e) => (setFormData({ ...formData, lastName: e.target.value }))} />
                             <DateSelect label={"Date of Birth:"}
-                                onChange={(e) => (setFormData({ ...formData, dateOfBirth: e.target.value }))}/>
+                                onChange={(e) => (setFormData({ ...formData, dateOfBirth: e.target.value }))} />
                             <TextInput label={"Role:"} placeholder={"Role"}
                                 onChange={(e) => (setFormData({ ...formData, role: e.target.value }))} />
                             <FileSelect label={"Avatar:"} placeholder={"Choose Avatar"}

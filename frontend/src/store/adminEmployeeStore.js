@@ -7,9 +7,14 @@ const useAdminEmployeeStore = create((set) => ({
     error: null,
 
     onboardEmployee: async (data) => {
-        const response = await onboardEmployee(data)
-        set({loading: false, error: null})
-        return response
+        try {
+            const response = await onboardEmployee(data)
+            set({ loading: false, isLoggedIn: true })
+            return response.data
+        } catch (err) {
+            set({error: err, loading: false})
+            return err
+        }
     }
 }))
 
