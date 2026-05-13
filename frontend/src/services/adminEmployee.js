@@ -10,4 +10,9 @@ const getEmployees = function async(page = 1, limit = 20){
     return response
 }
 
-export { onboardEmployee, getEmployees }
+const searchEmployee = function async(firstName, lastName){
+    const response = callApi("GET", `/admin/employee/search-employee?firstName=${firstName}&lastName=${lastName}`)
+    return response
+}
+
+export { onboardEmployee, getEmployees, searchEmployee }
