@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Sidebar from '../components/Sidebar.jsx'
 import WelcomeText from '../components/WelcomeText.jsx'
 import DateTime from '../components/DateTime.jsx'
@@ -10,9 +10,12 @@ import DropdownInputs from '../components/DropdownModal.jsx'
 import DropdownModal from '../components/DropdownModal.jsx'
 import Button from '../components/Button.jsx'
 import AddEmployeeModal from '../components/AddEmployeeModal.jsx'
+import { useAdminEmployeeStore } from '../store/adminEmployeeStore.js'
 
 const Employees = () => {
   const [showModal, setShowModal] = useState(false)
+
+  const {employees, employeesCount, totalPages, currentPage, limit, getEmployees} = useAdminEmployeeStore()
 
   const handleShowModal = (e) => {
     setShowModal(!showModal)
@@ -48,26 +51,7 @@ const Employees = () => {
                 </div>
                 <Seperator marginY={"my-2"} width='w-369' />
                 <div className="w-full h-170 grid grid-cols-4 gap-y-7 justify-center items-center overflow-y-scroll pl-7 pt-3">
-                  <EmployeeCard/>
-                  <EmployeeCard/>
-                  <EmployeeCard/>
-                  <EmployeeCard/>
-                  <EmployeeCard/>
-                  <EmployeeCard/>
-                  <EmployeeCard/>
-                  <EmployeeCard/>
-                  <EmployeeCard/>
-                  <EmployeeCard/>
-                  <EmployeeCard/>
-                  <EmployeeCard/>
-                  <EmployeeCard/>
-                  <EmployeeCard/>
-                  <EmployeeCard/>
-                  <EmployeeCard/>
-                  <EmployeeCard/>
-                  <EmployeeCard/>
-                  <EmployeeCard/>
-                  <EmployeeCard/>
+                  
                 </div>
               </div>
             </div>

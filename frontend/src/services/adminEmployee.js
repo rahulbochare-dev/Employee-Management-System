@@ -6,7 +6,7 @@ const onboardEmployee = function async(data){
 }
 
 const getEmployees = function async(page = 1, limit = 20){
-    const response = callApi("POST", `/admin/employee/employees?page=${page}&limit=${limit}`)
+    const response = callApi("GET", `/admin/employee/employees?page=${page}&limit=${limit}`)
     return response
 }
 
