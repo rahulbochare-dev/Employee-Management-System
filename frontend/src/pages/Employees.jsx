@@ -15,7 +15,14 @@ import { useAdminEmployeeStore } from '../store/adminEmployeeStore.js'
 const Employees = () => {
   const [showModal, setShowModal] = useState(false)
 
-  const {employees, employeesCount, totalPages, currentPage, limit, getEmployees} = useAdminEmployeeStore()
+  const [searchData, setSearchData] = useState({
+    firstName: "",
+    lastName: ""
+  })
+
+  console.log(searchData)
+
+  const {employees, employeesCount, totalPages, currentPage, limit, getEmployees, searchEmployee} = useAdminEmployeeStore()
 
   useEffect(() => {
     const callAPI = async()=> {
@@ -29,6 +36,10 @@ const Employees = () => {
   const handleShowModal = (e) => {
     setShowModal(!showModal)
   }
+
+  // const handleSearch = (e) =>{
+
+  // }
 
   return (
     <>
@@ -49,7 +60,9 @@ const Employees = () => {
                 </div>
                 <div className="w-full h-15 flex gap-3 items-center pl-7">
                   <div className="h-full w-3/4 flex justify-start items-center gap-6">
-                    <Search />
+                    <Search 
+                      onChange={(e) => (setSearchData({ ...searchData, firstName: e.target.value, lastName: e.target.value }))}
+                    />
                     <Dropdown title={"Gender"} values={["Male", "Female"]} />
                     <Dropdown title={"Workmode"} values={["On-Site", "Remote", "Hybrid"]} />
                     <DropdownModal />
