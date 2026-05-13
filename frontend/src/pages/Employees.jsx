@@ -19,8 +19,18 @@ const Employees = () => {
     firstName: "",
     lastName: ""
   })
+  
+  // const [salaryData, setSalaryData] = useState({
+  //   minSalary: "",
+  //   maxSalary: ""
+  // })
 
-  console.log(searchData)
+  const salaryData = {
+    minSalary: "",
+    maxSalary: ""
+  }
+
+  
 
   const {employees, employeesCount, totalPages, currentPage, limit, getEmployees, searchEmployee} = useAdminEmployeeStore()
 
@@ -35,6 +45,15 @@ const Employees = () => {
 
   const handleShowModal = (e) => {
     setShowModal(!showModal)
+  }
+
+  const handleSalaryChange = (e) => {
+    if(e.target.name == "minSalary"){
+      salaryData.minSalary = e.target.value
+    } else {
+      salaryData.maxSalary = e.target.value
+    }
+    console.log(salaryData)
   }
 
   // const handleSearch = (e) =>{
@@ -65,7 +84,9 @@ const Employees = () => {
                     />
                     <Dropdown title={"Gender"} values={["Male", "Female"]} />
                     <Dropdown title={"Workmode"} values={["On-Site", "Remote", "Hybrid"]} />
-                    <DropdownModal />
+                    <DropdownModal
+                      onChange={handleSalaryChange}
+                    />
                   </div>
                   <div className='h-full w-1/4 pr-7 flex justify-end items-center'>
                     <Button title={"Onboard Employee"} icon={"/src/assets/employeeAdd-Light.svg"} onClick={handleShowModal} />
