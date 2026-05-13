@@ -17,6 +17,15 @@ const Employees = () => {
 
   const {employees, employeesCount, totalPages, currentPage, limit, getEmployees} = useAdminEmployeeStore()
 
+  useEffect(() => {
+    const callAPI = async()=> {
+      const response = await getEmployees()
+      console.log(response)
+    }
+    callAPI()
+  }, [])
+  
+
   const handleShowModal = (e) => {
     setShowModal(!showModal)
   }
