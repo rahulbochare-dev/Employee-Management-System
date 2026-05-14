@@ -22,18 +22,18 @@ const Employees = () => {
   })
   
   const [salaryData, setSalaryData] = useState({
-    maxSalary: null,
     minSalary: null,
+    maxSalary: null
   })
 
   const {employees, employeesCount, totalPages, currentPage, limit, loading, getEmployees, searchEmployee, getEmployeeBySalary} = useAdminEmployeeStore()
 
-  useEffect(() => {
-    const callAPI = async()=> {
-      const response = await getEmployees()
-    }
-    callAPI()
-  }, [])
+  // useEffect(() => {
+  //   const callAPI = async()=> {
+  //     const response = await getEmployees()
+  //   }
+  //   callAPI()
+  // }, [])
 
   const handleShowModal = (e) => {
     setShowModal(!showModal)
@@ -46,11 +46,11 @@ const Employees = () => {
       setSalaryData({...salaryData, maxSalary: e.target.value})
     }
     
-    // const callAPI = async()=> {
-    //   const response = await getEmployeeBySalary(salaryData.minSalary, salaryData.maxSalary)
-    //   console.log(response)
-    // }
-    // callAPI()
+    const callAPI = async()=> {
+      const response = await getEmployeeBySalary(salaryData.minSalary, salaryData.maxSalary)
+      console.log(response)
+    }
+    callAPI()
   }
 
   return (
