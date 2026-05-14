@@ -10,6 +10,7 @@ import DropdownInputs from '../components/DropdownModal.jsx'
 import DropdownModal from '../components/DropdownModal.jsx'
 import Button from '../components/Button.jsx'
 import AddEmployeeModal from '../components/AddEmployeeModal.jsx'
+import Loading from '../components/Loading.jsx'
 import { useAdminEmployeeStore } from '../store/adminEmployeeStore.js'
 
 const Employees = () => {
@@ -21,18 +22,18 @@ const Employees = () => {
   })
   
   const [salaryData, setSalaryData] = useState({
-    minSalary: "",
-    maxSalary: ""
+    maxSalary: null,
+    minSalary: null,
   })
 
-  const {employees, employeesCount, totalPages, currentPage, limit, getEmployees, searchEmployee, getEmployeeBySalary} = useAdminEmployeeStore()
+  const {employees, employeesCount, totalPages, currentPage, limit, loading, getEmployees, searchEmployee, getEmployeeBySalary} = useAdminEmployeeStore()
 
-  // useEffect(() => {
-  //   const callAPI = async()=> {
-  //     const response = await getEmployees()
-  //   }
-  //   callAPI()
-  // }, [])
+  useEffect(() => {
+    const callAPI = async()=> {
+      const response = await getEmployees()
+    }
+    callAPI()
+  }, [])
 
   const handleShowModal = (e) => {
     setShowModal(!showModal)
@@ -40,18 +41,16 @@ const Employees = () => {
 
   const handleSalaryChange = (e) => {
     if(e.target.name == "minSalary"){
-      salaryData.minSalary = e.target.value
+      setSalaryData({...salaryData, minSalary: e.target.value})
     } else {
-      salaryData.maxSalary = e.target.value
+      setSalaryData({...salaryData, maxSalary: e.target.value})
     }
-    console.log(salaryData)
-
-    // useEffect(() => {
-    //   const callAPI = async()=> {
-    //     const response = await getEmployeeBySalary(salaryData)
-    //   }
-    //   callAPI()
-    // }, [])
+    
+    // const callAPI = async()=> {
+    //   const response = await getEmployeeBySalary(salaryData.minSalary, salaryData.maxSalary)
+    //   console.log(response)
+    // }
+    // callAPI()
   }
 
   return (
@@ -75,7 +74,7 @@ const Employees = () => {
                   <div className="h-full w-3/4 flex justify-start items-center gap-6">
                     <Search 
                       onChange={(e) => (setSearchData({ ...searchData, firstName: e.target.value, lastName: e.target.value }))}
-                    />
+                      />
                     <Dropdown title={"Gender"} values={["Male", "Female"]} />
                     <Dropdown title={"Workmode"} values={["On-Site", "Remote", "Hybrid"]} />
                     <DropdownModal
@@ -87,6 +86,7 @@ const Employees = () => {
                   </div>
                 </div>
                 <Seperator marginY={"my-2"} width='w-369' />
+                {loading && <Loading/>}
                 <div className="w-full h-170 grid grid-cols-4 gap-y-7 justify-center items-center overflow-y-scroll pl-7 pt-3">
                   {employees?.map((value) => {
                    return <EmployeeCard
