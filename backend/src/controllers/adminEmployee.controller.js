@@ -129,6 +129,10 @@ const getEmployeeBySalary = asyncHandler( async (req,res) => {
 
     const employeeFound = await Employee.find({salary: {$gte: minSalary, $lte: maxSalary}})
 
+    if(employeeFound.length === 0){
+        throw new ApiError(404, "Employee not found!")
+    }
+
     return res.status(200).json(new ApiResponse(200, {employees: employeeFound}, "Employee fetched by salary successfully"))
 })
 
