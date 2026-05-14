@@ -20,26 +20,19 @@ const Employees = () => {
     lastName: ""
   })
   
-  // const [salaryData, setSalaryData] = useState({
-  //   minSalary: "",
-  //   maxSalary: ""
-  // })
-
-  const salaryData = {
+  const [salaryData, setSalaryData] = useState({
     minSalary: "",
     maxSalary: ""
-  }
+  })
 
-  
+  const {employees, employeesCount, totalPages, currentPage, limit, getEmployees, searchEmployee, getEmployeeBySalary} = useAdminEmployeeStore()
 
-  const {employees, employeesCount, totalPages, currentPage, limit, getEmployees, searchEmployee} = useAdminEmployeeStore()
-
-  useEffect(() => {
-    const callAPI = async()=> {
-      const response = await getEmployees()
-    }
-    callAPI()
-  }, [])
+  // useEffect(() => {
+  //   const callAPI = async()=> {
+  //     const response = await getEmployees()
+  //   }
+  //   callAPI()
+  // }, [])
 
   const handleShowModal = (e) => {
     setShowModal(!showModal)
@@ -52,6 +45,13 @@ const Employees = () => {
       salaryData.maxSalary = e.target.value
     }
     console.log(salaryData)
+
+    // useEffect(() => {
+    //   const callAPI = async()=> {
+    //     const response = await getEmployeeBySalary(salaryData)
+    //   }
+    //   callAPI()
+    // }, [])
   }
 
   return (
@@ -90,7 +90,7 @@ const Employees = () => {
                 <div className="w-full h-170 grid grid-cols-4 gap-y-7 justify-center items-center overflow-y-scroll pl-7 pt-3">
                   {employees?.map((value) => {
                    return <EmployeeCard
-                      key={value.id}
+                      key={value._id}
                       firstName={value.firstName}
                       lastName={value.lastName}
                       email={value.email}
