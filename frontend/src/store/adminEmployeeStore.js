@@ -26,10 +26,10 @@ const useAdminEmployeeStore = create((set) => ({
         try {
             const response = await getEmployees(data)
             set({
-                employees: response.data.employees,
-                employeesCount: response.data.totalEmployeesCount,
-                totalPages: response.data.totalPages,
-                currentPage: response.data.currentPage,
+                employees: response.data.data.employees,
+                employeesCount: response.data.data.totalEmployeesCount,
+                totalPages: response.data.data.totalPages,
+                currentPage: response.data.data.currentPage,
                 loading: false
             })
             return response.data

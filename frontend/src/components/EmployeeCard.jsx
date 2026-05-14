@@ -1,7 +1,7 @@
 import React from 'react'
 import Separator from './Seperator'
 
-const EmployeeCard = ({firstName, lastName, role, address, dateOfBirth, workMode, salary}) => {
+const EmployeeCard = ({firstName, lastName, role, address, dateOfBirth, workMode, salary, email}) => {
     return (
         <div className='w-85 h-65 bg-white border border-[#b6b6b6] rounded-xl'>
             <div className="w-full h-17 flex justify-start gap-3 items-center pl-5">

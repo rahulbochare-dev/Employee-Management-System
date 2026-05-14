@@ -37,11 +37,9 @@ const Employees = () => {
   useEffect(() => {
     const callAPI = async()=> {
       const response = await getEmployees()
-      console.log(response)
     }
     callAPI()
   }, [])
-  
 
   const handleShowModal = (e) => {
     setShowModal(!showModal)
@@ -55,10 +53,6 @@ const Employees = () => {
     }
     console.log(salaryData)
   }
-
-  // const handleSearch = (e) =>{
-
-  // }
 
   return (
     <>
@@ -94,7 +88,19 @@ const Employees = () => {
                 </div>
                 <Seperator marginY={"my-2"} width='w-369' />
                 <div className="w-full h-170 grid grid-cols-4 gap-y-7 justify-center items-center overflow-y-scroll pl-7 pt-3">
-                  
+                  {employees?.map((value) => {
+                   return <EmployeeCard
+                      key={value.id}
+                      firstName={value.firstName}
+                      lastName={value.lastName}
+                      email={value.email}
+                      address={value.address}
+                      dateOfBirth={value.dateOfBirth}
+                      role={value.role}
+                      salary={value.salary}
+                      workMode={value.workMode}
+                    />
+                  })}
                 </div>
               </div>
             </div>
