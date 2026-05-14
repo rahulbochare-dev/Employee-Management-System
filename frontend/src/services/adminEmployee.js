@@ -20,4 +20,4 @@ const getEmployeeBySalary = function async(minSalary, maxSalary){
     return response
 }
 
-export { onboardEmployee, getEmployees, searchEmployee }
+export { onboardEmployee, getEmployees, searchEmployee, getEmployeeBySalary }
