@@ -15,4 +15,9 @@ const searchEmployee = function async(firstName, lastName){
     return response
 }
 
+const getEmployeeBySalary = function async(minSalary, maxSalary){
+    const response = callApi("GET", `/admin/employee/employee-by-salary?minSalary=${minSalary}&maxSalary=${maxSalary}`)
+    return response
+}
+
 export { onboardEmployee, getEmployees, searchEmployee }
