@@ -33,6 +33,8 @@ const Employees = () => {
     role: ""
   })
 
+  const [roleValues, setRoleValues] = useState([])
+
   const {employees, employeesCount, totalPages, currentPage, limit, loading, getEmployees, searchEmployee, getEmployeeBySalary, getEmployeeByFilter} = useAdminEmployeeStore()
 
   useEffect(() => {
@@ -41,6 +43,19 @@ const Employees = () => {
     }
     callAPI()
   }, [])
+
+  useEffect(() => {
+    if(employees && roleValues.length === 0){
+      const allRoles = [
+        ...new Set(
+          employees?.map((value) => value.role)
+        )
+      ]
+
+      setRoleValues(allRoles)
+    }
+  }, [employees])
+  
 
   const handleShowModal = (e) => {
     setShowModal(!showModal)
@@ -113,7 +128,7 @@ const Employees = () => {
                       />
                     <Dropdown title={"Gender"} values={["Male", "Female"]} onChange={handleFilterChange} name={"gender"}/>
                     <Dropdown title={"Workmode"} values={["On-site", "Remote", "Hybrid"]} onChange={handleFilterChange} name={"workMode"}/>
-                    <Dropdown title={"role"} values={employees?.map((value) => value.role) || []} onChange={handleFilterChange} name={"role"}/>
+                    <Dropdown title={"role"} values={roleValues} onChange={handleFilterChange} name={"role"}/>
                     <DropdownModal
                       onChange={handleSalaryChange}
                     />
@@ -124,7 +139,7 @@ const Employees = () => {
                 </div>
                 <Seperator marginY={"my-2"} width='w-369' />
                 {loading && <Loading/>}
-                <div className="w-full h-170 grid grid-cols-4 gap-y-7 justify-center items-center overflow-y-scroll pl-7 pt-3">
+                <div className="w-full h-170 grid grid-cols-4 gap-y-7 justify-center overflow-y-scroll pl-7 pt-3">
                   {employees?.map((value) => {
                    return <EmployeeCard
                       key={value._id}
