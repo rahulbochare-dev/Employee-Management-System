@@ -60,10 +60,10 @@ const useAdminEmployeeStore = create((set) => ({
         }
     },
 
-    getEmployeeByFilter: async (gender) => {
+    getEmployeeByFilter: async (params) => {
         try {
-            const response = await getEmployeeByFilter(gender)
-            set({ employees: response.data.data.employees, loading: false })
+            const response = await getEmployeeByFilter(params)
+            set({ employees: response.data.data, loading: false })
             return response.data
         } catch (err) {
             set({error: err, loading: false})

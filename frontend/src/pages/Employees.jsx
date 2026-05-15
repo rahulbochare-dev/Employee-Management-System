@@ -12,6 +12,7 @@ import Button from '../components/Button.jsx'
 import AddEmployeeModal from '../components/AddEmployeeModal.jsx'
 import Loading from '../components/Loading.jsx'
 import { useAdminEmployeeStore } from '../store/adminEmployeeStore.js'
+import toast, { Toaster } from 'react-hot-toast'
 
 const Employees = () => {
   const [showModal, setShowModal] = useState(false)
@@ -60,20 +61,34 @@ const Employees = () => {
     const workMode = e.target.value
     const role = e.target.value
 
-    if(genderValue) params.genderValue = genderValue
-    if(workMode) params.workMode = workMode
-    if(role) params.role = role
+    if(genderValue) params.append("gender", genderValue)
+    if(workMode) params.append("workMode", workMode)
+    if(role) params.append("role", role)
+    console.log(params)
 
-    const callAPI = async()=> {
-      const response = await getEmployeeByFilter(params)
-      console.log(response)
+    try {
+      const callAPI = async()=> {
+        const response = await getEmployeeByFilter(params)
+        if(response.success){
+          toast.success(response.message)
+        } else {
+          toast.error(response.message)
+        }
+      }
+      callAPI()
+    } catch (error) {
+      toast.error("Something went wrong!")
     }
-    callAPI()
   }
+
+  // employees.map((value) => {
+  //   console.log(value.gender)
+  // })
 
   return (
     <>
       <div className="w-screen h-screen relative">
+        <Toaster position='bottom-center'/>
         <div className="w-screen h-screen flex bg-[#f9f9f9]">
           <div className="w-87.75 h-screen p-4">
             <Sidebar />
@@ -94,7 +109,7 @@ const Employees = () => {
                       onChange={(e) => (setSearchData({ ...searchData, firstName: e.target.value, lastName: e.target.value }))}
                       />
                     <Dropdown title={"Gender"} values={["Male", "Female"]} onChange={handleGenderChange}/>
-                    <Dropdown title={"Workmode"} values={["On-Site", "Remote", "Hybrid"]} />
+                    <Dropdown title={"Workmode"} values={["On-Site", "Remote", "Hybrid"]} onChange={handleGenderChange}/>
                     <DropdownModal
                       onChange={handleSalaryChange}
                     />
