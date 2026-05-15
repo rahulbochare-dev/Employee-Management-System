@@ -27,6 +27,12 @@ const Employees = () => {
     maxSalary: null
   })
 
+  const [filterData, setFilterData] = useState({
+    gender: "",
+    workMode: "",
+    role: ""
+  })
+
   const {employees, employeesCount, totalPages, currentPage, limit, loading, getEmployees, searchEmployee, getEmployeeBySalary, getEmployeeByFilter} = useAdminEmployeeStore()
 
   useEffect(() => {
@@ -54,36 +60,30 @@ const Employees = () => {
     callAPI()
   }
   
-  const handleGenderChange = (e) => {
+  const handleFilterChange = async (e) => {
+    const updatedFilters = {
+      ...filterData,
+      [e.target.name]: e.target.value
+    }
+    setFilterData(updatedFilters)
+  
     const params = new URLSearchParams()
-
-    const genderValue = e.target.value
-    const workMode = e.target.value
-    const role = e.target.value
-
-    if(genderValue) params.append("gender", genderValue)
-    if(workMode) params.append("workMode", workMode)
-    if(role) params.append("role", role)
-    console.log(params)
-
+  
+    if(updatedFilters.gender) params.append("gender", updatedFilters.gender)
+    if(updatedFilters.workMode) params.append("workMode", updatedFilters.workMode)
+    if(updatedFilters.role) params.append("role", updatedFilters.role)
+  
     try {
-      const callAPI = async()=> {
-        const response = await getEmployeeByFilter(params)
-        if(response.success){
-          toast.success(response.message)
-        } else {
-          toast.error(response.message)
-        }
+      const response = await getEmployeeByFilter(params)
+      if(response.success){
+        toast.success(response.message)
+      } else {
+        toast.error(response.message)
       }
-      callAPI()
     } catch (error) {
       toast.error("Something went wrong!")
     }
   }
-
-  // employees.map((value) => {
-  //   console.log(value.gender)
-  // })
 
   return (
     <>
@@ -108,8 +108,8 @@ const Employees = () => {
                     <Search 
                       onChange={(e) => (setSearchData({ ...searchData, firstName: e.target.value, lastName: e.target.value }))}
                       />
-                    <Dropdown title={"Gender"} values={["Male", "Female"]} onChange={handleGenderChange}/>
-                    <Dropdown title={"Workmode"} values={["On-Site", "Remote", "Hybrid"]} onChange={handleGenderChange}/>
+                    <Dropdown title={"Gender"} values={["Male", "Female"]} onChange={handleFilterChange} name={"gender"}/>
+                    <Dropdown title={"Workmode"} values={["On-Site", "Remote", "Hybrid"]} onChange={handleFilterChange} name={"workMode"}/>
                     <DropdownModal
                       onChange={handleSalaryChange}
                     />
