@@ -20,8 +20,8 @@ const getEmployeeBySalary = function async(minSalary, maxSalary){
     return response
 }
 
-const getEmployeeByFilter = function async(gender){
-    const response = callApi("GET", `/admin/employee/employee-by-filter/gender?=${gender}`)
+const getEmployeeByFilter = function async(params){
+    const response = callApi("GET", `/admin/employee/employee-by-filter/?${params}`)
     return response
 }
 

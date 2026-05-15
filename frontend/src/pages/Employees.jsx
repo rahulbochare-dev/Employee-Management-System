@@ -54,10 +54,18 @@ const Employees = () => {
   }
   
   const handleGenderChange = (e) => {
+    const params = new URLSearchParams()
+
     const genderValue = e.target.value
+    const workMode = e.target.value
+    const role = e.target.value
+
+    if(genderValue) params.genderValue = genderValue
+    if(workMode) params.workMode = workMode
+    if(role) params.role = role
 
     const callAPI = async()=> {
-      const response = await getEmployeeByFilter()
+      const response = await getEmployeeByFilter(params)
       console.log(response)
     }
     callAPI()
