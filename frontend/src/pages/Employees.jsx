@@ -113,6 +113,7 @@ const Employees = () => {
                       />
                     <Dropdown title={"Gender"} values={["Male", "Female"]} onChange={handleFilterChange} name={"gender"}/>
                     <Dropdown title={"Workmode"} values={["On-site", "Remote", "Hybrid"]} onChange={handleFilterChange} name={"workMode"}/>
+                    <Dropdown title={"role"} values={employees?.map((value) => value.role) || []} onChange={handleFilterChange} name={"role"}/>
                     <DropdownModal
                       onChange={handleSalaryChange}
                     />
