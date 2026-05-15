@@ -72,9 +72,12 @@ const Employees = () => {
     if(updatedFilters.gender) params.append("gender", updatedFilters.gender)
     if(updatedFilters.workMode) params.append("workMode", updatedFilters.workMode)
     if(updatedFilters.role) params.append("role", updatedFilters.role)
+
+    console.log(params.toString())
   
     try {
       const response = await getEmployeeByFilter(params)
+      console.log(response)
       if(response.success){
         toast.success(response.message)
       } else {
@@ -109,7 +112,7 @@ const Employees = () => {
                       onChange={(e) => (setSearchData({ ...searchData, firstName: e.target.value, lastName: e.target.value }))}
                       />
                     <Dropdown title={"Gender"} values={["Male", "Female"]} onChange={handleFilterChange} name={"gender"}/>
-                    <Dropdown title={"Workmode"} values={["On-Site", "Remote", "Hybrid"]} onChange={handleFilterChange} name={"workMode"}/>
+                    <Dropdown title={"Workmode"} values={["On-site", "Remote", "Hybrid"]} onChange={handleFilterChange} name={"workMode"}/>
                     <DropdownModal
                       onChange={handleSalaryChange}
                     />
@@ -127,7 +130,7 @@ const Employees = () => {
                       firstName={value.firstName}
                       lastName={value.lastName}
                       email={value.email}
-                      address={value.address}
+                      gender={value.gender}
                       dateOfBirth={value.dateOfBirth}
                       role={value.role}
                       salary={value.salary}
