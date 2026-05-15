@@ -28,12 +28,12 @@ const Employees = () => {
 
   const {employees, employeesCount, totalPages, currentPage, limit, loading, getEmployees, searchEmployee, getEmployeeBySalary} = useAdminEmployeeStore()
 
-  // useEffect(() => {
-  //   const callAPI = async()=> {
-  //     const response = await getEmployees()
-  //   }
-  //   callAPI()
-  // }, [])
+  useEffect(() => {
+    const callAPI = async()=> {
+      const response = await getEmployees()
+    }
+    callAPI()
+  }, [])
 
   const handleShowModal = (e) => {
     setShowModal(!showModal)
@@ -51,6 +51,11 @@ const Employees = () => {
       console.log(response)
     }
     callAPI()
+  }
+
+  const handleGenderChange = (e) => {
+    const genderValue = e.target.value
+    
   }
 
   return (
@@ -75,7 +80,7 @@ const Employees = () => {
                     <Search 
                       onChange={(e) => (setSearchData({ ...searchData, firstName: e.target.value, lastName: e.target.value }))}
                       />
-                    <Dropdown title={"Gender"} values={["Male", "Female"]} />
+                    <Dropdown title={"Gender"} values={["Male", "Female"]} onChange={handleGenderChange}/>
                     <Dropdown title={"Workmode"} values={["On-Site", "Remote", "Hybrid"]} />
                     <DropdownModal
                       onChange={handleSalaryChange}
