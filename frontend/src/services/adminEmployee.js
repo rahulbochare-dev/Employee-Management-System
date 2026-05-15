@@ -20,4 +20,9 @@ const getEmployeeBySalary = function async(minSalary, maxSalary){
     return response
 }
 
-export { onboardEmployee, getEmployees, searchEmployee, getEmployeeBySalary }
+const getEmployeeByFilter = function async(gender){
+    const response = callApi("GET", `/admin/employee/employee-by-filter/gender?=${gender}`)
+    return response
+}
+
+export { onboardEmployee, getEmployees, searchEmployee, getEmployeeBySalary, getEmployeeByFilter }
