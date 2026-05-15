@@ -26,7 +26,7 @@ const Employees = () => {
     maxSalary: null
   })
 
-  const {employees, employeesCount, totalPages, currentPage, limit, loading, getEmployees, searchEmployee, getEmployeeBySalary} = useAdminEmployeeStore()
+  const {employees, employeesCount, totalPages, currentPage, limit, loading, getEmployees, searchEmployee, getEmployeeBySalary, getEmployeeByFilter} = useAdminEmployeeStore()
 
   useEffect(() => {
     const callAPI = async()=> {
@@ -52,10 +52,15 @@ const Employees = () => {
     }
     callAPI()
   }
-
+  
   const handleGenderChange = (e) => {
     const genderValue = e.target.value
-    
+
+    const callAPI = async()=> {
+      const response = await getEmployeeByFilter()
+      console.log(response)
+    }
+    callAPI()
   }
 
   return (
