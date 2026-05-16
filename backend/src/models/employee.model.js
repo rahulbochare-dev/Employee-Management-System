@@ -66,11 +66,11 @@ const employeeSchema = new Schema({
         type: String,
         required: true
     },
-    role: {
+    jobTitle: {
         type: String,
         required: true,
     },
-    jobTitle: {
+    role: {
         type: String,
         default: "employee",
     },

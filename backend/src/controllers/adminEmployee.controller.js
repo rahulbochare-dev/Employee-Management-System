@@ -5,10 +5,12 @@ import { ApiError } from "../utils/ApiError.js";
 import { Employee } from "../models/employee.model.js"
 
 const onboardEmployee = asyncHandler( async (req, res) => {
-    const {empID, firstName, middleName, lastName, email, gender, contactNo, avatar, dateOfBirth, country, city, postalCode, education, address, role, jobTitle, workMode, empType, salary, salaryCurrency, password} = req.body
+    const {empID, firstName, middleName, lastName, email, gender, contactNo, avatar, dateOfBirth, country, city, postalCode, education, address, jobTitle, workMode, empType, salary, salaryCurrency, password} = req.body
+
+    console.log(req.body)
     
     if(
-        [empID, firstName, middleName, lastName, email, gender, contactNo, avatar, dateOfBirth, country, city, postalCode, education, address, role, jobTitle, workMode, empType, salary, salaryCurrency, password].some((fields) => (fields === ""))
+        [empID, firstName, middleName, lastName, email, gender, contactNo, avatar, dateOfBirth, country, city, postalCode, education, address, jobTitle, workMode, empType, salary, salaryCurrency, password].some((fields) => (fields === ""))
     ){
         throw new ApiError(400, "Empty fields are not accepted!")
     }
@@ -57,7 +59,6 @@ const onboardEmployee = asyncHandler( async (req, res) => {
         postalCode,
         education,
         address,
-        role,
         jobTitle,
         workMode,
         empType,
