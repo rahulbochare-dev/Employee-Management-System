@@ -10,8 +10,8 @@ const getEmployees = function async(page = 1, limit = 20){
     return response
 }
 
-const searchEmployee = function async(firstName, lastName){
-    const response = callApi("GET", `/admin/employee/search-employee?firstName=${firstName}&lastName=${lastName}`)
+const searchEmployee = function async(searchName){
+    const response = callApi("GET", `/admin/employee/search-employee?search=${searchName}`)
     return response
 }
 
