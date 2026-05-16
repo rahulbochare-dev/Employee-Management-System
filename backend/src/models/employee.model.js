@@ -70,6 +70,10 @@ const employeeSchema = new Schema({
         type: String,
         required: true,
     },
+    jobTitle: {
+        type: String,
+        default: "employee",
+    },
     workMode: {
         type: String,
         required: true,
