@@ -27,7 +27,7 @@ const AddEmployeeModal = ({ handleShowModal }) => {
         password: "",
         lastName: "",
         dateOfBirth: "",
-        role: "",
+        jobTitle: "",
         avatar: File,
         gender: "",
         country: "",
@@ -53,7 +53,7 @@ const AddEmployeeModal = ({ handleShowModal }) => {
         submitData.append("postalCode", formData.postalCode)
         submitData.append("education", formData.education)
         submitData.append("address", formData.address)
-        submitData.append("role", formData.role)
+        submitData.append("jobTitle", formData.jobTitle)
         submitData.append("workMode", formData.workMode)
         submitData.append("empType", formData.empType)
         submitData.append("salary", formData.salary)
@@ -111,8 +111,8 @@ const AddEmployeeModal = ({ handleShowModal }) => {
                                 onChange={(e) => (setFormData({ ...formData, lastName: e.target.value }))} />
                             <DateSelect label={"Date of Birth:"}
                                 onChange={(e) => (setFormData({ ...formData, dateOfBirth: e.target.value }))} />
-                            <TextInput label={"Role:"} placeholder={"Role"}
-                                onChange={(e) => (setFormData({ ...formData, role: e.target.value }))} />
+                            <TextInput label={"Job Title:"} placeholder={"Job Title"}
+                                onChange={(e) => (setFormData({ ...formData, jobTitle: e.target.value }))} />
                             <FileSelect label={"Avatar:"} placeholder={"Choose Avatar"}
                                 onChange={(file) => (setFormData({ ...formData, avatar: file }))} />
                             <DropdownAddEmployee label={"Gender:"} title={"Gender"} values={["Male", "Female"]}
