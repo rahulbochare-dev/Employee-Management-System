@@ -89,12 +89,6 @@ const Employees = () => {
   
     try {
       const response = await getEmployeeByFilter(params)
-      console.log(response)
-      if(response.success){
-        toast.success(response.message)
-      } else {
-        toast.error(response.message)
-      }
     } catch (error) {
       toast.error("Something went wrong!")
     }
