@@ -100,9 +100,13 @@ const Employees = () => {
     }
   }
 
-  const handleSearch = (e) => {
-    setSearchName(e.target.value)
-    
+  const handleSearch = async (e) => {
+
+    const searchValue = e.target.value
+
+    setSearchName(searchValue)
+
+    await searchEmployee(searchName)
   }
 
   return (

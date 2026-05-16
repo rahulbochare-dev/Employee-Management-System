@@ -139,18 +139,18 @@ const Dashboard = () => {
                 iconBgColor={"bg-[#6464FF]/15 "}
                 data={"$10,32,398"}/>
               <InsightCard
-                title={"Total Payroll this Month"}
+                title={"Most employee from country"}
                 icon={"/src/assets/globe.svg"}
                 iconBgColor={"bg-[#A32AFF]/15 "}
                 data={"India - 48%"}/>
               <InsightCard
-                title={"Total Payroll this Month"}
+                title={"Gender Ratio (Male/Female)"}
                 icon={"/src/assets/home-office.svg"}
                 iconBgColor={"bg-[#00B212]/15 "}
                 data={"35% / 65%"}/>
               <InsightCard
-                title={"Total Payroll this Month"}
-                icon={"/src/assets/dollar.svg"}
+                title={"Average Employee Age"}
+                icon={"/src/assets/cake.svg"}
                 iconBgColor={"bg-[#FF824B]/15 "}
                 data={"$10,32,398"}/>
             </div>
