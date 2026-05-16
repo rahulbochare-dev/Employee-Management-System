@@ -27,10 +27,10 @@ const Employees = () => {
   const [filterData, setFilterData] = useState({
     gender: "",
     workMode: "",
-    role: ""
+    jobTitle: ""
   })
 
-  const [roleValues, setRoleValues] = useState([])
+  const [jobTitleValues, setJobTitleValues] = useState([])
 
   const {employees, employeesCount, totalPages, currentPage, limit, loading, getEmployees, searchEmployee, getEmployeeBySalary, getEmployeeByFilter} = useAdminEmployeeStore()
 
@@ -42,14 +42,14 @@ const Employees = () => {
   }, [])
 
   useEffect(() => {
-    if(employees && roleValues.length === 0){
-      const allRoles = [
+    if(employees && jobTitleValues.length === 0){
+      const allJobTitles = [
         ...new Set(
-          employees?.map((value) => value.role)
+          employees?.map((value) => value.jobTitle)
         )
       ]
 
-      setRoleValues(allRoles)
+      setJobTitleValues(allJobTitles)
     }
   }, [employees])
   
@@ -83,7 +83,7 @@ const Employees = () => {
   
     if(updatedFilters.gender) params.append("gender", updatedFilters.gender)
     if(updatedFilters.workMode) params.append("workMode", updatedFilters.workMode)
-    if(updatedFilters.role) params.append("role", updatedFilters.role)
+    if(updatedFilters.jobTitle) params.append("jobTitle", updatedFilters.jobTitle)
 
     console.log(params.toString())
   
@@ -128,7 +128,7 @@ const Employees = () => {
                       />
                     <Dropdown title={"Gender"} values={["Male", "Female"]} onChange={handleFilterChange} name={"gender"}/>
                     <Dropdown title={"Workmode"} values={["On-site", "Remote", "Hybrid"]} onChange={handleFilterChange} name={"workMode"}/>
-                    <Dropdown title={"role"} values={roleValues} onChange={handleFilterChange} name={"role"}/>
+                    <Dropdown title={"Job Title"} values={jobTitleValues} onChange={handleFilterChange} name={"jobTitle"}/>
                     <DropdownModal
                       onChange={handleSalaryChange}
                     />
@@ -148,7 +148,7 @@ const Employees = () => {
                       email={value.email}
                       gender={value.gender}
                       dateOfBirth={value.dateOfBirth}
-                      role={value.role}
+                      jobTitle={value.jobTitle}
                       salary={value.salary}
                       workMode={value.workMode}
                     />
