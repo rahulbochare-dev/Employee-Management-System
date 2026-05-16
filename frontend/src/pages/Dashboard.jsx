@@ -77,7 +77,7 @@ const Dashboard = () => {
         </div>
         <div className="w-392.75 h-screen">
           <div className="w-full h-22 flex justify-between items-center pr-6 border-b border-[#b6b6b6]">
-            <WelcomeText/>
+            <WelcomeText name={user?.firstName}/>
             <DateTime/>
           </div>
           <div className="w-full h-64 ">
