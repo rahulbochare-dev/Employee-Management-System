@@ -38,10 +38,11 @@ const useAdminEmployeeStore = create((set) => ({
         }
     },
 
-    searchEmployee: async (firstName, lastName) => {
+    searchEmployee: async (searchName) => {
         try {
-            const response = await searchEmployee(firstName, lastName)
-            set({ searchFoundEmployee: response.data, loading: false })
+            const response = await searchEmployee(searchName)
+            console.log(response)
+            set({ employees: response.data, loading: false })
             return response.data
         } catch (err) {
             set({error: err, loading: false})
