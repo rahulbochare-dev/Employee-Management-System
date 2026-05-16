@@ -17,10 +17,7 @@ import toast, { Toaster } from 'react-hot-toast'
 const Employees = () => {
   const [showModal, setShowModal] = useState(false)
 
-  const [searchData, setSearchData] = useState({
-    firstName: "",
-    lastName: ""
-  })
+  const [searchName, setSearchName] = useState("")
   
   const [salaryData, setSalaryData] = useState({
     minSalary: null,
@@ -103,6 +100,11 @@ const Employees = () => {
     }
   }
 
+  const handleSearch = (e) => {
+    setSearchName(e.target.value)
+    
+  }
+
   return (
     <>
       <div className="w-screen h-screen relative">
@@ -124,7 +126,7 @@ const Employees = () => {
                 <div className="w-full h-15 flex gap-3 items-center pl-7">
                   <div className="h-full w-3/4 flex justify-start items-center gap-6">
                     <Search 
-                      onChange={(e) => (setSearchData({ ...searchData, firstName: e.target.value, lastName: e.target.value }))}
+                      onChange={handleSearch}
                       />
                     <Dropdown title={"Gender"} values={["Male", "Female"]} onChange={handleFilterChange} name={"gender"}/>
                     <Dropdown title={"Workmode"} values={["On-site", "Remote", "Hybrid"]} onChange={handleFilterChange} name={"workMode"}/>
