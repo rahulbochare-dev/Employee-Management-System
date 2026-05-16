@@ -103,15 +103,13 @@ const terminateEmployee = asyncHandler( async (req, res) => {
 })
 
 const getEmployeeByFilter = asyncHandler( async (req, res) => {
-    const {gender, workMode, role} =req.query
+    const {gender, workMode, jobTitle} =req.query
 
     let filterParams = {};
 
     if(gender) filterParams.gender = gender
     if(workMode) filterParams.workMode = workMode
-    if(role) filterParams.role = {$regex: role, $options: "i"}
-    console.log(filterParams.gender);
-    
+    if(jobTitle) filterParams.jobTitle = {$regex: jobTitle, $options: "i"}    
 
     const employeeFound = await Employee.find(filterParams).select("-password -refreshToken")
 
