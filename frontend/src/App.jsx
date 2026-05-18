@@ -1,6 +1,7 @@
 import './App.css'
 import Dashboard from './pages/Dashboard.jsx'
 import Employees from './pages/Employees.jsx'
+import EmployeeDetails from './components/EmployeeDetails.jsx'
 import Leaves from './pages/Leaves.jsx';
 import Signup from './pages/Signup.jsx';
 import Login from './pages/Login.jsx';
@@ -26,6 +27,7 @@ function App() {
           <Route path='admin/dashboard' element={<Dashboard/>}/>
           <Route path='admin/employees' element={<Employees/>}/>
           <Route path='admin/leaves' element={<Leaves/>}/>
+          <Route path='admin/employees/:empID' element={<EmployeeDetails/>}/>
         </Routes>
       </BrowserRouter>}
     </>

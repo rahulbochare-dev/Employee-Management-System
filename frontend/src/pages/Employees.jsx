@@ -14,10 +14,12 @@ import Loading from '../components/Loading.jsx'
 import EmployeeDetails from '../components/EmployeeDetails.jsx'
 import { useAdminEmployeeStore } from '../store/adminEmployeeStore.js'
 import toast, { Toaster } from 'react-hot-toast'
+import { useNavigate } from "react-router-dom";
 
 const Employees = () => {
   const [showModal, setShowModal] = useState(false)
   const [showEmployeeDetails, setShowEmployeeDetails] = useState(false)
+  const navigate = useNavigate()
 
   const [searchName, setSearchName] = useState("")
   
@@ -105,6 +107,7 @@ const Employees = () => {
 
   const handleEmployeeDetails = async (e, empID) => {
     const response = await getEmployeeDetails(empID)
+    navigate(`employee/${empID}`)
     setShowEmployeeDetails(!showEmployeeDetails)
   }
 
