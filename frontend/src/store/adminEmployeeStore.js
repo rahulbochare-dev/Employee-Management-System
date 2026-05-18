@@ -4,6 +4,7 @@ import { onboardEmployee, getEmployees, searchEmployee, getEmployeeBySalary, get
 const useAdminEmployeeStore = create((set) => ({
     employees: null,
     employeesCount: null,
+    singleEmployeeDetails: null,
     totalPages: null,
     currentPage: null,
     limit: null,
@@ -64,6 +65,17 @@ const useAdminEmployeeStore = create((set) => ({
         try {
             const response = await getEmployeeByFilter(params)
             set({ employees: response.data.data, loading: false })
+            return response.data
+        } catch (err) {
+            set({error: err, loading: false})
+            return err
+        }
+    },
+    
+    getEmployeeDetails: async (empID) => {
+        try {
+            const response = await getEmployeeDetails(empID)
+            set({ singleEmployeeDetails: response.data.data, loading: false })
             return response.data
         } catch (err) {
             set({error: err, loading: false})
