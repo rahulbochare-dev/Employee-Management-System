@@ -157,10 +157,14 @@ const searchEmployee = asyncHandler( async (req, res) => {
 })
 
 const getEmployeeDetails = asyncHandler( async (req, res) => {
-    const empID = req.query
-
+    const {empID} = req.query
+    
     const employeeInDB = await Employee.findOne({empID}).select("-password -refreshToken -accessToken")
-    console.log(employeeInDB)
+    if(!employeeInDB){
+        throw new ApiError(404, "Employee not found!")
+    }
+    
+    res.status(200).json(new ApiResponse(200, employeeInDB, "Employee details fetched successfully"))
 })
 
 export { onboardEmployee, getEmployees, terminateEmployee, getEmployeeByFilter, getEmployeeBySalary, searchEmployee, getEmployeeDetails }

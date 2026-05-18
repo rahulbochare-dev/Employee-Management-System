@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { upload } from "../middlewares/multer.middleware.js"
-import { onboardEmployee, getEmployees, terminateEmployee, getEmployeeByFilter, searchEmployee, getEmployeeBySalary } from "../controllers/adminEmployee.controller.js"
+import { onboardEmployee, getEmployees, terminateEmployee, getEmployeeByFilter, searchEmployee, getEmployeeBySalary, getEmployeeDetails } from "../controllers/adminEmployee.controller.js"
 import { checkIsAdmin } from "../middlewares/checkAdmin.middleware.js";
 
 const router = Router()
@@ -19,5 +19,6 @@ router.route("/terminate-employee").post(checkIsAdmin, terminateEmployee)
 router.route("/employee-by-filter").get(checkIsAdmin, getEmployeeByFilter)
 router.route("/employee-by-salary").get(checkIsAdmin, getEmployeeBySalary)
 router.route("/search-employee").get(checkIsAdmin, searchEmployee)
+router.route("/employee").get(checkIsAdmin, getEmployeeDetails)
 
 export default router
