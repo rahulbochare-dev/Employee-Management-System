@@ -11,6 +11,7 @@ import DropdownModal from '../components/DropdownModal.jsx'
 import Button from '../components/Button.jsx'
 import AddEmployeeModal from '../components/AddEmployeeModal.jsx'
 import Loading from '../components/Loading.jsx'
+import EmployeeDetails from '../components/EmployeeDetails.jsx'
 import { useAdminEmployeeStore } from '../store/adminEmployeeStore.js'
 import toast, { Toaster } from 'react-hot-toast'
 
