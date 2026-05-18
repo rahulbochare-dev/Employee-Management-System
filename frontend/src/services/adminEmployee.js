@@ -25,4 +25,9 @@ const getEmployeeByFilter = function async(params){
     return response
 }
 
-export { onboardEmployee, getEmployees, searchEmployee, getEmployeeBySalary, getEmployeeByFilter }
+const getEmployeeDetails = function async(empID){
+    const response = callApi("GET", `/admin/employee/employee?${empID}`)
+    return response
+}
+
+export { onboardEmployee, getEmployees, searchEmployee, getEmployeeBySalary, getEmployeeByFilter, getEmployeeDetails }
