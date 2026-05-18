@@ -33,7 +33,7 @@ const Employees = () => {
 
   const [jobTitleValues, setJobTitleValues] = useState([])
 
-  const {employees, employeesCount, totalPages, currentPage, limit, loading, getEmployees, searchEmployee, getEmployeeBySalary, getEmployeeByFilter} = useAdminEmployeeStore()
+  const {employees, employeesCount, totalPages, currentPage, limit, loading, getEmployees, searchEmployee, getEmployeeBySalary, getEmployeeByFilter, getEmployeeDetails} = useAdminEmployeeStore()
 
   useEffect(() => {
     const callAPI = async()=> {
@@ -102,8 +102,10 @@ const Employees = () => {
     await searchEmployee(searchName)
   }
 
-  const handleEmployeeDetails = (e, empID) => {
+  const handleEmployeeDetails = async (e, empID) => {
     console.log(empID)
+    const response = await getEmployeeDetails(empID)
+    console.log(response)
   }
 
   return (

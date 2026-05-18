@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { onboardEmployee, getEmployees, searchEmployee, getEmployeeBySalary, getEmployeeByFilter } from "../services/adminEmployee.js";
+import { onboardEmployee, getEmployees, searchEmployee, getEmployeeBySalary, getEmployeeByFilter, getEmployeeDetails } from "../services/adminEmployee.js";
 
 const useAdminEmployeeStore = create((set) => ({
     employees: null,
