@@ -1,7 +1,7 @@
 import React from 'react'
 import Separator from './Seperator'
 
-const EmployeeCard = ({firstName, lastName, jobTitle, gender, dateOfBirth, workMode, salary, email}) => {
+const EmployeeCard = ({firstName, lastName, jobTitle, gender, empID, workMode, salary, email, func}) => {
     return (
         <div className='w-85 h-65 bg-white border border-[#b6b6b6] rounded-xl'>
             <div className="w-full h-17 flex justify-start gap-3 items-center pl-5">
@@ -23,7 +23,7 @@ const EmployeeCard = ({firstName, lastName, jobTitle, gender, dateOfBirth, workM
                 </div>
                 <div className='w-full h-[20%] flex pl-5 justify-between pr-10'>
                     <h3 className="text-sm text-[#929292] font-medium">Birthday:</h3>
-                    <h3 className="text-sm text-black font-medium ">{dateOfBirth}</h3>
+                    <h3 className="text-sm text-black font-medium ">{empID}</h3>
                 </div>
                 <div className='w-full h-[20%] flex pl-5 justify-between pr-10'>
                     <h3 className="text-sm text-[#929292] font-medium">Workmode:</h3>
@@ -35,7 +35,7 @@ const EmployeeCard = ({firstName, lastName, jobTitle, gender, dateOfBirth, workM
                     <h2 className="text-lg font-semibold">{salary}</h2>
                     <h3 className="text-sm text-[#929292] font-medium">Salary</h3>
                 </div>
-                <button className='w-[45%] h-[45%] text-white bg-blue-400 rounded-xl transition-all hover:bg-blue-500 active:bg-blue-600'>View Details</button>
+                <button onClick={(e) => (func(e, empID))} className='w-[45%] h-[45%] text-white bg-blue-400 rounded-xl transition-all hover:bg-blue-500 active:bg-blue-600'>View Details</button>
             </div>
         </div>
     )

@@ -96,12 +96,14 @@ const Employees = () => {
   }
 
   const handleSearch = async (e) => {
-
     const searchValue = e.target.value
-
     setSearchName(searchValue)
 
     await searchEmployee(searchName)
+  }
+
+  const handleEmployeeDetails = (e, empID) => {
+    console.log(empID)
   }
 
   return (
@@ -148,9 +150,10 @@ const Employees = () => {
                       lastName={value.lastName}
                       email={value.email}
                       gender={value.gender}
-                      dateOfBirth={value.dateOfBirth}
+                      empID={value.empID}
                       jobTitle={value.jobTitle}
                       salary={value.salary}
+                      func={handleEmployeeDetails}
                       workMode={value.workMode}
                     />
                   })}
