@@ -26,7 +26,7 @@ const getEmployeeByFilter = function async(params){
 }
 
 const getEmployeeDetails = function async(empID){
-    const response = callApi("GET", `/admin/employee/employee?${empID}`)
+    const response = callApi("GET", `/admin/employee/employee?empID=${empID}`)
     return response
 }
 
