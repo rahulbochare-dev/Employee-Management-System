@@ -1,4 +1,4 @@
-import React from 'react'
+import React , {useState, useEffect} from 'react'
 import SidebarButton from "./SidebarButton";
 import Seperator from '../components/Seperator.jsx'
 import Profile from '../components/Profile.jsx'
@@ -8,7 +8,16 @@ import { Form, Link, useNavigate } from "react-router-dom";
 import toast , { Toaster } from 'react-hot-toast';
 
 const Sidebar = () => {
-  const { user, logout } = useUserStore()
+  const { user, getCurrentUser, logout } = useUserStore()
+
+  useEffect(() => {
+    const callApi = async () => {
+      const response = await getCurrentUser()
+      console.log(response)
+    }
+    callApi()
+  }, [])
+
   const navigate = useNavigate()
 
   const handleLogout = async () => {
