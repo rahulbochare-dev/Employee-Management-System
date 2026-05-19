@@ -1,6 +1,6 @@
 import React from "react";
 
-const EmployeeCard = ({onClick, firstName, lastName, jobTitle, empID, workMode, status, email, gender, contactNo, address, postalCode, dateOfBirth, city, joiningDate, country, salary }) => {
+const EmployeeCard = ({onClick, empDetails }) => {
     return (
         <div className="w-384 h-[98%] bg-[#f5f5f5] border border-[#d9d9d9] rounded-3xl overflow-hidden font-sans">
             <div className="w-full h-49 bg-[#efefef] flex items-center px-10">
@@ -9,10 +9,10 @@ const EmployeeCard = ({onClick, firstName, lastName, jobTitle, empID, workMode, 
                 </div>
                 <div className="ml-9 w-md">
                     <h1 className="text-[2rem] leading-none font-medium text-black">
-                        Armin Arlert
+                        {empDetails?.firstName} {empDetails?.lastName}
                     </h1>
                     <p className="mt-5 text-[1.625rem] leading-none text-[#7d7d7d] font-medium">
-                        Senior Backend Developer
+                    {empDetails?.jobTitle}
                     </p>
                 </div>
                 <div className="flex flex-1 justify-between ml-8 pr-10">
@@ -21,7 +21,7 @@ const EmployeeCard = ({onClick, firstName, lastName, jobTitle, empID, workMode, 
                             Employee ID
                         </h2>
                         <p className="mt-5 text-[1.625rem] leading-none text-[#7d7d7d] font-medium">
-                            EMP-3045
+                        {empDetails?.empID}
                         </p>
                     </div>
                     <div>
@@ -29,7 +29,7 @@ const EmployeeCard = ({onClick, firstName, lastName, jobTitle, empID, workMode, 
                             Work Mode
                         </h2>
                         <p className="mt-5 text-[1.625rem] leading-none text-[#7d7d7d] font-medium">
-                            Remote
+                        {empDetails?.workMode}
                         </p>
                     </div>
                     <div>
@@ -37,7 +37,7 @@ const EmployeeCard = ({onClick, firstName, lastName, jobTitle, empID, workMode, 
                             Status
                         </h2>
                         <p className="mt-5 text-[1.625rem] leading-none text-[#00a51e] font-medium">
-                            Active
+                        {empDetails?.status}
                         </p>
                     </div>
                     <img onClick={onClick} className='size-8 cursor-pointer' src="/src/assets/close.svg" alt="" />
@@ -50,7 +50,7 @@ const EmployeeCard = ({onClick, firstName, lastName, jobTitle, empID, workMode, 
                             Email:
                         </p>
                         <p className="mt-6 text-[1.4375rem] text-black leading-[2.6rem]">
-                            armin.udaku824@tech.com
+                        {empDetails?.email}
                         </p>
                     </div>
                     <div>
@@ -58,7 +58,7 @@ const EmployeeCard = ({onClick, firstName, lastName, jobTitle, empID, workMode, 
                             Gender:
                         </p>
                         <p className="mt-6 text-[1.4375rem] text-black leading-none">
-                            Male
+                        {empDetails?.gender}
                         </p>
                     </div>
                     <div>
@@ -66,7 +66,7 @@ const EmployeeCard = ({onClick, firstName, lastName, jobTitle, empID, workMode, 
                             Contact No:
                         </p>
                         <p className="mt-6 text-[1.4375rem] text-black leading-none">
-                            +9100000000001
+                        {empDetails?.contactNo}
                         </p>
                     </div>
                     <div>
@@ -74,9 +74,7 @@ const EmployeeCard = ({onClick, firstName, lastName, jobTitle, empID, workMode, 
                             Address:
                         </p>
                         <p className="mt-6 text-[1.4375rem] text-black leading-[2.6rem] max-w-[24rem]">
-                            125 Business Park, Smith Street,
-                            <br />
-                            Point Nemo
+                        {empDetails?.address}
                         </p>
                     </div>
                     <div>
@@ -84,7 +82,7 @@ const EmployeeCard = ({onClick, firstName, lastName, jobTitle, empID, workMode, 
                             Postal Code:
                         </p>
                         <p className="mt-6 text-[1.4375rem] text-black leading-none">
-                            5353566
+                        {empDetails?.postalCode}
                         </p>
                     </div>
                     <div>
@@ -92,7 +90,7 @@ const EmployeeCard = ({onClick, firstName, lastName, jobTitle, empID, workMode, 
                             Date of Birth:
                         </p>
                         <p className="mt-6 text-[1.4375rem] text-black leading-none">
-                            Dec 31, 1983
+                        {empDetails?.dateOfBirth}
                         </p>
                     </div>
                     <div>
@@ -100,7 +98,7 @@ const EmployeeCard = ({onClick, firstName, lastName, jobTitle, empID, workMode, 
                             City:
                         </p>
                         <p className="mt-6 text-[1.4375rem] text-black leading-none">
-                            Atlantis
+                        {empDetails?.city}
                         </p>
                     </div>
                     <div>
@@ -108,7 +106,7 @@ const EmployeeCard = ({onClick, firstName, lastName, jobTitle, empID, workMode, 
                             Joining Date:
                         </p>
                         <p className="mt-6 text-[1.4375rem] text-black leading-none">
-                            Dec 31, 2023
+                        {empDetails?.joinedAt}
                         </p>
                     </div>
                     <div>
@@ -116,7 +114,7 @@ const EmployeeCard = ({onClick, firstName, lastName, jobTitle, empID, workMode, 
                             Country:
                         </p>
                         <p className="mt-6 text-[1.4375rem] text-black leading-none">
-                            Pacific Ocean
+                        {empDetails?.country}
                         </p>
                     </div>
                 </div>
@@ -126,7 +124,7 @@ const EmployeeCard = ({onClick, firstName, lastName, jobTitle, empID, workMode, 
                         Salary:
                     </span>
                     <span className="ml-10 text-[2rem] font-medium text-black">
-                        $155000 USD
+                    {empDetails?.salary}
                     </span>
                 </div>
 
