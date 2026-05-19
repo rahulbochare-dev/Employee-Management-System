@@ -27,7 +27,6 @@ function App() {
           <Route path='admin/dashboard' element={<Dashboard/>}/>
           <Route path='admin/employees' element={<Employees/>}/>
           <Route path='admin/leaves' element={<Leaves/>}/>
-          <Route path='admin/employees/:empID' element={<EmployeeDetails/>}/>
         </Routes>
       </BrowserRouter>}
     </>
