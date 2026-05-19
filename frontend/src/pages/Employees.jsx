@@ -129,9 +129,7 @@ const Employees = () => {
             </div>
             <div className="w-full h-219 flex items-baseline-last">
               {singleEmployeeDetails && showEmployeeDetails? <EmployeeDetails
-               onClick={closeEmployeeDetails}
-               empDetails={singleEmployeeDetails}
-               /> : <div className="w-384 h-[98%] bg-white border border-[#b6b6b6] rounded-[0.9375rem] overflow-clip">
+               onClick={closeEmployeeDetails} empDetails={singleEmployeeDetails}/> : <div className="w-384 h-[98%] bg-white border border-[#b6b6b6] rounded-[0.9375rem] overflow-clip">
                 <div className="w-full h-10 flex gap-3 items-center pl-7 pt-2">
                   <img className='w-8' src="/src/assets/employee-dark.svg" alt="" />
                   <h2 className="text-xl font-semibold">All Employees</h2>

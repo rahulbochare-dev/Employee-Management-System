@@ -37,7 +37,7 @@ const EmployeeCard = ({onClick, empDetails }) => {
                             Status
                         </h2>
                         <p className="mt-5 text-[1.625rem] leading-none text-[#00a51e] font-medium">
-                        {empDetails?.status}
+                        {empDetails?.status? true : "Active"}
                         </p>
                     </div>
                     <img onClick={onClick} className='size-8 cursor-pointer' src="/src/assets/close.svg" alt="" />
