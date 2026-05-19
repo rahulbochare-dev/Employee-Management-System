@@ -295,7 +295,7 @@ async function generateEmployees() {
             contactNo: `+91${Math.floor(
                 1000000000 + Math.random() * 9000000000
             )}`,
-            avatar: "",
+            avatar: `https://api.dicebear.com/9.x/personas/svg?seed=${firstName}${lastName}${i}`,
             dateOfBirth: `199${Math.floor(Math.random() * 10)}-0${Math.floor(Math.random() * 9) + 1
                 }-${Math.floor(Math.random() * 28) + 1}`,
             country: randomItem(countries),
@@ -313,7 +313,7 @@ async function generateEmployees() {
 
         try {
             const response = await axios.post(
-                "http://localhost:8000/api/v1/employees/onboard-employee",
+                "http://localhost:5050/api/v1/admin/employee/onboard-employee",
                 employee
             );
 

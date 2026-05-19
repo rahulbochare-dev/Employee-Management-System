@@ -124,7 +124,7 @@ const EmployeeCard = ({onClick, empDetails }) => {
                         Salary:
                     </span>
                     <span className="ml-10 text-[2rem] font-medium text-black">
-                    {empDetails?.salary}
+                    {empDetails?.salary} {empDetails?.salaryCurrency}
                     </span>
                 </div>
 
