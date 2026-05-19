@@ -1,6 +1,6 @@
 import React from "react";
 
-const EmployeeCard = ({onClick}) => {
+const EmployeeCard = ({onClick, firstName, lastName, jobTitle, empID, workMode, status, email, gender, contactNo, address, postalCode, dateOfBirth, city, joiningDate, country, salary }) => {
     return (
         <div className="w-384 h-[98%] bg-[#f5f5f5] border border-[#d9d9d9] rounded-3xl overflow-hidden font-sans">
             <div className="w-full h-49 bg-[#efefef] flex items-center px-10">
