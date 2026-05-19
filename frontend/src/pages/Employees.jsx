@@ -13,13 +13,22 @@ import AddEmployeeModal from '../components/AddEmployeeModal.jsx'
 import Loading from '../components/Loading.jsx'
 import EmployeeDetails from '../components/EmployeeDetails.jsx'
 import { useAdminEmployeeStore } from '../store/adminEmployeeStore.js'
+import { useUserStore } from '../store/userStore.js'
 import toast, { Toaster } from 'react-hot-toast'
 import { useNavigate } from "react-router-dom";
 
 const Employees = () => {
+  const { isLoggedIn } = useUserStore()
   const [showModal, setShowModal] = useState(false)
   const [showEmployeeDetails, setShowEmployeeDetails] = useState(false)
   const navigate = useNavigate()
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/login")
+      return
+    }
+  }, [isLoggedIn])
 
   const [searchName, setSearchName] = useState("")
   
