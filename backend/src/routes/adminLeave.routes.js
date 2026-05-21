@@ -4,7 +4,7 @@ import { getLeaves, updateLeaveStatus } from "../controllers/adminLeave.controll
 
 const router = Router()
 
-router.route("/leaves").get(checkIsAdmin, getLeaves)
+router.route("/leaves").post(checkIsAdmin, getLeaves)
 router.route("/update-status").patch(checkIsAdmin, updateLeaveStatus)
 
 export default router

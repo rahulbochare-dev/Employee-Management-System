@@ -10,21 +10,29 @@ const Leaves = () => {
   const {getLeaves, leaves} = useAdminLeaveStore()
   const [status, setStatus] = useState(null)
 
-  const handleStatusChange = (e) => {
+  useEffect(() => {
+    const callApi = async () => {
+      const response = await getLeaves()
+    }
+
+    callApi()
+  }, [])
+
+  const handleStatusChange = async (e) => {
     const updatedStatus = {
       ...status,
       [e.target.name]: e.target.value
     }
     setStatus(updatedStatus)
+    
+    try {
+      const response = await getLeaves(status)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
-  useEffect(() => {
-    const callApi = async () => {
-      const response = await getLeaves(status)
-    }
 
-    callApi()
-  }, [])
 
   return (
     <>
