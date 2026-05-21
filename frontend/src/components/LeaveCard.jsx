@@ -8,7 +8,16 @@ const LeaveCard = ({ leave }) => {
         <img className='w-11 h-11' src="/src/assets/businessman.png" alt="" />
         <div className="w-[78%] h-[75%] flex flex-col">
           <h2 className="text-lg font-semibold">{leave?.employee.firstName} {leave?.employee.lastName}</h2>
-          <h2 className="text-sm text-[#929292] font-medium">Status: {leave?.status}</h2>
+          <h2 className="text-sm text-[#929292] font-medium">Status: <span 
+          className={
+            leave?.status === "Pending"
+              ? "text-yellow-500"
+              : leave?.status === "Rejected"
+              ? "text-red-500"
+              : leave?.status === "Approved"
+              ? "text-green-500"
+              : "text-[#929292]"
+          }>{leave?.status}</span></h2>
         </div>
       </div>
       <Separator width='w-74' />
