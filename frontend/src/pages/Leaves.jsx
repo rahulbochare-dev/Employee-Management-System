@@ -1,11 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Sidebar from '../components/Sidebar.jsx'
 import Search from '../components/Search.jsx'
 import Dropdown from '../components/Dropdown.jsx'
 import Seperator from '../components/Seperator.jsx'
 import LeaveCard from '../components/LeaveCard.jsx'
+import { useAdminLeaveStore } from '../store/adminLeaveStore.js'
 
 const Leaves = () => {
+  const {getLeaves, leaves} = useAdminLeaveStore()
+
+  useEffect(() => {
+    const callApi = async () => {
+      const response = await getLeaves()
+    }
+
+    callApi()
+  }, [])
+
   return (
     <>
        <div className="w-screen h-screen relative">
