@@ -3,6 +3,11 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 import { ApiError } from "../utils/ApiError.js";
 import { Leave } from "../models/leave.model.js"
 
+const getLeaves = asyncHandler( async (req, res) => {
+    const totalLeaves = await Leave.find({})
+    console.log(totalLeaves)
+})
+
 const updateLeaveStatus = asyncHandler( async (req, res) => {
     const {leaveId, status} = req.query
 
@@ -27,4 +32,4 @@ const updateLeaveStatus = asyncHandler( async (req, res) => {
 
 })
 
-export { updateLeaveStatus }
+export { getLeaves, updateLeaveStatus }
