@@ -1,29 +1,17 @@
 import React from 'react'
+import Separator from './Seperator'
 
 const LeaveCard = () => {
   return (
     <div className="w-85 h-65 bg-white border border-[#b6b6b6] rounded-xl px-5 overflow-hidden">
-      <div className="w-full h-18.75 flex items-center gap-5 ">
-        <img
-          className="w-11 h-11 rounded-full object-cover shrink-0"
-          src="/src/assets/businessman.png"
-          alt=""
-        />
-        <div className="flex flex-col justify-center min-w-0 gap-1">
-          <h2 className="text-[18px] leading-none font-medium text-black truncate">
-            Eren Yeager
-          </h2>
-          <div className="flex items-center gap-2">
-            <h3 className="text-[14px] text-[#8b8b8b] font-medium">
-              Status:
-            </h3>
-            <h3 className="text-[14px] text-[#d1ab17] font-medium">
-              Pending
-            </h3>
-          </div>
+      <div className="w-full h-17 flex justify-start gap-3 items-center">
+        <img className='w-11 h-11' src="/src/assets/businessman.png" alt="" />
+        <div className="w-[78%] h-[75%] flex flex-col">
+          <h2 className="text-lg font-semibold">Eren Yeager</h2>
+          <h2 className="text-sm text-[#929292] font-medium">Status: Pending</h2>
         </div>
       </div>
-      <div className="w-full h-px bg-[#d3d3d3]"></div>
+      <Separator width='w-74' />
       <div className="w-full flex justify-between mt-2">
         <div className="flex flex-col gap-1">
           <h3 className="text-[14px] text-[#8b8b8b] font-medium">
