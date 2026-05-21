@@ -6,9 +6,9 @@ const useAdminLeaveStore = create((set) => ({
     loading: true,
     error: null,
 
-    getLeaves: async () => {
+    getLeaves: async (status) => {
         try {
-            const response = await getLeaves()
+            const response = await getLeaves(status)
             set({leaves: response.data.data, loading: false })
             return response.data
         } catch (err) {

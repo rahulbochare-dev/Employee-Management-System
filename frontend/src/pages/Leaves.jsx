@@ -16,12 +16,11 @@ const Leaves = () => {
       [e.target.name]: e.target.value
     }
     setStatus(updatedStatus)
-    console.log(status)
   }
 
   useEffect(() => {
     const callApi = async () => {
-      const response = await getLeaves()
+      const response = await getLeaves(status)
     }
 
     callApi()
