@@ -4,7 +4,8 @@ import { ApiError } from "../utils/ApiError.js";
 import { Leave } from "../models/leave.model.js"
 
 const getLeaves = asyncHandler( async (req, res) => {
-    const totalLeaves = await Leave.find({}).populate("employee", "avatar firstName lastName empID jobTitle workMode email")
+    const status = req.query || ""
+    const totalLeaves = await Leave.find(status).populate("employee", "avatar firstName lastName empID jobTitle workMode email")
     
     res.status(200).json(new ApiResponse(200, totalLeaves, "Leaves fetched successfully"))
 })
