@@ -1,14 +1,14 @@
 import React from 'react'
 import Separator from './Seperator'
 
-const LeaveCard = () => {
+const LeaveCard = ({ leave }) => {
   return (
     <div className="w-85 h-65 bg-white border border-[#b6b6b6] rounded-xl px-5 overflow-hidden">
       <div className="w-full h-17 flex justify-start gap-3 items-center">
         <img className='w-11 h-11' src="/src/assets/businessman.png" alt="" />
         <div className="w-[78%] h-[75%] flex flex-col">
-          <h2 className="text-lg font-semibold">Eren Yeager</h2>
-          <h2 className="text-sm text-[#929292] font-medium">Status: Pending</h2>
+          <h2 className="text-lg font-semibold">{leave?.employee.firstName} {leave?.employee.lastName}</h2>
+          <h2 className="text-sm text-[#929292] font-medium">Status: {leave?.status}</h2>
         </div>
       </div>
       <Separator width='w-74' />
@@ -18,7 +18,7 @@ const LeaveCard = () => {
             Leave Type:
           </h3>
           <h2 className="text-[16px] leading-none font-medium text-black">
-            Casual
+            {leave?.leaveType}
           </h2>
         </div>
         <div className="flex flex-col items-end gap-1">
@@ -26,7 +26,7 @@ const LeaveCard = () => {
             Duration:
           </h3>
           <h2 className="text-[16px] leading-none font-medium text-black">
-            3 Days
+            {leave?.duration || "N/A"}
           </h2>
         </div>
       </div>
@@ -36,7 +36,13 @@ const LeaveCard = () => {
             From:
           </h3>
           <h2 className="text-[14px] text-black font-medium mt-2 leading-none">
-            Dec 31, 2023
+            {
+              new Date(leave?.from).toLocaleDateString("en-GB", {
+                day: "numeric",
+                month: "short",
+                year: "numeric"
+              })
+            }
           </h2>
         </div>
         <div className="flex flex-col">
@@ -44,7 +50,13 @@ const LeaveCard = () => {
             To:
           </h3>
           <h2 className="text-[14px] text-black font-medium mt-2 leading-none">
-            Dec 31, 2023
+          {
+              new Date(leave?.to).toLocaleDateString("en-GB", {
+                day: "numeric",
+                month: "short",
+                year: "numeric"
+              })
+            }
           </h2>
         </div>
       </div>
