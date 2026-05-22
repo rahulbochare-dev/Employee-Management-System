@@ -48,24 +48,24 @@ const Dashboard = () => {
     if(!totalEmployees || !onLeaveToday || !newJoines || !pendingLeave) return
 
     setKPICardFirst({
-      mainCount: totalEmployees.data[0].totalEmplyees[0].totalEmployees,
-      icon2Count: totalEmployees.data[0].genderTotal[1].total,
-      icon3Count: totalEmployees.data[0].genderTotal[0].total
+      mainCount: totalEmployees?.data[0]?.totalEmplyees[0]?.totalEmployees,
+      icon2Count: totalEmployees?.data[0]?.genderTotal[1]?.total,
+      icon3Count: totalEmployees?.data[0]?.genderTotal[0]?.total
     })
     setKPICardSecond({
-      mainCount: onLeaveToday.data[0].todayTotalLeaves[0].totalLeaves,
-      icon2Count: onLeaveToday.data[0].catagoryTotal[1].catagoryTotal,
-      icon3Count: onLeaveToday.data[0].catagoryTotal[0].catagoryTotal
+      mainCount: onLeaveToday?.data[0]?.todayTotalLeaves[0]?.totalLeaves,
+      icon2Count: onLeaveToday?.data[0]?.catagoryTotal[1]?.catagoryTotal,
+      icon3Count: onLeaveToday?.data[0]?.catagoryTotal[0]?.catagoryTotal
     })
     setKPICardThird({
-      mainCount: newJoines.data[0].totalNewJoines[0].totalNewJoines,
-      icon2Count: newJoines.data[0].genderWiseTotal[1].total,
-      icon3Count: newJoines.data[0].genderWiseTotal[0].total
+      mainCount: newJoines?.data[0]?.totalNewJoines[0]?.totalNewJoines,
+      icon2Count: newJoines?.data[0]?.genderWiseTotal[1]?.total,
+      icon3Count: newJoines?.data[0]?.genderWiseTotal[0]?.total
     })
     setKPICardForth({
-      mainCount: pendingLeave.data[0].allCatagoryTotal[0].totalLeaves,
-      icon2Count: pendingLeave.data[0].catagoryTotal[1].total,
-      icon3Count: pendingLeave.data[0].catagoryTotal[0].total
+      mainCount: pendingLeave?.data[0]?.allCatagoryTotal[0]?.totalLeaves,
+      icon2Count: pendingLeave?.data[0]?.catagoryTotal[1]?.total,
+      icon3Count: pendingLeave?.data[0]?.catagoryTotal[0]?.total
     })
   }, [totalEmployees, onLeaveToday, newJoines, pendingLeave])
   
