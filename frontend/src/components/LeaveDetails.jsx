@@ -1,9 +1,9 @@
 import React from 'react'
 import Separator from './Seperator.jsx'
 
-const LeaveDetails = () => {
+const LeaveDetails = ({cb}) => {
   return (
-    <div className="w-304.5 h-155.5 bg-white rounded-[1.875rem] px-8.5 pt-6 overflow-hidden">
+    <div className="w-304.5 h-155.5 bg-white rounded-2xl px-8.5 pt-6 overflow-hidden">
     <h1 className="text-[1.75rem]  font-medium text-black leading-none">
       Leave Application
     </h1>
@@ -109,7 +109,7 @@ const LeaveDetails = () => {
           <button className="w-33.25 h-10.25 rounded-[0.875rem] bg-[#7ee2a0] text-[1rem] font-medium text-black transition-all hover:bg-[#71d493] active:bg-[#64c786]">
             Approve
           </button>
-          <button className="w-33.25 h-10.25 rounded-[0.875rem] border border-[#d3d3d3] bg-[#fafafa] text-[1rem] font-medium text-black transition-all hover:bg-[#f2f2f2] active:bg-[#ebebeb]">
+          <button onClick={cb} className="w-33.25 h-10.25 rounded-[0.875rem] border border-[#d3d3d3] bg-[#fafafa] text-[1rem] font-medium text-black transition-all hover:bg-[#f2f2f2] active:bg-[#ebebeb]">
             Close
           </button>
         </div>

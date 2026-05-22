@@ -4,11 +4,13 @@ import Search from '../components/Search.jsx'
 import Dropdown from '../components/Dropdown.jsx'
 import Seperator from '../components/Seperator.jsx'
 import LeaveCard from '../components/LeaveCard.jsx'
+import LeaveDetails from '../components/LeaveDetails.jsx'
 import { useAdminLeaveStore } from '../store/adminLeaveStore.js'
 
 const Leaves = () => {
   const {getLeaves, leaves} = useAdminLeaveStore()
   const [status, setStatus] = useState(null)
+  const [showLeaveDetails, setShowLeaveDetails] = useState(false)
 
   useEffect(() => {
     const callApi = async () => {
@@ -32,11 +34,17 @@ const Leaves = () => {
     }
   }
 
-
-
+  const handleShowLeaveDetails = async (e) => {
+    setShowLeaveDetails(!showLeaveDetails)
+  }
+  
+  console.log(showLeaveDetails)
   return (
     <>
        <div className="w-screen h-screen relative">
+        {showLeaveDetails && <div className="w-screen h-screen flex justify-center items-center bg-black/25 backdrop-blur-md absolute">
+          <LeaveDetails cb={handleShowLeaveDetails}/>
+        </div>}
         <div className="w-screen h-screen flex bg-[#f9f9f9]">
           <div className="w-87.75 h-screen p-4">
             <Sidebar />
@@ -60,7 +68,7 @@ const Leaves = () => {
                 <Seperator marginY={"my-2"} width='w-369' />
                 <div className="w-full h-170 grid grid-cols-4 gap-y-7 justify-center overflow-y-scroll pl-7 pt-3">
                   {leaves?.map((value) => {
-                    return <LeaveCard key={value._id} leave={value}/>
+                    return <LeaveCard cb={handleShowLeaveDetails} key={value._id} leave={value}/>
                   })}
                 </div>
               </div>
