@@ -52,4 +52,4 @@ const getLeavesDetails = asyncHandler( async (req, res) => {
     res.status(200).json(new ApiResponse(200, leaveDetails, "Leave details fetched successfully"))
 })
 
-export { getLeaves, updateLeaveStatus }
+export { getLeaves, updateLeaveStatus, getLeavesDetails }
