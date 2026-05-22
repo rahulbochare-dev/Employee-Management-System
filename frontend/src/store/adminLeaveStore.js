@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { getLeaves, getLeavesDetails } from "../services/adminLeave.js";
+import { getLeaves, getLeavesDetails, updateLeaveStatus } from "../services/adminLeave.js";
 
 const useAdminLeaveStore = create((set) => ({
     leaves: null,
@@ -22,6 +22,17 @@ const useAdminLeaveStore = create((set) => ({
         try {
             const response = await getLeavesDetails(id)
             set({ leavesDetails: response.data.data, loading: false })
+            return response.data
+        } catch (err) {
+            set({error: err, loading: false})
+            return err
+        }
+    },
+    
+    updateLeaveStatus: async (leaveId, status) => {
+        try {
+            const response = await updateLeaveStatus(leaveId, status)
+            set({ loading: false })
             return response.data
         } catch (err) {
             set({error: err, loading: false})

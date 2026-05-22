@@ -10,4 +10,9 @@ const getLeavesDetails = function async(id){
     return response
 }
 
-export { getLeaves, getLeavesDetails }
+const updateLeaveStatus = function async(leaveId, status){
+    const response = callApi("PATCH", `admin/leave/update-status?leaveId=${id}&status=${status}`)
+    return response
+}
+
+export { getLeaves, getLeavesDetails, updateLeaveStatus }

@@ -1,7 +1,10 @@
 import React from 'react'
 import Separator from './Seperator.jsx'
+import { useAdminLeaveStore } from '../store/adminLeaveStore.js'
 
 const LeaveDetails = ({leaveDetails, cb}) => {
+  const {updateLeaveStatus} = useAdminLeaveStore()
+
   return (
     <div className="w-304.5 h-155.5 bg-white rounded-2xl px-8.5 pt-6 overflow-hidden transition-all">
     <h1 className="text-[1.75rem]  font-medium text-black leading-none">
