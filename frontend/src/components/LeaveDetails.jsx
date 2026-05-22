@@ -1,9 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Separator from './Seperator.jsx'
 import { useAdminLeaveStore } from '../store/adminLeaveStore.js'
+import toast from 'react-hot-toast'
 
 const LeaveDetails = ({leaveDetails, cb}) => {
-  const {updateLeaveStatus} = useAdminLeaveStore()
+  const {getLeaves, updateLeaveStatus} = useAdminLeaveStore()
+  const [status, setStatus] = useState(null)
+
+  const handleUpdateLeaveStatus = async (e) => {
+    const updatedStatus = {
+      ...status,
+      [e.target.name]: e.target.value
+    }
+    setStatus(updatedStatus)
+    
+    try {
+      const response = await updateLeaveStatus(leaveDetails?._id, updatedStatus.status)
+      if(response.success){
+        toast.success(`Leave application ${response.data.leave.status}`)
+        cb()
+        await getLeaves()
+      } else {
+        toast.error(response.message)
+      }
+    } catch (error) {
+      toast.error("Something went wrong!")
+    }
+  }
 
   return (
     <div className="w-304.5 h-155.5 bg-white rounded-2xl px-8.5 pt-6 overflow-hidden transition-all">
@@ -114,10 +137,10 @@ const LeaveDetails = ({leaveDetails, cb}) => {
           </p>
         </div>
         <div className="w-full flex justify-end items-center gap-6 mt-8">
-          <button className="w-33.25 h-10.25 rounded-[0.875rem] bg-[#f58484] text-[1rem] font-medium text-black transition-all hover:bg-[#ef7575] active:bg-[#e76767]">
+          <button onClick={handleUpdateLeaveStatus} value={"Rejected"} name='status' className="w-33.25 h-10.25 rounded-[0.875rem] bg-[#f58484] text-[1rem] font-medium text-black transition-all hover:bg-[#ef7575] active:bg-[#e76767]">
             Reject
           </button>
-          <button className="w-33.25 h-10.25 rounded-[0.875rem] bg-[#7ee2a0] text-[1rem] font-medium text-black transition-all hover:bg-[#71d493] active:bg-[#64c786]">
+          <button onClick={handleUpdateLeaveStatus} value={"Approved"} name='status' className="w-33.25 h-10.25 rounded-[0.875rem] bg-[#7ee2a0] text-[1rem] font-medium text-black transition-all hover:bg-[#71d493] active:bg-[#64c786]">
             Approve
           </button>
           <button onClick={cb} className="w-33.25 h-10.25 rounded-[0.875rem] border border-[#d3d3d3] bg-[#fafafa] text-[1rem] font-medium text-black transition-all hover:bg-[#f2f2f2] active:bg-[#ebebeb]">

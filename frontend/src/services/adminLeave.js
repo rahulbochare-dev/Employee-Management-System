@@ -11,7 +11,7 @@ const getLeavesDetails = function async(id){
 }
 
 const updateLeaveStatus = function async(leaveId, status){
-    const response = callApi("PATCH", `admin/leave/update-status?leaveId=${id}&status=${status}`)
+    const response = callApi("PATCH", `/admin/leave/update-status?leaveId=${leaveId}&status=${status}`)
     return response
 }
 
