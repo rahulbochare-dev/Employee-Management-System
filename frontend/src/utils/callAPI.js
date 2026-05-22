@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const BASE_URL = "http://localhost:5050/api/v1"
-console.log(BASE_URL)
 
 const callApi = async function(method, url, data){
     try {

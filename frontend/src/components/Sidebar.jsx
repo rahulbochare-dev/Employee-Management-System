@@ -13,7 +13,6 @@ const Sidebar = () => {
   useEffect(() => {
     const callApi = async () => {
       const response = await getCurrentUser()
-      console.log(response)
     }
     callApi()
   }, [])
