@@ -1,16 +1,22 @@
 import React from "react";
 import Button from '../components/Button.jsx'
+import { toast, Toaster } from "react-hot-toast";
 import { useAdminEmployeeStore } from '../store/adminEmployeeStore.js'
 
-const EmployeeCard = ({ onClick, empDetails }) => {
+const EmployeeCard = ({ onClick, empDetails, cb }) => {
     const {terminateEmployee} = useAdminEmployeeStore()
 
     const handleTerminateEmployee = async (e) => {
-        console.log(empDetails?._id)
         try {
             const response = await terminateEmployee(empDetails?._id)
+            if(response.success){
+                toast.success(response.message)
+                cb(false)
+            } else {
+                toast.success(response.message)
+            }
         } catch (error) {
-            console.log(error)
+            toast.success(error)
         }
     }
 
