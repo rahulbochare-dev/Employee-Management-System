@@ -94,7 +94,7 @@ const getEmployees = asyncHandler( async (req, res) => {
 })
 
 const terminateEmployee = asyncHandler( async (req, res) => {
-    const id = req.body.id
+    const id = req.query.id
 
     const terminatedEmployee = await Employee.findByIdAndUpdate(id, {isActive: false}, {new: true}).select("-password -refreshToken")
 

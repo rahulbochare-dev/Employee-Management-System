@@ -134,7 +134,6 @@ const Employees = () => {
           <div className="w-392.75 h-screen">
             <div className="w-full h-15.25 flex justify-between items-center pr-10 pt-3">
               <h2 className="text-[1.875rem] font-semibold">Manage Employees</h2>
-              {/* {singleEmployeeDetails && showEmployeeDetails && <img className='w-8' src="/src/assets/close.svg" alt="" />} */}
             </div>
             <div className="w-full h-219 flex items-baseline-last">
               {singleEmployeeDetails && showEmployeeDetails? <EmployeeDetails
