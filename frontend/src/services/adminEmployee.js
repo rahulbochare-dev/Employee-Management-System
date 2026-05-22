@@ -30,4 +30,9 @@ const getEmployeeDetails = function async(empID){
     return response
 }
 
-export { onboardEmployee, getEmployees, searchEmployee, getEmployeeBySalary, getEmployeeByFilter, getEmployeeDetails }
+const terminateEmployee = function async(id){
+    const response = callApi("GET", `/admin/employee/terminate-employee?${id}`)
+    return response
+}
+
+export { onboardEmployee, getEmployees, searchEmployee, getEmployeeBySalary, getEmployeeByFilter, getEmployeeDetails, terminateEmployee }
