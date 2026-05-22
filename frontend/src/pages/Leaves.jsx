@@ -8,7 +8,7 @@ import LeaveDetails from '../components/LeaveDetails.jsx'
 import { useAdminLeaveStore } from '../store/adminLeaveStore.js'
 
 const Leaves = () => {
-  const {getLeavesDetails, getLeaves, leaves} = useAdminLeaveStore()
+  const {getLeavesDetails, getLeaves, leaves, leavesDetails} = useAdminLeaveStore()
   const [status, setStatus] = useState(null)
   const [showLeaveDetails, setShowLeaveDetails] = useState(false)
 
@@ -34,17 +34,20 @@ const Leaves = () => {
     }
   }
 
-  const handleShowLeaveDetails = async (e) => {
+  const handleShowLeaveDetails = async (e, id) => {
     setShowLeaveDetails(!showLeaveDetails)
-    const response = await getLeavesDetails()
+    try {
+      const response = await getLeavesDetails(id)
+    } catch (error) {
+      throw error
+    }
   }
-  
-  console.log(showLeaveDetails)
+
   return (
     <>
        <div className="w-screen h-screen relative">
         {showLeaveDetails && <div className="w-screen h-screen flex justify-center items-center bg-black/25 backdrop-blur-md absolute">
-          <LeaveDetails cb={handleShowLeaveDetails}/>
+          <LeaveDetails leaveDetails={leavesDetails} cb={handleShowLeaveDetails}/>
         </div>}
         <div className="w-screen h-screen flex bg-[#f9f9f9]">
           <div className="w-87.75 h-screen p-4">

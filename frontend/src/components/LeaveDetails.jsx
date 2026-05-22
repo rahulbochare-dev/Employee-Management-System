@@ -1,9 +1,9 @@
 import React from 'react'
 import Separator from './Seperator.jsx'
 
-const LeaveDetails = ({cb}) => {
+const LeaveDetails = ({leaveDetails, cb}) => {
   return (
-    <div className="w-304.5 h-155.5 bg-white rounded-2xl px-8.5 pt-6 overflow-hidden">
+    <div className="w-304.5 h-155.5 bg-white rounded-2xl px-8.5 pt-6 overflow-hidden transition-all">
     <h1 className="text-[1.75rem]  font-medium text-black leading-none">
       Leave Application
     </h1>
@@ -17,13 +17,13 @@ const LeaveDetails = ({cb}) => {
           <img className="size-17 rounded-full object-cover shrink-0" src="/src/assets/businessman.png" alt=""/>
           <div className="flex flex-col">           
             <h2 className="text-[1.375rem] font-medium text-black leading-none">
-              Lucas Garcia
+              {leaveDetails?.employee.firstName} {leaveDetails?.employee.lastName}
             </h2>
             <h3 className="text-[1rem] text-[#7a7a7a] font-medium mt-2 leading-none">
-              Software Engineer
+            {leaveDetails?.employee.jobTitle}
             </h3>
             <h3 className="text-[1rem] text-[#7a7a7a] font-medium mt-2 leading-none">
-              ID: EMP-1011 • lucas11@gmail.com
+              ID: {leaveDetails?.employee.empID} • {leaveDetails?.employee.email}
             </h3>
           </div>
         </div>
@@ -35,7 +35,7 @@ const LeaveDetails = ({cb}) => {
             </h3>
             <div className="w-fit px-4 h-8 rounded-xl bg-[#cfc8ff] flex justify-center items-center mt-2">
               <h2 className="text-[0.875rem] text-[#5446d8] font-medium">
-                Casual
+              {leaveDetails?.leaveType}
               </h2>
             </div>
           </div>
@@ -45,7 +45,7 @@ const LeaveDetails = ({cb}) => {
             </h3>
             <div className="w-fit px-4 h-8 rounded-xl bg-[#efe6a8] flex justify-center items-center mt-2">
               <h2 className="text-[0.875rem] text-[#a68500] font-medium">
-                Pending
+              {leaveDetails?.status}
               </h2>
             </div>
           </div>
@@ -54,7 +54,13 @@ const LeaveDetails = ({cb}) => {
               From:
             </h3>
             <h2 className="text-[1.25rem] text-black font-medium mt-1.5">
-              Oct 03, 2026
+            {
+              new Date(leaveDetails?.from).toLocaleDateString("en-GB", {
+                day: "numeric",
+                month: "short",
+                year: "numeric"
+              })
+            }
             </h2>
           </div>
           <div className="flex flex-col">
@@ -62,7 +68,13 @@ const LeaveDetails = ({cb}) => {
               To:
             </h3>
             <h2 className="text-[1.25rem] text-black font-medium mt-1.5">
-              Oct 07, 2026
+            {
+              new Date(leaveDetails?.to).toLocaleDateString("en-GB", {
+                day: "numeric",
+                month: "short",
+                year: "numeric"
+              })
+            }
             </h2>
           </div>
           <div className="flex flex-col">
@@ -70,7 +82,7 @@ const LeaveDetails = ({cb}) => {
               Duration:
             </h3>
             <h2 className="text-[1.25rem] text-black font-medium mt-1.5">
-              5 Days
+            {leaveDetails?.duration || "N/A"}
             </h2>
           </div>
           <div className="flex flex-col">
@@ -78,7 +90,13 @@ const LeaveDetails = ({cb}) => {
               Applied On:
             </h3>
             <h2 className="text-[1.25rem] text-black font-medium mt-1.5">
-              May 21, 2026
+            {
+              new Date(leaveDetails?.createdAt).toLocaleDateString("en-GB", {
+                day: "numeric",
+                month: "short",
+                year: "numeric"
+              })
+            }
             </h2>
           </div>
         </div>
@@ -89,17 +107,7 @@ const LeaveDetails = ({cb}) => {
         </h2>
         <div className="w-full h-91 bg-[#f1f1f1] rounded-[1.25rem] mt-3 px-8 py-6 overflow-y-auto">
           <p className="text-[1.05rem] leading-8 text-black font-normal">
-            I am requesting leave for a few days due to an important
-            family-related matter that requires my presence and attention.
-            Over the past few days, there have been some urgent personal
-            responsibilities at home that I need to manage, and it will not
-            be possible for me to balance both work and these commitments
-            effectively during this period. I have ensured that my current
-            tasks are either completed or properly documented so the workflow
-            is not affected significantly in my absence. I kindly request you
-            to approve my leave for the mentioned duration. I will remain
-            available for any urgent communication if required and will resume
-            work immediately after the leave period ends.
+          {leaveDetails?.description}
           </p>
         </div>
         <div className="w-full flex justify-end items-center gap-6 mt-8">
