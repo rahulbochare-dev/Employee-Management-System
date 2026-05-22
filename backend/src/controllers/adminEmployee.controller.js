@@ -98,6 +98,10 @@ const terminateEmployee = asyncHandler( async (req, res) => {
 
     const terminatedEmployee = await Employee.findByIdAndUpdate(id, {isActive: false}, {new: true}).select("-password -refreshToken")
 
+    if(!terminatedEmployee){
+        throw new ApiError(404, "Employee cannot be terminated")
+    }
+
     return res.status(200)
     .json(new ApiResponse(200, {terminateEmployee: terminatedEmployee}, "Employee terminated successfully"))
 })

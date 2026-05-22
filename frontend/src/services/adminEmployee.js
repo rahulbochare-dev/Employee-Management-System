@@ -31,7 +31,7 @@ const getEmployeeDetails = function async(empID){
 }
 
 const terminateEmployee = function async(id){
-    const response = callApi("GET", `/admin/employee/terminate-employee?${id}`)
+    const response = callApi("POST", `/admin/employee/terminate-employee?id=${id}`)
     return response
 }
 

@@ -1,7 +1,19 @@
 import React from "react";
 import Button from '../components/Button.jsx'
+import { useAdminEmployeeStore } from '../store/adminEmployeeStore.js'
 
 const EmployeeCard = ({ onClick, empDetails }) => {
+    const {terminateEmployee} = useAdminEmployeeStore()
+
+    const handleTerminateEmployee = async (e) => {
+        console.log(empDetails?._id)
+        try {
+            const response = await terminateEmployee(empDetails?._id)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         <div className="w-384 h-[98%] bg-[#f5f5f5] border border-[#d9d9d9] rounded-3xl overflow-hidden font-sans">
             <div className="w-full h-49 bg-[#efefef] flex items-center px-10">
@@ -141,7 +153,7 @@ const EmployeeCard = ({ onClick, empDetails }) => {
                             {empDetails?.salary} {empDetails?.salaryCurrency}
                         </span>
                     </div>
-                    <Button title={"Terminate Employee"} icon={"/src/assets/terminate.svg"}/>
+                    <Button title={"Terminate Employee"} icon={"/src/assets/terminate.svg"} onClick={handleTerminateEmployee}/>
                 </div>
             </div>
         </div>
