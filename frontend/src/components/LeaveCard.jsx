@@ -76,7 +76,7 @@ const LeaveCard = ({ leave, cb }) => {
         <button className="w-26 h-8.5 bg-[#f58a8a] rounded-[20px] text-[14px] font-medium text-black transition-all hover:bg-[#ea7e7e] active:bg-[#df7070]">
           Reject
         </button>
-        <button onClick={cb} className="w-8.5 h-8.5 rounded-full bg-[#F8F8F8] flex justify-center items-center shrink-0">
+        <button onClick={cb} className="w-8.5 h-8.5 rounded-full bg-[#F8F8F8] flex justify-center items-center shrink-0 transition-all hover:bg-[#f0f0f0] active:bg-[#dcdcdc]">
           <img
             className="w-5.5"
             src="/src/assets/info.svg"
