@@ -6,9 +6,10 @@ import Seperator from '../components/Seperator.jsx'
 import LeaveCard from '../components/LeaveCard.jsx'
 import LeaveDetails from '../components/LeaveDetails.jsx'
 import { useAdminLeaveStore } from '../store/adminLeaveStore.js'
+import toast from 'react-hot-toast'
 
 const Leaves = () => {
-  const {getLeavesDetails, getLeaves, leaves, leavesDetails} = useAdminLeaveStore()
+  const {getLeavesDetails, updateLeaveStatus, getLeaves, leaves, leavesDetails} = useAdminLeaveStore()
   const [status, setStatus] = useState(null)
   const [showLeaveDetails, setShowLeaveDetails] = useState(false)
 
@@ -43,6 +44,27 @@ const Leaves = () => {
     }
   }
 
+  const handleUpdateLeaveStatus = async (e, id) => {
+    const updatedStatus = {
+      ...status,
+      [e.target.name]: e.target.value
+    }
+    setStatus(updatedStatus)
+    
+    try {
+      const response = await updateLeaveStatus(id, updatedStatus.status)
+      if(response.success){
+        toast.success(`Leave application ${response.data.leave.status}`)
+        await getLeaves()
+      } else {
+        toast.error(response.message)
+      }
+    } catch (error) {
+      console.log(error)
+      toast.error("Something went wrong!")
+    }
+  }
+
   return (
     <>
        <div className="w-screen h-screen relative">
@@ -72,7 +94,7 @@ const Leaves = () => {
                 <Seperator marginY={"my-2"} width='w-369' />
                 <div className="w-full h-170 grid grid-cols-4 gap-y-7 justify-center overflow-y-scroll pl-7 pt-3">
                   {leaves?.map((value) => {
-                    return <LeaveCard cb={handleShowLeaveDetails} key={value._id} leave={value}/>
+                    return <LeaveCard cb={handleShowLeaveDetails} cb2={handleUpdateLeaveStatus} key={value._id} leave={value}/>
                   })}
                 </div>
               </div>
