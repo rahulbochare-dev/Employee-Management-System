@@ -1,6 +1,7 @@
 import React from "react";
+import Button from '../components/Button.jsx'
 
-const EmployeeCard = ({onClick, empDetails }) => {
+const EmployeeCard = ({ onClick, empDetails }) => {
     return (
         <div className="w-384 h-[98%] bg-[#f5f5f5] border border-[#d9d9d9] rounded-3xl overflow-hidden font-sans">
             <div className="w-full h-49 bg-[#efefef] flex items-center px-10">
@@ -12,7 +13,7 @@ const EmployeeCard = ({onClick, empDetails }) => {
                         {empDetails?.firstName} {empDetails?.lastName}
                     </h1>
                     <p className="mt-5 text-[1.625rem] leading-none text-[#7d7d7d] font-medium">
-                    {empDetails?.jobTitle}
+                        {empDetails?.jobTitle}
                     </p>
                 </div>
                 <div className="flex flex-1 justify-between ml-8 pr-10">
@@ -21,7 +22,7 @@ const EmployeeCard = ({onClick, empDetails }) => {
                             Employee ID
                         </h2>
                         <p className="mt-5 text-[1.625rem] leading-none text-[#7d7d7d] font-medium">
-                        {empDetails?.empID}
+                            {empDetails?.empID}
                         </p>
                     </div>
                     <div>
@@ -29,7 +30,7 @@ const EmployeeCard = ({onClick, empDetails }) => {
                             Work Mode
                         </h2>
                         <p className="mt-5 text-[1.625rem] leading-none text-[#7d7d7d] font-medium">
-                        {empDetails?.workMode}
+                            {empDetails?.workMode}
                         </p>
                     </div>
                     <div>
@@ -37,20 +38,20 @@ const EmployeeCard = ({onClick, empDetails }) => {
                             Status
                         </h2>
                         <p className="mt-5 text-[1.625rem] leading-none text-[#00a51e] font-medium">
-                        {empDetails?.status? true : "Active"}
+                            {empDetails?.status ? true : "Active"}
                         </p>
                     </div>
                     <img onClick={onClick} className='size-8 cursor-pointer' src="/src/assets/close.svg" alt="" />
                 </div>
             </div>
             <div className="px-20 py-10">
-                <div className="grid grid-cols-3 gap-y-20">
+                <div className="grid grid-cols-3 gap-y-25">
                     <div>
                         <p className="text-[1.5625rem] text-[#8b8b8b] font-medium leading-none">
                             Email:
                         </p>
                         <p className="mt-6 text-[1.4375rem] text-black leading-[2.6rem]">
-                        {empDetails?.email}
+                            {empDetails?.email}
                         </p>
                     </div>
                     <div>
@@ -58,7 +59,7 @@ const EmployeeCard = ({onClick, empDetails }) => {
                             Gender:
                         </p>
                         <p className="mt-6 text-[1.4375rem] text-black leading-none">
-                        {empDetails?.gender}
+                            {empDetails?.gender}
                         </p>
                     </div>
                     <div>
@@ -66,7 +67,7 @@ const EmployeeCard = ({onClick, empDetails }) => {
                             Contact No:
                         </p>
                         <p className="mt-6 text-[1.4375rem] text-black leading-none">
-                        {empDetails?.contactNo}
+                            {empDetails?.contactNo}
                         </p>
                     </div>
                     <div>
@@ -74,7 +75,7 @@ const EmployeeCard = ({onClick, empDetails }) => {
                             Address:
                         </p>
                         <p className="mt-6 text-[1.4375rem] text-black leading-[2.6rem] max-w-[24rem]">
-                        {empDetails?.address}
+                            {empDetails?.address}
                         </p>
                     </div>
                     <div>
@@ -82,7 +83,7 @@ const EmployeeCard = ({onClick, empDetails }) => {
                             Postal Code:
                         </p>
                         <p className="mt-6 text-[1.4375rem] text-black leading-none">
-                        {empDetails?.postalCode}
+                            {empDetails?.postalCode}
                         </p>
                     </div>
                     <div>
@@ -90,7 +91,13 @@ const EmployeeCard = ({onClick, empDetails }) => {
                             Date of Birth:
                         </p>
                         <p className="mt-6 text-[1.4375rem] text-black leading-none">
-                        {empDetails?.dateOfBirth}
+                            {
+                                new Date(empDetails?.dateOfBirth).toLocaleDateString("en-GB", {
+                                    day: "numeric",
+                                    month: "short",
+                                    year: "numeric"
+                                })
+                            }
                         </p>
                     </div>
                     <div>
@@ -98,7 +105,7 @@ const EmployeeCard = ({onClick, empDetails }) => {
                             City:
                         </p>
                         <p className="mt-6 text-[1.4375rem] text-black leading-none">
-                        {empDetails?.city}
+                            {empDetails?.city}
                         </p>
                     </div>
                     <div>
@@ -106,7 +113,13 @@ const EmployeeCard = ({onClick, empDetails }) => {
                             Joining Date:
                         </p>
                         <p className="mt-6 text-[1.4375rem] text-black leading-none">
-                        {empDetails?.joinedAt}
+                            {
+                                new Date(empDetails?.joinedAt).toLocaleDateString("en-GB", {
+                                    day: "numeric",
+                                    month: "short",
+                                    year: "numeric"
+                                })
+                            }
                         </p>
                     </div>
                     <div>
@@ -114,20 +127,22 @@ const EmployeeCard = ({onClick, empDetails }) => {
                             Country:
                         </p>
                         <p className="mt-6 text-[1.4375rem] text-black leading-none">
-                        {empDetails?.country}
+                            {empDetails?.country}
                         </p>
                     </div>
                 </div>
                 <div className="w-full h-px bg-[#d3d3d3] mt-12"></div>
-                <div className="flex items-center mt-8">
-                    <span className="text-[2rem] text-[#8b8b8b] font-medium">
-                        Salary:
-                    </span>
-                    <span className="ml-10 text-[2rem] font-medium text-black">
-                    {empDetails?.salary} {empDetails?.salaryCurrency}
-                    </span>
+                <div className="flex justify-between items-center mt-8">
+                    <div>
+                        <span className="text-[2rem] text-[#8b8b8b] font-medium">
+                            Salary:
+                        </span>
+                        <span className="ml-10 text-[2rem] font-medium text-black">
+                            {empDetails?.salary} {empDetails?.salaryCurrency}
+                        </span>
+                    </div>
+                    <Button title={"Terminate Employee"} icon={"/src/assets/terminate.svg"}/>
                 </div>
-
             </div>
         </div>
     );
