@@ -81,7 +81,7 @@ const getEmployees = asyncHandler( async (req, res) => {
     console.log(page, limit)
 
     const offset = (page - 1) * limit
-    const allEmployees = await Employee.find({}).select("-password -refreshToken")
+    const allEmployees = await Employee.find({isActive: true}).select("-password -refreshToken")
     .sort({createdAt: -1})
     .skip(offset)
     .limit(limit)
@@ -105,7 +105,7 @@ const terminateEmployee = asyncHandler( async (req, res) => {
 const getEmployeeByFilter = asyncHandler( async (req, res) => {
     const {gender, workMode, jobTitle} =req.query
 
-    let filterParams = {};
+    let filterParams = {isActive: true};
 
     if(gender) filterParams.gender = gender
     if(workMode) filterParams.workMode = workMode
@@ -137,6 +137,7 @@ const searchEmployee = asyncHandler( async (req, res) => {
     const {searchName} = req.query
 
     const employeeFound = await Employee.find({
+        isActive: true,
         $or: [
             {
                 firstName: {
