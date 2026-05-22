@@ -26,7 +26,7 @@ const Leaves = () => {
     setStatus(updatedStatus)
     
     try {
-      const response = await getLeaves(status)
+      const response = await getLeaves(updatedStatus.status)
     } catch (error) {
       console.log(error)
     }
@@ -54,7 +54,7 @@ const Leaves = () => {
                 <div className="w-full h-15 flex gap-3 items-center pl-7">
                   <div className="h-full w-3/4 flex justify-start items-center gap-6">
                     <Search />
-                    <Dropdown title={"status"} values={["Pending", "Rejected", "Approved"]} onChange={handleStatusChange} name={"status"}/>
+                    <Dropdown title={"Status"} values={["Pending", "Rejected", "Approved"]} onChange={handleStatusChange} name={"status"}/>
                   </div>
                 </div>
                 <Seperator marginY={"my-2"} width='w-369' />

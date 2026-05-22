@@ -4,8 +4,14 @@ import { ApiError } from "../utils/ApiError.js";
 import { Leave } from "../models/leave.model.js"
 
 const getLeaves = asyncHandler( async (req, res) => {
-    const status = req.query || ""
-    const totalLeaves = await Leave.find(status).populate("employee", "avatar firstName lastName empID jobTitle workMode email")
+    const filter = {}
+
+    if(req.query.status !== "undefined"){
+        filter.status = req.query.status
+    }
+    
+    const totalLeaves = await Leave.find(filter).populate("employee", "avatar firstName lastName empID jobTitle workMode email")
+    console.log(filter)
     
     res.status(200).json(new ApiResponse(200, totalLeaves, "Leaves fetched successfully"))
 })
