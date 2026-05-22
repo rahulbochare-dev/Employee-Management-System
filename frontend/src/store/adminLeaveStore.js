@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { getLeaves } from "../services/adminLeave.js";
+import { getLeaves, getLeavesDetails } from "../services/adminLeave.js";
 
 const useAdminLeaveStore = create((set) => ({
     leaves: null,

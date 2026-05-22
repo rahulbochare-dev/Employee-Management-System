@@ -8,7 +8,7 @@ import LeaveDetails from '../components/LeaveDetails.jsx'
 import { useAdminLeaveStore } from '../store/adminLeaveStore.js'
 
 const Leaves = () => {
-  const {getLeaves, leaves} = useAdminLeaveStore()
+  const {getLeavesDetails, getLeaves, leaves} = useAdminLeaveStore()
   const [status, setStatus] = useState(null)
   const [showLeaveDetails, setShowLeaveDetails] = useState(false)
 
@@ -36,6 +36,7 @@ const Leaves = () => {
 
   const handleShowLeaveDetails = async (e) => {
     setShowLeaveDetails(!showLeaveDetails)
+    const response = await getLeavesDetails()
   }
   
   console.log(showLeaveDetails)

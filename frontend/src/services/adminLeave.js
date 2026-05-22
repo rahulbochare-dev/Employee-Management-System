@@ -10,4 +10,4 @@ const getLeavesDetails = function async(id){
     return response
 }
 
-export { getLeaves }
+export { getLeaves, getLeavesDetails }

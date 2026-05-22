@@ -41,9 +41,9 @@ const updateLeaveStatus = asyncHandler( async (req, res) => {
 })
 
 const getLeavesDetails = asyncHandler( async (req, res) => {
-    const id = req.query
+    const id = req.query.id
 
-    const leaveDetails = await Leave.findById({id}).populate("Employee", "avatar firstName lastName empID jobTitle workMode email")
+    const leaveDetails = await Leave.findById(id).populate("employee", "avatar firstName lastName empID jobTitle workMode email")
 
     if(!leaveDetails){
         throw new ApiError(404, "Leave no found!")
