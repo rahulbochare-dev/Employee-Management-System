@@ -60,7 +60,6 @@ const Leaves = () => {
         toast.error(response.message)
       }
     } catch (error) {
-      console.log(error)
       toast.error("Something went wrong!")
     }
   }
