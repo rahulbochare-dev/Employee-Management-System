@@ -3,6 +3,7 @@ import Sidebar from '../components/Sidebar.jsx'
 import WelcomeText from '../components/WelcomeText.jsx'
 import DateTime from '../components/DateTime.jsx'
 import EmployeeCard from '../components/EmployeeCard.jsx'
+import Pagination from '../components/Pagination.jsx'
 import Seperator from '../components/Seperator.jsx'
 import Search from '../components/Search.jsx'
 import Dropdown from '../components/Dropdown.jsx'
@@ -154,7 +155,7 @@ const Employees = () => {
                     <Dropdown title={"Job Title"} values={jobTitleValues} onChange={handleFilterChange} name={"jobTitle"}/>
                     <DropdownModal
                       onChange={handleSalaryChange}
-                    />
+                      />
                   </div>
                   <div className='h-full w-1/4 pr-7 flex justify-end items-center'>
                     <Button title={"Onboard Employee"} icon={"/src/assets/employeeAdd-Light.svg"} onClick={handleShowModal} />
@@ -164,19 +165,22 @@ const Employees = () => {
                 {loading && <Loading/>}
                 <div className="w-full h-170 grid grid-cols-4 gap-y-7 justify-center overflow-y-scroll pl-7 pt-3">
                   {employees?.map((value) => {
-                   return <EmployeeCard
-                      key={value._id}
-                      firstName={value.firstName}
-                      lastName={value.lastName}
-                      email={value.email}
-                      gender={value.gender}
-                      empID={value.empID}
-                      jobTitle={value.jobTitle}
-                      salary={value.salary}
-                      func={handleEmployeeDetails}
-                      workMode={value.workMode}
+                    return <EmployeeCard
+                    key={value._id}
+                    firstName={value.firstName}
+                    lastName={value.lastName}
+                    email={value.email}
+                    gender={value.gender}
+                    empID={value.empID}
+                    jobTitle={value.jobTitle}
+                    salary={value.salary}
+                    func={handleEmployeeDetails}
+                    workMode={value.workMode}
                     />
                   })}
+                </div>
+                <div className="w-full h-15 flex justify-center items-center">
+                  <Pagination/>
                 </div>
               </div>}
             </div>

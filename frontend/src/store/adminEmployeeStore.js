@@ -22,9 +22,9 @@ const useAdminEmployeeStore = create((set) => ({
         }
     },
 
-    getEmployees: async (data) => {
+    getEmployees: async (currentPage, limit) => {
         try {
-            const response = await getEmployees(data)
+            const response = await getEmployees(currentPage, limit)
             set({
                 employees: response.data.data.employees,
                 employeesCount: response.data.data.totalEmployeesCount,
