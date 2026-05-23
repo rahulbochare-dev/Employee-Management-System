@@ -74,17 +74,23 @@ const Employees = () => {
 
   const handleSalaryChange = (e) => {
     if(e.target.name == "minSalary"){
-      setSalaryData({...salaryData, minSalary: e.target.value})
+      setSalaryData({...salaryData, minSalary: Number(e.target.value)})
     } else {
-      setSalaryData({...salaryData, maxSalary: e.target.value})
+      setSalaryData({...salaryData, maxSalary: Number(e.target.value)})
     }
-    
+  }
+  
+  useEffect(() => {
     const callAPI = async()=> {
-      const response = await getEmployeeBySalary(salaryData.minSalary, salaryData.maxSalary)
-      console.log(response)
+      if(salaryData.minSalary && salaryData.maxSalary !== null){
+        const response = await getEmployeeBySalary(salaryData.minSalary, salaryData.maxSalary)
+        console.log(response)
+      }
     }
     callAPI()
-  }
+    console.log(salaryData)
+  }, [salaryData])
+  
   
   const handleFilterChange = async (e) => {
     const updatedFilters = {

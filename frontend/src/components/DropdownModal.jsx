@@ -15,13 +15,13 @@ const DropdownModal = ({value, onChange}) => {
                 <div className="w-full h-15 flex flex-col justify-center pl-3 mb-1">
                     <h3 className='text-sm font-medium'>Min:</h3>
                     <div className="w-[92%] h-8 bg-[#F1F1F1] rounded-lg flex justify-center items-center pl-5">
-                        <input className='text-sm font-medium' placeholder='Enter Min Salary' type="text" name="minSalary" id="" value={value} onChange={onChange}/>
+                        <input className='text-sm font-medium tracking-wider' placeholder='Enter Min Salary' type="text" name="minSalary" id="" value={value} onChange={onChange}/>
                     </div>
                 </div>
                 <div className="w-full h-15 flex flex-col justify-center pl-3">
                     <h3 className='text-sm font-medium'>Max:</h3>
                     <div className="w-[92%] h-8 bg-[#F1F1F1] rounded-lg flex justify-center items-center pl-5">
-                        <input className='text-sm font-medium' placeholder='Enter Max Salary' type="text" name="maxSalary" id="" value={value} onChange={onChange}/>
+                        <input className='text-sm font-medium tracking-wider' placeholder='Enter Max Salary' type="text" name="maxSalary" id="" value={value} onChange={onChange}/>
                     </div>
                 </div>
                 <button onClick={()=>{setShowModal(!showModal)}} className='w-[85%] h-8 bg-[#CE78FF] rounded-xl mt-5 text-white font-medium hover:bg-[#C257FF] active:bg-[#B739FF]'>Done</button>
