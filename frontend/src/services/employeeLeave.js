@@ -6,7 +6,7 @@ const getMyLeaves = function async(){
 }
 
 const getLeaveDetails = function async(id){
-    const response = callApi("GET", `leave/leave-details?id=${id}`)
+    const response = callApi("GET", `/leave/leave-details?id=${id}`)
     return response
 }
 

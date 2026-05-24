@@ -38,7 +38,7 @@ const getLeaveDetails = asyncHandler( async (req, res) => {
 
     const leaveInDB = await Leave.find({_id: id}).populate("employee", "avatar firstName lastName empID jobTitle workMode email")
 
-    res.status(200).json(new ApiResponse(200, {leave: leaveInDB}, "Leaves fetched successfully"))
+    res.status(200).json(new ApiResponse(200, {leave: leaveInDB}, "Leaves details fetched successfully"))
 })
 
 export { addLeave, getLeaves, getLeaveDetails }
