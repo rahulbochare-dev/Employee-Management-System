@@ -5,9 +5,11 @@ import Seperator from "../components/Seperator.jsx";
 import LeaveCardEmployee from "../components/LeaveCardEmployee.jsx";
 import ApplyLeaveEmployee from "../components/ApplyLeaveEmployee.jsx";
 import { useEmployeeLeaveStore } from "../store/employeeLeaveStore.js";
+import { useEmployeeStore } from "../store/employeeStore.js";
 
 const EmployeeSelf = () => {
-    const {getMyLeaves} = useEmployeeLeaveStore()
+    const {myLeaves, getMyLeaves} = useEmployeeLeaveStore()
+    const {employee, getCurrentEmployee} = useEmployeeStore()
     const [showApplyLeave, setShowApplyLeave] = useState(false)
 
     const handleShowApplyLeave = () => {
@@ -17,10 +19,11 @@ const EmployeeSelf = () => {
     useEffect(() => {
         const callApi = async () => {
             const response = await getMyLeaves()
-            console.log(response)
         }
         callApi()
     }, [])
+
+    console.log(myLeaves)
 
     return (
         <div className='w-screen h-screen bg-[#f9f9f9] px-5 relative'>
@@ -114,15 +117,9 @@ const EmployeeSelf = () => {
                     </div>
                     <div className="w-full h-172">
                         <div className="w-full h-148 grid grid-cols-2 gap-5 items-center justify-items-center overflow-y-scroll">
-                            <LeaveCardEmployee/>
-                            <LeaveCardEmployee/>
-                            <LeaveCardEmployee/>
-                            <LeaveCardEmployee/>
-                            <LeaveCardEmployee/>
-                            <LeaveCardEmployee/>
-                            <LeaveCardEmployee/>
-                            <LeaveCardEmployee/>
-                            <LeaveCardEmployee/>
+                            {myLeaves?.map((leave) => {
+                                return <LeaveCardEmployee key={leave?._id} leave={leave}/>
+                            })}
                         </div>
                         <div className="w-full h-20 flex justify-center items-center">
                             <Button onClick={handleShowApplyLeave} title={"Apply Leave"}/>

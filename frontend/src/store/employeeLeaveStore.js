@@ -10,7 +10,7 @@ const useEmployeeLeaveStore = create((set) => ({
     getMyLeaves: async () => {
         try {
             const response = await getMyLeaves()
-            set({ MyLeaves: response.data.data, loading: false })
+            set({ myLeaves: response.data.data.leaves, loading: false })
             return response.data
         } catch (err) {
             set({error: err, loading: false})

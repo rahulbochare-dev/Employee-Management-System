@@ -10,7 +10,7 @@ const logout = async function(data){
     return response
 }
 
-const getCurrentEmployee = async function(data){
+const getCurrentEmployee = async function(){
     const response = await callApi("GET", "/employee/employee-details")
     return response
 }

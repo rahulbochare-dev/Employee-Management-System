@@ -8,7 +8,7 @@ import toast, { Toaster } from 'react-hot-toast';
 
 const LoginAdmin = () => {
     const navigate = useNavigate()
-    const {login} = useEmployeeStore()
+    const {employee, login} = useEmployeeStore()
     
     const [formData, setFromData] = useState({
         email: "",
@@ -20,7 +20,6 @@ const LoginAdmin = () => {
 
         try {
             const response = await login(formData)
-            console.log(response)
             if(response.success){
                 toast.success(response.message)
                 navigate("/employee")

@@ -7,9 +7,9 @@ const LeaveCardEmployee = ({ leave }) => {
       <div className="w-full h-17 flex justify-start gap-3 items-center">
         <img className='w-11 h-11' src="/src/assets/businessman.png" alt="" />
         <div className="w-[78%] h-[75%] flex flex-col">
-          <h2 className="text-lg font-semibold">Peter Parker</h2>
+          <h2 className="text-lg font-semibold">{leave?.employee?.firstName} {leave?.employee?.firstName}</h2>
           <h2 className="text-sm text-[#929292] font-medium">Status: <span 
-          className="text-sm text-[#929292] font-medium">Rejected</span></h2>
+          className="text-sm text-[#929292] font-medium">{leave?.status}</span></h2>
         </div>
       </div>
       <Separator width='w-74' />
@@ -19,7 +19,7 @@ const LeaveCardEmployee = ({ leave }) => {
             Leave Type:
           </h3>
           <h2 className="text-[16px] leading-none font-medium text-black">
-            Casual
+          {leave?.leaveType}
           </h2>
         </div>
         <div className="flex flex-col items-end gap-1">
@@ -37,7 +37,13 @@ const LeaveCardEmployee = ({ leave }) => {
             From:
           </h3>
           <h2 className="text-[14px] text-black font-medium mt-2 leading-none">
-          Dec 31, 2023
+          {
+              new Date(leave?.from).toLocaleDateString("en-GB", {
+                day: "numeric",
+                month: "short",
+                year: "numeric"
+              })
+            }
           </h2>
         </div>
         <div className="flex flex-col">
@@ -45,13 +51,19 @@ const LeaveCardEmployee = ({ leave }) => {
             To:
           </h3>
           <h2 className="text-[14px] text-black font-medium mt-2 leading-none">
-          Dec 31, 2023
+          {
+              new Date(leave?.from).toLocaleDateString("en-GB", {
+                day: "numeric",
+                month: "short",
+                year: "numeric"
+              })
+            }
           </h2>
         </div>
       </div>
       <div className="w-full flex flex-col items-start justify-between truncate mt-4">
         <h2 className='text-[1rem] font-medium text-[#7a7a7a]'>Reason:</h2>
-        <h2 className='text-[1rem] font-medium'>Reasonhehthththtrhtrhtrhtrhtrhtrhtrhthththtrhtht:</h2>
+        <h2 className='text-[1rem] font-medium'>{leave?.description}</h2>
       </div>
     </div>
   )
