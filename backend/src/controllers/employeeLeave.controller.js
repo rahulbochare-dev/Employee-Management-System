@@ -28,7 +28,7 @@ const addLeave = asyncHandler( async (req, res) => {
 })
 
 const getLeaves = asyncHandler( async (req, res) => {
-    const leaveInDB = await Leave.find({employee: req.employee._id})
+    const leaveInDB = await Leave.find({employee: req.employee._id}).populate("employee", "firstName lastName")
 
     res.status(200).json(new ApiResponse(200, {leaves: leaveInDB}, "Leaves fetched successfully"))
 })
