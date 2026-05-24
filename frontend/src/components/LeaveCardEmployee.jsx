@@ -7,7 +7,7 @@ const LeaveCardEmployee = ({ leave }) => {
       <div className="w-full h-17 flex justify-start gap-3 items-center">
         <img className='w-11 h-11' src="/src/assets/businessman.png" alt="" />
         <div className="w-[78%] h-[75%] flex flex-col">
-          <h2 className="text-lg font-semibold">{leave?.employee?.firstName} {leave?.employee?.firstName}</h2>
+          <h2 className="text-lg font-semibold">{leave?.employee?.firstName} {leave?.employee?.lastName}</h2>
           <h2 className="text-sm text-[#929292] font-medium">Status: <span 
           className="text-sm text-[#929292] font-medium">{leave?.status}</span></h2>
         </div>

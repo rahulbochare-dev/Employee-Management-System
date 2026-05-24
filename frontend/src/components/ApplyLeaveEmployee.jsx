@@ -19,6 +19,12 @@ const LeaveDetails = ({ leaveDetails, cb }) => {
             [e.target.name]: e.target.value
         }
         setLeaveData(updatedData)
+
+        try {
+            const response = await 
+        } catch (error) {
+            
+        }
     }
     
     return (

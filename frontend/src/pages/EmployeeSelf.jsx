@@ -122,7 +122,7 @@ const EmployeeSelf = () => {
                             })}
                         </div>
                         <div className="w-full h-20 flex justify-center items-center">
-                            <Button onClick={handleShowApplyLeave} title={"Apply Leave"}/>
+                            <Button onClick={handleShowApplyLeave} icon={"/src/assets/leave-light.svg"} title={"Apply Leave"}/>
                         </div>
                     </div>
                 </div>

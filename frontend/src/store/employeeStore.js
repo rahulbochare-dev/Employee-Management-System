@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { login, logout, getCurrentEmployee } from "../services/employee.js"
+import { login, logout, getCurrentEmployee,  } from "../services/employee.js"
 
 const useEmployeeStore = create((set) => ({
     employee: null,
@@ -33,6 +33,17 @@ const useEmployeeStore = create((set) => ({
         try {
             const response = await getCurrentEmployee()
             set({ employee: response.data.data, loading: false, isLoggedIn: true })
+            return response.data
+        } catch (err) {
+            set({error: err, loading: false})
+            return err
+        }
+    },
+    
+    applyLeave: async (data) => {
+        try {
+            const response = await applyLeave(data)
+            set({ loading: false, isLoggedIn: true })
             return response.data
         } catch (err) {
             set({error: err, loading: false})
