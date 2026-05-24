@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { getMyLeaves } from "../services/employeeLeave.js";
+import { getMyLeaves, applyLeave } from "../services/employeeLeave.js";
 
 const useEmployeeLeaveStore = create((set) => ({
     myLeaves: null,
@@ -11,6 +11,17 @@ const useEmployeeLeaveStore = create((set) => ({
         try {
             const response = await getMyLeaves()
             set({ myLeaves: response.data.data.leaves, loading: false })
+            return response.data
+        } catch (err) {
+            set({error: err, loading: false})
+            return err
+        }
+    },
+
+    applyLeave: async (data) => {
+        try {
+            const response = await applyLeave(data)
+            set({ loading: false })
             return response.data
         } catch (err) {
             set({error: err, loading: false})

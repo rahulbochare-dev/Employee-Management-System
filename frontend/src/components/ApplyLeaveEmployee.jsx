@@ -3,10 +3,12 @@ import Separator from './Seperator.jsx'
 import DateSelectApplyLeave from './DateSelectApplyLeave.jsx'
 import DropdownAddEmployee from './DropdownAddEmployee.jsx'
 import DropdownLeaveType from './DropdownLeaveType.jsx'
-import { useAdminLeaveStore } from '../store/adminLeaveStore.js'
-import toast from 'react-hot-toast'
+import { useEmployeeLeaveStore } from '../store/employeeLeaveStore.js'
+import toast, { Toaster } from 'react-hot-toast'
 
 const LeaveDetails = ({ leaveDetails, cb }) => {
+    const {get, applyLeave} = useEmployeeLeaveStore()
+
     const [leaveData, setLeaveData] = useState({
         leaveType: "",
         from: "",
@@ -19,16 +21,25 @@ const LeaveDetails = ({ leaveDetails, cb }) => {
             [e.target.name]: e.target.value
         }
         setLeaveData(updatedData)
+    }
 
+    const handleSubmitLeave = async () => {
         try {
-            const response = await 
+            const response = await applyLeave(leaveData)
+            if(response.success){
+                toast.success(response.message)
+                cb()
+            } else {
+                toast.error(response.message)
+            }
         } catch (error) {
-            
+            toast.error("Something went wong!")
         }
     }
     
     return (
         <div className="w-304.5 h-155.5 bg-white rounded-2xl px-8.5 pt-6 overflow-hidden transition-all">
+            <Toaster position='bottom-center'/>
             <h1 className="text-[1.75rem]  font-medium text-black leading-none">
                 Leave Application
             </h1>
@@ -119,10 +130,10 @@ const LeaveDetails = ({ leaveDetails, cb }) => {
                         />
                     </div>
                     <div className="w-full flex justify-end items-center gap-6 mt-8">
-                        <button value={"Rejected"} name='status' className="w-33.25 h-10.25 rounded-[0.875rem] bg-slate-800 text-[1rem] font-medium text-white transition-all hover:bg-slate-950 active:bg-slate-900">
+                        <button onClick={handleSubmitLeave} value={"Rejected"} name='status' className="w-33.25 h-10.25 rounded-[0.875rem] bg-slate-800 text-[1rem] font-medium text-white transition-all hover:bg-slate-950 active:bg-slate-900">
                             Submit
                         </button>
-                        <button onClick={cb} className="w-33.25 h-10.25 rounded-[0.875rem] border border-[#d3d3d3] bg-[#fafafa] text-[1rem] font-medium text-black transition-all hover:bg-[#f2f2f2] active:bg-[#ebebeb]">
+                        <button onClick={cb} className="w-33.25 h-10.25 rounded-[0.875rem] border border-[#d3d3d3] bg-white text-[1rem] font-medium text-black transition-all hover:bg-[#f2f2f2] active:bg-[#ebebeb]">
                             Close
                         </button>
                     </div>

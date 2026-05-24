@@ -10,14 +10,9 @@ const logout = async function(data){
     return response
 }
 
-const applyLeave = async function(data){
-    const response = await callApi("POST", "/leave/add-leave", data)
-    return response
-}
-
 const getCurrentEmployee = async function(){
     const response = await callApi("GET", "/employee/employee-details")
     return response
 }
 
-export { login, logout, getCurrentEmployee, applyLeave }
+export { login, logout, getCurrentEmployee }

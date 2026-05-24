@@ -5,4 +5,9 @@ const getMyLeaves = function async(){
     return response
 }
 
-export { getMyLeaves }
+const applyLeave = async function(data){
+    const response = await callApi("POST", "/leave/add-leave", data)
+    return response
+}
+
+export { getMyLeaves, applyLeave }

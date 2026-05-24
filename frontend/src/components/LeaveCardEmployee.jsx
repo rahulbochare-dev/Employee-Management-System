@@ -1,7 +1,7 @@
 import React from 'react'
 import Separator from './Seperator'
 
-const LeaveCardEmployee = ({ leave }) => {
+const LeaveCardEmployee = ({ leave, cb }) => {
   return (
     <div className="w-85 h-65 bg-white border border-[#b6b6b6] rounded-xl px-5 overflow-hidden">
       <div className="w-full h-17 flex justify-start gap-3 items-center">
@@ -11,6 +11,13 @@ const LeaveCardEmployee = ({ leave }) => {
           <h2 className="text-sm text-[#929292] font-medium">Status: <span 
           className="text-sm text-[#929292] font-medium">{leave?.status}</span></h2>
         </div>
+        <button onClick={(e) => (cb(e, leave?._id))} className="w-8.5 h-8.5 rounded-full bg-[#F8F8F8] flex justify-center items-center shrink-0 transition-all hover:bg-[#f0f0f0] active:bg-[#dcdcdc]">
+          <img
+            className="w-5.5"
+            src="/src/assets/info.svg"
+            alt=""
+          />
+        </button>
       </div>
       <Separator width='w-74' />
       <div className="w-full flex justify-between mt-2">

@@ -4,6 +4,7 @@ import Button from "../components/Button.jsx";
 import Seperator from "../components/Seperator.jsx";
 import LeaveCardEmployee from "../components/LeaveCardEmployee.jsx";
 import ApplyLeaveEmployee from "../components/ApplyLeaveEmployee.jsx";
+import LeaveDetailsEmployee from "../components/LeaveDetailsEmployee.jsx";
 import { useEmployeeLeaveStore } from "../store/employeeLeaveStore.js";
 import { useEmployeeStore } from "../store/employeeStore.js";
 
@@ -11,9 +12,15 @@ const EmployeeSelf = () => {
     const {myLeaves, getMyLeaves} = useEmployeeLeaveStore()
     const {employee, getCurrentEmployee} = useEmployeeStore()
     const [showApplyLeave, setShowApplyLeave] = useState(false)
+    const [showLeaveDetails, setShowLeaveDetails] = useState(false)
 
     const handleShowApplyLeave = () => {
         setShowApplyLeave(!showApplyLeave)
+    }
+
+    const handleGetLeaveDetails = (e, leaveId) => {
+        setShowLeaveDetails(!showLeaveDetails)
+        
     }
 
     useEffect(() => {
@@ -27,6 +34,9 @@ const EmployeeSelf = () => {
 
     return (
         <div className='w-screen h-screen bg-[#f9f9f9] px-5 relative'>
+            {showLeaveDetails &&<div className="w-screen h-screen flex justify-center items-center bg-black/25 backdrop-blur-md fixed inset-0">
+                {showLeaveDetails && <LeaveDetailsEmployee cb={handleGetLeaveDetails}/>}
+            </div>}
             {showApplyLeave &&<div className="w-screen h-screen flex justify-center items-center bg-black/25 backdrop-blur-md fixed inset-0">
                 {showApplyLeave && <ApplyLeaveEmployee cb={handleShowApplyLeave}/>}
             </div>}
@@ -118,7 +128,7 @@ const EmployeeSelf = () => {
                     <div className="w-full h-172">
                         <div className="w-full h-148 grid grid-cols-2 gap-5 items-center justify-items-center overflow-y-scroll">
                             {myLeaves?.map((leave) => {
-                                return <LeaveCardEmployee key={leave?._id} leave={leave}/>
+                                return <LeaveCardEmployee cb={handleGetLeaveDetails} key={leave?._id} leave={leave}/>
                             })}
                         </div>
                         <div className="w-full h-20 flex justify-center items-center">

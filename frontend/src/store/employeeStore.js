@@ -38,17 +38,6 @@ const useEmployeeStore = create((set) => ({
             set({error: err, loading: false})
             return err
         }
-    },
-    
-    applyLeave: async (data) => {
-        try {
-            const response = await applyLeave(data)
-            set({ loading: false, isLoggedIn: true })
-            return response.data
-        } catch (err) {
-            set({error: err, loading: false})
-            return err
-        }
     }
 }))
 
