@@ -9,7 +9,7 @@ import { useEmployeeLeaveStore } from "../store/employeeLeaveStore.js";
 import { useEmployeeStore } from "../store/employeeStore.js";
 
 const EmployeeSelf = () => {
-    const {myLeaves, getMyLeaves, getLeaveDetails} = useEmployeeLeaveStore()
+    const {myLeaveDetails, myLeaves, getMyLeaves, getLeaveDetails} = useEmployeeLeaveStore()
     const {employee, getCurrentEmployee} = useEmployeeStore()
     const [showApplyLeave, setShowApplyLeave] = useState(false)
     const [showLeaveDetails, setShowLeaveDetails] = useState(false)
@@ -27,7 +27,8 @@ const EmployeeSelf = () => {
             throw error
         }
     }
-
+    
+    console.log(myLeaveDetails)
     useEffect(() => {
         const callApi = async () => {
             const response = await getMyLeaves()
