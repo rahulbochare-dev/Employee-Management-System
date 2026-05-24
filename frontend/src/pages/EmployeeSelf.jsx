@@ -103,7 +103,7 @@ const EmployeeSelf = () => {
                         <h2 className='text-[1.75rem] font-medium'>My Leaves</h2>
                     </div>
                     <div className="w-full h-172">
-                        <div className="w-full h-148 grid grid-cols-2  gap-5 items-center justify-items-center overflow-y-scroll">
+                        <div className="w-full h-148 grid grid-cols-2 gap-5 items-center justify-items-center overflow-y-scroll">
                             <LeaveCardEmployee/>
                             <LeaveCardEmployee/>
                             <LeaveCardEmployee/>
