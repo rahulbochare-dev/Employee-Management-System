@@ -9,7 +9,7 @@ import Button from '../components/Button.jsx'
 import { useUserStore } from '../store/userStore.js'
 import toast, { Toaster } from 'react-hot-toast';
 
-const Signup = () => {
+const SignupAdmin = () => {
     const navigate = useNavigate()
 
     const [formData, setFromData] = useState({
@@ -107,4 +107,4 @@ const Signup = () => {
   )
 }
 
-export default Signup
+export default SignupAdmin
