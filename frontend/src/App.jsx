@@ -20,7 +20,7 @@ function App() {
 
   return (
     <>
-      {/* {loading? <Loading/> : <BrowserRouter>
+      {loading? <Loading/> : <BrowserRouter>
         <Routes>
           <Route path='/signup' element={<Signup/>}/>
           <Route path='/login' element={<Login/>}/>
@@ -28,8 +28,7 @@ function App() {
           <Route path='admin/employees' element={<Employees/>}/>
           <Route path='admin/leaves' element={<Leaves/>}/>
         </Routes>
-      </BrowserRouter>} */}
-      <EmployeeSelf/>
+      </BrowserRouter>}
     </>
   )
 }

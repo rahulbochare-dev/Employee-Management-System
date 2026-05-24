@@ -1,16 +1,26 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import DateTime from "../components/DateTime.jsx";
 import Button from "../components/Button.jsx";
 import Seperator from "../components/Seperator.jsx";
 import LeaveCardEmployee from "../components/LeaveCardEmployee.jsx";
 import ApplyLeaveEmployee from "../components/ApplyLeaveEmployee.jsx";
+import { useEmployeeLeaveStore } from "../store/employeeLeaveStore.js";
 
 const EmployeeSelf = () => {
+    const {getMyLeaves} = useEmployeeLeaveStore()
     const [showApplyLeave, setShowApplyLeave] = useState(false)
 
     const handleShowApplyLeave = () => {
         setShowApplyLeave(!showApplyLeave)
     }
+
+    useEffect(() => {
+        const callApi = async () => {
+            const response = await getMyLeaves()
+            console.log(response)
+        }
+        callApi()
+    }, [])
 
     return (
         <div className='w-screen h-screen bg-[#f9f9f9] px-5 relative'>

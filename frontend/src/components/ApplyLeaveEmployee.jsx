@@ -20,10 +20,6 @@ const LeaveDetails = ({ leaveDetails, cb }) => {
         }
         setLeaveData(updatedData)
     }
-    useEffect(() => {
-        console.log(leaveData)
-    }, [leaveData])
-    
     
     return (
         <div className="w-304.5 h-155.5 bg-white rounded-2xl px-8.5 pt-6 overflow-hidden transition-all">
