@@ -1,7 +1,7 @@
 import './App.css'
 import Dashboard from './pages/Dashboard.jsx'
 import Employees from './pages/Employees.jsx'
-import EmployeeDetails from './components/EmployeeDetails.jsx'
+import EmployeeSelf from './pages/EmployeeSelf.jsx'
 import Leaves from './pages/Leaves.jsx';
 import Signup from './pages/Signup.jsx';
 import Login from './pages/Login.jsx';
@@ -20,7 +20,7 @@ function App() {
 
   return (
     <>
-      {loading? <Loading/> : <BrowserRouter>
+      {/* {loading? <Loading/> : <BrowserRouter>
         <Routes>
           <Route path='/signup' element={<Signup/>}/>
           <Route path='/login' element={<Login/>}/>
@@ -28,7 +28,8 @@ function App() {
           <Route path='admin/employees' element={<Employees/>}/>
           <Route path='admin/leaves' element={<Leaves/>}/>
         </Routes>
-      </BrowserRouter>}
+      </BrowserRouter>} */}
+      <EmployeeSelf/>
     </>
   )
 }
