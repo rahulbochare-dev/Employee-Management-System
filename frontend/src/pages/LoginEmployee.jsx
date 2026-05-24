@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 import { useNavigate, Link } from "react-router-dom";
 import TextInput from '../components/TextInput.jsx'
 import PasswordInput from '../components/PasswordInput.jsx'
+import { useEmployeeStore } from '../store/employeeStore.js'
 import Button from '../components/Button.jsx'
 import toast, { Toaster } from 'react-hot-toast';
 
 const LoginAdmin = () => {
     const navigate = useNavigate()
+    const {login} = useEmployeeStore()
     
     const [formData, setFromData] = useState({
         email: "",
