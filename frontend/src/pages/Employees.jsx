@@ -32,6 +32,7 @@ const Employees = () => {
   }, [isLoggedIn])
 
   const [searchName, setSearchName] = useState("")
+  const [showPagination, setShowPagination] = useState(true)
   
   const [salaryData, setSalaryData] = useState({
     minSalary: null,
@@ -46,7 +47,7 @@ const Employees = () => {
 
   const [jobTitleValues, setJobTitleValues] = useState([])
 
-  const {employees, singleEmployeeDetails, employeesCount, totalPages, currentPage, limit, loading, getEmployees, searchEmployee, getEmployeeBySalary, getEmployeeByFilter, getEmployeeDetails} = useAdminEmployeeStore()
+  const {employees, singleEmployeeDetails, employeesCount, totalPages, currentPage, limit, loading, getEmployees, getEmployeeBySalary, getEmployeeByFilter, getEmployeeDetails} = useAdminEmployeeStore()
 
   useEffect(() => {
     const callAPI = async()=> {
@@ -78,6 +79,12 @@ const Employees = () => {
     } else {
       setSalaryData({...salaryData, maxSalary: Number(e.target.value)})
     }
+
+    if(salaryData.minSalary || salaryData.maxSalary){
+      setShowPagination(false)
+    } else {
+      setShowPagination(true)
+    }
   }
   
   useEffect(() => {
@@ -98,6 +105,12 @@ const Employees = () => {
       [e.target.name]: e.target.value
     }
     setFilterData(updatedFilters)
+
+    if(updatedFilters){
+      setShowPagination(false)
+    } else {
+      setShowPagination(true)
+    }
   
     const params = new URLSearchParams()
   
@@ -117,9 +130,19 @@ const Employees = () => {
   const handleSearch = async (e) => {
     const searchValue = e.target.value
     setSearchName(searchValue)
-
-    await searchEmployee(searchName)
+    if(searchValue !== ""){
+      setShowPagination(false)
+    } else {
+      setShowPagination(true)
+    }
   }
+
+  useEffect(() => {
+      const callApi = async () => {
+        await searchEmployee(searchName)
+      }
+      callApi()
+    }, [searchName])
 
   const handleEmployeeDetails = async (e, empID) => {
     const response = await getEmployeeDetails(empID)
@@ -186,7 +209,7 @@ const Employees = () => {
                   })}
                 </div>
                 <div className="w-full h-15 flex justify-center items-center">
-                  <Pagination/>
+                  {showPagination && <Pagination/>}
                 </div>
               </div>}
             </div>
