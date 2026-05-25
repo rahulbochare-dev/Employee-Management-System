@@ -6,7 +6,7 @@ const router = Router()
 
 router.route("/login").post(loginEmployee)
 router.route("/reset-password").patch(checkIsEmployee, resetPassword)
-router.route("/employee-details").post(checkIsEmployee, getCurrentEmployeeDetails)
+router.route("/employee-details").get(checkIsEmployee, getCurrentEmployeeDetails)
 router.route("/logout").post(checkIsEmployee, logoutEmployee)
 
 export default router

@@ -27,10 +27,10 @@ const EmployeeSelf = () => {
         }
     }
     
-    
     useEffect(() => {
         const callApi = async () => {
             const response = await getMyLeaves()
+            const responseEmp = await getCurrentEmployee()
         }
         callApi()
     }, [])
@@ -60,28 +60,28 @@ const EmployeeSelf = () => {
                             <img className="size-17 rounded-full object-cover shrink-0" src="/src/assets/businessman.png" alt="" />
                             <div className="flex flex-col">
                                 <h2 className="text-[1.375rem] font-medium text-black leading-none">
-                                    Peter Parker
+                                    {employee?.firstName} {employee?.lastName}
                                 </h2>
                                 <h3 className="text-[1rem] text-[#7a7a7a] font-medium mt-2 leading-none">
-                                    Senior Backend Engineer
+                                {employee?.jobTitle}
                                 </h3>
                                 <h3 className="text-[1rem] text-[#7a7a7a] font-medium mt-2 leading-none">
-                                    parkeprefegggeeter@gmail.com
+                                {employee?.email}
                                 </h3>
                             </div>
                         </div>
                         <div className="w-127 h-full flex justify-center items-center gap-5">
                             <div className="w-35 h-20 flex flex-col">
                                 <h2 className='text-[1.375rem] font-medium'>EMP ID</h2>
-                                <h3 className='text-[1rem] text-[#7a7a7a] font-medium'>EMP-162345</h3>
+                                <h3 className='text-[1rem] text-[#7a7a7a] font-medium'>{employee?.empID}</h3>
                             </div>
                             <div className="w-35 h-20">
                                 <h2 className='text-[1.375rem] font-medium'>Work Mode</h2>
-                                <h3 className='text-[1rem] text-[#7a7a7a] font-medium'>On-Site</h3>
+                                <h3 className='text-[1rem] text-[#7a7a7a] font-medium'>{employee?.workMode}</h3>
                             </div>
                             <div className="w-35 h-20">
                                 <h2 className='text-[1.375rem] font-medium'>Status</h2>
-                                <h3 className='text-[1rem] text-[#7a7a7a] font-medium'>Active</h3>
+                                <h3 className='text-[1rem] text-[#7a7a7a] font-medium'>{employee?.isActive? true: "Active"}</h3>
                             </div>
                         </div>
                     </div>
@@ -89,39 +89,51 @@ const EmployeeSelf = () => {
                     <div className="w-full h-138 px-31 py-10 items-center gap-x-98 grid grid-cols-2 grid-rows-3 ">
                         <div className="w-fit h-20">
                             <h2 className='text-[1.5625rem] font-medium'>Gender</h2>
-                            <h3 className='text-[1.2rem] text-[#7a7a7a] font-medium'>Active</h3>
+                            <h3 className='text-[1.2rem] text-[#7a7a7a] font-medium'>{employee?.gender}</h3>
                         </div>
                         <div className="w-fit h-20">
                             <h2 className='text-[1.5625rem] font-medium'>Date of Birth</h2>
-                            <h3 className='text-[1.2rem] text-[#7a7a7a] font-medium'>Active</h3>
+                            <h3 className='text-[1.2rem] text-[#7a7a7a] font-medium'>{
+              new Date(employee?.dateOfBirth).toLocaleDateString("en-GB", {
+                day: "numeric",
+                month: "short",
+                year: "numeric"
+              })
+            }</h3>
                         </div>
                         <div className="w-fit h-20">
                             <h2 className='text-[1.5625rem] font-medium'>Address</h2>
-                            <h3 className='text-[1.2rem] text-[#7a7a7a] font-medium'>Active</h3>
+                            <h3 className='text-[1.2rem] text-[#7a7a7a] font-medium'>{employee?.address}</h3>
                         </div>
                         <div className="w-fit h-20">
                             <h2 className='text-[1.5625rem] font-medium'>Postal Code</h2>
-                            <h3 className='text-[1.2rem] text-[#7a7a7a] font-medium'>Active</h3>
+                            <h3 className='text-[1.2rem] text-[#7a7a7a] font-medium'>{employee?.postalCode}</h3>
                         </div>
                         <div className="w-fit h-20">
                             <h2 className='text-[1.5625rem] font-medium'>Country</h2>
-                            <h3 className='text-[1.2rem] text-[#7a7a7a] font-medium'>Active</h3>
+                            <h3 className='text-[1.2rem] text-[#7a7a7a] font-medium'>{employee?.country}</h3>
                         </div>
                         <div className="w-fit h-20">
                             <h2 className='text-[1.5625rem] font-medium'>City</h2>
-                            <h3 className='text-[1.2rem] text-[#7a7a7a] font-medium'>Active</h3>
+                            <h3 className='text-[1.2rem] text-[#7a7a7a] font-medium'>{employee?.city}</h3>
                         </div>
                         <div className="w-fit h-20">
                             <h2 className='text-[1.5625rem] font-medium'>Joining Date</h2>
-                            <h3 className='text-[1.2rem] text-[#7a7a7a] font-medium'>Active</h3>
+                            <h3 className='text-[1.2rem] text-[#7a7a7a] font-medium'>{
+              new Date(employee?.createdAt).toLocaleDateString("en-GB", {
+                day: "numeric",
+                month: "short",
+                year: "numeric"
+              })
+            }</h3>
                         </div>
                         <div className="w-fit h-20">
-                            <h2 className='text-[1.5625rem] font-medium'>Status</h2>
-                            <h3 className='text-[1.2rem] text-[#7a7a7a] font-medium'>Active</h3>
+                            <h2 className='text-[1.5625rem] font-medium'>Education</h2>
+                            <h3 className='text-[1.2rem] text-[#7a7a7a] font-medium'>{employee?.education}</h3>
                         </div>
                     </div>
                     <div className="w-full h-22 px-31 flex justify-start pt-3">
-                        <h2 className='text-[2rem] font-medium'><span className='text-[#7a7a7a]'>Salary: </span>155000 USD</h2>
+                        <h2 className='text-[2rem] font-medium'><span className='text-[#7a7a7a]'>Salary: </span>{employee?.salary} {employee?.salaryCurrency}</h2>
                     </div>
                 </div>
                 <div className='w-1/2 h-[89.7%]'>
