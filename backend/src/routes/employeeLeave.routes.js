@@ -7,6 +7,6 @@ const router = Router()
 router.route("/add-leave").post(checkIsEmployee, addLeave)
 router.route("/leaves").get(checkIsEmployee, getLeaves)
 router.route("/leave-details").get(checkIsEmployee, getLeaveDetails)
-router.route("/delete-leave").get(checkIsEmployee, deleteLeave)
+router.route("/delete-leave").post(checkIsEmployee, deleteLeave)
 
 export default router

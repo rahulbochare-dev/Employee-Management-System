@@ -15,4 +15,9 @@ const applyLeave = async function(data){
     return response
 }
 
-export { getMyLeaves, applyLeave, getLeaveDetails }
+const deleteLeave = async function(id){
+    const response = await callApi("POST", `/leave/delete-leave?id=${id}`)
+    return response
+}
+
+export { getMyLeaves, applyLeave, deleteLeave, getLeaveDetails }

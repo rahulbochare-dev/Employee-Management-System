@@ -1,30 +1,20 @@
 import React, { useState } from 'react'
 import Separator from './Seperator.jsx'
-import { useAdminLeaveStore } from '../store/adminLeaveStore.js'
-import toast from 'react-hot-toast'
+import toast, { Toaster } from 'react-hot-toast'
+import { useEmployeeLeaveStore } from '../store/employeeLeaveStore.js'
 
 const LeaveDetailsEmployee = ({leaveDetails, cb}) => {
-  const {getLeaves, updateLeaveStatus} = useAdminLeaveStore()
-  const [status, setStatus] = useState(null)
+  const {getMyLeaves, deleteLeave} = useEmployeeLeaveStore()
 
-  const handleUpdateLeaveStatus = async (e) => {
-    const updatedStatus = {
-      ...status,
-      [e.target.name]: e.target.value
-    }
-    setStatus(updatedStatus)
-    
+  const handleLeaveDelete = async (e) => {
     try {
-      const response = await updateLeaveStatus(leaveDetails?._id, updatedStatus.status)
+      const response = await deleteLeave(leaveDetails?._id)
       if(response.success){
-        toast.success(`Leave application ${response.data.leave.status}`)
         cb()
-        await getLeaves()
-      } else {
-        toast.error(response.message)
+        await getMyLeaves()
       }
     } catch (error) {
-      toast.error("Something went wrong!")
+      throw error
     }
   }
 
@@ -131,13 +121,13 @@ const LeaveDetailsEmployee = ({leaveDetails, cb}) => {
         <h2 className="text-[1.5rem] font-medium text-black">
           Description:
         </h2>
-        <div className="w-full h-91 bg-[#f1f1f1] rounded-[1.25rem] mt-3 px-8 py-6 overflow-y-auto">
-          <p className="text-[1.05rem] leading-8 text-black font-normal">
+        <div className="w-178 h-91 bg-[#f1f1f1] rounded-[1.25rem] mt-3 px-8 py-6 overflow-y-auto">
+          <p className="text-[1.05rem] wrap-break-word leading-8 text-black font-normal">
           {leaveDetails?.description}
           </p>
         </div>
         <div className="w-full flex justify-end items-center gap-6 mt-8">
-          <button onClick={handleUpdateLeaveStatus} value={"Rejected"} name='status' className="w-33.25 h-10.25 rounded-[0.875rem] bg-[#f58484] text-[1rem] font-medium text-black transition-all hover:bg-[#ef7575] active:bg-[#e76767]">
+          <button onClick={handleLeaveDelete} value={"Rejected"} name='status' className="w-33.25 h-10.25 rounded-[0.875rem] bg-[#f58484] text-[1rem] font-medium text-black transition-all hover:bg-[#ef7575] active:bg-[#e76767]">
             Delete
           </button>
           <button onClick={cb} className="w-33.25 h-10.25 rounded-[0.875rem] border border-[#d3d3d3] bg-[#fafafa] text-[1rem] font-medium text-black transition-all hover:bg-[#f2f2f2] active:bg-[#ebebeb]">
