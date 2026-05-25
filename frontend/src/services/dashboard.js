@@ -20,4 +20,34 @@ const getPendingLeave = async function(){
     return response
 }
 
-export { getTotalEmployees, getOnLeaveToday, getNewJoines, getPendingLeave }
+const getLastWeeksLeaves = async function(){
+    const response = await callApi("GET", "/admin/dashboard/last-week-leaves")
+    return response
+}
+
+const getMostEmployeeCountry = async function(){
+    const response = await callApi("GET", "/admin/dashboard/most-employees-country")
+    return response
+}
+
+const getTotalPayrollThisMonth = async function(){
+    const response = await callApi("GET", "/admin/dashboard/total-payroll")
+    return response
+}
+
+const getEmployeeGenderRatioPercent = async function(){
+    const response = await callApi("GET", "/admin/dashboard/employee-gender-ratio-percent")
+    return response
+}
+
+const getAverageEmployeeAge = async function(){
+    const response = await callApi("GET", "/admin/dashboard/average-employee-age")
+    return response
+}
+
+const getNewJoinesByMonth = async function(){
+    const response = await callApi("GET", "/admin/dashboard/new-joines-by-month")
+    return response
+}
+
+export { getTotalEmployees, getOnLeaveToday, getNewJoines, getPendingLeave, getLastWeeksLeaves, getMostEmployeeCountry, getTotalPayrollThisMonth, getEmployeeGenderRatioPercent, getAverageEmployeeAge, getNewJoinesByMonth }

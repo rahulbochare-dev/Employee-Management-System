@@ -5,9 +5,9 @@ import { getEmployeeGenderRatio, getLastWeeksLeaves, getNewJoinesThisMonth, getO
 const router = Router()
 
 router.route("/employee-gender-ratio").get(checkIsAdmin, getEmployeeGenderRatio)
-router.route("/pending-leave-applications").get(checkIsAdmin, getPendingLeaveApplications)
 router.route("/on-leave-today").get(checkIsAdmin, getOnLeaveToday)
 router.route("/new-joines").get(checkIsAdmin, getNewJoinesThisMonth)
+router.route("/pending-leave-applications").get(checkIsAdmin, getPendingLeaveApplications)
 router.route("/last-week-leaves").get(checkIsAdmin, getLastWeeksLeaves)
 router.route("/most-employees-country").get(checkIsAdmin, mostEmployeesFromCountry)
 router.route("/total-payroll").get(checkIsAdmin, totalPayrollThisMonth)

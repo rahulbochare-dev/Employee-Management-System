@@ -12,9 +12,10 @@ import { Form, Link, useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const { user } = useUserStore()
-  const { totalEmployees, onLeaveToday, newJoines, pendingLeave, getKPIData } = useDashboardStore()
+  const { totalEmployees, onLeaveToday, newJoines, pendingLeave, lastWeeksLeaves, mostEmployeeCountry, totalPayrollThisMonth, employeeGenderRatioPercent, averageEmployeeAge, newJoinesByMonth, getKPIData } = useDashboardStore()
   const navigate = useNavigate()
 
+  
   const [KPICardFirst, setKPICardFirst] = useState({
     mainCount: null ,
     icon2Count: null,
@@ -35,7 +36,7 @@ const Dashboard = () => {
     icon2Count: null,
     icon3Count: null
   })
-
+  
   useEffect(() => {
     if (!user) {
       navigate("/login")
@@ -46,7 +47,7 @@ const Dashboard = () => {
   
   useEffect(() => {
     if(!totalEmployees || !onLeaveToday || !newJoines || !pendingLeave) return
-
+    
     setKPICardFirst({
       mainCount: totalEmployees?.data[0]?.totalEmplyees[0]?.totalEmployees,
       icon2Count: totalEmployees?.data[0]?.genderTotal[1]?.total,
@@ -128,7 +129,7 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="w-full h-112 flex justify-between pr-8 pt-5">
-            <NewJoiningChart/>
+            <NewJoiningChart data={newJoinesByMonth} thisMonthJoines={newJoines}/>
             <LeaveChart/>
           </div>
           <div className="w-full h-36 flex items-baseline-last">

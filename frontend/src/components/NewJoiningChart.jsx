@@ -1,22 +1,22 @@
 import React from 'react'
 import { ResponsiveContainer, BarChart, CartesianGrid, XAxis, YAxis, Bar, Tooltip } from 'recharts'
 
-const data = [
-    { month: 'Jan', joinings: 2 },
-    { month: 'Feb', joinings: 2 },
-    { month: 'Mar', joinings: 12 },
-    { month: 'Apr', joinings: 6 },
-    { month: 'May', joinings: 1 },
-    { month: 'June', joinings: 23 },
-    { month: 'July', joinings: 1 },
-    { month: 'Aug', joinings: 21 },
-    { month: 'Sep', joinings: 20 },
-    { month: 'Oct', joinings: 22 },
-    { month: 'Nov', joinings: 11 },
-    { month: 'Dec', joinings: 20 },
-];
+// const data = [
+//     { month: 'Jan', joinings: 2 },
+//     { month: 'Feb', joinings: 2 },
+//     { month: 'Mar', joinings: 12 },
+//     { month: 'Apr', joinings: 6 },
+//     { month: 'May', joinings: 1 },
+//     { month: 'June', joinings: 23 },
+//     { month: 'July', joinings: 1 },
+//     { month: 'Aug', joinings: 21 },
+//     { month: 'Sep', joinings: 20 },
+//     { month: 'Oct', joinings: 22 },
+//     { month: 'Nov', joinings: 11 },
+//     { month: 'Dec', joinings: 20 },
+// ];
 
-const NewJoiningChart = () => {
+const NewJoiningChart = ({data, thisMonthJoines}) => {
     return (
         <div className='w-248 h-103.5 bg-white border border-[#b6b6b6] rounded-[0.9375rem]'>
             <div className="w-full h-12 flex justify-between pl-6.25 pr-6.25 pt-3.5">
@@ -24,16 +24,16 @@ const NewJoiningChart = () => {
                 <h2 className='text-[1.3rem] text-[#707070]'>Last 12 months</h2>
             </div>
             <div className='w-full h-fit'>
-                <h1 className="text-[2.8125rem] font-medium pl-6.25">54
+                <h1 className="text-[2.8125rem] font-medium pl-6.25">{thisMonthJoines?.data[0]?.totalNewJoines[0]?.totalNewJoines  || "N/A"}
                     <span className='text-[1.25rem] text-[#707070] font-normal'> this month</span>
-                    <span className='font-light'> / </span>35.2
+                    <span className='font-light'> / </span>{data?.averageJoiningsPerMonth || "N/A"}
                     <span className='text-[1.25rem] text-[#707070] font-normal'> Avg/month</span>
                 </h1>
             </div>
             <div className="w-full h-74 rounded-b-[0.9375rem] pt-5">
                 <ResponsiveContainer width='100%' height='100%'>
                     <BarChart
-                     data={data}
+                     data={data?.newJoinesByMonthFormatted}
                      layout='horizontal'
                      margin={{ top: 5, right: 30, left: 0, bottom: 5 }}
                     >
