@@ -252,4 +252,75 @@ const averageEmployeeAge = asyncHandler( async (req, res) => {
     res.status(200).json(new ApiResponse(200, averageEmployeesAge, "Employee gender ratio percent fetched successfully"))
 })
 
-export { getEmployeeGenderRatio, getPendingLeaveApplications, getOnLeaveToday, getNewJoinesThisMonth, getLastWeeksLeaves, mostEmployeesFromCountry, totalPayrollThisMonth, employeeGenderRatio, averageEmployeeAge }
+const newJoinesByMonth = asyncHandler( async (req, res) => {
+    const last12MonthsDate = new Date()
+    last12MonthsDate.setMonth(last12MonthsDate.getMonth() - 11)
+    
+    const last12Months = []
+    const currentDate = new Date()
+    
+    for (let i = 11; i >= 0; i--) {
+        const date = new Date(
+            currentDate.getFullYear(),
+            currentDate.getMonth() - i,
+            1
+        )
+
+        last12Months.push({
+            month: date.toLocaleString("default", {
+                month: "short"
+            }),
+            year: date.getFullYear(),
+            monthNumber: date.getMonth() + 1
+        })
+    }
+    
+    const joinesByMonth = await Employee.aggregate([
+        {
+            $match: {
+                joinedAt: {
+                    $gte: last12MonthsDate
+                }
+            }
+        },
+        {
+            $group: {
+                _id: {
+                    month: { $month: "$joinedAt" },
+                    year: { $year: "$joinedAt" }
+                },
+                totalJoines: {
+                    $sum: 1
+                }
+            }
+        },
+        {
+            $sort: {
+                "_id.year": 1,
+                "_id.month": 1
+            }
+        }
+    ])
+
+    const newJoinesByMonthFormatted = last12Months.map((monthData) => {
+        const foundMonth = joinesByMonth.find(
+            (value) => value._id.month === monthData.monthNumber &&
+            value._id.year === monthData.year
+        )
+
+        return {
+            month: monthData.month,
+            joinings: foundMonth? foundMonth.totalJoines : 0
+        }
+    })
+
+    const totalJoinings = newJoinesByMonthFormatted.reduce(
+        (acc, value) => acc + value.joinings, 0
+    )
+    
+    const averageJoiningsPerMonth = Math.round(totalJoinings / newJoinesByMonthFormatted.length)
+    
+    res.status(200).json(new ApiResponse(200, {newJoinesByMonthFormatted, averageJoiningsPerMonth}, "New joines by month fetched successfully"))
+})
+
+export { getEmployeeGenderRatio, getPendingLeaveApplications, getOnLeaveToday, getNewJoinesThisMonth, getLastWeeksLeaves, mostEmployeesFromCountry, totalPayrollThisMonth, employeeGenderRatio, averageEmployeeAge,newJoinesByMonth }
