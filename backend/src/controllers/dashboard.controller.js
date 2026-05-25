@@ -201,4 +201,23 @@ const totalPayrollThisMonth = asyncHandler( async (req, res) => {
     res.status(200).json(new ApiResponse(200, {totalPayrollThisMonth, salaryCurrency}, "Total payroll fetched successfully"))
 })
 
-export { getEmployeeGenderRatio, getPendingLeaveApplications, getOnLeaveToday, getNewJoinesThisMonth, getLastWeeksLeaves, mostEmployeesFromCountry, totalPayrollThisMonth }
+const employeeGenderRatio = asyncHandler( async (req, res) => {
+    const genderRatio = await Employee.aggregate([
+        {
+            $group: {
+                _id: "$gender",
+                genderTotal: {
+                    $sum: 1
+                }
+            }
+        }
+    ])
+
+    const totalEmployeesCount = await Employee.countDocuments()
+    const malePercent = Math.round(genderRatio[0].genderTotal / totalEmployeesCount * 100)
+    const femalePercent = Math.round(genderRatio[1].genderTotal / totalEmployeesCount * 100)
+
+    res.status(200).json(new ApiResponse(200, { "malePercent": malePercent, "femalePercent": femalePercent }))
+})
+
+export { getEmployeeGenderRatio, getPendingLeaveApplications, getOnLeaveToday, getNewJoinesThisMonth, getLastWeeksLeaves, mostEmployeesFromCountry, totalPayrollThisMonth, employeeGenderRatio }

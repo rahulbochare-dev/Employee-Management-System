@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { checkIsAdmin } from "../middlewares/checkAdmin.middleware.js";
-import { getEmployeeGenderRatio, getLastWeeksLeaves, getNewJoinesThisMonth, getOnLeaveToday, getPendingLeaveApplications, mostEmployeesFromCountry, totalPayrollThisMonth } from "../controllers/dashboard.controller.js";
+import { getEmployeeGenderRatio, getLastWeeksLeaves, getNewJoinesThisMonth, getOnLeaveToday, getPendingLeaveApplications, mostEmployeesFromCountry, totalPayrollThisMonth, employeeGenderRatio } from "../controllers/dashboard.controller.js";
 
 const router = Router()
 
@@ -11,5 +11,6 @@ router.route("/new-joines").get(checkIsAdmin, getNewJoinesThisMonth)
 router.route("/last-week-leaves").get(checkIsAdmin, getLastWeeksLeaves)
 router.route("/most-employees-country").get(checkIsAdmin, mostEmployeesFromCountry)
 router.route("/total-payroll").get(checkIsAdmin, totalPayrollThisMonth)
+router.route("/employee-gender-ratio-percent").get(checkIsAdmin, employeeGenderRatio)
 
 export default router
