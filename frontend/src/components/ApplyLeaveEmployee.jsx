@@ -7,7 +7,7 @@ import { useEmployeeLeaveStore } from '../store/employeeLeaveStore.js'
 import toast, { Toaster } from 'react-hot-toast'
 
 const LeaveDetails = ({ leaveDetails, cb }) => {
-    const {get, applyLeave} = useEmployeeLeaveStore()
+    const {getMyLeaves, applyLeave} = useEmployeeLeaveStore()
 
     const [leaveData, setLeaveData] = useState({
         leaveType: "",
@@ -27,13 +27,11 @@ const LeaveDetails = ({ leaveDetails, cb }) => {
         try {
             const response = await applyLeave(leaveData)
             if(response.success){
-                toast.success(response.message)
                 cb()
-            } else {
-                toast.error(response.message)
+                await getMyLeaves()
             }
         } catch (error) {
-            toast.error("Something went wong!")
+            throw error
         }
     }
     
