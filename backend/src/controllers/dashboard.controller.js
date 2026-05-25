@@ -126,23 +126,30 @@ const getLastWeeksLeaves = asyncHandler( async (req, res) => {
     date.setDate(date.getDate() - 7)
     date.setHours(0, 0, 0, 0)
 
-    const leastWeekLeaves = await Leave.aggregate([{
-        $match: {
-            status: "Approved"
-        },
-        $match: {
-            from: {
-                $gte: date,
-                $lte: new Date()
+    const leastWeekLeaves = await Leave.aggregate([
+        {
+            $match: {
+                status: "Approved"
             }
         },
-        $group: {
-            _id: "$from",
-            total: {
-                $sum: 1
+        {
+            $match: {
+                from: {
+                    $gte: date,
+                    $lte: new Date()
+                }
+            }
+        },
+        {
+            $group: {
+                _id: "$from",
+                total: {
+                    $sum: 1
+                }
             }
         }
-    }])
+    ])
+
 
     res.status(200).json(new ApiResponse(200, leastWeekLeaves, "Least week leaves fetched successfully"))
 })
