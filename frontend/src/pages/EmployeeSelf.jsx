@@ -22,13 +22,12 @@ const EmployeeSelf = () => {
         setShowLeaveDetails(!showLeaveDetails)
         try {
             const response = await getLeaveDetails(leaveId)
-            console.log(response)
         } catch (error) {
             throw error
         }
     }
     
-    console.log(myLeaveDetails)
+    
     useEffect(() => {
         const callApi = async () => {
             const response = await getMyLeaves()
@@ -36,12 +35,10 @@ const EmployeeSelf = () => {
         callApi()
     }, [])
 
-    console.log(myLeaves)
-
     return (
         <div className='w-screen h-screen bg-[#f9f9f9] px-5 relative'>
             {showLeaveDetails &&<div className="w-screen h-screen flex justify-center items-center bg-black/25 backdrop-blur-md fixed inset-0">
-                {showLeaveDetails && <LeaveDetailsEmployee cb={handleGetLeaveDetails}/>}
+                {showLeaveDetails && <LeaveDetailsEmployee leaveDetails={myLeaveDetails} cb={handleGetLeaveDetails}/>}
             </div>}
             {showApplyLeave &&<div className="w-screen h-screen flex justify-center items-center bg-black/25 backdrop-blur-md fixed inset-0">
                 {showApplyLeave && <ApplyLeaveEmployee cb={handleShowApplyLeave}/>}

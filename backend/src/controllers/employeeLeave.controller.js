@@ -38,7 +38,23 @@ const getLeaveDetails = asyncHandler( async (req, res) => {
 
     const leaveInDB = await Leave.find({_id: id}).populate("employee", "avatar firstName lastName empID jobTitle workMode email")
 
+    if(!leaveInDB){
+        throw new ApiError(404, "Leave Details not found!")
+    }
+
     res.status(200).json(new ApiResponse(200, {leave: leaveInDB}, "Leaves details fetched successfully"))
 })
 
-export { addLeave, getLeaves, getLeaveDetails }
+const deleteLeave = asyncHandler( async (req, res) => {
+    const id = req.query.id
+
+    const deletedLeave = await Leave.deleteOne({_id: id})
+
+    if(!deletedLeave){
+        throw new ApiError(404, "Leave cannot be deleted!")
+    }
+
+    res.status(200).json(new ApiResponse(200, {leave: deletedLeave}, "Leave deleted successfully"))
+})
+
+export { addLeave, getLeaves, getLeaveDetails, deleteLeave }

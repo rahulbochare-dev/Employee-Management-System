@@ -21,7 +21,7 @@ const useEmployeeLeaveStore = create((set) => ({
     getLeaveDetails: async (id) => {
         try {
             const response = await getLeaveDetails(id)
-            set({ myLeaveDetails: response.data.data.leaves, loading: false })
+            set({ myLeaveDetails: response.data.data.leave[0], loading: false })
             return response.data
         } catch (err) {
             set({error: err, loading: false})
