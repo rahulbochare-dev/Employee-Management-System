@@ -7,10 +7,13 @@ import ApplyLeaveEmployee from "../components/ApplyLeaveEmployee.jsx";
 import LeaveDetailsEmployee from "../components/LeaveDetailsEmployee.jsx";
 import { useEmployeeLeaveStore } from "../store/employeeLeaveStore.js";
 import { useEmployeeStore } from "../store/employeeStore.js";
+import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from 'react-hot-toast';
 
 const EmployeeSelf = () => {
+    const navigate = useNavigate()
     const {myLeaveDetails, myLeaves, getMyLeaves, getLeaveDetails} = useEmployeeLeaveStore()
-    const {employee, getCurrentEmployee} = useEmployeeStore()
+    const {employee, getCurrentEmployee, logout} = useEmployeeStore()
     const [showApplyLeave, setShowApplyLeave] = useState(false)
     const [showLeaveDetails, setShowLeaveDetails] = useState(false)
 
@@ -26,6 +29,21 @@ const EmployeeSelf = () => {
             throw error
         }
     }
+
+    const handleLogout = async () => {
+        try {
+            const response = await logout()
+            console.log(response)
+            if(response.success){
+                toast.success(response.message)
+                navigate("/login-employee")
+            } else {
+                toast.error(response.message)
+            }
+        } catch (error) {
+            toast.error("Something went wrong!")
+        }
+    }
     
     useEffect(() => {
         const callApi = async () => {
@@ -37,6 +55,7 @@ const EmployeeSelf = () => {
 
     return (
         <div className='w-screen h-screen bg-[#f9f9f9] px-5 relative'>
+            <Toaster position='bottom-center'/>
             {showLeaveDetails &&<div className="w-screen h-screen flex justify-center items-center bg-black/25 backdrop-blur-md fixed inset-0">
                 {showLeaveDetails && <LeaveDetailsEmployee leaveDetails={myLeaveDetails} cb={handleGetLeaveDetails}/>}
             </div>}
@@ -50,7 +69,7 @@ const EmployeeSelf = () => {
             <div className="w-full h-[90%] bg-white border border-[#b6b6b6] rounded-2xl">
                 <div className="w-full h-22 flex justify-between items-center px-10">
                     <h1 className='text-3xl font-medium'>Employee Details</h1>
-                    <Button title={"Logout"} icon={"/src/assets/logout.svg"} />
+                    <Button onClick={handleLogout} title={"Logout"} icon={"/src/assets/logout.svg"} />
                 </div>
                 <Seperator width='w-450' />
                 <div className="w-full h-[89.6%] flex">
