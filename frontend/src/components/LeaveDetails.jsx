@@ -59,8 +59,18 @@ const LeaveDetails = ({leaveDetails, cb}) => {
             <h3 className="text-[1.25rem] text-[#666666] font-medium">
               Leave Type:
             </h3>
-            <div className="w-fit px-4 h-8 rounded-xl bg-[#cfc8ff] flex justify-center items-center mt-2">
-              <h2 className="text-[0.875rem] text-[#5446d8] font-medium">
+            <div className={`w-fit px-4 h-8 rounded-xl flex justify-center items-center mt-2
+              ${leaveDetails?.leaveType === "Casual"
+              ? "bg-indigo-200"
+              : leaveDetails?.leaveType === "Sick"
+              ? "bg-orange-200"
+              : "bg-[#929292]"}`}>
+              <h2 className={
+                leaveDetails?.leaveType === "Casual"
+                ? "text-indigo-500 font-medium"
+                : leaveDetails?.leaveType === "Sick"
+                ? "text-orange-500 font-medium"
+                : "text-[#929292] font-medium"}>
               {leaveDetails?.leaveType}
               </h2>
             </div>
@@ -69,8 +79,22 @@ const LeaveDetails = ({leaveDetails, cb}) => {
             <h3 className="text-[1.25rem] text-[#666666] font-medium">
               Status:
             </h3>
-            <div className="w-fit px-4 h-8 rounded-xl bg-[#efe6a8] flex justify-center items-center mt-2">
-              <h2 className="text-[0.875rem] text-[#a68500] font-medium">
+            <div className={`w-fit px-4 h-8 rounded-xl flex justify-center items-center mt-2
+              ${leaveDetails?.status === "Pending"
+              ? "bg-yellow-200"
+              : leaveDetails?.status === "Rejected"
+              ? "bg-red-200"
+              : leaveDetails?.status === "Approved"
+              ? "bg-green-200"
+              : "bg-[#929292]"}`}>
+              <h2 className={
+                  leaveDetails?.status === "Pending"
+                  ? "text-yellow-500 font-medium"
+                  : leaveDetails?.status === "Rejected"
+                  ? "text-red-500 font-medium"
+                  : leaveDetails?.status === "Approved"
+                  ? "text-green-500 font-medium"
+                  : "text-[#929292] font-medium"}>
               {leaveDetails?.status}
               </h2>
             </div>
