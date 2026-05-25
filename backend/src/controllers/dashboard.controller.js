@@ -147,4 +147,32 @@ const getLastWeeksLeaves = asyncHandler( async (req, res) => {
     res.status(200).json(new ApiResponse(200, leastWeekLeaves, "Least week leaves fetched successfully"))
 })
 
-export { getEmployeeGenderRatio, getPendingLeaveApplications, getOnLeaveToday, getNewJoinesThisMonth, getLastWeeksLeaves }
+const mostEmployeesFromCountry = asyncHandler( async (req, res) => {
+    const countryEmployee = await Employee.aggregate([
+        {
+            $group: {
+                _id: "$country",
+                totalEmployees: {
+                    $sum: 1
+                }
+            }
+        },
+        {
+            $sort: {
+                totalEmployees: -1
+            }
+        },
+        {
+            $limit: 1
+        }
+    ])
+
+    const mostEmployeeCountry = countryEmployee[0]._id
+    const mostEmployeeCountryNo = countryEmployee[0].totalEmployees
+    const totalEmployees = await Employee.countDocuments()
+    const mostEmployeeCountryPercent = Math.round((mostEmployeeCountryNo / totalEmployees) * 100)
+
+    res.status(200).json(new ApiResponse(200, {mostEmployeeCountry, mostEmployeeCountryPercent}, "Employee percent by country fetched successfully"))
+})
+
+export { getEmployeeGenderRatio, getPendingLeaveApplications, getOnLeaveToday, getNewJoinesThisMonth, getLastWeeksLeaves, mostEmployeesFromCountry }
