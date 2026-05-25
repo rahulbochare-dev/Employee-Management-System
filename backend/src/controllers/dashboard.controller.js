@@ -217,7 +217,39 @@ const employeeGenderRatio = asyncHandler( async (req, res) => {
     const malePercent = Math.round(genderRatio[0].genderTotal / totalEmployeesCount * 100)
     const femalePercent = Math.round(genderRatio[1].genderTotal / totalEmployeesCount * 100)
 
-    res.status(200).json(new ApiResponse(200, { "malePercent": malePercent, "femalePercent": femalePercent }))
+    res.status(200).json(new ApiResponse(200, { "malePercent": malePercent, "femalePercent": femalePercent }, "Employee gender ratio percent fetched successfully"))
 })
 
-export { getEmployeeGenderRatio, getPendingLeaveApplications, getOnLeaveToday, getNewJoinesThisMonth, getLastWeeksLeaves, mostEmployeesFromCountry, totalPayrollThisMonth, employeeGenderRatio }
+const averageEmployeeAge = asyncHandler( async (req, res) => {
+    const averageEmployeesAge = await Employee.aggregate([
+        {
+            $project: {
+                age: {
+                    $subtract: [
+                        { $year: "$$NOW" },
+                        { $year: "$dateOfBirth" }
+                    ]
+                }
+            }
+        },
+        {
+            $group: {
+                _id: null,
+                averageAge: {
+                    $avg: "$age"
+                }
+            }
+        },
+        {
+            $project: {
+                averageAge: {
+                    $round: [ "$averageAge", 0 ]
+                }
+            }
+        }
+    ])
+
+    res.status(200).json(new ApiResponse(200, averageEmployeesAge, "Employee gender ratio percent fetched successfully"))
+})
+
+export { getEmployeeGenderRatio, getPendingLeaveApplications, getOnLeaveToday, getNewJoinesThisMonth, getLastWeeksLeaves, mostEmployeesFromCountry, totalPayrollThisMonth, employeeGenderRatio, averageEmployeeAge }
