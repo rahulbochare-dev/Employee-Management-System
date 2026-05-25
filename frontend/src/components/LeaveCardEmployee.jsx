@@ -9,7 +9,14 @@ const LeaveCardEmployee = ({ leave, cb }) => {
         <div className="w-[78%] h-[75%] flex flex-col">
           <h2 className="text-lg font-semibold">{leave?.employee?.firstName} {leave?.employee?.lastName}</h2>
           <h2 className="text-sm text-[#929292] font-medium">Status: <span 
-          className="text-sm text-[#929292] font-medium">{leave?.status}</span></h2>
+          className={
+            leave?.status === "Pending"
+              ? "text-yellow-500"
+              : leave?.status === "Rejected"
+              ? "text-red-500"
+              : leave?.status === "Approved"
+              ? "text-green-500"
+              : "text-[#929292]"}>{leave?.status}</span></h2>
         </div>
         <button onClick={(e) => (cb(e, leave?._id))} className="w-8.5 h-8.5 rounded-full bg-[#F8F8F8] flex justify-center items-center shrink-0 transition-all hover:bg-[#f0f0f0] active:bg-[#dcdcdc]">
           <img
@@ -59,7 +66,7 @@ const LeaveCardEmployee = ({ leave, cb }) => {
           </h3>
           <h2 className="text-[14px] text-black font-medium mt-2 leading-none">
           {
-              new Date(leave?.from).toLocaleDateString("en-GB", {
+              new Date(leave?.to).toLocaleDateString("en-GB", {
                 day: "numeric",
                 month: "short",
                 year: "numeric"
