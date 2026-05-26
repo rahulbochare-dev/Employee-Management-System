@@ -130,10 +130,8 @@ const getLastWeeksLeaves = asyncHandler( async (req, res) => {
         {
             $match: {
                 status: "Approved",
-                from: {
-                    $gte: date,
-                    $lte: new Date()
-                }
+                from: { $lte: new Date() },
+                to: {$gte: date},
             }
         },
         {
@@ -141,7 +139,8 @@ const getLastWeeksLeaves = asyncHandler( async (req, res) => {
                 _id: {
                     $dateToString: {
                         format: "%Y-%m-%d",
-                        date: "$from"
+                        date: "$from",
+                        timezone: "UTC"
                     }
                 },
                 total: {
@@ -150,6 +149,8 @@ const getLastWeeksLeaves = asyncHandler( async (req, res) => {
             }
         }
     ])
+
+    console.log(leastWeekLeaves)
 
     const last7Days = []
     const currentDate = new Date()
@@ -179,7 +180,13 @@ const getLastWeeksLeaves = asyncHandler( async (req, res) => {
         }
     })
 
-    res.status(200).json(new ApiResponse(200, lastWeekLeavesformatted, "Least week leaves fetched successfully"))
+    const totalLeavesPastWeek = lastWeekLeavesformatted.reduce(
+        (acc, value) => acc + value.leaves, 0
+    )
+
+    const averageLeavesPerDay = Number((totalLeavesPastWeek / 7).toFixed(1))
+
+    res.status(200).json(new ApiResponse(200, {lastWeekLeavesformatted, totalLeavesPastWeek, averageLeavesPerDay}, "Least week leaves fetched successfully"))
 })
 
 const mostEmployeesFromCountry = asyncHandler( async (req, res) => {
