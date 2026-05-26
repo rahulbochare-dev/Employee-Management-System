@@ -6,6 +6,7 @@ import KPICard from '../components/KPICard.jsx'
 import NewJoiningChart from '../components/NewJoiningChart.jsx'
 import LeaveChart from '../components/LeaveChart.jsx'
 import InsightCard from '../components/InsightCard.jsx'
+import Seperator from '../components/Seperator.jsx'
 import { useUserStore } from '../store/userStore.js'
 import { useDashboardStore } from '../store/dashboardStore.js'
 import { Form, Link, useNavigate } from "react-router-dom";
@@ -38,10 +39,10 @@ const Dashboard = () => {
   })
   
   useEffect(() => {
-    if (!user) {
-      navigate("/login")
-      return
-    }
+    // if (!user) {
+    //   navigate("/login")
+    //   return
+    // }
     getKPIData()
   }, [user])
   
@@ -93,20 +94,24 @@ const Dashboard = () => {
   console.log(newJoinesByMonth)  
   return (
     <>
-      {user && <div className="w-screen h-screen flex bg-[#f9f9f9]">
+      <div className="w-full min-h-dvh flex flex-col lg:flex-row bg-[#f9f9f9]">
         <div className="w-87.75 h-screen p-4">
           <Sidebar />
         </div>
-        <div className="w-392.75 h-screen">
-          <div className="w-full h-22 flex justify-between items-center pr-6 border-b border-[#b6b6b6]">
-            <WelcomeText name={user?.firstName}/>
+        <div className="w-full lg:flex-1 min-h-dvh px-3 sm:px-5 lg:px-0">
+        <div className="w-full min-h-22 flex flex-col border-b border-[#ababab] sm:flex-row justify-between sm:items-center pr-0 lg:pr-6 py-4 gap-3">
+            <div className='w-fit h-fit'>
+              <WelcomeText name={user?.firstName}/>
+            </div>
+            <div className="hidden lg:block w-fit h-fit">
             <DateTime/>
+            </div>
           </div>
-          <div className="w-full h-64 ">
-            <div className="w-full h-15.25  flex items-baseline-last">
+          <div className="w-full min-h-64 h-fit pb-4">
+            <div className="w-full h-15.25 flex items-center">
               <h2 className="text-[1.875rem] font-semibold">Dashboard</h2>
             </div>
-            <div className="w-full h-48.25 flex items-center gap-12">
+            <div className="w-full flex flex-wrap justify-center lg:justify-start items-center gap-4 sm:gap-6 lg:gap-12">
               <KPICard
                 title={"Total Employees"}
                 mainIcon={"/src/assets/employee-dark.svg"}
@@ -149,12 +154,42 @@ const Dashboard = () => {
                 icon3Text={"Casual"}/>
             </div>
           </div>
-          <div className="w-full h-112 flex justify-between pr-8 pt-5">
+          <div className="w-full 
+                min-h-112 
+                flex 
+                flex-col 
+                2xl:flex-row 
+                justify-between 
+                items-center 
+                2xl:items-start 
+                gap-6 
+                lg:gap-8 
+                pr-0 
+                lg:pr-8 
+                ">
             <NewJoiningChart data={newJoinesByMonth} thisMonthJoines={newJoines}/>
             <LeaveChart data={lastWeeksLeaves?.data}/>
           </div>
-          <div className="w-full h-36 flex items-baseline-last">
-            <div className="w-384 h-[90%] bg-white border border-[#b6b6b6] rounded-2xl flex justify-evenly items-center">
+          <div className="mt-6 md:mt-3 lg:mt-0 w-full min-h-35 flex lg:min-h-36">
+            <div className="w-full 
+                    2xl:w-384 
+                    min-h-[90%] 
+                    bg-white 
+                    border border-[#b6b6b6] 
+                    rounded-2xl 
+                    flex 
+                    flex-wrap 
+                    justify-center 
+                    sm:justify-center 
+                    lg:justify-evenly 
+                    items-center 
+                    gap-4 
+                    sm:gap-5 
+                    lg:gap-4 
+                    px-3 
+                    sm:px-4 
+                    lg:px-2 
+                    py-4">
               <InsightCard
                 title={"Total Payroll this Month"}
                 icon={"/src/assets/dollar.svg"}
@@ -182,7 +217,7 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-      </div>}
+      </div>
     </>
   )
 }

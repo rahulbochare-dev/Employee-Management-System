@@ -11,7 +11,7 @@ import {
 
 const NewJoiningChart = ({ data, thisMonthJoines }) => {
     return (
-        <div className='w-full xl:w-248 h-[26rem] sm:h-[28rem] lg:h-103.5 bg-white border border-[#b6b6b6] rounded-[0.9375rem]'>
+        <div className='w-full xl:w-248 h-104 sm:h-[28rem] lg:h-103.5 bg-white border border-[#b6b6b6] rounded-[0.9375rem]'>
             
             <div className="w-full min-h-12 flex flex-col sm:flex-row justify-between sm:items-center px-4 sm:px-6.25 pt-3.5 gap-1">
                 <h2 className='text-lg sm:text-xl lg:text-[1.375rem] font-semibold'>
