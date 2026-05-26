@@ -123,17 +123,13 @@ const getNewJoinesThisMonth = asyncHandler(async (req, res) => {
 
 const getLastWeeksLeaves = asyncHandler( async (req, res) => {
     const date = new Date()
-    date.setDate(date.getDate() - 7)
+    date.setDate(date.getDate() - 6)
     date.setHours(0, 0, 0, 0)
 
     const leastWeekLeaves = await Leave.aggregate([
         {
             $match: {
-                status: "Approved"
-            }
-        },
-        {
-            $match: {
+                status: "Approved",
                 from: {
                     $gte: date,
                     $lte: new Date()
@@ -142,7 +138,12 @@ const getLastWeeksLeaves = asyncHandler( async (req, res) => {
         },
         {
             $group: {
-                _id: "$from",
+                _id: {
+                    $dateToString: {
+                        format: "%Y-%m-%d",
+                        date: "$from"
+                    }
+                },
                 total: {
                     $sum: 1
                 }
@@ -150,8 +151,35 @@ const getLastWeeksLeaves = asyncHandler( async (req, res) => {
         }
     ])
 
+    const last7Days = []
+    const currentDate = new Date()
 
-    res.status(200).json(new ApiResponse(200, leastWeekLeaves, "Least week leaves fetched successfully"))
+    for (let i = 6; i >= 0; i--) {
+        const date = new Date()
+
+        date.setDate(currentDate.getDate() - i)
+
+        last7Days.push({
+            fullDate: date.toISOString().split("T")[0],
+
+            day: date.toLocaleString("default", {
+                weekday: "short"
+            })
+        })
+    }
+
+    const lastWeekLeavesformatted = last7Days.map((dayData) => {
+        const foundDay = leastWeekLeaves.find(
+            (value) => value._id === dayData.fullDate
+        )
+
+        return {
+            day: dayData.day,
+            leaves: foundDay ? foundDay.total : 0
+        }
+    })
+
+    res.status(200).json(new ApiResponse(200, lastWeekLeavesformatted, "Least week leaves fetched successfully"))
 })
 
 const mostEmployeesFromCountry = asyncHandler( async (req, res) => {
