@@ -28,29 +28,31 @@ const Sidebar = () => {
   }
 
   return (
-    <div className='p-6 w-78 h-230 bg-white border border-[#b6b6b6] rounded-[0.9375rem] flex flex-col justify-between'>
+    <div className='p-4 sm:p-5 lg:p-6 w-full sm:w-80 md:w-72 lg:w-78 min-h-[97vh] bg-white border border-[#b6b6b6] rounded-[0.9375rem] flex flex-col justify-between overflow-hidden'>
       <Toaster position='bottom-center'/>
-      <div>
-        <div className='w-full h-10 mb-6 bg-gray-200'></div>
+      <div className='flex flex-col items-center lg:items-start'>
+        <div className='w-full h-10 mb-6 bg-gray-200 rounded-md'></div>
         <Seperator width={'w-66'} />
-        <h3 className='text-[0.80rem] text-[#707070] font-medium mb-3 mt-5'>Manage</h3>
-        <SidebarButton
-          name={"Dashboard"}
-          to={"/admin/dashboard"}
-          iconDark={"/src/assets/dashboard-dark.svg"}
-          iconLight={"/src/assets/dashboard-light.svg"}/>
-        <SidebarButton
-          name={"Employees"}
-          to={"/admin/employees"}
-          iconDark={"/src/assets/employee-dark.svg"}
-          iconLight={"/src/assets/employee-light.svg"}/>
-        <SidebarButton
-          name={"Leaves"}
-          to={"/admin/leaves"}
-          iconDark={"/src/assets/leave-dark.svg"}
-          iconLight={"/src/assets/leave-light.svg"}/>
+        <h3 className='text-[0.80rem] text-[#707070] font-medium mb-3 mt-5 self-start'>Manage</h3>
+        <div className='w-full flex flex-col items-center lg:items-start'>
+          <SidebarButton
+            name={"Dashboard"}
+            to={"/admin/dashboard"}
+            iconDark={"/src/assets/dashboard-dark.svg"}
+            iconLight={"/src/assets/dashboard-light.svg"}/>
+          <SidebarButton
+            name={"Employees"}
+            to={"/admin/employees"}
+            iconDark={"/src/assets/employee-dark.svg"}
+            iconLight={"/src/assets/employee-light.svg"}/>
+          <SidebarButton
+            name={"Leaves"}
+            to={"/admin/leaves"}
+            iconDark={"/src/assets/leave-dark.svg"}
+            iconLight={"/src/assets/leave-light.svg"}/>
+        </div>
       </div>
-      <div className="w-full h-30 flex flex-col">
+      <div className="w-full flex flex-col items-center lg:items-start mt-4">
         <Seperator/>
         <Profile
           firstName={user?.firstName}
