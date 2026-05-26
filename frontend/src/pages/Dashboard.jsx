@@ -89,7 +89,8 @@ const Dashboard = () => {
     value1: "Average age",
     value2: averageEmployeeAge?.averageAge
   }
-  
+  console.log(lastWeeksLeaves?.data.lastWeekLeavesformatted)  
+  console.log(newJoinesByMonth)  
   return (
     <>
       {user && <div className="w-screen h-screen flex bg-[#f9f9f9]">
@@ -150,7 +151,7 @@ const Dashboard = () => {
           </div>
           <div className="w-full h-112 flex justify-between pr-8 pt-5">
             <NewJoiningChart data={newJoinesByMonth} thisMonthJoines={newJoines}/>
-            <LeaveChart/>
+            <LeaveChart data={lastWeeksLeaves?.data}/>
           </div>
           <div className="w-full h-36 flex items-baseline-last">
             <div className="w-384 h-[90%] bg-white border border-[#b6b6b6] rounded-2xl flex justify-evenly items-center">

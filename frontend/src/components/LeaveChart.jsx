@@ -1,16 +1,8 @@
 import React from 'react'
 import { BarChart, CartesianGrid, ResponsiveContainer, XAxis, YAxis, Bar, Tooltip } from 'recharts'
 
-const data = [
-    { day: 'Mon', count: 28 },
-    { day: 'Tue', count: 38 },
-    { day: 'Wed', count: 32 },
-    { day: 'Thu', count: 48 },
-    { day: 'Fri', count: 35 },
-    { day: 'Sat', count: 20 },
-];
-
-const LeaveChart = () => {
+const LeaveChart = ({data}) => {
+    console.log(data?.lastWeekLeavesformatted)
     return (
         <div className='w-128.5 h-103.5 bg-white border border-[#b6b6b6] rounded-[0.9375rem]'>
             <div className="w-full h-12 flex justify-between pl-6.25 pr-6.25 pt-3.5">
@@ -18,16 +10,16 @@ const LeaveChart = () => {
                 <h2 className='text-[1.3rem] text-[#707070]'>Last 7 Days</h2>
             </div>
             <div className='w-full h-fit'>
-                <h1 className="text-[2.8125rem] font-medium pl-6.25">39
+                <h1 className="text-[2.8125rem] font-medium pl-6.25">{data?.totalLeavesPastWeek}
                     <span className='text-[1.25rem] text-[#707070] font-normal'> Leaves</span>
-                    <span className='font-light'> / </span>5.57
+                    <span className='font-light'> / </span>{data?.averageLeavesPerDay}
                     <span className='text-[1.25rem] text-[#707070] font-normal'> Avg/day</span>
                 </h1>
             </div>
             <div className="w-full h-74 rounded-b-[0.9375rem] pt-1">
                 <ResponsiveContainer width="100%" height="100%">
                     <BarChart
-                        data={data}
+                        data={data?.lastWeekLeavesformatted}
                         layout="vertical"
                         margin={{ top: 5, right: 30, left: 10, bottom: 5 }}
                     >
@@ -42,7 +34,7 @@ const LeaveChart = () => {
                             width={60}
                         />
                         <Bar
-                            dataKey="count"
+                            dataKey="leaves"
                             fill="#9E6EFF"
                             radius={[0, 5, 5, 0]}
                             barSize={25}
