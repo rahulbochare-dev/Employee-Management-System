@@ -69,6 +69,26 @@ const Dashboard = () => {
       icon3Count: pendingLeave?.data[0]?.catagoryTotal[0]?.total
     })
   }, [totalEmployees, onLeaveToday, newJoines, pendingLeave])
+
+  const totalPayroll = {
+    value1: totalPayrollThisMonth?.totalPayrollThisMonth,
+    value2: totalPayrollThisMonth?.salaryCurrency
+  }
+
+  const employeeCountry = {
+    value1: mostEmployeeCountry?.mostEmployeeCountry,
+    value2: mostEmployeeCountry?.mostEmployeeCountryPercent
+  }
+
+  const genderRatioPercent = {
+    value1: employeeGenderRatioPercent?.malePercent,
+    value2: employeeGenderRatioPercent?.femalePercent
+  }
+
+  const averageAge = {
+    value1: "Average age",
+    value2: averageEmployeeAge?.averageAge
+  }
   
   return (
     <>
@@ -138,22 +158,26 @@ const Dashboard = () => {
                 title={"Total Payroll this Month"}
                 icon={"/src/assets/dollar.svg"}
                 iconBgColor={"bg-[#6464FF]/15 "}
-                data={"$10,32,398"}/>
+                data={totalPayroll}
+                cardType={"payroll"}/>
               <InsightCard
                 title={"Most employee from country"}
                 icon={"/src/assets/globe.svg"}
                 iconBgColor={"bg-[#A32AFF]/15 "}
-                data={"India - 48%"}/>
+                data={employeeCountry}
+                cardType={"employeeCountry"}/>
               <InsightCard
                 title={"Gender Ratio (Male/Female)"}
                 icon={"/src/assets/home-office.svg"}
                 iconBgColor={"bg-[#00B212]/15 "}
-                data={"35% / 65%"}/>
+                data={genderRatioPercent}
+                cardType={"genderRatioPercent"}/>
               <InsightCard
                 title={"Average Employee Age"}
                 icon={"/src/assets/cake.svg"}
                 iconBgColor={"bg-[#FF824B]/15 "}
-                data={"$10,32,398"}/>
+                data={averageAge}
+                cardType={"averageAge"}/>
             </div>
           </div>
         </div>
