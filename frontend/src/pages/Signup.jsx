@@ -63,14 +63,14 @@ const SignupAdmin = () => {
     }
 
   return (
-    <div className='w-screen h-screen flex flex-col justify-center items-center bg-[#f9f9f9]'>
+    <div className='w-screen min-h-screen flex flex-col justify-center items-center bg-[#f9f9f9] px-4 py-6 overflow-x-hidden'>
         <Toaster position='bottom-center'/>
-        <div className="bg-white w-2/5 h-4/5 rounded-3xl">
+        <div className="bg-white w-full sm:w-[95%] md:w-[90%] lg:w-[80%] xl:w-2/5 rounded-3xl py-4">
         <div className='w-full h-20 flex justify-center items-center'>
             <h1 className="text-4xl">Signup</h1>
         </div>
-        <form onSubmit={handleFormSubmit} className="w-full h-64 items-center justify-items-center">
-            <div className='w-full h-126 pt-5 grid grid-cols-3 justify-items-center items-center'>
+        <form onSubmit={handleFormSubmit} className="w-full items-center justify-items-center">
+            <div className='w-full pt-5 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 justify-items-center items-center gap-y-10 px-4'>
             <TextInput label={"First Name:"} placeholder={"First Name"}
                 onChange={(e) => (setFromData({ ...formData, firstName: e.target.value }))}/>
             <TextInput label={"Middle Name:"} placeholder={"Middle Name"}
@@ -96,9 +96,9 @@ const SignupAdmin = () => {
             <PasswordInput label={"Enter Admin Secret:"} placeholder={"Admin Secret"}
                 onChange={(e) => (setFromData({ ...formData, adminSecret: e.target.value }))}/>
             </div>
-            <div className="w-full h-36 flex justify-center items-center flex-col gap-5">
+            <div className="w-full flex justify-center items-center flex-col gap-5 py-8">
                 <Button width='w-64' title={"Signup"} icon={"/src/assets/login.svg"}/>
-                <h3>Already have an account? <Link to={"/login"} className='text-blue-500 cursor-pointer underline'>login</Link></h3>
+                <h3 className='text-center'>Already have an account? <Link to={"/login"} className='text-blue-500 cursor-pointer underline'>login</Link></h3>
             </div>
             
         </form>

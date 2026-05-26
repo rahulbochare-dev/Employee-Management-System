@@ -45,18 +45,18 @@ const LoginAdmin = () => {
     }
     
     return (
-        <div className='w-screen h-screen flex justify-center items-center bg-[#f9f9f9]'>
+        <div className='w-screen min-h-screen flex justify-center items-center bg-[#f9f9f9] px-4 py-6 overflow-x-hidden'>
             <Toaster position='bottom-center'/>
-            <div className="bg-white w-1/5 h-106 rounded-3xl">
+            <div className="bg-white w-full sm:w-[90%] md:w-[60%] lg:w-[40%] xl:w-1/5 rounded-3xl py-4">
                 <div className='w-full h-20 flex justify-center items-center'>
                     <h1 className="text-4xl">Login</h1>
                 </div>
-                <form onSubmit={handleFormSubmit} className="w-full h-123 flex flex-col gap-8 items-center pt-8">
+                <form onSubmit={handleFormSubmit} className="w-full flex flex-col gap-8 items-center pt-8 px-4">
                     <TextInput onChange={(e) => (setInputValue(e.target.value))} label={"Email or Username:"} placeholder={"Email"} />
                     <PasswordInput onChange={(e) => (setFromData({ ...formData, password: e.target.value }))} label={"Enter Password:"} placeholder={"Password"} />
-                    <div className="w-full h-26 flex justify-center items-center flex-col gap-5">
+                    <div className="w-full flex justify-center items-center flex-col gap-5 py-4">
                         <Button width='w-64' title={"Login"} icon={"/src/assets/login.svg"} />
-                        <h3>Don't have an account? <Link to={"/signup"} className='text-blue-500 cursor-pointer underline'>signup</Link></h3>
+                        <h3 className='text-center'>Don't have an account? <Link to={"/signup"} className='text-blue-500 cursor-pointer underline'>signup</Link></h3>
                     </div>
                 </form>
             </div>
