@@ -175,7 +175,7 @@ const Employees = () => {
           <h2 className="text-xl font-semibold">All Employees</h2>
         </div>
           <div className="w-full flex flex-col xl:flex-row gap-4 xl:gap-0 px-4 sm:px-7 py-4">
-            <div className="w-full px-1 xl:w-3/4 flex flex-wrap gap-4 sm:gap-6">
+            <div className="w-full px-1 justify-center xl:w-3/4 flex flex-wrap gap-4 sm:gap-6">
               <Search onChange={handleSearch} />
               <Dropdown
                 title={"Gender"}
