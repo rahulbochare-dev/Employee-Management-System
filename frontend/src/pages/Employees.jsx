@@ -156,20 +156,12 @@ const Employees = () => {
   return (
     <>
       <div className="w-screen min-h-screen relative bg-[#f9f9f9]">
-
 <Toaster position="bottom-center" />
-
 <div className="w-full min-h-screen flex flex-col lg:flex-row">
-
-  {/* Sidebar */}
   <div className="hidden lg:block w-87.75 h-screen p-4 shrink-0">
     <Sidebar />
   </div>
-
-  {/* Main Content */}
   <div className="flex-1 w-full px-4 sm:px-6 lg:px-0">
-
-    {/* Header */}
     <div className="w-full h-17 flex justify-between items-center pr-10 pt">
       <h2 className="text-[1.875rem] font-semibold">Manage Employees</h2>
     </div>
@@ -182,62 +174,42 @@ const Employees = () => {
           <img className='w-8' src="/src/assets/employee-dark.svg" alt="" />
           <h2 className="text-xl font-semibold">All Employees</h2>
         </div>
-
-          {/* Filters */}
           <div className="w-full flex flex-col xl:flex-row gap-4 xl:gap-0 px-4 sm:px-7 py-4">
-
-            {/* Left Filters */}
-            <div className="w-full xl:w-3/4 flex flex-wrap gap-4 sm:gap-6">
-
+            <div className="w-full px-1 xl:w-3/4 flex flex-wrap gap-4 sm:gap-6">
               <Search onChange={handleSearch} />
-
               <Dropdown
                 title={"Gender"}
                 values={["Male", "Female"]}
                 onChange={handleFilterChange}
                 name={"gender"}
               />
-
               <Dropdown
                 title={"Workmode"}
                 values={["On-site", "Remote", "Hybrid"]}
                 onChange={handleFilterChange}
                 name={"workMode"}
               />
-
               <Dropdown
                 title={"Job Title"}
                 values={jobTitleValues}
                 onChange={handleFilterChange}
                 name={"jobTitle"}
               />
-
               <DropdownModal
                 onChange={handleSalaryChange}
               />
-
             </div>
-
-            {/* Right Button */}
             <div className="w-full xl:w-1/4 flex xl:justify-end">
-
               <Button
                 title={"Onboard Employee"}
                 icon={"/src/assets/employeeAdd-Light.svg"}
                 onClick={handleShowModal}
               />
-
             </div>
-
           </div>
-
           <Seperator marginY={"my-2"} width="w-369" />
-
           {loading && <Loading />}
-
-          {/* Employee Grid */}
           <div className="w-full min-h-120 lg:h-[calc(100%-13rem)] grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5 sm:gap-7 overflow-y-visible lg:overflow-y-auto px-4 sm:px-7 py-4">
-
             {employees?.map((value) => {
               return (
                 <EmployeeCard
@@ -254,37 +226,20 @@ const Employees = () => {
                 />
               );
             })}
-
           </div>
-
-          {/* Pagination */}
           <div className="w-full min-h-15 flex justify-center items-center px-4 py-4 bg-white">
-
             {showPagination && <Pagination />}
-
           </div>
-
         </div>
-
       }
-
     </div>
-
   </div>
-
 </div>
-
-{/* Modal */}
 {showModal && (
-
   <div className="fixed inset-0 z-50 w-screen h-screen flex justify-center items-center bg-black/25 backdrop-blur-md px-4">
-
     <AddEmployeeModal handleShowModal={handleShowModal} />
-
   </div>
-
 )}
-
 </div>
     </>
   )
