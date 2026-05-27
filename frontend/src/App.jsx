@@ -11,7 +11,6 @@ import { BrowserRouter, Routes, Route } from "react-router";
 import { useUserStore } from "./store/userStore.js";
 import { useEffect } from 'react';
 import Loading from './components/Loading.jsx';
-import Pagination from './components/Pagination.jsx';
 
 function App() {
   const { user, loading, getCurrentUser } = useUserStore()
@@ -23,7 +22,7 @@ function App() {
 
   return (
     <>
-      {/* {loading? <Loading/> : <BrowserRouter>
+      {loading? <Loading/> : <BrowserRouter>
         <Routes>
           <Route path='/' element={<SignupRoleSelect/>}/>
           <Route path='/signup' element={<Signup/>}/>
@@ -34,8 +33,7 @@ function App() {
           <Route path='admin/leaves' element={<Leaves/>}/>
           <Route path='employee' element={<EmployeeSelf/>}/>
         </Routes>
-      </BrowserRouter>} */}
-      <Pagination/>
+      </BrowserRouter>}
     </>
   )
 }
