@@ -6,20 +6,20 @@ const InsightCard = ({ title, icon, iconBgColor, data, cardType }) => {
         value2: null
     }
     if(cardType === "payroll"){
-        values.value1 = `${data.value1} `,
+        values.value1 = `${data.value1 || "N/A"} `,
         values.value2 = data.value2
     }
     if(cardType === "employeeCountry"){
-        values.value1 = `${data.value1}  - `,
-        values.value2 = `${data.value2}% `
+        values.value1 = `${data.value1 || "N/A"}  - `,
+        values.value2 = `${data.value2 || "N/A"}% `
     }
     if(cardType === "genderRatioPercent"){
-        values.value1 = `M - ${data.value1}% / `,
-        values.value2 = `F - ${data.value2}%`
+        values.value1 = `M - ${data.value1 || "N/A"}% / `,
+        values.value2 = `F - ${data.value2 || "N/A"}%`
     }
     if(cardType === "averageAge"){
         values.value1 = `${data.value1} - `
-        values.value2 = data.value2
+        values.value2 = data.value2 || "N/A"
     }
 
     return (
@@ -30,7 +30,7 @@ const InsightCard = ({ title, icon, iconBgColor, data, cardType }) => {
                 </div>
                 <div className='w-[75%] ml-2 h-full flex flex-col justify-evenly'>
                     <h3 className="text-sm font-medium text-[#979797]">{title}</h3>
-                    <h1 className='text-2xl font-semibold'>{values.value1}
+                    <h1 className='text-lg sm:text-xl lg:text-2xl font-semibold'>{values.value1}
                         <span> {values.value2}</span>
                     </h1>
                 </div>
