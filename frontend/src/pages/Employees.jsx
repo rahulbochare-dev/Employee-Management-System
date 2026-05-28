@@ -165,7 +165,7 @@ const Employees = () => {
     <div className="w-full h-17 flex justify-between items-center pr-10 pt">
       <h2 className="text-[1.875rem] font-semibold">Manage Employees</h2>
     </div>
-    <div className="w-full min-h-screen lg:min-h-0 lg:h-218 flex items-baseline-last lg:overflow-hidden">
+    <div className="w-full min-h-screen mb-3 lg:min-h-0 lg:h-218 flex items-baseline-last lg:overflow-hidden">
       {singleEmployeeDetails && showEmployeeDetails? <EmployeeDetails
        onClick={closeEmployeeDetails} empDetails={singleEmployeeDetails}
        cb={setShowEmployeeDetails}
@@ -175,7 +175,7 @@ const Employees = () => {
           <h2 className="text-xl font-semibold">All Employees</h2>
         </div>
           <div className="w-full flex flex-col xl:flex-row gap-4 xl:gap-0 px-4 sm:px-7 py-4">
-            <div className="w-full px-1 justify-center xl:w-3/4 flex flex-wrap gap-4 sm:gap-6">
+            <div className="w-full px-1 xl:w-3/4 flex flex-wrap gap-4 sm:gap-6">
               <Search onChange={handleSearch} />
               <Dropdown
                 title={"Gender"}

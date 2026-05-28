@@ -70,28 +70,28 @@ const Leaves = () => {
         {showLeaveDetails && <div className="w-screen h-screen flex justify-center items-center bg-black/25 backdrop-blur-md absolute">
           <LeaveDetails leaveDetails={leavesDetails} cb={handleShowLeaveDetails}/>
         </div>}
-        <div className="w-screen h-screen flex bg-[#f9f9f9]">
-          <div className="w-87.75 h-screen p-4">
-            <Sidebar />
-          </div>
-          <div className="w-392.75 h-screen">
-            <div className="w-full h-15.25 flex justify-between items-center pr-10 pt-3">
+        <div className="w-full min-h-screen flex flex-col lg:flex-row">
+        <div className="hidden lg:block w-87.75 h-screen p-4 shrink-0">
+          <Sidebar />
+        </div>
+        <div className="flex-1 w-full px-4 sm:px-6 lg:px-0">
+          <div className="w-full h-17 flex justify-between items-center pr-10 pt">
               <h2 className="text-[1.875rem] font-semibold">Manage Leaves</h2>
             </div>
-            <div className="w-full h-219 flex items-baseline-last">
-              <div className="w-384 h-[98%] bg-white border border-[#b6b6b6] rounded-[0.9375rem] overflow-clip">
-                <div className="w-full h-10 flex gap-3 items-center pl-7 pt-2">
+            <div className="w-full mt-1 mb-3 lg:mt-0 lg:h-218 flex items-baseline-last lg:overflow-hidden">
+            <div className="w-full lg:w-384 lg:h-[98%] bg-white border border-[#b6b6b6] rounded-[0.9375rem] overflow-visible lg:overflow-hidden">
+            <div className="w-full h-10 flex gap-3 items-center pl-7 pt-2">
                   <img className='w-8' src="/src/assets/leave-dark.svg" alt="" />
                   <h2 className="text-xl font-semibold">All Leaves</h2>
                 </div>
-                <div className="w-full h-15 flex gap-3 items-center pl-7">
-                  <div className="h-full w-3/4 flex justify-start items-center gap-6">
+                <div className="w-full flex flex-col xl:flex-row gap-4 xl:gap-0 px-4 sm:px-7 py-4">
+                <div className="w-full px-1 xl:w-3/4 flex flex-wrap gap-4 sm:gap-6">
                     <Search />
                     <Dropdown title={"Status"} values={["Pending", "Rejected", "Approved"]} onChange={handleStatusChange} name={"status"}/>
                   </div>
                 </div>
                 <Seperator marginY={"my-2"} width='w-369' />
-                <div className="w-full h-170 grid grid-cols-4 gap-y-7 justify-center overflow-y-scroll pl-7 pt-3">
+                <div className="w-full min-h-120 lg:h-full grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5 sm:gap-7 overflow-y-visible lg:overflow-y-auto px-4 sm:px-7 py-4">
                   {leaves?.map((value) => {
                     return <LeaveCard cb={handleShowLeaveDetails} cb2={handleUpdateLeaveStatus} key={value._id} leave={value}/>
                   })}
