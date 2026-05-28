@@ -98,7 +98,7 @@ const Dashboard = () => {
         <div className="w-87.75 h-screen p-4">
           <Sidebar />
         </div>
-        <div className="w-full lg:flex-1 min-h-dvh px-3 sm:px-5 lg:px-0">
+        <div className='w-full min-h-[calc(100vh-1rem)] bg-[#f9f9f9] px-3 sm:px-5 relative overflow-y-auto'>
         <div className="w-full min-h-22 flex flex-col border-b border-[#ababab] sm:flex-row justify-between sm:items-center pr-0 lg:pr-6 py-4 gap-3">
             <div className='w-fit h-fit'>
               <WelcomeText name={user?.firstName}/>
@@ -111,7 +111,7 @@ const Dashboard = () => {
             <div className="w-full h-15.25 flex items-center">
               <h2 className="text-[1.875rem] font-semibold">Dashboard</h2>
             </div>
-            <div className="w-full flex flex-wrap justify-center lg:justify-start items-center gap-4 sm:gap-6 lg:gap-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-12">
               <KPICard
                 title={"Total Employees"}
                 mainIcon={"/src/assets/employee-dark.svg"}
@@ -165,7 +165,6 @@ const Dashboard = () => {
                 gap-6 
                 lg:gap-8 
                 pr-0 
-                lg:pr-8 
                 ">
             <NewJoiningChart data={newJoinesByMonth} thisMonthJoines={newJoines}/>
             <LeaveChart data={lastWeeksLeaves?.data}/>
