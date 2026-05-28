@@ -17,12 +17,14 @@ import { useAdminEmployeeStore } from '../store/adminEmployeeStore.js'
 import { useUserStore } from '../store/userStore.js'
 import toast, { Toaster } from 'react-hot-toast'
 import { useNavigate } from "react-router-dom";
+import { Menu, X } from 'lucide-react'
 
 const Employees = () => {
   const { isLoggedIn } = useUserStore()
   const [showModal, setShowModal] = useState(false)
   const [showEmployeeDetails, setShowEmployeeDetails] = useState(false)
   const navigate = useNavigate()
+  const [showSideBar, setShowSideBar] = useState(false)
 
   // useEffect(() => {
   //   if (!isLoggedIn) {
@@ -158,12 +160,24 @@ const Employees = () => {
       <div className="w-screen min-h-screen relative bg-[#f9f9f9]">
 <Toaster position="bottom-center" />
 <div className="w-full min-h-screen flex flex-col lg:flex-row">
-  <div className="hidden lg:block w-87.75 h-screen p-4 shrink-0">
+<div className="hidden lg:block w-87.75 h-screen p-4">
+  <Sidebar />
+</div>
+{showSideBar && (
+  <div className="lg:hidden w-80 h-screen p-4 absolute top-0 left-0 z-50 ">
     <Sidebar />
   </div>
+)}
   <div className="flex-1 w-full px-4 sm:px-6 lg:px-0">
-    <div className="w-full h-17 flex justify-between items-center pr-10 pt">
+    <div className="w-full h-17 flex justify-between items-center  pt">
       <h2 className="text-[1.875rem] font-semibold">Manage Employees</h2>
+      <div className="block lg:hidden">
+          {showSideBar ? (
+        <X onClick={() => setShowSideBar(!showSideBar)} />
+      ) : (
+        <Menu onClick={() => setShowSideBar(!showSideBar)} />
+      )}
+      </div>
     </div>
     <div className="w-full min-h-screen mb-3 lg:min-h-0 lg:h-[calc(100vh-5rem)] flex items-baseline-last">
       {singleEmployeeDetails && showEmployeeDetails? <EmployeeDetails

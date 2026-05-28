@@ -7,11 +7,13 @@ import LeaveCard from '../components/LeaveCard.jsx'
 import LeaveDetails from '../components/LeaveDetails.jsx'
 import { useAdminLeaveStore } from '../store/adminLeaveStore.js'
 import toast from 'react-hot-toast'
+import { Menu, X } from 'lucide-react'
 
 const Leaves = () => {
   const {getLeavesDetails, updateLeaveStatus, getLeaves, leaves, leavesDetails} = useAdminLeaveStore()
   const [status, setStatus] = useState(null)
   const [showLeaveDetails, setShowLeaveDetails] = useState(false)
+  const [showSideBar, setShowSideBar] = useState(false)
 
   useEffect(() => {
     const callApi = async () => {
@@ -74,9 +76,21 @@ const Leaves = () => {
         <div className="hidden lg:block w-87.75 h-screen p-4 shrink-0">
           <Sidebar />
         </div>
+        {showSideBar && (
+  <div className="lg:hidden w-80 h-screen p-4 absolute top-0 left-0 z-50 ">
+    <Sidebar />
+  </div>
+)}
         <div className="flex-1 w-full px-4 sm:px-6 lg:px-0">
           <div className="w-full py-3 lg:h-17 flex justify-between items-center pr-0 lg:pr-10">
               <h2 className="text-[1.875rem] font-semibold">Manage Leaves</h2>
+              <div className="block lg:hidden">
+                        {showSideBar ? (
+                      <X onClick={() => setShowSideBar(!showSideBar)} />
+                    ) : (
+                      <Menu onClick={() => setShowSideBar(!showSideBar)} />
+                    )}
+                    </div>
             </div>
             <div className="w-full h-fit mb-3 lg:mb-0 lg:h-[calc(100vh-5rem)] flex items-baseline-last">
             <div className="w-full lg:w-384 lg:h-[98%] bg-white border border-[#b6b6b6] rounded-[0.9375rem] overflow-visible lg:overflow-hidden">

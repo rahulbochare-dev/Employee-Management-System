@@ -10,12 +10,13 @@ import Seperator from '../components/Seperator.jsx'
 import { useUserStore } from '../store/userStore.js'
 import { useDashboardStore } from '../store/dashboardStore.js'
 import { Form, Link, useNavigate } from "react-router-dom";
+import { Menu, X } from 'lucide-react'
 
 const Dashboard = () => {
   const { user } = useUserStore()
   const { totalEmployees, onLeaveToday, newJoines, pendingLeave, lastWeeksLeaves, mostEmployeeCountry, totalPayrollThisMonth, employeeGenderRatioPercent, averageEmployeeAge, newJoinesByMonth, getKPIData } = useDashboardStore()
   const navigate = useNavigate()
-
+  const [showSideBar, setShowSideBar] = useState(false)
   
   const [KPICardFirst, setKPICardFirst] = useState({
     mainCount: null ,
@@ -95,18 +96,33 @@ const Dashboard = () => {
   return (
     <>
       <div className="w-full min-h-screen mb-3 lg:mb-0 lg:h-svh flex flex-col lg:flex-row bg-[#f9f9f9] lg:overflow-hidden">
-        <div className="w-87.75 h-screen p-4">
-          <Sidebar />
-        </div>
-        <div className='flex-1 min-h-screen lg:h-svh bg-[#f9f9f9] px-3 sm:px-5 relative overflow-y-visible lg:overflow-y-auto overflow-x-hidden'>
-        <div className="w-full min-h-22 flex flex-col border-b border-[#ababab] sm:flex-row justify-between sm:items-center pr-0 lg:pr-6 py-4 gap-3">
-            <div className='w-fit h-fit'>
-              <WelcomeText name={user?.firstName}/>
-            </div>
-            <div className="hidden lg:block w-fit h-fit">
-            <DateTime/>
-            </div>
-          </div>
+      <div className="hidden lg:block w-87.75 h-screen p-4">
+  <Sidebar />
+</div>
+
+{showSideBar && (
+  <div className="lg:hidden w-80 h-screen p-4 absolute top-0 left-0 z-50 ">
+    <Sidebar />
+  </div>
+)}
+        <div className='flex-1 min-h-screen lg:h-svh bg-[#f9f9f9] px-3 sm:px-5 relative overflow-y-visible lg:overflow-y-auto'>
+        <div className="w-full min-h-22 flex items-center border-b border-[#ababab] sm:flex-row justify-between sm:items-center pr-0 lg:pr-6 py-4 gap-3">
+    <div className='w-fit h-fit'>
+      <WelcomeText name={user?.firstName}/>
+    </div>
+
+    <div className="block lg:hidden">
+    {showSideBar ? (
+  <X onClick={() => setShowSideBar(!showSideBar)} />
+) : (
+  <Menu onClick={() => setShowSideBar(!showSideBar)} />
+)}
+</div>
+
+    <div className="hidden lg:block w-fit h-fit">
+      <DateTime/>
+    </div>
+</div>
           <div className="w-full h-fit pb-4">
             <div className="w-full h-15.25 flex items-center">
               <h2 className="text-[1.875rem] font-semibold">Dashboard</h2>
