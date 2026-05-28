@@ -165,7 +165,7 @@ const Employees = () => {
     <div className="w-full h-17 flex justify-between items-center pr-10 pt">
       <h2 className="text-[1.875rem] font-semibold">Manage Employees</h2>
     </div>
-    <div className="w-full min-h-screen mb-3 lg:min-h-0 lg:h-218 flex items-baseline-last lg:overflow-hidden">
+    <div className="w-full min-h-screen mb-3 lg:min-h-0 lg:h-[calc(100vh-5rem)] flex items-baseline-last">
       {singleEmployeeDetails && showEmployeeDetails? <EmployeeDetails
        onClick={closeEmployeeDetails} empDetails={singleEmployeeDetails}
        cb={setShowEmployeeDetails}

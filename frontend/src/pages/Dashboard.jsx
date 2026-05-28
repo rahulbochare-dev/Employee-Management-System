@@ -94,11 +94,11 @@ const Dashboard = () => {
   console.log(newJoinesByMonth)  
   return (
     <>
-      <div className="w-full min-h-dvh flex flex-col lg:flex-row bg-[#f9f9f9]">
+      <div className="w-full min-h-screen mb-3 lg:mb-0 lg:h-svh flex flex-col lg:flex-row bg-[#f9f9f9] lg:overflow-hidden">
         <div className="w-87.75 h-screen p-4">
           <Sidebar />
         </div>
-        <div className='w-full min-h-[calc(100vh-1rem)] bg-[#f9f9f9] px-3 sm:px-5 relative overflow-y-auto'>
+        <div className='flex-1 min-h-screen lg:h-svh bg-[#f9f9f9] px-3 sm:px-5 relative overflow-y-visible lg:overflow-y-auto overflow-x-hidden'>
         <div className="w-full min-h-22 flex flex-col border-b border-[#ababab] sm:flex-row justify-between sm:items-center pr-0 lg:pr-6 py-4 gap-3">
             <div className='w-fit h-fit'>
               <WelcomeText name={user?.firstName}/>
@@ -107,11 +107,11 @@ const Dashboard = () => {
             <DateTime/>
             </div>
           </div>
-          <div className="w-full min-h-64 h-fit pb-4">
+          <div className="w-full h-fit pb-4">
             <div className="w-full h-15.25 flex items-center">
               <h2 className="text-[1.875rem] font-semibold">Dashboard</h2>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-12">
+            <div className="grid grid-cols-1 items-center justify-center sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-12">
               <KPICard
                 title={"Total Employees"}
                 mainIcon={"/src/assets/employee-dark.svg"}
@@ -155,7 +155,7 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="w-full 
-                min-h-112 
+                h-fit
                 flex 
                 flex-col 
                 2xl:flex-row 
@@ -169,7 +169,7 @@ const Dashboard = () => {
             <NewJoiningChart data={newJoinesByMonth} thisMonthJoines={newJoines}/>
             <LeaveChart data={lastWeeksLeaves?.data}/>
           </div>
-          <div className="mt-6 md:mt-3 lg:mt-0 w-full min-h-35 flex lg:min-h-36">
+          <div className="mt-6 md:mt-3 lg:mt-[calc(0rem+0.5rem)] w-full min-h-35 flex lg:min-h-36">
             <div className="w-full 
                     2xl:w-384 
                     min-h-[90%] 

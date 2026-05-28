@@ -75,10 +75,10 @@ const Leaves = () => {
           <Sidebar />
         </div>
         <div className="flex-1 w-full px-4 sm:px-6 lg:px-0">
-          <div className="w-full h-17 flex justify-between items-center pr-10 pt">
+          <div className="w-full py-3 lg:h-17 flex justify-between items-center pr-0 lg:pr-10">
               <h2 className="text-[1.875rem] font-semibold">Manage Leaves</h2>
             </div>
-            <div className="w-full mt-1 mb-3 lg:mt-0 lg:h-218 flex items-baseline-last lg:overflow-hidden">
+            <div className="w-full h-fit mb-3 lg:mb-0 lg:h-[calc(100vh-5rem)] flex items-baseline-last">
             <div className="w-full lg:w-384 lg:h-[98%] bg-white border border-[#b6b6b6] rounded-[0.9375rem] overflow-visible lg:overflow-hidden">
             <div className="w-full h-10 flex gap-3 items-center pl-7 pt-2">
                   <img className='w-8' src="/src/assets/leave-dark.svg" alt="" />
