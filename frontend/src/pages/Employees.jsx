@@ -47,7 +47,7 @@ const Employees = () => {
 
   const [jobTitleValues, setJobTitleValues] = useState([])
 
-  const {employees, singleEmployeeDetails, employeesCount, totalPages, currentPage, limit, loading, getEmployees, getEmployeeBySalary, getEmployeeByFilter, getEmployeeDetails} = useAdminEmployeeStore()
+  const {employees, singleEmployeeDetails, employeesCount, totalPages, currentPage, limit, loading, getEmployees, searchEmployee, getEmployeeBySalary, getEmployeeByFilter, getEmployeeDetails} = useAdminEmployeeStore()
 
   useEffect(() => {
     const callAPI = async()=> {
