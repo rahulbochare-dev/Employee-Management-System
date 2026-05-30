@@ -8,8 +8,8 @@ const Button = ({ title, icon, marginY, width = "w-63.5", onClick, secondary = f
   onClick={onClick}
   className={`${width} h-10 rounded-lg flex items-center justify-center gap-3 ${marginY} cursor-pointer transition-all duration-200 ${
     secondary
-      ? "bg-white border border-[#eaeaea] hover:bg-gray-200"
-      : "bg-black hover:bg-gray-900"
+      ? "bg-white border border-[#eaeaea] hover:bg-gray-200 active:bg-gray-300"
+      : "bg-black hover:bg-gray-800 active:bg-gray-900"
   }`}>
 
   {secondary || <img className='w-5 sm:w-6 shrink-0' src={icon} alt=""/>}

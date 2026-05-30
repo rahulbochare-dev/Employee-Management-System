@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { getTotalEmployees, getOnLeaveToday, getNewJoines, getPendingLeave, getLastWeeksLeaves, getMostEmployeeCountry, getTotalPayrollThisMonth, getEmployeeGenderRatioPercent, getAverageEmployeeAge, getNewJoinesByMonth } from "../services/dashboard.js";
 
-const useDashboardStore = create((set) => ({
+const useDashboardStore = create((set, get) => ({
     totalEmployees: null,
     onLeaveToday: null,
     newJoines: null,
@@ -14,8 +14,10 @@ const useDashboardStore = create((set) => ({
     newJoinesByMonth: null,
     loading: true,
     error: null,
+    dataFetched: false,
 
     getKPIData: async () => {
+        if(get().dataFetched) return
         try {
             const totalEmployeesResponse = await getTotalEmployees()
             set({ totalEmployees: totalEmployeesResponse.data, loading: false })
@@ -45,7 +47,7 @@ const useDashboardStore = create((set) => ({
             set({ averageEmployeeAge: averageEmployeeAgeResponse.data.data[0], loading: false })
             
             const newJoinesByMonthResponse = await getNewJoinesByMonth()
-            set({ newJoinesByMonth: newJoinesByMonthResponse.data.data, loading: false })
+            set({ newJoinesByMonth: newJoinesByMonthResponse.data.data, loading: false, dataFetched: true })
 
         } catch (err) {
             set({ error: err.messege, loading: false })

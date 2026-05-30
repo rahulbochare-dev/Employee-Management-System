@@ -32,7 +32,7 @@ const Sidebar = () => {
       <Toaster position='bottom-center'/>
       <div className='flex flex-col items-center lg:items-start'>
         <div className='w-full h-10 mb-6 bg-gray-200 rounded-md'></div>
-        <Seperator width={'w-66'} />
+        <Seperator width={'w-64'} />
         <h3 className='text-[0.80rem] text-[#707070] font-medium mb-3 mt-5 self-start'>Manage</h3>
         <div className='w-full flex flex-col items-center lg:items-start'>
           <SidebarButton
@@ -54,11 +54,12 @@ const Sidebar = () => {
       </div>
       <div className="w-full flex flex-col items-center lg:items-start mt-4">
         <Seperator/>
+        <Button title={"Export CSV"} secondary marginY={"my-6"}/>
+        <Seperator width='w-64'/>
         <Profile
           firstName={user?.firstName}
           lastName={user?.lastName}
-          email={user?.email}
-        />
+          email={user?.email}/>
         <Button onClick={handleLogout} marginY={"mt-5"} title={"Log Out"} icon={"/src/assets/logout.svg"}/>
       </div>
     </div>

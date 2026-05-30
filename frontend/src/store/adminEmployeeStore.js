@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { onboardEmployee, getEmployees, searchEmployee, getEmployeeBySalary, getEmployeeByFilter, getEmployeeDetails, terminateEmployee } from "../services/adminEmployee.js";
 
-const useAdminEmployeeStore = create((set) => ({
+const useAdminEmployeeStore = create((set, get) => ({
     employees: null,
     employeesCount: null,
     singleEmployeeDetails: null,
@@ -10,11 +10,13 @@ const useAdminEmployeeStore = create((set) => ({
     limit: null,
     loading: true,
     error: null,
+    dataFetched: false,
 
     onboardEmployee: async (data) => {
+        if(get().dataFetched) return
         try {
             const response = await onboardEmployee(data)
-            set({ loading: false })
+            set({ loading: false, dataFetched: true })
             return response.data
         } catch (err) {
             set({error: err, loading: false})
@@ -23,6 +25,7 @@ const useAdminEmployeeStore = create((set) => ({
     },
 
     getEmployees: async (currentPage, limit) => {
+        if(get().dataFetched) return
         try {
             const response = await getEmployees(currentPage, limit)
             set({
@@ -30,7 +33,8 @@ const useAdminEmployeeStore = create((set) => ({
                 employeesCount: response.data.data.totalEmployeesCount,
                 totalPages: response.data.data.totalPages,
                 currentPage: response.data.data.currentPage,
-                loading: false
+                loading: false,
+                dataFetched: true
             })
             return response.data
         } catch (err) {
@@ -40,9 +44,10 @@ const useAdminEmployeeStore = create((set) => ({
     },
 
     searchEmployee: async (searchName) => {
+        if(get().dataFetched) return
         try {
             const response = await searchEmployee(searchName)
-            set({ employees: response.data.data.employee, loading: false })
+            set({ employees: response.data.data.employee, loading: false, dataFetched: true })
             return response.data
         } catch (err) {
             set({error: err, loading: false})
@@ -51,9 +56,10 @@ const useAdminEmployeeStore = create((set) => ({
     },
 
     getEmployeeBySalary: async (minSalary, maxSalary) => {
+        if(get().dataFetched) return
         try {
             const response = await getEmployeeBySalary(minSalary, maxSalary)
-            set({ employees: response.data.data.employees, loading: false })
+            set({ employees: response.data.data.employees, loading: false, dataFetched: true })
             return response.data
         } catch (err) {
             set({error: err, loading: false})
@@ -62,9 +68,10 @@ const useAdminEmployeeStore = create((set) => ({
     },
 
     getEmployeeByFilter: async (params) => {
+        if(get().dataFetched) return
         try {
             const response = await getEmployeeByFilter(params)
-            set({ employees: response.data.data, loading: false })
+            set({ employees: response.data.data, loading: false, dataFetched: true })
             return response.data
         } catch (err) {
             set({error: err, loading: false})
@@ -73,9 +80,10 @@ const useAdminEmployeeStore = create((set) => ({
     },
     
     getEmployeeDetails: async (empID) => {
+        if(get().dataFetched) return
         try {
             const response = await getEmployeeDetails(empID)
-            set({ singleEmployeeDetails: response.data.data, loading: false })
+            set({ singleEmployeeDetails: response.data.data, loading: false, dataFetched: true })
             return response.data
         } catch (err) {
             set({error: err, loading: false})
@@ -84,12 +92,13 @@ const useAdminEmployeeStore = create((set) => ({
     },
 
     terminateEmployee: async (id) => {
+        if(get().dataFetched) return
         try {
             const response = await terminateEmployee(id)
             set({ loading: false })
             return response.data
         } catch (err) {
-            set({error: err, loading: false})
+            set({error: err, loading: false, dataFetched: true })
             return err
         }
     }
