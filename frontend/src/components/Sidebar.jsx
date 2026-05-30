@@ -4,11 +4,22 @@ import Seperator from '../components/Seperator.jsx'
 import Profile from '../components/Profile.jsx'
 import Button from './Button.jsx';
 import { useUserStore } from '../store/userStore.js'
-import { Form, Link, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import toast , { Toaster } from 'react-hot-toast';
 
 const Sidebar = () => {
+  const [showExportButton, setShowExportButton] = useState(false)
   const { user, getCurrentUser, logout } = useUserStore()
+  const location = useLocation()
+  
+  useEffect(() => {
+    if(location.pathname == '/admin/dashboard'){
+      setShowExportButton(false)
+    } else {
+      setShowExportButton(true)
+    }
+  }, [])
+  
 
   useEffect(() => {
     const callApi = async () => {
@@ -54,7 +65,7 @@ const Sidebar = () => {
       </div>
       <div className="w-full flex flex-col items-center lg:items-start mt-4">
         <Seperator/>
-        <Button title={"Export CSV"} secondary marginY={"my-6"}/>
+        {showExportButton && <Button title={"Export CSV"} secondary marginY={"my-6"}/>}
         <Seperator width='w-64'/>
         <Profile
           firstName={user?.firstName}
