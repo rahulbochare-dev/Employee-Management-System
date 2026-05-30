@@ -2,13 +2,13 @@ import React from 'react'
 
 const Profile = ({ firstName, lastName, email }) => {
   return (
-    <div className='w-fit h-10 flex mt-5'>
+    <div className='w-full h-10 flex mt-5'>
         <div className=' w-[18%] h-full'>
             <img className='w-full h-full' src="/src/assets/account.svg" alt=""/>
         </div>
         <div className='w-[82%] h-full pl-2'>
             <h3 className='text-[0.9375rem] font-medium'><span>{firstName}</span> <span>{lastName}</span></h3>
-            <h4 className='text-[0.80rem] mt-[-1%] text-[#707070] '>{email}</h4>
+            <h4 className='text-[0.80rem] mt-[-1%] text-[#9c9c9c]'>{email}</h4>
         </div>
     </div>
   )

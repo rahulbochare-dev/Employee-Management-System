@@ -28,7 +28,7 @@ const Sidebar = () => {
   }
 
   return (
-    <div className='p-4 sm:p-5 lg:p-6 w-full sm:w-80 md:w-72 lg:w-78 min-h-[97vh] bg-white border border-[#b6b6b6] rounded-[0.9375rem] flex flex-col justify-between overflow-hidden'>
+    <div className='p-4 sm:p-5 lg:p-6 w-full sm:w-80 md:w-72 lg:w-78 min-h-[97vh] bg-white border border-[#eaeaea] rounded-[0.9375rem] flex flex-col justify-between overflow-hidden'>
       <Toaster position='bottom-center'/>
       <div className='flex flex-col items-center lg:items-start'>
         <div className='w-full h-10 mb-6 bg-gray-200 rounded-md'></div>

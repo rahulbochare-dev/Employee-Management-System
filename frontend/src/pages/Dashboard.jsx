@@ -95,7 +95,7 @@ const Dashboard = () => {
   console.log(newJoinesByMonth)  
   return (
     <>
-      <div className="w-full min-h-screen mb-3 lg:mb-0 lg:h-svh flex flex-col lg:flex-row bg-[#f9f9f9] lg:overflow-hidden">
+      <div className="w-full min-h-screen mb-3 lg:mb-0 lg:h-svh flex flex-col lg:flex-row bg-[#fcfcfe] lg:overflow-hidden">
       <div className="hidden lg:block w-87.75 h-screen p-4">
   <Sidebar />
 </div>
@@ -105,8 +105,8 @@ const Dashboard = () => {
     <Sidebar />
   </div>
 )}
-        <div className='flex-1 min-h-screen lg:h-svh bg-[#f9f9f9] px-3 sm:px-5 relative overflow-y-visible lg:overflow-y-auto'>
-        <div className="w-full min-h-22 flex items-center border-b border-[#ababab] sm:flex-row justify-between sm:items-center pr-0 lg:pr-6 py-4 gap-3">
+        <div className='flex-1 min-h-screen lg:h-svh bg-[#fcfcfe] px-3 sm:pr-5 relative overflow-y-visible lg:overflow-y-auto'>
+        <div className="w-full min-h-22 flex items-center border-b border-[#eaeaea] sm:flex-row justify-between sm:items-center pr-0 lg:pr-6 py-4 gap-3">
     <div className='w-fit h-fit'>
       <WelcomeText name={user?.firstName}/>
     </div>
@@ -125,9 +125,9 @@ const Dashboard = () => {
 </div>
           <div className="w-full h-fit pb-4">
             <div className="w-full h-15.25 flex items-center">
-              <h2 className="text-[1.875rem] font-semibold">Dashboard</h2>
+              <h2 className="text-[1.875rem] font-medium">Dashboard</h2>
             </div>
-            <div className="grid grid-cols-1 items-center justify-center sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-12">
+            <div className="grid grid-cols-1 items-center justify-center sm:grid-cols-2 pt-1 xl:grid-cols-3 2xl:grid-cols-4 gap-16">
               <KPICard
                 title={"Total Employees"}
                 mainIcon={"/src/assets/employee-dark.svg"}
@@ -170,7 +170,7 @@ const Dashboard = () => {
                 icon3Text={"Casual"}/>
             </div>
           </div>
-          <div className="w-full 
+          <div className="w-full
                 h-fit
                 flex 
                 flex-col 
@@ -179,18 +179,18 @@ const Dashboard = () => {
                 items-center 
                 2xl:items-start 
                 gap-6 
-                lg:gap-8 
-                pr-0 
+                lg:gap-8 pt-4
+                pr-0
                 ">
             <NewJoiningChart data={newJoinesByMonth} thisMonthJoines={newJoines}/>
             <LeaveChart data={lastWeeksLeaves?.data}/>
           </div>
-          <div className="mt-6 md:mt-3 lg:mt-[calc(0rem+0.5rem)] w-full min-h-35 flex lg:min-h-36">
+          <div className="mt-6 md:mt-3  lg:mt-[calc(0rem+1.5rem)] w-full min-h-44 flex lg:min-h-36">
             <div className="w-full 
                     2xl:w-384 
                     min-h-[90%] 
                     bg-white 
-                    border border-[#b6b6b6] 
+                    border border-[#eaeaea] 
                     rounded-2xl 
                     flex 
                     flex-wrap 

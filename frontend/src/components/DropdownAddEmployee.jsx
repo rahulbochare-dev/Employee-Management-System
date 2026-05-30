@@ -5,7 +5,7 @@ const DropdownAddEmployee = ({  title, label, values, value, onChange }) => {
     <div className='w-56 h-16 flex flex-col justify-between'>
         <label className='text-[0.9375rem] font-medium truncate' htmlFor="select">{label}</label>
 
-        <div className="w-full h-8.75 flex bg-white border border-[#b6b6b6] rounded-xl pl-3 pr-3 items-center">
+        <div className="w-full h-8.75 flex bg-white border border-[#eaeaea] rounded-xl pl-3 pr-3 items-center">
           
           <select
             className='w-full h-full text-[0.8125rem] sm:text-[0.875rem] font-medium appearance-none bg-transparent outline-none truncate'

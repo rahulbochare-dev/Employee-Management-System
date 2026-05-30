@@ -77,7 +77,7 @@ const AddEmployeeModal = ({ handleShowModal }) => {
             <div className="fixed inset-0 z-10 flex justify-center items-start sm:items-center px-3 sm:px-4 py-4 overflow-y-auto">
     <Toaster position='bottom-center' />
 
-    <div className="w-full max-w-330.5 bg-white border border-[#b6b6b6] rounded-2xl overflow-hidden my-auto">
+    <div className="w-full max-w-330.5 bg-white border border-[#eaeaea] rounded-2xl overflow-hidden my-auto">
 
         <div className="w-full min-h-15 flex items-center pt-5 px-5 sm:px-10">
             <h1 className='text-2xl sm:text-[1.75rem] font-semibold'>
@@ -153,7 +153,7 @@ const AddEmployeeModal = ({ handleShowModal }) => {
 
             </div>
 
-            <div className="w-full flex flex-col xl:flex-row border-t border-[#e5e5e5]">
+            <div className="w-full flex flex-col xl:flex-row border-t border-[#eaeaea]">
 
                 <div className="w-full xl:w-4/6 py-4 sm:py-6 flex flex-col justify-center">
                     <h4 className='px-5 sm:px-11 text-sm sm:text-base text-[#929292] italic'>

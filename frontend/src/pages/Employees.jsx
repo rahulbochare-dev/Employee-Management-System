@@ -157,7 +157,7 @@ const Employees = () => {
 
   return (
     <>
-      <div className="w-screen min-h-screen relative bg-[#f9f9f9]">
+      <div className="w-screen min-h-screen relative bg-[#fcfcfe]">
 <Toaster position="bottom-center" />
 <div className="w-full min-h-screen flex flex-col lg:flex-row">
 <div className="hidden lg:block w-87.75 h-screen p-4">
@@ -169,8 +169,8 @@ const Employees = () => {
   </div>
 )}
   <div className="flex-1 w-full px-4 sm:px-6 lg:px-0">
-    <div className="w-full h-17 flex justify-between items-center  pt">
-      <h2 className="text-[1.875rem] font-semibold">Manage Employees</h2>
+    <div className="w-full h-14 flex justify-between items-center pt-3">
+      <h2 className="text-[1.875rem] font-medium">Manage Employees</h2>
       <div className="block lg:hidden">
           {showSideBar ? (
         <X onClick={() => setShowSideBar(!showSideBar)} />
@@ -179,14 +179,14 @@ const Employees = () => {
       )}
       </div>
     </div>
-    <div className="w-full min-h-screen mb-3 lg:min-h-0 lg:h-[calc(100vh-5rem)] flex items-baseline-last">
+    <div className="w-full min-h-screen mb-3 lg:min-h-0 lg:h-[calc(100vh-4.4rem)] flex items-baseline-last">
       {singleEmployeeDetails && showEmployeeDetails? <EmployeeDetails
        onClick={closeEmployeeDetails} empDetails={singleEmployeeDetails}
        cb={setShowEmployeeDetails}
-       /> : <div className="w-full lg:w-384 lg:h-[98%] bg-white border border-[#b6b6b6] rounded-[0.9375rem] overflow-visible lg:overflow-hidden">
+       /> : <div className="w-full lg:w-384 lg:h-[98%] bg-white border border-[#eaeaea] rounded-[0.9375rem] overflow-visible lg:overflow-hidden">
         <div className="w-full h-10 flex gap-3 items-center pl-7 pt-2">
           <img className='w-8' src="/src/assets/employee-dark.svg" alt="" />
-          <h2 className="text-xl font-semibold">All Employees</h2>
+          <h2 className="text-xl font-medium">All Employees</h2>
         </div>
           <div className="w-full flex flex-col xl:flex-row gap-4 xl:gap-0 px-4 sm:px-7 py-4">
             <div className="w-full px-1 xl:w-3/4 flex flex-wrap gap-4 sm:gap-6">
@@ -223,20 +223,21 @@ const Employees = () => {
           </div>
           <Seperator marginY={"my-2"} width="w-369" />
           {loading && <Loading />}
-          <div className="w-full min-h-120 lg:h-[calc(100%-13rem)] grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5 sm:gap-7 overflow-y-visible lg:overflow-y-auto px-4 sm:px-7 py-4">
+          <div className="w-full min-h-120 justify-items-center lg:h-[calc(100%-13rem)] grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5 sm:gap-7 overflow-y-visible lg:overflow-y-auto px-4 sm:px-7 py-4">
             {employees?.map((value) => {
               return (
                 <EmployeeCard
-                  key={value._id}
-                  firstName={value.firstName}
-                  lastName={value.lastName}
-                  email={value.email}
-                  gender={value.gender}
-                  empID={value.empID}
-                  jobTitle={value.jobTitle}
-                  salary={value.salary}
+                  key={value?._id}
+                  firstName={value?.firstName}
+                  lastName={value?.lastName}
+                  email={value?.email}
+                  gender={value?.gender}
+                  empID={value?.empID}
+                  jobTitle={value?.jobTitle}
+                  salary={value?.salary}
+                  salaryCurrency={value?.salaryCurrency}
                   func={handleEmployeeDetails}
-                  workMode={value.workMode}
+                  workMode={value?.workMode}
                 />
               );
             })}

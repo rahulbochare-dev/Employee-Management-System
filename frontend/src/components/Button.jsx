@@ -8,7 +8,7 @@ const Button = ({ title, icon, marginY, width = "w-63.5", onClick, secondary = f
   onClick={onClick}
   className={`${width} h-10 rounded-lg flex items-center justify-center gap-3 ${marginY} cursor-pointer transition-all duration-200 ${
     secondary
-      ? "bg-white border border-[#b6b6b6] hover:bg-gray-200"
+      ? "bg-white border border-[#eaeaea] hover:bg-gray-200"
       : "bg-black hover:bg-gray-900"
   }`}>
 

@@ -6,12 +6,12 @@ const DropdownModal = ({value, onChange}) => {
     return (
         <>
         <div className="w-[54%] sm:w-fit relative">
-            <div onClick={()=>{setShowModal(!showModal)}} className="w-full sm:w-37.5 h-9 border border-[#b6b6b6] rounded-xl pr-2 pl-3 flex justify-between items-center relative">
+            <div onClick={()=>{setShowModal(!showModal)}} className="w-full sm:w-37.5 h-9 border border-[#eaeaea] rounded-xl pr-2 pl-3 flex justify-between items-center relative">
                 <h3 className="text-sm sm:text-base truncate">Salary</h3>
                 <img className='w-4 sm:w-5 shrink-0' src="/src/assets/arrowDown.svg" alt=""/>
             </div>
 
-            { showModal && <div className='w-full sm:w-50 min-h-60 border bg-white mt-2 z-10 absolute border-[#b6b6b6] rounded-xl flex flex-col items-center pt-2 px-2 shadow-md'>
+            { showModal && <div className='w-full sm:w-50 min-h-60 border bg-white mt-2 z-10 absolute border-[#eaeaea] rounded-xl flex flex-col items-center pt-2 px-2 shadow-md'>
                 
                 <h2 className="text-[0.95rem] sm:text-[1rem] font-semibold mb-3 text-center">
                     Select Salary Range

@@ -68,7 +68,7 @@ const Leaves = () => {
 
   return (
     <>
-       <div className="w-screen h-screen relative">
+       <div className="w-screen h-screen relative bg-[#fcfcfe]">
        {showLeaveDetails && (
   <div className="fixed inset-0 z-50 bg-black/25 backdrop-blur-md overflow-y-auto">
     
@@ -93,8 +93,8 @@ const Leaves = () => {
   </div>
 )}
         <div className="flex-1 w-full px-4 sm:px-6 lg:px-0">
-          <div className="w-full py-3 lg:h-17 flex justify-between items-center pr-0 lg:pr-10">
-              <h2 className="text-[1.875rem] font-semibold">Manage Leaves</h2>
+          <div className="w-full pt-3 lg:h-14 flex justify-between items-center pr-0 lg:pr-10">
+              <h2 className="text-[1.875rem] font-medium">Manage Leaves</h2>
               <div className="block lg:hidden">
                         {showSideBar ? (
                       <X onClick={() => setShowSideBar(!showSideBar)} />
@@ -103,11 +103,11 @@ const Leaves = () => {
                     )}
                     </div>
             </div>
-            <div className="w-full h-fit mb-3 lg:mb-0 lg:h-[calc(100vh-5rem)] flex items-baseline-last">
-            <div className="w-full lg:w-384 lg:h-[98%] bg-white border border-[#b6b6b6] rounded-[0.9375rem] overflow-visible lg:overflow-hidden">
+            <div className="w-full h-fit mb-3 lg:mb-0 lg:h-[calc(100vh-4.4rem)] flex items-baseline-last">
+            <div className="w-full lg:w-384 lg:h-[98%] bg-white border border-[#eaeaea] rounded-[0.9375rem] overflow-visible lg:overflow-hidden">
             <div className="w-full h-10 flex gap-3 items-center pl-7 pt-2">
                   <img className='w-8' src="/src/assets/leave-dark.svg" alt="" />
-                  <h2 className="text-xl font-semibold">All Leaves</h2>
+                  <h2 className="text-xl font-medium">All Leaves</h2>
                 </div>
                 <div className="w-full flex flex-col xl:flex-row gap-4 xl:gap-0 px-4 sm:px-7 py-4">
                 <div className="w-full px-1 xl:w-3/4 flex flex-wrap gap-4 sm:gap-6">
@@ -116,7 +116,7 @@ const Leaves = () => {
                   </div>
                 </div>
                 <Seperator marginY={"my-2"} width='w-369' />
-                <div className="w-full min-h-120 lg:h-full grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5 sm:gap-7 overflow-y-visible lg:overflow-y-auto px-4 sm:px-7 py-4">
+                <div className="w-full min-h-120 justify-items-center lg:h-full grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5 sm:gap-7 overflow-y-visible lg:overflow-y-auto px-4 sm:px-7 py-4">
                   {leaves?.map((value) => {
                     return <LeaveCard cb={handleShowLeaveDetails} cb2={handleUpdateLeaveStatus} key={value._id} leave={value}/>
                   })}

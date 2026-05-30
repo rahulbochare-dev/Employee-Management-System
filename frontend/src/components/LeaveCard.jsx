@@ -3,7 +3,7 @@ import Separator from './Seperator'
 
 const LeaveCard = ({ leave, cb, cb2 }) => {
   return (
-    <div className="w-85 sm:w-85 w-full h-65 bg-white border border-[#b6b6b6] rounded-xl px-4 sm:px-5 overflow-hidden">
+    <div className="w-85 sm:w-85 w-full h-65 bg-white border border-[#eaeaea] rounded-xl px-4 sm:px-5 overflow-hidden">
 
   <div className="w-full h-17 flex justify-start gap-3 items-center">
     <img className='w-10 h-10 sm:w-11 sm:h-11' src="/src/assets/businessman.png" alt="" />
@@ -13,7 +13,7 @@ const LeaveCard = ({ leave, cb, cb2 }) => {
         {leave?.employee.firstName} {leave?.employee.lastName}
       </h2>
 
-      <h2 className="text-[0.8rem] sm:text-sm text-[#929292] font-medium truncate">
+      <h2 className="text-[0.8rem] sm:text-sm text-[#9c9c9c] font-medium truncate">
         Status:
         <span
           className={
@@ -23,7 +23,7 @@ const LeaveCard = ({ leave, cb, cb2 }) => {
               ? "text-red-500"
               : leave?.status === "Approved"
               ? "text-green-500"
-              : "text-[#929292]"
+              : "text-[#9c9c9c]"
           }
         >
           {" "}{leave?.status}
