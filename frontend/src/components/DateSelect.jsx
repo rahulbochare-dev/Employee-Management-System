@@ -8,7 +8,7 @@ const DateSelect = ({ label, placeholder, value, onChange }) => {
     }
     
   return (
-    <div className="w-full sm:w-56.5 min-w-56.5 h-16 flex flex-col justify-between">
+    <div className='w-65 h-16 flex flex-col justify-between'>
         <label className='text-[0.9375rem] font-medium truncate' htmlFor="selectFile">{label}</label>
 
         <div className="w-full h-8.75 rounded-xl flex items-center relative bg-transparent">

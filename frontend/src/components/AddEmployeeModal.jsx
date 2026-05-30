@@ -89,7 +89,7 @@ const AddEmployeeModal = ({ handleShowModal }) => {
 
         <form onSubmit={handleFormSubmit} className='w-full h-full'>
 
-            <div className="w-full grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-y-8 gap-x-4 sm:gap-x-6 px-5 sm:px-10 pb-6">
+            <div className="w-full grid justify-items-center grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-y-8 gap-x-4 sm:gap-x-6 px-5 sm:px-10 pb-6">
 
                 <TextInput label={"Emp ID:"} placeholder={"Emp ID"}
                     onChange={(e) => (setFormData({ ...formData, empId: e.target.value }))} />

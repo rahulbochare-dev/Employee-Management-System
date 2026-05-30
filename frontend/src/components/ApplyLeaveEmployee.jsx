@@ -5,6 +5,7 @@ import DropdownAddEmployee from './DropdownAddEmployee.jsx'
 import DropdownLeaveType from './DropdownLeaveType.jsx'
 import { useEmployeeLeaveStore } from '../store/employeeLeaveStore.js'
 import toast, { Toaster } from 'react-hot-toast'
+import { X } from "lucide-react";
 
 const LeaveDetails = ({ leaveDetails, cb }) => {
     const {getMyLeaves, applyLeave} = useEmployeeLeaveStore()
@@ -38,9 +39,12 @@ const LeaveDetails = ({ leaveDetails, cb }) => {
     return (
         <div className="w-[95vw] max-w-5xl max-h-[90vh] bg-white rounded-2xl px-5 sm:px-8 pt-6 pb-6 overflow-y-auto transition-all flex flex-col">
     <Toaster position='bottom-center'/>
+    <div className="w-full flex justify-between items-center">
     <h1 className="text-2xl sm:text-[1.75rem] font-medium text-black leading-none shrink-0">
         Leave Application
     </h1>
+    <X onClick={cb} className='hover:cursor-pointer'/>
+    </div>
     <Separator marginY={"my-5"} width={"w-full"} />
 
     <div className="w-full flex flex-col lg:flex-row gap-6 flex-1 min-h-0">
