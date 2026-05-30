@@ -73,7 +73,7 @@ const Leaves = () => {
   <div className="fixed inset-0 z-50 bg-black/25 backdrop-blur-md overflow-y-auto">
     
     <div className="min-h-full flex justify-center items-center px-3 sm:px-5 py-5">
-      <div className="w-full max-w-[95rem] flex justify-center items-center">
+      <div className="w-full max-w-380 flex justify-center items-center">
         <LeaveDetails
           leaveDetails={leavesDetails}
           cb={handleShowLeaveDetails}
