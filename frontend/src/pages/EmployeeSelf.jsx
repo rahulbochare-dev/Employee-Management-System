@@ -9,11 +9,12 @@ import { useEmployeeLeaveStore } from "../store/employeeLeaveStore.js";
 import { useEmployeeStore } from "../store/employeeStore.js";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from 'react-hot-toast';
+import WelcomeText from '../components/WelcomeText.jsx';
 
 const EmployeeSelf = () => {
     const navigate = useNavigate()
-    const {myLeaveDetails, myLeaves, getMyLeaves, getLeaveDetails} = useEmployeeLeaveStore()
-    const {employee, getCurrentEmployee, logout} = useEmployeeStore()
+    const { myLeaveDetails, myLeaves, getMyLeaves, getLeaveDetails } = useEmployeeLeaveStore()
+    const { employee, getCurrentEmployee, logout } = useEmployeeStore()
     const [showApplyLeave, setShowApplyLeave] = useState(false)
     const [showLeaveDetails, setShowLeaveDetails] = useState(false)
 
@@ -34,7 +35,7 @@ const EmployeeSelf = () => {
         try {
             const response = await logout()
             console.log(response)
-            if(response.success){
+            if (response.success) {
                 toast.success(response.message)
                 navigate("/login-employee")
             } else {
@@ -44,7 +45,7 @@ const EmployeeSelf = () => {
             toast.error("Something went wrong!")
         }
     }
-    
+
     useEffect(() => {
         const callApi = async () => {
             const response = await getMyLeaves()
@@ -54,122 +55,170 @@ const EmployeeSelf = () => {
     }, [])
 
     return (
-        <div className='w-screen h-screen bg-[#f9f9f9] px-5 relative'>
-            <Toaster position='bottom-center'/>
-            {showLeaveDetails &&<div className="w-screen h-screen flex justify-center items-center bg-black/25 backdrop-blur-md fixed inset-0">
-                {showLeaveDetails && <LeaveDetailsEmployee leaveDetails={myLeaveDetails} cb={handleGetLeaveDetails}/>}
-            </div>}
-            {showApplyLeave &&<div className="w-screen h-screen flex justify-center items-center bg-black/25 backdrop-blur-md fixed inset-0">
-                {showApplyLeave && <ApplyLeaveEmployee cb={handleShowApplyLeave}/>}
-            </div>}
-            <div className="w-full h-20 flex justify-between items-center">
-                <div className='w-25 h-10 bg-gray-200'></div>
-                <DateTime />
+        <div className='w-full min-h-screen bg-[#f9f9f9] px-3 sm:px-5 relative overflow-x-hidden'>
+            <Toaster position='bottom-center' />
+
+            {showLeaveDetails && (
+                <div className="fixed inset-0 w-screen h-screen flex justify-center items-center bg-black/25 backdrop-blur-md z-50">
+                    <LeaveDetailsEmployee leaveDetails={myLeaveDetails} cb={handleGetLeaveDetails} />
+                </div>
+            )}
+            {showApplyLeave && (
+                <div className="fixed inset-0 w-screen h-screen flex justify-center items-center bg-black/25 backdrop-blur-md z-50">
+                    <ApplyLeaveEmployee cb={handleShowApplyLeave} />
+                </div>
+            )}
+
+            <div className="w-full h-auto flex flex-col sm:flex-row sm:justify-between sm:items-center px-1 sm:px-0 pt-3 sm:pt-0 gap-2 sm:gap-0 min-h-20">
+                <div className="w-25 h-10 bg-gray-200 shrink-0"></div>
+                <div className="min-w-0">
+                    <WelcomeText />
+                </div>
             </div>
-            <div className="w-full h-[90%] bg-white border border-[#b6b6b6] rounded-2xl">
-                <div className="w-full h-22 flex justify-between items-center px-10">
-                    <h1 className='text-3xl font-medium'>Employee Details</h1>
-                    <Button onClick={handleLogout} title={"Logout"} icon={"/src/assets/logout.svg"} />
+
+            <div className="w-full mt-3 min-h-[calc(100vh-7rem)] bg-white border border-[#b6b6b6] rounded-2xl overflow-hidden">
+
+                <div className="w-full flex flex-col sm:flex-row justify-between sm:items-center px-4 sm:px-10 py-4 gap-4">
+                    <h1 className='text-2xl sm:text-3xl font-medium'>Employee Details</h1>
+                    <Button width='w-68' onClick={handleLogout} title={"Logout"} icon={"/src/assets/logout.svg"} />
                 </div>
-                <Seperator width='w-450' />
-                <div className="w-full h-[89.6%] flex">
-                <div className="w-1/2 h-[89.7%] border-r border-[#b6b6b6]">
-                    <div className="w-full h-30 pl-10 flex">
-                        <div className="w-98 h-30 flex items-center gap-5">
-                            <img className="size-17 rounded-full object-cover shrink-0" src="/src/assets/businessman.png" alt="" />
-                            <div className="flex flex-col">
-                                <h2 className="text-[1.375rem] font-medium text-black leading-none">
-                                    {employee?.firstName} {employee?.lastName}
-                                </h2>
-                                <h3 className="text-[1rem] text-[#7a7a7a] font-medium mt-2 leading-none">
-                                {employee?.jobTitle}
+
+                <Seperator width='w-full' />
+
+                <div className="w-full flex flex-col lg:flex-row">
+
+                    {/* Left panel */}
+                    <div className="w-full lg:w-1/2 min-w-0 border-b lg:border-b-0 lg:border-r border-[#b6b6b6]">
+
+                        <div className="w-full px-4 sm:px-10 py-6 flex flex-col xl:flex-row gap-6">
+
+                            {/* Avatar + name block */}
+                            <div className="w-full xl:w-auto flex items-center gap-4 min-w-0">
+                                <img
+                                    className="size-17 rounded-full object-cover shrink-0"
+                                    src="/src/assets/businessman.png"
+                                    alt=""
+                                />
+                                <div className="flex flex-col min-w-0 flex-1 xl:flex-none xl:min-w-[280px]">
+                                    <h2 className="text-[1.375rem] font-medium text-black leading-none truncate">
+                                        {employee?.firstName || "N/A"} {employee?.lastName}
+                                    </h2>
+                                    <h3 className="text-[1rem] text-[#7a7a7a] font-medium mt-2 leading-none truncate">
+                                        {employee?.jobTitle || "N/A"}
+                                    </h3>
+                                    <h3 className="text-[1rem] text-[#7a7a7a] font-medium mt-2 leading-none break-all">
+                                        {employee?.email || "N/A"}
+                                    </h3>
+                                </div>
+                            </div>
+
+                            {/* EMP ID / Work Mode / Status */}
+                            <div className="w-full flex flex-wrap gap-5 xl:justify-center">
+                                <div className="min-w-[120px] h-20 flex flex-col">
+                                    <h2 className='text-xl sm:text-2xl font-medium'>EMP ID</h2>
+                                    <h3 className='text-[1rem] text-[#7a7a7a] font-medium break-all'>{employee?.empID}</h3>
+                                </div>
+                                <div className="min-w-[120px] h-20">
+                                    <h2 className='text-xl sm:text-2xl font-medium'>Work Mode</h2>
+                                    <h3 className='text-[1rem] text-[#7a7a7a] font-medium'>{employee?.workMode}</h3>
+                                </div>
+                                <div className="min-w-[120px] h-20">
+                                    <h2 className='text-xl sm:text-2xl font-medium'>Status</h2>
+                                    <h3 className='text-[1rem] text-[#7a7a7a] font-medium'>
+                                        {employee?.isActive ? "Active" : "Inactive"}
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <Seperator width='w-full' />
+
+                        {/* Details grid */}
+                        {/* Details grid */}
+                        <div className="w-full px-4 sm:px-10 lg:px-20 py-8 grid grid-cols-2 min-[480px]:grid-cols-2 gap-x-8 gap-y-8 lg:gap-y-16">
+                            <div className="min-w-0">
+                                <h2 className='text-xl sm:text-2xl font-medium'>Gender</h2>
+                                <h3 className='text-md sm:text-xl text-[#7a7a7a] font-medium'>{employee?.gender}</h3>
+                            </div>
+                            <div className="min-w-0">
+                                <h2 className='text-xl sm:text-2xl font-medium'>Date of Birth</h2>
+                                <h3 className='text-md sm:text-xl text-[#7a7a7a] font-medium'>
+                                    {new Date(employee?.dateOfBirth).toLocaleDateString("en-GB", {
+                                        day: "numeric", month: "short", year: "numeric"
+                                    })}
                                 </h3>
-                                <h3 className="text-[1rem] text-[#7a7a7a] font-medium mt-2 leading-none">
-                                {employee?.email}
+                            </div>
+                            <div className="min-w-0">
+                                <h2 className='text-xl sm:text-2xl font-medium'>Address</h2>
+                                <h3 className='text-md sm:text-xl text-[#7a7a7a] font-medium break-words'>{employee?.address}</h3>
+                            </div>
+                            <div className="min-w-0">
+                                <h2 className='text-xl sm:text-2xl font-medium'>Postal Code</h2>
+                                <h3 className='text-md sm:text-xl text-[#7a7a7a] font-medium'>{employee?.postalCode}</h3>
+                            </div>
+                            <div className="min-w-0">
+                                <h2 className='text-xl sm:text-2xl font-medium'>Country</h2>
+                                <h3 className='text-md sm:text-xl text-[#7a7a7a] font-medium'>{employee?.country}</h3>
+                            </div>
+                            <div className="min-w-0">
+                                <h2 className='text-xl sm:text-2xl font-medium'>City</h2>
+                                <h3 className='text-md sm:text-xl text-[#7a7a7a] font-medium'>{employee?.city}</h3>
+                            </div>
+                            <div className="min-w-0">
+                                <h2 className='text-xl sm:text-2xl font-medium'>Joining Date</h2>
+                                <h3 className='text-md sm:text-xl text-[#7a7a7a] font-medium'>
+                                    {new Date(employee?.createdAt).toLocaleDateString("en-GB", {
+                                        day: "numeric", month: "short", year: "numeric"
+                                    })}
                                 </h3>
                             </div>
-                        </div>
-                        <div className="w-127 h-full flex justify-center items-center gap-5">
-                            <div className="w-35 h-20 flex flex-col">
-                                <h2 className='text-[1.375rem] font-medium'>EMP ID</h2>
-                                <h3 className='text-[1rem] text-[#7a7a7a] font-medium'>{employee?.empID}</h3>
-                            </div>
-                            <div className="w-35 h-20">
-                                <h2 className='text-[1.375rem] font-medium'>Work Mode</h2>
-                                <h3 className='text-[1rem] text-[#7a7a7a] font-medium'>{employee?.workMode}</h3>
-                            </div>
-                            <div className="w-35 h-20">
-                                <h2 className='text-[1.375rem] font-medium'>Status</h2>
-                                <h3 className='text-[1rem] text-[#7a7a7a] font-medium'>{employee?.isActive? true: "Active"}</h3>
+                            <div className="min-w-0">
+                                <h2 className='text-xl sm:text-2xl font-medium'>Education</h2>
+                                <h3 className='text-md sm:text-xl text-[#7a7a7a] font-medium break-words'>{employee?.education}</h3>
                             </div>
                         </div>
-                    </div>
-                    <Seperator width='w-216' />
-                    <div className="w-full h-138 px-31 py-10 items-center gap-x-98 grid grid-cols-2 grid-rows-3 ">
-                        <div className="w-fit h-20">
-                            <h2 className='text-[1.5625rem] font-medium'>Gender</h2>
-                            <h3 className='text-[1.2rem] text-[#7a7a7a] font-medium'>{employee?.gender}</h3>
-                        </div>
-                        <div className="w-fit h-20">
-                            <h2 className='text-[1.5625rem] font-medium'>Date of Birth</h2>
-                            <h3 className='text-[1.2rem] text-[#7a7a7a] font-medium'>{
-              new Date(employee?.dateOfBirth).toLocaleDateString("en-GB", {
-                day: "numeric",
-                month: "short",
-                year: "numeric"
-              })
-            }</h3>
-                        </div>
-                        <div className="w-fit h-20">
-                            <h2 className='text-[1.5625rem] font-medium'>Address</h2>
-                            <h3 className='text-[1.2rem] text-[#7a7a7a] font-medium'>{employee?.address}</h3>
-                        </div>
-                        <div className="w-fit h-20">
-                            <h2 className='text-[1.5625rem] font-medium'>Postal Code</h2>
-                            <h3 className='text-[1.2rem] text-[#7a7a7a] font-medium'>{employee?.postalCode}</h3>
-                        </div>
-                        <div className="w-fit h-20">
-                            <h2 className='text-[1.5625rem] font-medium'>Country</h2>
-                            <h3 className='text-[1.2rem] text-[#7a7a7a] font-medium'>{employee?.country}</h3>
-                        </div>
-                        <div className="w-fit h-20">
-                            <h2 className='text-[1.5625rem] font-medium'>City</h2>
-                            <h3 className='text-[1.2rem] text-[#7a7a7a] font-medium'>{employee?.city}</h3>
-                        </div>
-                        <div className="w-fit h-20">
-                            <h2 className='text-[1.5625rem] font-medium'>Joining Date</h2>
-                            <h3 className='text-[1.2rem] text-[#7a7a7a] font-medium'>{
-              new Date(employee?.createdAt).toLocaleDateString("en-GB", {
-                day: "numeric",
-                month: "short",
-                year: "numeric"
-              })
-            }</h3>
-                        </div>
-                        <div className="w-fit h-20">
-                            <h2 className='text-[1.5625rem] font-medium'>Education</h2>
-                            <h3 className='text-[1.2rem] text-[#7a7a7a] font-medium'>{employee?.education}</h3>
+
+                        {/* Salary */}
+                        <div className="w-full px-4 sm:px-10 lg:px-20 py-6">
+                            <h2 className='text-2xl sm:text-[2rem] font-medium flex flex-wrap gap-x-2 items-baseline'>
+                                <span className='text-[#7a7a7a]'>Salary:</span>
+                                <span>{employee?.salary} {employee?.salaryCurrency}</span>
+                            </h2>
                         </div>
                     </div>
-                    <div className="w-full h-22 px-31 flex justify-start pt-3">
-                        <h2 className='text-[2rem] font-medium'><span className='text-[#7a7a7a]'>Salary: </span>{employee?.salary} {employee?.salaryCurrency}</h2>
-                    </div>
-                </div>
-                <div className='w-1/2 h-[89.7%]'>
-                    <div className='w-full h-20 flex justify-start items-center px-10'>
-                        <h2 className='text-[1.75rem] font-medium'>My Leaves</h2>
-                    </div>
-                    <div className="w-full h-172">
-                        <div className="w-full h-148 grid grid-cols-2 gap-5 items-center justify-items-center overflow-y-scroll">
-                            {myLeaves?.map((leave) => {
-                                return <LeaveCardEmployee cb={handleGetLeaveDetails} key={leave?._id} leave={leave}/>
-                            })}
+
+                    {/* Right panel — My Leaves */}
+                    <div className='w-full lg:w-1/2 min-w-0 flex flex-col'>
+
+                        <div className='w-full min-h-20 flex justify-start items-center px-4 sm:px-10'>
+                            <h2 className='text-[1.4rem] sm:text-[1.75rem] font-medium'>My Leaves</h2>
                         </div>
-                        <div className="w-full h-20 flex justify-center items-center">
-                            <Button onClick={handleShowApplyLeave} icon={"/src/assets/leave-light.svg"} title={"Apply Leave"}/>
+
+                        <div className="w-full flex flex-col" style={{ height: 'clamp(400px, 68vh, 700px)' }}>
+
+                            <div className="w-full flex-1 overflow-y-auto p-4 min-h-0">
+                                <div className="grid grid-cols-1 min-[480px]:grid-cols-2 gap-5 items-start justify-items-center">
+                                    {myLeaves?.map((leave) => (
+                                        <LeaveCardEmployee
+                                            cb={handleGetLeaveDetails}
+                                            key={leave?._id}
+                                            leave={leave}
+                                        />
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div className="w-full min-h-20 flex justify-center items-center p-4 shrink-0">
+                                <Button
+                                    width='w-68'
+                                    onClick={handleShowApplyLeave}
+                                    icon={"/src/assets/leave-light.svg"}
+                                    title={"Apply Leave"}
+                                />
+                            </div>
                         </div>
+
                     </div>
-                </div>
                 </div>
             </div>
         </div>

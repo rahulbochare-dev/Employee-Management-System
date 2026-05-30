@@ -4,20 +4,21 @@ const Button = ({ title, icon, marginY, width = "w-63.5", onClick, secondary = f
 
   return (
     <button
-      type={type}
-      onClick={onClick}
-      className={`${secondary
-        ? `w-full sm:${width} h-10 rounded-lg flex items-center justify-center bg-white border border-[#b6b6b6] ${marginY} cursor-pointer transition-all duration-200 hover:bg-gray-200`
-        : `w-full sm:${width} h-10 rounded-lg flex items-center justify-center gap-3 ${marginY} cursor-pointer transition-all duration-200 bg-black hover:bg-gray-900`
-      }`}>
+  type={type}
+  onClick={onClick}
+  className={`${width} h-10 rounded-lg flex items-center justify-center gap-3 ${marginY} cursor-pointer transition-all duration-200 ${
+    secondary
+      ? "bg-white border border-[#b6b6b6] hover:bg-gray-200"
+      : "bg-black hover:bg-gray-900"
+  }`}>
 
-      {secondary || <img className='w-5 sm:w-6 shrink-0' src={icon} alt=""/>}
+  {secondary || <img className='w-5 sm:w-6 shrink-0' src={icon} alt=""/>}
 
-      <h3 className={`text-sm sm:text-base font-medium truncate ${secondary ? "text-black" : "text-white"}`}>
-        {title}
-      </h3>
+  <h3 className={`text-sm sm:text-base font-medium truncate ${secondary ? "text-black" : "text-white"}`}>
+    {title}
+  </h3>
 
-    </button>
+</button>
   )
 }
 
