@@ -179,7 +179,7 @@ const Employees = () => {
       )}
       </div>
     </div>
-    <div className="w-full min-h-screen mb-3 lg:min-h-0 lg:h-[calc(100vh-4.4rem)] flex items-baseline-last">
+    <div className="w-full pt-4 min-h-screen mb-3 lg:min-h-0 lg:h-[calc(100vh-4.4rem)] flex items-baseline-last lg:pt-0">
       {singleEmployeeDetails && showEmployeeDetails? <EmployeeDetails
        onClick={closeEmployeeDetails} empDetails={singleEmployeeDetails}
        cb={setShowEmployeeDetails}

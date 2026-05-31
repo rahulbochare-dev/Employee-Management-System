@@ -69,7 +69,7 @@ const EmployeeSelf = () => {
                 </div>
             )}
 
-            <div className="w-full h-auto flex flex-col sm:flex-row sm:justify-between sm:items-center px-1 sm:px-0 pt-3 sm:pt-0 gap-2 sm:gap-0 min-h-20">
+            <div className="w-full h-autoflex flex-col sm:flex-row sm:justify-between sm:items-center px-1 sm:px-0 sm:pt-0 gap-2 sm:gap-0 min-h-20">
                 <div className="w-25 h-10 bg-gray-200 shrink-0"></div>
                 <div className="min-w-0">
                     <WelcomeText />

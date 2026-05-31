@@ -1,15 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Button from '../components/Button.jsx'
 import { toast, Toaster } from "react-hot-toast";
 import { useAdminEmployeeStore } from '../store/adminEmployeeStore.js'
 
 const EmployeeCard = ({ onClick, empDetails, cb }) => {
-    const {terminateEmployee} = useAdminEmployeeStore()
+    const { terminateEmployee } = useAdminEmployeeStore()
+
+    const [initials, setInitials] = useState({
+        first: "",
+        last: ""
+    })
+
+    useEffect(() => {
+        const firstIn = empDetails.firstName ? empDetails.firstName.charAt(0) : ""
+        const lastIn = empDetails.lastName ? empDetails.lastName.charAt(0) : ""
+
+        setInitials({
+            first: firstIn,
+            last: lastIn
+        })
+    }, [empDetails.firstName, empDetails.lastName])
 
     const handleTerminateEmployee = async (e) => {
         try {
             const response = await terminateEmployee(empDetails?._id)
-            if(response.success){
+            if (response.success) {
                 toast.success(response.message)
                 cb(false)
             } else {
@@ -21,145 +36,132 @@ const EmployeeCard = ({ onClick, empDetails, cb }) => {
     }
 
     return (
-        <div className="w-384 h-[98%] bg-[#f5f5f5] border border-[#d9d9d9] rounded-3xl overflow-hidden font-sans">
-            <div className="w-full h-49 bg-[#efefef] flex items-center px-10">
-                <div className="w-32.5 h-32.5 bg-[#d9d9d9] rounded-[1.125rem] flex items-center justify-center text-[3.5rem] font-medium text-black shrink-0">
-                    AA
+        <div className="w-[95vw] w-6xl max-h-[90vh] sm:w-384 sm:h-[98%] bg-white border border-[#eaeaea] rounded-3xl overflow-clip">
+
+            {/* Header */}
+            {/* Header */}
+            <div className="w-full bg-[#f9f9f9] flex flex-col px-5 sm:px-10 py-6 sm:py-0 sm:h-49 sm:flex-row sm:items-center gap-5 sm:gap-0">
+
+                {/* Avatar + Name + JobTitle — grows to fill space */}
+                <div className="flex items-center gap-5 sm:gap-9 min-w-0 flex-1">
+                    <div className="w-15 h-15 sm:w-24 sm:h-24 bg-[#ededed] rounded-[1.125rem] flex items-center justify-center text-2xl sm: shrink-0">
+                        {empDetails.avatar ? <img src={empDetails?.avatar} alt="" srcset="" /> :
+                            <h1 className="text-[2.5rem] font-bold text-[#898989]">{initials.first}{initials.last}</h1>}
+                    </div>
+                    <div className="min-w-0">
+                        <h1 className="text-xl sm:text-[1.9rem] leading-none font-medium text-black truncate">
+                            {empDetails?.firstName} {empDetails?.lastName}
+                        </h1>
+                        <p className="mt-3 sm:mt-5 text-base sm:text-[1.5rem] leading-none text-[#7d7d7d] font-medium">
+                            {empDetails?.jobTitle}
+                        </p>
+                    </div>
                 </div>
-                <div className="ml-9 w-md">
-                    <h1 className="text-[2rem] leading-none font-medium text-black">
-                        {empDetails?.firstName} {empDetails?.lastName}
-                    </h1>
-                    <p className="mt-5 text-[1.625rem] leading-none text-[#7d7d7d] font-medium">
-                        {empDetails?.jobTitle}
-                    </p>
-                </div>
-                <div className="flex flex-1 justify-between ml-8 pr-10">
-                    <div>
-                        <h2 className="text-[2rem] leading-none font-medium text-black">
-                            Employee ID
-                        </h2>
-                        <p className="mt-5 text-[1.625rem] leading-none text-[#7d7d7d] font-medium">
+
+                {/* EmpID / WorkMode / Status — compact fixed widths, pushed to right */}
+                <div className="flex flex-wrap sm:flex-nowrap gap-4 sm:gap-8 sm:shrink-0">
+                    <div className="w-24 sm:w-52">
+                        <h2 className="text-base sm:text-[1.9rem] leading-none font-medium text-black">Employee ID</h2>
+                        <p className="mt-2 sm:mt-6 text-sm sm:text-[1.5rem] leading-none text-[#7d7d7d] font-medium break-all">
                             {empDetails?.empID}
                         </p>
                     </div>
-                    <div>
-                        <h2 className="text-[2rem] leading-none font-medium text-black">
-                            Work Mode
-                        </h2>
-                        <p className="mt-5 text-[1.625rem] leading-none text-[#7d7d7d] font-medium">
+                    <div className="w-24 sm:w-52">
+                        <h2 className="text-base sm:text-[1.9rem] leading-none font-medium text-black">Work Mode</h2>
+                        <p className="mt-2 sm:mt-5 text-sm sm:text-[1.5rem] leading-none text-[#7d7d7d] font-medium">
                             {empDetails?.workMode}
                         </p>
                     </div>
-                    <div>
-                        <h2 className="text-[2rem] leading-none font-medium text-black">
-                            Status
-                        </h2>
-                        <p className="mt-5 text-[1.625rem] leading-none text-[#00a51e] font-medium">
-                            {empDetails?.status ? true : "Active"}
+                    <div className="w-16 sm:w-52">
+                        <h2 className="text-base sm:text-[1.9rem] leading-none font-medium text-black">Status</h2>
+                        <p className="mt-2 sm:mt-5 text-sm sm:text-[1.5rem] leading-none text-[#00a51e] font-medium">
+                            {empDetails?.isActive ? "Active" : "Inactive"}
                         </p>
                     </div>
-                    <img onClick={onClick} className='size-8 cursor-pointer' src="/src/assets/close.svg" alt="" />
                 </div>
+
             </div>
-            <div className="px-20 py-10">
-                <div className="grid grid-cols-3 gap-y-25">
-                    <div>
-                        <p className="text-[1.5625rem] text-[#8b8b8b] font-medium leading-none">
-                            Email:
-                        </p>
-                        <p className="mt-6 text-[1.4375rem] text-black leading-[2.6rem]">
+
+            {/* Body */}
+            <div className="px-5 sm:px-12 lg:px-20 py-8">
+                <div className="grid grid-cols-2 min-[480px]:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-8 sm:gap-y-12 lg:gap-y-25">
+                    <div className="min-w-0">
+                        <p className="text-base sm:text-[1.5625rem] text-[#8b8b8b] font-medium leading-none">Email:</p>
+                        <p className="mt-3 text-sm sm:text-[1.4375rem] text-black break-all leading-relaxed">
                             {empDetails?.email}
                         </p>
                     </div>
-                    <div>
-                        <p className="text-[1.5625rem] text-[#8b8b8b] font-medium leading-none">
-                            Gender:
-                        </p>
-                        <p className="mt-6 text-[1.4375rem] text-black leading-none">
+                    <div className="min-w-0">
+                        <p className="text-base sm:text-[1.5625rem] text-[#8b8b8b] font-medium leading-none">Gender:</p>
+                        <p className="mt-3 sm:mt-6 text-sm sm:text-[1.4375rem] text-black leading-none">
                             {empDetails?.gender}
                         </p>
                     </div>
-                    <div>
-                        <p className="text-[1.5625rem] text-[#8b8b8b] font-medium leading-none">
-                            Contact No:
-                        </p>
-                        <p className="mt-6 text-[1.4375rem] text-black leading-none">
+                    <div className="min-w-0">
+                        <p className="text-base sm:text-[1.5625rem] text-[#8b8b8b] font-medium leading-none">Contact No:</p>
+                        <p className="mt-3 sm:mt-6 text-sm sm:text-[1.4375rem] text-black leading-none">
                             {empDetails?.contactNo}
                         </p>
                     </div>
-                    <div>
-                        <p className="text-[1.5625rem] text-[#8b8b8b] font-medium leading-none">
-                            Address:
-                        </p>
-                        <p className="mt-6 text-[1.4375rem] text-black leading-[2.6rem] max-w-[24rem]">
+                    <div className="min-w-0">
+                        <p className="text-base sm:text-[1.5625rem] text-[#8b8b8b] font-medium leading-none">Address:</p>
+                        <p className="mt-3 sm:mt-6 text-sm sm:text-[1.4375rem] text-black break-words leading-relaxed">
                             {empDetails?.address}
                         </p>
                     </div>
-                    <div>
-                        <p className="text-[1.5625rem] text-[#8b8b8b] font-medium leading-none">
-                            Postal Code:
-                        </p>
-                        <p className="mt-6 text-[1.4375rem] text-black leading-none">
+                    <div className="min-w-0">
+                        <p className="text-base sm:text-[1.5625rem] text-[#8b8b8b] font-medium leading-none">Postal Code:</p>
+                        <p className="mt-3 sm:mt-6 text-sm sm:text-[1.4375rem] text-black leading-none">
                             {empDetails?.postalCode}
                         </p>
                     </div>
-                    <div>
-                        <p className="text-[1.5625rem] text-[#8b8b8b] font-medium leading-none">
-                            Date of Birth:
-                        </p>
-                        <p className="mt-6 text-[1.4375rem] text-black leading-none">
-                            {
-                                new Date(empDetails?.dateOfBirth).toLocaleDateString("en-GB", {
-                                    day: "numeric",
-                                    month: "short",
-                                    year: "numeric"
-                                })
-                            }
+                    <div className="min-w-0">
+                        <p className="text-base sm:text-[1.5625rem] text-[#8b8b8b] font-medium leading-none">Date of Birth:</p>
+                        <p className="mt-3 sm:mt-6 text-sm sm:text-[1.4375rem] text-black leading-none">
+                            {new Date(empDetails?.dateOfBirth).toLocaleDateString("en-GB", {
+                                day: "numeric", month: "short", year: "numeric"
+                            })}
                         </p>
                     </div>
-                    <div>
-                        <p className="text-[1.5625rem] text-[#8b8b8b] font-medium leading-none">
-                            City:
-                        </p>
-                        <p className="mt-6 text-[1.4375rem] text-black leading-none">
+                    <div className="min-w-0">
+                        <p className="text-base sm:text-[1.5625rem] text-[#8b8b8b] font-medium leading-none">City:</p>
+                        <p className="mt-3 sm:mt-6 text-sm sm:text-[1.4375rem] text-black leading-none">
                             {empDetails?.city}
                         </p>
                     </div>
-                    <div>
-                        <p className="text-[1.5625rem] text-[#8b8b8b] font-medium leading-none">
-                            Joining Date:
-                        </p>
-                        <p className="mt-6 text-[1.4375rem] text-black leading-none">
-                            {
-                                new Date(empDetails?.joinedAt).toLocaleDateString("en-GB", {
-                                    day: "numeric",
-                                    month: "short",
-                                    year: "numeric"
-                                })
-                            }
+                    <div className="min-w-0">
+                        <p className="text-base sm:text-[1.5625rem] text-[#8b8b8b] font-medium leading-none">Joining Date:</p>
+                        <p className="mt-3 sm:mt-6 text-sm sm:text-[1.4375rem] text-black leading-none">
+                            {new Date(empDetails?.joinedAt).toLocaleDateString("en-GB", {
+                                day: "numeric", month: "short", year: "numeric"
+                            })}
                         </p>
                     </div>
-                    <div>
-                        <p className="text-[1.5625rem] text-[#8b8b8b] font-medium leading-none">
-                            Country:
-                        </p>
-                        <p className="mt-6 text-[1.4375rem] text-black leading-none">
+                    <div className="min-w-0">
+                        <p className="text-base sm:text-[1.5625rem] text-[#8b8b8b] font-medium leading-none">Country:</p>
+                        <p className="mt-3 sm:mt-6 text-sm sm:text-[1.4375rem] text-black leading-none">
                             {empDetails?.country}
                         </p>
                     </div>
                 </div>
-                <div className="w-full h-px bg-[#d3d3d3] mt-12"></div>
-                <div className="flex justify-between items-center mt-8">
-                    <div>
-                        <span className="text-[2rem] text-[#8b8b8b] font-medium">
-                            Salary:
-                        </span>
-                        <span className="ml-10 text-[2rem] font-medium text-black">
+
+                {/* Divider */}
+                <div className="w-full h-px bg-[#d3d3d3] mt-8 sm:mt-12"></div>
+
+                {/* Salary + Terminate */}
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 sm:gap-0 mt-6 sm:mt-8">
+                    <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+                        <span className="text-xl sm:text-[2rem] text-[#8b8b8b] font-medium">Salary:</span>
+                        <span className="text-xl sm:text-[2rem] font-medium text-black">
                             {empDetails?.salary} {empDetails?.salaryCurrency}
                         </span>
                     </div>
-                    <Button title={"Terminate Employee"} icon={"/src/assets/terminate.svg"} onClick={handleTerminateEmployee}/>
+                    <Button
+                        width="w-full sm:w-68"
+                        title={"Terminate Employee"}
+                        icon={"/src/assets/terminate.svg"}
+                        onClick={handleTerminateEmployee}
+                    />
                 </div>
             </div>
         </div>

@@ -103,7 +103,7 @@ const Leaves = () => {
                     )}
                     </div>
             </div>
-            <div className="w-full h-fit mb-3 lg:mb-0 lg:h-[calc(100vh-4.4rem)] flex items-baseline-last">
+            <div className="w-full h-fit mb-3 pt-4 lg:mb-0 lg:pt-0 lg:h-[calc(100vh-4.4rem)] flex items-baseline-last">
             <div className="w-full lg:w-384 lg:h-[98%] bg-white border border-[#eaeaea] rounded-[0.9375rem] overflow-visible lg:overflow-hidden">
             <div className="w-full h-10 flex gap-3 items-center pl-7 pt-2">
                   <img className='w-8' src="/src/assets/leave-dark.svg" alt="" />
