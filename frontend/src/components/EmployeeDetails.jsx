@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Button from '../components/Button.jsx'
+import { X } from 'lucide-react'
 import { toast, Toaster } from "react-hot-toast";
 import { useAdminEmployeeStore } from '../store/adminEmployeeStore.js'
 
@@ -40,7 +41,13 @@ const EmployeeCard = ({ onClick, empDetails, cb }) => {
 
             {/* Header */}
             {/* Header */}
-            <div className="w-full bg-[#f9f9f9] flex flex-col px-5 sm:px-10 py-6 sm:py-0 sm:h-49 sm:flex-row sm:items-center gap-5 sm:gap-0">
+            <div className="w-full bg-[#f9f9f9] flex flex-col px-5 sm:px-10 py-6 sm:py-0 sm:h-49 sm:flex-row sm:items-center gap-5 sm:gap-0 relative">
+
+            <button
+        onClick={onClick}
+        className="absolute top-3 right-3 w-9 h-9 rounded-full flex justify-center items-center transition-all hover:bg-[#f1f1f1] active:bg-[#e9e9e9]">
+        <X size={22} strokeWidth={2.2} />
+    </button>
 
                 {/* Avatar + Name + JobTitle — grows to fill space */}
                 <div className="flex items-center gap-5 sm:gap-9 min-w-0 flex-1">

@@ -243,9 +243,9 @@ const Employees = () => {
                 />
               );
             })}
-            <div className="col-span-full flex items-center justify-center min-h-80 lg:mt-[1.9rem]">
+            {employees? null :<div className="col-span-full flex items-center justify-center min-h-80 lg:mt-[1.9rem]">
               <EmptyState title='No Employees Available'/>
-            </div>
+            </div>}
           </div>
           <div className="w-full min-h-15 flex justify-center items-center px-4 py-4 bg-white">
             {showPagination && employees && <Pagination />}

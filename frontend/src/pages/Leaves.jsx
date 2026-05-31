@@ -117,13 +117,13 @@ const Leaves = () => {
                   </div>
                 </div>
                 <Seperator marginY={"my-2"} width='w-369' />
-                <div className="w-full min-h-120 justify-items-center lg:h-full grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5 sm:gap-7 overflow-y-visible lg:overflow-y-auto px-4 sm:px-7 py-4">
+                <div className="w-full min-h-120 justify-items-center lg:h-full lg:pb-36 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5 sm:gap-7 overflow-y-visible lg:overflow-y-auto px-4 sm:px-7 py-4">
                   {leaves?.map((value) => {
                     return <LeaveCard cb={handleShowLeaveDetails} cb2={handleUpdateLeaveStatus} key={value._id} leave={value}/>
                   })}
-                  <div className="col-span-full flex items-center justify-center min-h-80 lg:mb-42">
+                  {leaves? null : <div className="col-span-full flex items-center justify-center min-h-80 lg:mb-42">
                     <EmptyState title='No Leaves Available'/>
-                  </div>
+                  </div>}
                 </div>
               </div>
             </div>

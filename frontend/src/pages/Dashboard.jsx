@@ -127,7 +127,7 @@ const Dashboard = () => {
             <div className="w-full h-15.25 flex items-center">
               <h2 className="text-[1.875rem] font-medium">Dashboard</h2>
             </div>
-            <div className="grid grid-cols-1 justify-items-center justify-center sm:grid-cols-2 pt-1 xl:grid-cols-3 2xl:grid-cols-4 gap-16">
+            <div className="grid grid-cols-1 gap-4 justify-items-center justify-center sm:grid-cols-2 pt-1 xl:grid-cols-3 2xl:grid-cols-4 lg:gap-16">
               <KPICard
                 title={"Total Employees"}
                 mainIcon={"/src/assets/employee-dark.svg"}

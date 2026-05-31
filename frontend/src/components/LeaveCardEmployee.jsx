@@ -3,7 +3,7 @@ import Separator from './Seperator'
 
 const LeaveCardEmployee = ({ leave, cb }) => {
   return (
-    <div className="w-85 h-65 bg-white border border-[#b6b6b6] rounded-xl px-5 overflow-hidden">
+    <div className="w-85 sm:w-85 w-full h-65 bg-white border border-[#eaeaea] rounded-xl px-4 sm:px-5 overflow-hidden">
       <div className="w-full h-17 flex justify-start gap-3 items-center">
         <img className='w-11 h-11' src="/src/assets/businessman.png" alt="" />
         <div className="w-[78%] h-[75%] flex flex-col">

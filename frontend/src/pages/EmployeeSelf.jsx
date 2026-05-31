@@ -69,12 +69,18 @@ const EmployeeSelf = () => {
                 </div>
             )}
 
-            <div className="w-full h-autoflex flex-col sm:flex-row sm:justify-between sm:items-center px-1 sm:px-0 sm:pt-0 gap-2 sm:gap-0 min-h-20">
-                <div className="w-25 h-10 bg-gray-200 shrink-0"></div>
-                <div className="min-w-0">
-                    <WelcomeText />
-                </div>
-            </div>
+<div className="w-full flex items-center justify-between px-1 sm:px-0 min-h-20">
+    
+    <div className="flex items-center gap-4">
+        <div className="w-25 h-10 bg-gray-200 shrink-0"></div>
+        <WelcomeText />
+    </div>
+
+    <div className="hidden lg:block">
+        <DateTime />
+    </div>
+
+</div>
 
             <div className="w-full mt-3 min-h-[calc(100vh-7rem)] bg-white border border-[#b6b6b6] rounded-2xl overflow-hidden">
 
