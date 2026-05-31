@@ -10,13 +10,11 @@ const useAdminEmployeeStore = create((set, get) => ({
     limit: null,
     loading: true,
     error: null,
-    dataFetched: false,
 
     onboardEmployee: async (data) => {
-        if(get().dataFetched) return
         try {
             const response = await onboardEmployee(data)
-            set({ loading: false, dataFetched: true })
+            set({ loading: false })
             return response.data
         } catch (err) {
             set({error: err, loading: false})
@@ -25,7 +23,6 @@ const useAdminEmployeeStore = create((set, get) => ({
     },
 
     getEmployees: async (currentPage, limit) => {
-        if(get().dataFetched) return
         try {
             const response = await getEmployees(currentPage, limit)
             set({
@@ -34,7 +31,6 @@ const useAdminEmployeeStore = create((set, get) => ({
                 totalPages: response.data.data.totalPages,
                 currentPage: response.data.data.currentPage,
                 loading: false,
-                dataFetched: true
             })
             return response.data
         } catch (err) {
@@ -44,10 +40,9 @@ const useAdminEmployeeStore = create((set, get) => ({
     },
 
     searchEmployee: async (searchName) => {
-        if(get().dataFetched) return
         try {
             const response = await searchEmployee(searchName)
-            set({ employees: response.data.data.employee, loading: false, dataFetched: true })
+            set({ employees: response.data.data.employee, loading: false  })
             return response.data
         } catch (err) {
             set({error: err, loading: false})
@@ -56,10 +51,9 @@ const useAdminEmployeeStore = create((set, get) => ({
     },
 
     getEmployeeBySalary: async (minSalary, maxSalary) => {
-        if(get().dataFetched) return
         try {
             const response = await getEmployeeBySalary(minSalary, maxSalary)
-            set({ employees: response.data.data.employees, loading: false, dataFetched: true })
+            set({ employees: response.data.data.employees, loading: false })
             return response.data
         } catch (err) {
             set({error: err, loading: false})
@@ -68,10 +62,9 @@ const useAdminEmployeeStore = create((set, get) => ({
     },
 
     getEmployeeByFilter: async (params) => {
-        if(get().dataFetched) return
         try {
             const response = await getEmployeeByFilter(params)
-            set({ employees: response.data.data, loading: false, dataFetched: true })
+            set({ employees: response.data.data, loading: false })
             return response.data
         } catch (err) {
             set({error: err, loading: false})
@@ -80,10 +73,9 @@ const useAdminEmployeeStore = create((set, get) => ({
     },
     
     getEmployeeDetails: async (empID) => {
-        if(get().dataFetched) return
         try {
             const response = await getEmployeeDetails(empID)
-            set({ singleEmployeeDetails: response.data.data, loading: false, dataFetched: true })
+            set({ singleEmployeeDetails: response.data.data, loading: false })
             return response.data
         } catch (err) {
             set({error: err, loading: false})
@@ -92,13 +84,12 @@ const useAdminEmployeeStore = create((set, get) => ({
     },
 
     terminateEmployee: async (id) => {
-        if(get().dataFetched) return
         try {
             const response = await terminateEmployee(id)
             set({ loading: false })
             return response.data
         } catch (err) {
-            set({error: err, loading: false, dataFetched: true })
+            set({error: err, loading: false })
             return err
         }
     }

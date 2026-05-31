@@ -231,6 +231,7 @@ const Employees = () => {
                   firstName={value?.firstName}
                   lastName={value?.lastName}
                   email={value?.email}
+                  avatar={value?.avatar}
                   gender={value?.gender}
                   empID={value?.empID}
                   jobTitle={value?.jobTitle}

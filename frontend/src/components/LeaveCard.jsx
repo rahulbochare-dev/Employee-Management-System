@@ -1,131 +1,151 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Separator from './Seperator'
 
 const LeaveCard = ({ leave, cb, cb2 }) => {
+  const [initials, setInitials] = useState({
+    first: "",
+    last: ""
+  })
+
+  useEffect(() => {
+    const firstIn = leave.employee.firstName ? leave.employee.firstName.charAt(0) : ""
+    const lastIn = leave.employee.lastName ? leave.employee.lastName.charAt(0) : ""
+
+    setInitials({
+      first: firstIn,
+      last: lastIn
+    })
+  }, [leave?.firstName, leave?.lastName])
+
   return (
     <div className="w-85 sm:w-85 w-full h-65 bg-white border border-[#eaeaea] rounded-xl px-4 sm:px-5 overflow-hidden">
 
-  <div className="w-full h-17 flex justify-start gap-3 items-center">
-    <img className='w-10 h-10 sm:w-11 sm:h-11' src="/src/assets/businessman.png" alt="" />
+      <div className="w-full h-17 flex justify-start gap-3 items-center">
+        {leave?.employee.avatar ? <div className="w-[16%] h-[70%] rounded-full overflow-clip">
+          <img className='w-full h-full' src={leave?.employee.avatar} alt="" />
+        </div> :
+          <div className='w-[16%] h-[70%] rounded-full bg-[#d1d1d1] flex justify-center items-center'>
+            <h1 className='text-[#898989] text-lg font-bold'>{initials.first}{initials.last}</h1>
+          </div>}
 
-    <div className="w-[78%] h-[75%] flex flex-col overflow-hidden">
-      <h2 className="text-[0.95rem] sm:text-lg font-semibold truncate">
-        {leave?.employee.firstName} {leave?.employee.lastName}
-      </h2>
+        <div className="w-[78%] h-[75%] flex flex-col overflow-hidden">
+          <h2 className="text-[0.95rem] sm:text-lg font-semibold truncate">
+            {leave?.employee.firstName} {leave?.employee.lastName}
+          </h2>
 
-      <h2 className="text-[0.8rem] sm:text-sm text-[#9c9c9c] font-medium truncate">
-        Status:
-        <span
-          className={
-            leave?.status === "Pending"
-              ? "text-yellow-500"
-              : leave?.status === "Rejected"
-              ? "text-red-500"
-              : leave?.status === "Approved"
-              ? "text-green-500"
-              : "text-[#9c9c9c]"
-          }
+          <h2 className="text-[0.8rem] sm:text-sm text-[#9c9c9c] font-medium truncate">
+            Status:
+            <span
+              className={
+                leave?.status === "Pending"
+                  ? "text-yellow-500"
+                  : leave?.status === "Rejected"
+                    ? "text-red-500"
+                    : leave?.status === "Approved"
+                      ? "text-green-500"
+                      : "text-[#9c9c9c]"
+              }
+            >
+              {" "}{leave?.status}
+            </span>
+          </h2>
+        </div>
+      </div>
+
+      <Separator width='w-74' />
+
+      <div className="w-full flex justify-between mt-2">
+        <div className="flex flex-col gap-1">
+          <h3 className="text-[0.8rem] sm:text-[14px] text-[#8b8b8b] font-medium">
+            Leave Type:
+          </h3>
+
+          <h2 className="text-[0.95rem] sm:text-[16px] leading-none font-medium text-black">
+            {leave?.leaveType}
+          </h2>
+        </div>
+
+        <div className="flex flex-col items-end gap-1">
+          <h3 className="text-[0.8rem] sm:text-[14px] text-[#8b8b8b] font-medium">
+            Duration:
+          </h3>
+
+          <h2 className="text-[0.95rem] sm:text-[16px] leading-none font-medium text-black">
+            {leave?.duration || "N/A"}
+          </h2>
+        </div>
+      </div>
+
+      <div className="w-full h-13 bg-[#F8F8F8] rounded-2xl mt-3 flex items-center justify-between px-4">
+
+        <div className="flex flex-col">
+          <h3 className="text-[0.75rem] sm:text-[13px] text-[#8b8b8b] font-medium leading-none">
+            From:
+          </h3>
+
+          <h2 className="text-[0.82rem] sm:text-[14px] text-black font-medium mt-2 leading-none">
+            {
+              new Date(leave?.from).toLocaleDateString("en-GB", {
+                day: "numeric",
+                month: "short",
+                year: "numeric"
+              })
+            }
+          </h2>
+        </div>
+
+        <div className="flex flex-col">
+          <h3 className="text-[0.75rem] sm:text-[13px] text-[#8b8b8b] font-medium leading-none">
+            To:
+          </h3>
+
+          <h2 className="text-[0.82rem] sm:text-[14px] text-black font-medium mt-2 leading-none">
+            {
+              new Date(leave?.to).toLocaleDateString("en-GB", {
+                day: "numeric",
+                month: "short",
+                year: "numeric"
+              })
+            }
+          </h2>
+        </div>
+
+      </div>
+
+      <div className="w-full flex items-center justify-between mt-4">
+
+        <button
+          onClick={(e) => (cb2(e, leave?._id))}
+          name='status'
+          value={"Approved"}
+          className="w-24 sm:w-26 h-8.5 bg-[#7ee3a3] rounded-[20px] text-[0.8rem] sm:text-[14px] font-medium text-black transition-all hover:bg-[#70d896] active:bg-[#62cb89]"
         >
-          {" "}{leave?.status}
-        </span>
-      </h2>
+          Approve
+        </button>
+
+        <button
+          onClick={(e) => (cb2(e, leave?._id))}
+          name='status'
+          value={"Rejected"}
+          className="w-24 sm:w-26 h-8.5 bg-[#f58a8a] rounded-[20px] text-[0.8rem] sm:text-[14px] font-medium text-black transition-all hover:bg-[#ea7e7e] active:bg-[#df7070]"
+        >
+          Reject
+        </button>
+
+        <button
+          onClick={(e) => (cb(e, leave?._id))}
+          className="w-8.5 h-8.5 rounded-full bg-[#F8F8F8] flex justify-center items-center shrink-0 transition-all hover:bg-[#f0f0f0] active:bg-[#dcdcdc]"
+        >
+          <img
+            className="w-5"
+            src="/src/assets/info.svg"
+            alt=""
+          />
+        </button>
+
+      </div>
+
     </div>
-  </div>
-
-  <Separator width='w-74' />
-
-  <div className="w-full flex justify-between mt-2">
-    <div className="flex flex-col gap-1">
-      <h3 className="text-[0.8rem] sm:text-[14px] text-[#8b8b8b] font-medium">
-        Leave Type:
-      </h3>
-
-      <h2 className="text-[0.95rem] sm:text-[16px] leading-none font-medium text-black">
-        {leave?.leaveType}
-      </h2>
-    </div>
-
-    <div className="flex flex-col items-end gap-1">
-      <h3 className="text-[0.8rem] sm:text-[14px] text-[#8b8b8b] font-medium">
-        Duration:
-      </h3>
-
-      <h2 className="text-[0.95rem] sm:text-[16px] leading-none font-medium text-black">
-        {leave?.duration || "N/A"}
-      </h2>
-    </div>
-  </div>
-
-  <div className="w-full h-13 bg-[#F8F8F8] rounded-2xl mt-3 flex items-center justify-between px-4">
-
-    <div className="flex flex-col">
-      <h3 className="text-[0.75rem] sm:text-[13px] text-[#8b8b8b] font-medium leading-none">
-        From:
-      </h3>
-
-      <h2 className="text-[0.82rem] sm:text-[14px] text-black font-medium mt-2 leading-none">
-        {
-          new Date(leave?.from).toLocaleDateString("en-GB", {
-            day: "numeric",
-            month: "short",
-            year: "numeric"
-          })
-        }
-      </h2>
-    </div>
-
-    <div className="flex flex-col">
-      <h3 className="text-[0.75rem] sm:text-[13px] text-[#8b8b8b] font-medium leading-none">
-        To:
-      </h3>
-
-      <h2 className="text-[0.82rem] sm:text-[14px] text-black font-medium mt-2 leading-none">
-        {
-          new Date(leave?.to).toLocaleDateString("en-GB", {
-            day: "numeric",
-            month: "short",
-            year: "numeric"
-          })
-        }
-      </h2>
-    </div>
-
-  </div>
-
-  <div className="w-full flex items-center justify-between mt-4">
-
-    <button
-      onClick={(e) => (cb2(e, leave?._id))}
-      name='status'
-      value={"Approved"}
-      className="w-24 sm:w-26 h-8.5 bg-[#7ee3a3] rounded-[20px] text-[0.8rem] sm:text-[14px] font-medium text-black transition-all hover:bg-[#70d896] active:bg-[#62cb89]"
-    >
-      Approve
-    </button>
-
-    <button
-      onClick={(e) => (cb2(e, leave?._id))}
-      name='status'
-      value={"Rejected"}
-      className="w-24 sm:w-26 h-8.5 bg-[#f58a8a] rounded-[20px] text-[0.8rem] sm:text-[14px] font-medium text-black transition-all hover:bg-[#ea7e7e] active:bg-[#df7070]"
-    >
-      Reject
-    </button>
-
-    <button
-      onClick={(e) => (cb(e, leave?._id))}
-      className="w-8.5 h-8.5 rounded-full bg-[#F8F8F8] flex justify-center items-center shrink-0 transition-all hover:bg-[#f0f0f0] active:bg-[#dcdcdc]"
-    >
-      <img
-        className="w-5"
-        src="/src/assets/info.svg"
-        alt=""
-      />
-    </button>
-
-  </div>
-
-</div>
   )
 }
 
