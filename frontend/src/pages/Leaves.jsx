@@ -9,12 +9,14 @@ import LeaveDetails from '../components/LeaveDetails.jsx'
 import { useAdminLeaveStore } from '../store/adminLeaveStore.js'
 import toast from 'react-hot-toast'
 import { Menu, X } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 
 const Leaves = () => {
   const {getLeavesDetails, updateLeaveStatus, getLeaves, leaves, leavesDetails} = useAdminLeaveStore()
   const [status, setStatus] = useState(null)
   const [showLeaveDetails, setShowLeaveDetails] = useState(false)
   const [showSideBar, setShowSideBar] = useState(false)
+  const navigate = useNavigate()
 
   useEffect(() => {
     const callApi = async () => {
@@ -40,6 +42,7 @@ const Leaves = () => {
 
   const handleShowLeaveDetails = async (e, id) => {
     setShowLeaveDetails(!showLeaveDetails)
+    navigate(`leaves/${id}`)
     try {
       const response = await getLeavesDetails(id)
     } catch (error) {

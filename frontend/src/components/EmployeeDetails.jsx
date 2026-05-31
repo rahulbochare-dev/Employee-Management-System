@@ -4,7 +4,7 @@ import { X } from 'lucide-react'
 import { toast, Toaster } from "react-hot-toast";
 import { useAdminEmployeeStore } from '../store/adminEmployeeStore.js'
 
-const EmployeeCard = ({ onClick, empDetails, cb }) => {
+const EmployeeDetails = ({ onClick, empDetails, cb }) => {
     const { terminateEmployee } = useAdminEmployeeStore()
 
     const [initials, setInitials] = useState({
@@ -175,4 +175,4 @@ const EmployeeCard = ({ onClick, empDetails, cb }) => {
     );
 };
 
-export default EmployeeCard
+export default EmployeeDetails

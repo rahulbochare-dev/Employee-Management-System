@@ -150,6 +150,7 @@ const Employees = () => {
   const handleEmployeeDetails = async (e, empID) => {
     const response = await getEmployeeDetails(empID)
     setShowEmployeeDetails(!showEmployeeDetails)
+    navigate(`employee/${empID}`)
   }
 
   const closeEmployeeDetails = (e) => {

@@ -1,9 +1,11 @@
 import './App.css'
 import Dashboard from './pages/Dashboard.jsx'
 import Employees from './pages/Employees.jsx'
+import EmployeeDetails from './components/EmployeeDetails.jsx'
 import EmployeeSelf from './pages/EmployeeSelf.jsx'
 import SignupRoleSelect from './pages/SignupRoleSelect.jsx'
 import Leaves from './pages/Leaves.jsx';
+import LeaveDetails from './components/LeaveDetails.jsx';
 import Signup from './pages/Signup.jsx';
 import Login from './pages/Login.jsx';
 import LoginEmployee from './pages/LoginEmployee.jsx';
@@ -30,6 +32,8 @@ function App() {
           <Route path='/login-employee' element={<LoginEmployee/>}/>
           <Route path='admin/dashboard' element={<Dashboard/>}/>
           <Route path='admin/employees' element={<Employees/>}/>
+          <Route path='admin/employees/:id' element={<EmployeeDetails/>}/>
+          <Route path='admin/leaves/:id' element={<LeaveDetails/>}/>
           <Route path='admin/leaves' element={<Leaves/>}/>
           <Route path='employee' element={<EmployeeSelf/>}/>
         </Routes>

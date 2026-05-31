@@ -4,14 +4,14 @@ import Separator from './Seperator'
 const KPICard = ({title, mainIcon, icon2, icon3, icon2Text, icon3Text, mainCount, icon2Count, icon3Count}) => {
   return (
     <>
-    <div className='w-84 h-41.5 bg-white border border-[#d7d7d7] rounded-2xl overflow-clip'>
+    <div className='w-84 h-41.5 bg-white border border-[#eaeaea] rounded-2xl overflow-clip'>
         <div className='w-full h-[6.688rem] rounded-t-2xl flex'>
           <div className='w-1/2 h-[6.688rem]'>
               <h3 className='text-lg font-medium text-[#9c9c9c] pl-[1.313rem] pt-[0.938rem]'>{title}</h3>
               <h1 className='text-5xl font-medium pl-[1.313rem] pt-1'>{mainCount ?? "N/A"}</h1>
           </div>
           <div className='w-1/2 h-[6.688rem] flex justify-end'>
-              <img className='pt-8 mr-7' src={mainIcon} alt="" />
+              <img className='pt-8 mr-2 size-25' src={mainIcon} alt="" />
           </div>
         </div>
         <Separator width={'w-76'}/>
