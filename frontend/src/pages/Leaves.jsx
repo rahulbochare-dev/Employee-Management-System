@@ -4,6 +4,7 @@ import Search from '../components/Search.jsx'
 import Dropdown from '../components/Dropdown.jsx'
 import Seperator from '../components/Seperator.jsx'
 import LeaveCard from '../components/LeaveCard.jsx'
+import EmptyState from '../components/Empty.jsx'
 import LeaveDetails from '../components/LeaveDetails.jsx'
 import { useAdminLeaveStore } from '../store/adminLeaveStore.js'
 import toast from 'react-hot-toast'
@@ -105,7 +106,7 @@ const Leaves = () => {
             </div>
             <div className="w-full h-fit mb-3 pt-4 lg:mb-0 lg:pt-0 lg:h-[calc(100vh-4.4rem)] flex items-baseline-last">
             <div className="w-full lg:w-384 lg:h-[98%] bg-white border border-[#eaeaea] rounded-[0.9375rem] overflow-visible lg:overflow-hidden">
-            <div className="w-full h-10 flex gap-3 items-center pl-7 pt-2">
+            <div className="w-full h-10 flex gap-3 items-center pl-7 pt-1">
                   <img className='w-8' src="/src/assets/leave-dark.svg" alt="" />
                   <h2 className="text-xl font-medium">All Leaves</h2>
                 </div>
@@ -120,6 +121,9 @@ const Leaves = () => {
                   {leaves?.map((value) => {
                     return <LeaveCard cb={handleShowLeaveDetails} cb2={handleUpdateLeaveStatus} key={value._id} leave={value}/>
                   })}
+                  <div className="col-span-full flex items-center justify-center min-h-80 lg:mb-42">
+                    <EmptyState title='No Leaves Available'/>
+                  </div>
                 </div>
               </div>
             </div>

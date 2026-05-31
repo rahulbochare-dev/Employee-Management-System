@@ -5,7 +5,7 @@ const EmptyState = ({
     description = "There is nothing to display right now.",
 }) => {
     return (
-        <div className="w-full min-h-full flex flex-col items-center justify-center px-4 py-10 text-center">
+        <div className="w-full h-full flex flex-col items-center justify-center px-4 py-10 text-center">
             <div className="flex items-center justify-center size-16 sm:size-20 rounded-full bg-gray-100">
                 <PackageOpen className="size-8 sm:size-10 text-gray-400" />
             </div>

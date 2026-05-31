@@ -18,6 +18,7 @@ import { useUserStore } from '../store/userStore.js'
 import toast, { Toaster } from 'react-hot-toast'
 import { useNavigate } from "react-router-dom";
 import { Menu, X } from 'lucide-react'
+import EmptyState from '../components/Empty.jsx'
 
 const Employees = () => {
   const { isLoggedIn } = useUserStore()
@@ -179,11 +180,11 @@ const Employees = () => {
       )}
       </div>
     </div>
-    <div className="w-full pt-4 min-h-screen mb-3 lg:min-h-0 lg:h-[calc(100vh-4.4rem)] flex items-baseline-last lg:pt-0">
+    <div className="w-full pt-4 mb-3 min-h-screen lg:min-h-0 lg:mb-0 lg:h-[calc(100vh-3.8rem)] flex items-start lg:pt-[1.15rem]">
       {singleEmployeeDetails && showEmployeeDetails? <EmployeeDetails
        onClick={closeEmployeeDetails} empDetails={singleEmployeeDetails}
        cb={setShowEmployeeDetails}
-       /> : <div className="w-full lg:w-384 lg:h-[98%] bg-white border border-[#eaeaea] rounded-[0.9375rem] overflow-visible lg:overflow-hidden">
+       /> : <div className="w-full lg:w-384 lg:h-[99%] bg-white border border-[#eaeaea] rounded-[0.9375rem] overflow-visible lg:overflow-hidden">
         <div className="w-full h-10 flex gap-3 items-center pl-7 pt-2">
           <img className='w-8' src="/src/assets/employee-dark.svg" alt="" />
           <h2 className="text-xl font-medium">All Employees</h2>
@@ -242,9 +243,12 @@ const Employees = () => {
                 />
               );
             })}
+            <div className="col-span-full flex items-center justify-center min-h-80 lg:mt-[1.9rem]">
+              <EmptyState title='No Employees Available'/>
+            </div>
           </div>
           <div className="w-full min-h-15 flex justify-center items-center px-4 py-4 bg-white">
-            {showPagination && <Pagination />}
+            {showPagination && employees && <Pagination />}
           </div>
         </div>
       }
