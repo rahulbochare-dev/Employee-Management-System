@@ -42,7 +42,7 @@ const Leaves = () => {
 
   const handleShowLeaveDetails = async (e, id) => {
     setShowLeaveDetails(!showLeaveDetails)
-    navigate(`leaves/${id}`)
+    navigate(`/admin/leaves/${id}`)
     try {
       const response = await getLeavesDetails(id)
     } catch (error) {

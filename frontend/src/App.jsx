@@ -33,8 +33,8 @@ function App() {
           <Route path='admin/dashboard' element={<Dashboard/>}/>
           <Route path='admin/employees' element={<Employees/>}/>
           <Route path='admin/employees/:id' element={<Employees/>}/>
-          <Route path='admin/leaves/:id' element={<LeaveDetails/>}/>
           <Route path='admin/leaves' element={<Leaves/>}/>
+          <Route path='admin/leaves/:id' element={<Leaves/>}/>
           <Route path='employee' element={<EmployeeSelf/>}/>
         </Routes>
       </BrowserRouter>}
