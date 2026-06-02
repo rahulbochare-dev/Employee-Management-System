@@ -21,12 +21,12 @@ const LeaveCard = ({ leave, cb, cb2 }) => {
     <div className="w-85 sm:w-85 w-full h-65 bg-white border border-[#eaeaea] rounded-xl px-4 sm:px-5 overflow-hidden">
 
       <div className="w-full h-17 flex justify-start gap-3 items-center">
-        {leave?.employee.avatar ? <div className="w-[16%] h-[70%] rounded-full overflow-clip">
+        {/* <div className="w-[16%] h-[70%] rounded-full overflow-clip">
           <img className='w-full h-full' src={leave?.employee.avatar} alt="" />
-        </div> :
+        </div>  */}
           <div className='w-[16%] h-[70%] rounded-full bg-[#d1d1d1] flex justify-center items-center'>
             <h1 className='text-[#898989] text-lg font-bold'>{initials.first}{initials.last}</h1>
-          </div>}
+          </div>
 
         <div className="w-[78%] h-[75%] flex flex-col overflow-hidden">
           <h2 className="text-[0.95rem] sm:text-lg font-semibold truncate">

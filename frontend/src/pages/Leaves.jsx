@@ -9,15 +9,18 @@ import LeaveDetails from '../components/LeaveDetails.jsx'
 import { useAdminLeaveStore } from '../store/adminLeaveStore.js'
 import toast from 'react-hot-toast'
 import { Menu, X } from 'lucide-react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import Loading from '../components/Loading.jsx'
 
 const Leaves = () => {
   const {getLeavesDetails, updateLeaveStatus, getLeaves, leaves, leavesDetails, loading} = useAdminLeaveStore()
   const [status, setStatus] = useState(null)
-  const [showLeaveDetails, setShowLeaveDetails] = useState(false)
+  // const [showLeaveDetails, setShowLeaveDetails] = useState(false)
   const [showSideBar, setShowSideBar] = useState(false)
   const navigate = useNavigate()
+  const { id } = useParams()
+
+  const showLeaveDetails = !!id
 
   useEffect(() => {
     const callApi = async () => {
@@ -40,15 +43,20 @@ const Leaves = () => {
       console.log(error)
     }
   }
+  
 
   const handleShowLeaveDetails = async (e, id) => {
-    setShowLeaveDetails(!showLeaveDetails)
     navigate(`/admin/leaves/${id}`)
     try {
       const response = await getLeavesDetails(id)
+      console.log(response)
     } catch (error) {
       throw error
     }
+  }
+
+  const closeLeaveDetails = (e) => {
+    navigate(`/admin/leaves`)
   }
 
   const handleUpdateLeaveStatus = async (e, id) => {
@@ -81,7 +89,7 @@ const Leaves = () => {
       <div className="w-full max-w-380 flex justify-center items-center">
         <LeaveDetails
           leaveDetails={leavesDetails}
-          cb={handleShowLeaveDetails}
+          cb={closeLeaveDetails}
         />
       </div>
     </div>

@@ -3,16 +3,14 @@ import { getLeaves, getLeavesDetails, updateLeaveStatus } from "../services/admi
 
 const useAdminLeaveStore = create((set, get) => ({
     leaves: null,
-    leavesDetails: null,
+    singleleavesDetails: null,
     loading: true,
     error: null,
-    dataFetched: false,
 
     getLeaves: async (status) => {
-        if(get().dataFetched) return
         try {
             const response = await getLeaves(status)
-            set({ leaves: response.data.data, loading: false, dataFetched: true })
+            set({ leaves: response.data.data, loading: false })
             return response.data
         } catch (err) {
             set({error: err, loading: false})
@@ -21,22 +19,22 @@ const useAdminLeaveStore = create((set, get) => ({
     },
 
     getLeavesDetails: async (id) => {
-        if(get().dataFetched) return
         try {
             const response = await getLeavesDetails(id)
-            set({ leavesDetails: response.data.data, loading: false, dataFetched: true })
+            console.log(response)
+            set({ leavesDetails: response.data.data, loading: false })
             return response.data
         } catch (err) {
+            console.log(response)
             set({error: err, loading: false})
             return err
         }
     },
     
     updateLeaveStatus: async (leaveId, status) => {
-        if(get().dataFetched) return
         try {
             const response = await updateLeaveStatus(leaveId, status)
-            set({ loading: false, dataFetched: true })
+            set({ loading: false })
             return response.data
         } catch (err) {
             set({error: err, loading: false})

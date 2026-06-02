@@ -1,12 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Separator from './Seperator.jsx'
 import { useAdminLeaveStore } from '../store/adminLeaveStore.js'
 import toast from 'react-hot-toast'
 import { X } from "lucide-react";
+import { useParams } from "react-router-dom";
 
 const LeaveDetails = ({leaveDetails, cb}) => {
-  const {getLeaves, updateLeaveStatus} = useAdminLeaveStore()
+  const {getLeaves, getLeavesDetails, singleleavesDetails, updateLeaveStatus} = useAdminLeaveStore()
   const [status, setStatus] = useState(null)
+  const { id } = useParams()
+        
+    useEffect(() => {
+      const callApi = async () => {
+        if(id && !leaveDetails){
+            await getLeavesDetails(id)
+          }
+      }
+      callApi()
+    }, [])
+
+    const leave = leaveDetails || singleleavesDetails
 
   const handleUpdateLeaveStatus = async (e) => {
     const updatedStatus = {
@@ -16,7 +29,7 @@ const LeaveDetails = ({leaveDetails, cb}) => {
     setStatus(updatedStatus)
     
     try {
-      const response = await updateLeaveStatus(leaveDetails?._id, updatedStatus.status)
+      const response = await updateLeaveStatus(leave?._id, updatedStatus.status)
       if(response.success){
         toast.success(`Leave application ${response.data.leave.status}`)
         cb()
@@ -54,14 +67,14 @@ const LeaveDetails = ({leaveDetails, cb}) => {
           />
           <div className="flex flex-col min-w-0">
             <h2 className="text-[1rem] sm:text-[1.15rem] lg:text-[1.375rem] font-medium text-black leading-none truncate">
-              {leaveDetails?.employee.firstName || "N/A"}{" "}
-              {leaveDetails?.employee.lastName}
+              {leave?.employee.firstName || "N/A"}{" "}
+              {leave?.employee.lastName}
             </h2>
             <h3 className="text-[0.85rem] sm:text-[0.95rem] lg:text-[1rem] text-[#7a7a7a] font-medium mt-2 leading-none truncate">
-              {leaveDetails?.employee.jobTitle || "N/A"}
+              {leave?.employee.jobTitle || "N/A"}
             </h3>
             <h3 className="text-[0.85rem] sm:text-[0.95rem] lg:text-[1rem] text-[#7a7a7a] font-medium mt-2 leading-none truncate">
-              ID: {leaveDetails?.employee.empID || "N/A"}
+              ID: {leave?.employee.empID || "N/A"}
             </h3>
           </div>
         </div>
@@ -74,22 +87,22 @@ const LeaveDetails = ({leaveDetails, cb}) => {
             <div
               className={`w-fit px-3 sm:px-4 h-7 sm:h-8 rounded-xl flex justify-center items-center mt-2
               ${
-                leaveDetails?.leaveType === "Casual"
+                leave?.leaveType === "Casual"
                   ? "bg-indigo-200"
-                  : leaveDetails?.leaveType === "Sick"
+                  : leave?.leaveType === "Sick"
                   ? "bg-orange-200"
                   : "bg-[#929292]"
               }`}>
               <h2
                 className={`text-[0.8rem] sm:text-[0.9rem] font-medium
                 ${
-                  leaveDetails?.leaveType === "Casual"
+                  leave?.leaveType === "Casual"
                     ? "text-indigo-500"
-                    : leaveDetails?.leaveType === "Sick"
+                    : leave?.leaveType === "Sick"
                     ? "text-orange-500"
                     : "text-[#929292]"
                 }`}>
-                {leaveDetails?.leaveType}
+                {leave?.leaveType}
               </h2>
             </div>
           </div>
@@ -100,26 +113,26 @@ const LeaveDetails = ({leaveDetails, cb}) => {
             <div
               className={`w-fit px-3 sm:px-4 h-7 sm:h-8 rounded-xl flex justify-center items-center mt-2
               ${
-                leaveDetails?.status === "Pending"
+                leave?.status === "Pending"
                   ? "bg-yellow-200"
-                  : leaveDetails?.status === "Rejected"
+                  : leave?.status === "Rejected"
                   ? "bg-red-200"
-                  : leaveDetails?.status === "Approved"
+                  : leave?.status === "Approved"
                   ? "bg-green-200"
                   : "bg-[#929292]"
               }`}>
               <h2
                 className={`text-[0.8rem] sm:text-[0.9rem] font-medium
                 ${
-                  leaveDetails?.status === "Pending"
+                  leave?.status === "Pending"
                     ? "text-yellow-500"
-                    : leaveDetails?.status === "Rejected"
+                    : leave?.status === "Rejected"
                     ? "text-red-500"
-                    : leaveDetails?.status === "Approved"
+                    : leave?.status === "Approved"
                     ? "text-green-500"
                     : "text-[#929292]"
                 }`}>
-                {leaveDetails?.status}
+                {leave?.status}
               </h2>
             </div>
           </div>
@@ -128,7 +141,7 @@ const LeaveDetails = ({leaveDetails, cb}) => {
               From:
             </h3>
             <h2 className="text-[0.95rem] sm:text-[1rem] lg:text-[1.15rem] text-black font-medium mt-1.5">
-              {new Date(leaveDetails?.from).toLocaleDateString("en-GB", {
+              {new Date(leave?.from).toLocaleDateString("en-GB", {
                 day: "numeric",
                 month: "short",
                 year: "numeric",
@@ -140,7 +153,7 @@ const LeaveDetails = ({leaveDetails, cb}) => {
               To:
             </h3>
             <h2 className="text-[0.95rem] sm:text-[1rem] lg:text-[1.15rem] text-black font-medium mt-1.5">
-              {new Date(leaveDetails?.to).toLocaleDateString("en-GB", {
+              {new Date(leave?.to).toLocaleDateString("en-GB", {
                 day: "numeric",
                 month: "short",
                 year: "numeric",
@@ -152,7 +165,7 @@ const LeaveDetails = ({leaveDetails, cb}) => {
               Duration:
             </h3>
             <h2 className="text-[0.95rem] sm:text-[1rem] lg:text-[1.15rem] text-black font-medium mt-1.5">
-              {leaveDetails?.duration || "N/A"}
+              {leave?.duration || "N/A"}
             </h2>
           </div>
           <div className="flex flex-col">
@@ -160,7 +173,7 @@ const LeaveDetails = ({leaveDetails, cb}) => {
               Applied On:
             </h3>
             <h2 className="text-[0.95rem] sm:text-[1rem] lg:text-[1.15rem] text-black font-medium mt-1.5">
-              {new Date(leaveDetails?.createdAt).toLocaleDateString("en-GB", {
+              {new Date(leave?.createdAt).toLocaleDateString("en-GB", {
                 day: "numeric",
                 month: "short",
                 year: "numeric",
@@ -175,7 +188,7 @@ const LeaveDetails = ({leaveDetails, cb}) => {
         </h2>
         <div className="w-full h-48 sm:h-72 lg:h-91 bg-[#f1f1f1] rounded-xl sm:rounded-[1.25rem] mt-3 px-4 sm:px-6 lg:px-8 py-4 sm:py-6 overflow-y-auto">
           <p className="text-[0.95rem] sm:text-[1rem] lg:text-[1.05rem] leading-7 sm:leading-8 text-black font-normal">
-            {leaveDetails?.description || "Not available"}
+            {leave?.description || "Not available"}
           </p>
         </div>
         <div className="w-full flex flex-col sm:flex-row justify-end gap-3 sm:gap-4 mt-6">
