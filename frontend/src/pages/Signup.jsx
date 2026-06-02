@@ -63,7 +63,7 @@ const SignupAdmin = () => {
     }
 
   return (
-    <div className='w-screen min-h-screen flex flex-col justify-center items-center bg-[#f9f9f9] px-4 py-6 overflow-x-hidden'>
+    <div className='w-screen min-h-screen flex flex-col justify-center items-center bg-[#fcfcfe] px-4 py-6 overflow-x-hidden'>
         <Toaster position='bottom-center'/>
         <div className="bg-white w-full sm:w-[95%] md:w-[90%] lg:w-[80%] xl:w-2/5 rounded-3xl py-4">
         <div className='w-full h-20 flex justify-center items-center'>

@@ -10,9 +10,10 @@ import { useAdminLeaveStore } from '../store/adminLeaveStore.js'
 import toast from 'react-hot-toast'
 import { Menu, X } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
+import Loading from '../components/Loading.jsx'
 
 const Leaves = () => {
-  const {getLeavesDetails, updateLeaveStatus, getLeaves, leaves, leavesDetails} = useAdminLeaveStore()
+  const {getLeavesDetails, updateLeaveStatus, getLeaves, leaves, leavesDetails, loading} = useAdminLeaveStore()
   const [status, setStatus] = useState(null)
   const [showLeaveDetails, setShowLeaveDetails] = useState(false)
   const [showSideBar, setShowSideBar] = useState(false)
@@ -120,6 +121,7 @@ const Leaves = () => {
                   </div>
                 </div>
                 <Seperator marginY={"my-2"} width='w-369' />
+                {loading && <Loading/>}
                 <div className="w-full min-h-120 justify-items-center lg:h-full lg:pb-36 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5 sm:gap-7 overflow-y-visible lg:overflow-y-auto px-4 sm:px-7 py-4">
                   {leaves?.map((value) => {
                     return <LeaveCard cb={handleShowLeaveDetails} cb2={handleUpdateLeaveStatus} key={value._id} leave={value}/>

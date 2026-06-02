@@ -45,7 +45,7 @@ const LoginAdmin = () => {
     }
     
     return (
-        <div className='w-screen min-h-screen flex justify-center items-center bg-[#f9f9f9] px-4 py-6 overflow-x-hidden'>
+        <div className='w-screen min-h-screen flex justify-center items-center bg-[#fcfcfe] px-4 py-6 overflow-x-hidden'>
             <Toaster position='bottom-center'/>
             <div className="bg-white w-full sm:w-[90%] md:w-[60%] lg:w-[40%] xl:w-1/5 rounded-3xl py-4">
                 <div className='w-full h-20 flex justify-center items-center'>
