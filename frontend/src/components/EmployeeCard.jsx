@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import Separator from './Seperator'
 
-const EmployeeCard = ({firstName, lastName, jobTitle, gender, empID, workMode, salary, salaryCurrency, email, avatar, func}) => {
+const EmployeeCard = ({firstName, lastName, jobTitle, gender, empID, workMode, salary, salaryCurrency, email, func}) => {
     const [initials, setInitials] = useState({
         first: "",
         last: ""
@@ -20,12 +20,12 @@ const EmployeeCard = ({firstName, lastName, jobTitle, gender, empID, workMode, s
     return (
         <div className='w-85 sm:w-85 w-full h-65 bg-white border border-[#eaeaea] rounded-xl'>
         <div className="w-full h-17 flex justify-start gap-3 items-center pl-4 sm:pl-5">
-        {avatar? <div className="w-[16%] h-[70%] rounded-full overflow-clip">
+        {/* <div className="w-[16%] h-[70%] rounded-full overflow-clip">
         <img className='w-full h-full' src={avatar} alt=""/>
-        </div> :
+        </div>  */}
         <div className='w-[15%] h-[70%] rounded-full bg-[#d1d1d1] flex justify-center items-center'>
             <h1 className='text-[#898989] text-lg font-bold'>{initials.first}{initials.last}</h1>
-        </div>}
+        </div>
         <div className="w-[78%] h-[75%] flex flex-col overflow-hidden">
             <h2 className="text-base font-medium sm:text-lg truncate">
                 {firstName} {lastName}

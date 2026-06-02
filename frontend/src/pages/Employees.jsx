@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Sidebar from '../components/Sidebar.jsx'
 import WelcomeText from '../components/WelcomeText.jsx'
 import DateTime from '../components/DateTime.jsx'
@@ -16,16 +16,18 @@ import EmployeeDetails from '../components/EmployeeDetails.jsx'
 import { useAdminEmployeeStore } from '../store/adminEmployeeStore.js'
 import { useUserStore } from '../store/userStore.js'
 import toast, { Toaster } from 'react-hot-toast'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 import { Menu, X } from 'lucide-react'
 import EmptyState from '../components/Empty.jsx'
 
 const Employees = () => {
   const { isLoggedIn } = useUserStore()
   const [showModal, setShowModal] = useState(false)
-  const [showEmployeeDetails, setShowEmployeeDetails] = useState(false)
   const navigate = useNavigate()
+  const { id } = useParams()
   const [showSideBar, setShowSideBar] = useState(false)
+
+  const showEmployeeDetails = !!id
 
   // useEffect(() => {
   //   if (!isLoggedIn) {
@@ -149,12 +151,11 @@ const Employees = () => {
 
   const handleEmployeeDetails = async (e, empID) => {
     const response = await getEmployeeDetails(empID)
-    setShowEmployeeDetails(!showEmployeeDetails)
-    navigate(`employee/${empID}`)
+    navigate(`/admin/employees/${empID}`)
   }
 
   const closeEmployeeDetails = (e) => {
-    setShowEmployeeDetails(!showEmployeeDetails)
+    navigate(`/admin/employees`)
   }
 
   return (
@@ -182,10 +183,10 @@ const Employees = () => {
       </div>
     </div>
     <div className="w-full pt-4 mb-3 min-h-screen lg:min-h-0 lg:mb-0 lg:h-[calc(100vh-3.8rem)] flex items-start lg:pt-[1.15rem]">
-      {singleEmployeeDetails && showEmployeeDetails? <EmployeeDetails
-       onClick={closeEmployeeDetails} empDetails={singleEmployeeDetails}
-       cb={setShowEmployeeDetails}
-       /> : <div className="w-full lg:w-384 lg:h-[99%] bg-white border border-[#eaeaea] rounded-[0.9375rem] overflow-visible lg:overflow-hidden">
+      {showEmployeeDetails? <div className="w-full lg:w-384 lg:h-[99%] rounded-[0.9375rem] overflow-visible lg:overflow-hidden">
+        <EmployeeDetails
+       onClick={closeEmployeeDetails} empDetails={singleEmployeeDetails}/>
+      </div> : <div className="w-full lg:w-384 lg:h-[99%] bg-white border border-[#eaeaea] rounded-[0.9375rem] overflow-visible lg:overflow-hidden">
         <div className="w-full h-10 flex gap-3 items-center pl-7 pt-2">
           <img className='w-8' src="/src/assets/employee-dark.svg" alt="" />
           <h2 className="text-xl font-medium">All Employees</h2>
@@ -233,7 +234,6 @@ const Employees = () => {
                   firstName={value?.firstName}
                   lastName={value?.lastName}
                   email={value?.email}
-                  avatar={value?.avatar}
                   gender={value?.gender}
                   empID={value?.empID}
                   jobTitle={value?.jobTitle}

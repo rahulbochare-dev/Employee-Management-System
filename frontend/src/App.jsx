@@ -32,7 +32,7 @@ function App() {
           <Route path='/login-employee' element={<LoginEmployee/>}/>
           <Route path='admin/dashboard' element={<Dashboard/>}/>
           <Route path='admin/employees' element={<Employees/>}/>
-          <Route path='admin/employees/:id' element={<EmployeeDetails/>}/>
+          <Route path='admin/employees/:id' element={<Employees/>}/>
           <Route path='admin/leaves/:id' element={<LeaveDetails/>}/>
           <Route path='admin/leaves' element={<Leaves/>}/>
           <Route path='employee' element={<EmployeeSelf/>}/>
