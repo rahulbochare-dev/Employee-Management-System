@@ -7,14 +7,14 @@ import { Toaster } from "react-hot-toast";
 import { X } from "lucide-react";
 import { useEmployeeStore } from "../store/employeeStore.js";
 
-const LeaveDetails = ({ cb }) => {
+const ApplyLeaveEmployee = ({ cb }) => {
   const [initials, setInitials] = useState({
     first: "",
     last: "",
   });
 
   const { getMyLeaves, applyLeave } = useEmployeeLeaveStore();
-  const { employee } = useEmployeeStore();
+  const { employee, getCurrentEmployee } = useEmployeeStore();
 
   const [leaveData, setLeaveData] = useState({
     leaveType: "",
@@ -44,14 +44,21 @@ const LeaveDetails = ({ cb }) => {
   };
 
   useEffect(() => {
-      const firstIn = employee.firstName ? employee.firstName.charAt(0) : "";
-      const lastIn = employee.lastName ? employee.lastName.charAt(0) : "";
-  
-      setInitials({
-        first: firstIn,
-        last: lastIn,
-      });
-    }, [employee?.firstName, employee?.lastName]);
+    const callApi = async () => {
+      const responseEmp = await getCurrentEmployee();
+    };
+    callApi();
+  }, []);
+
+  useEffect(() => {
+    const firstIn = employee?.firstName ? employee.firstName.charAt(0) : "";
+    const lastIn = employee?.lastName ? employee.lastName.charAt(0) : "";
+
+    setInitials({
+      first: firstIn,
+      last: lastIn,
+    });
+  }, [employee?.firstName, employee?.lastName]);
 
   return (
     <div className="w-[95vw] max-w-5xl max-h-[90vh] bg-white rounded-2xl px-5 sm:px-8 pt-6 pb-6 overflow-y-auto transition-all flex flex-col">
@@ -180,4 +187,4 @@ const LeaveDetails = ({ cb }) => {
   );
 };
 
-export default LeaveDetails;
+export default ApplyLeaveEmployee;

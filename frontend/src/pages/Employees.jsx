@@ -18,7 +18,7 @@ import { Menu, X } from "lucide-react";
 import EmptyState from "../components/Empty.jsx";
 
 const Employees = () => {
-  const { isLoggedIn } = useUserStore();
+  const { user, isLoggedIn } = useUserStore();
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
@@ -26,12 +26,12 @@ const Employees = () => {
 
   const showEmployeeDetails = !!id;
 
-  // useEffect(() => {
-  //   if (!isLoggedIn) {
-  //     navigate("/login")
-  //     return
-  //   }
-  // }, [isLoggedIn])
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/login")
+      return
+    }
+  }, [isLoggedIn])
 
   const [searchName, setSearchName] = useState("");
   const [showPagination, setShowPagination] = useState(true);
@@ -193,7 +193,7 @@ const Employees = () => {
                 <div className="w-full lg:w-384 lg:h-[99%] rounded-[0.9375rem] overflow-visible lg:overflow-hidden">
                   <EmployeeDetails
                     onClick={closeEmployeeDetails}
-                    empDetails={singleEmployeeDetails}/>
+                    empDetails={singleEmployeeDetails} />
                 </div>
               ) : (
                 <div className="w-full lg:w-384 lg:h-[99%] bg-white border border-[#eaeaea] rounded-[0.9375rem] overflow-visible lg:overflow-hidden">
@@ -201,7 +201,7 @@ const Employees = () => {
                     <img
                       className="w-8"
                       src="/src/assets/employee-dark.svg"
-                      alt=""/>
+                      alt="" />
                     <h2 className="text-xl font-medium">All Employees</h2>
                   </div>
                   <div className="w-full flex flex-col xl:flex-row gap-4 xl:gap-0 px-4 sm:px-7 py-4">
@@ -211,24 +211,24 @@ const Employees = () => {
                         title={"Gender"}
                         values={["Male", "Female"]}
                         onChange={handleFilterChange}
-                        name={"gender"}/>
+                        name={"gender"} />
                       <Dropdown
                         title={"Workmode"}
                         values={["On-site", "Remote", "Hybrid"]}
                         onChange={handleFilterChange}
-                        name={"workMode"}/>
+                        name={"workMode"} />
                       <Dropdown
                         title={"Job Title"}
                         values={jobTitleValues}
                         onChange={handleFilterChange}
-                        name={"jobTitle"}/>
+                        name={"jobTitle"} />
                       <DropdownModal onChange={handleSalaryChange} />
                     </div>
                     <div className="w-full xl:w-1/4 flex xl:justify-end">
                       <Button
                         title={"Onboard Employee"}
                         icon={"/src/assets/employeeAdd-Light.svg"}
-                        onClick={handleShowModal}/>
+                        onClick={handleShowModal} />
                     </div>
                   </div>
                   <Seperator marginY={"my-2"} width="w-369" />
@@ -247,7 +247,8 @@ const Employees = () => {
                           salary={value?.salary}
                           salaryCurrency={value?.salaryCurrency}
                           func={handleEmployeeDetails}
-                          workMode={value?.workMode}/>)})}
+                          workMode={value?.workMode} />)
+                    })}
                     {employees ? null : (
                       <div className="col-span-full flex items-center justify-center min-h-80 lg:mt-[1.9rem]">
                         <EmptyState title="No Employees Available" />

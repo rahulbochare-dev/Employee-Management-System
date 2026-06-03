@@ -56,14 +56,14 @@ const LeaveDetails = ({ leaveDetails, cb }) => {
   };
 
   useEffect(() => {
-    const firstIn = leaveDetails.employee.firstName ? leaveDetails.employee.firstName.charAt(0) : "";
-    const lastIn = leaveDetails.employee.lastName ? leaveDetails.employee.lastName.charAt(0) : "";
+    const firstIn = leaveDetails?.employee.firstName ? leaveDetails?.employee.firstName.charAt(0) : "";
+    const lastIn = leaveDetails?.employee.lastName ? leaveDetails?.employee.lastName.charAt(0) : "";
 
     setInitials({
       first: firstIn,
       last: lastIn,
     });
-  }, [leaveDetails?.firstName, leaveDetails?.lastName]);
+  }, [leaveDetails?.employee.firstName, leaveDetails?.employee.lastName]);
 
   return (
     <div className="w-[95%] sm:w-[92%] lg:w-full max-w-6xl mx-auto bg-white rounded-2xl px-4 sm:px-6 lg:px-8 py-5 sm:py-6 overflow-hidden">

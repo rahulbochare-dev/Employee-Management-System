@@ -13,8 +13,7 @@ import WelcomeText from "../components/WelcomeText.jsx";
 
 const EmployeeSelf = () => {
   const navigate = useNavigate();
-  const { myLeaveDetails, myLeaves, getMyLeaves, getLeaveDetails } =
-    useEmployeeLeaveStore();
+  const { myLeaveDetails, myLeaves, getMyLeaves, getLeaveDetails } = useEmployeeLeaveStore();
   const { employee, getCurrentEmployee, logout } = useEmployeeStore();
   const [showApplyLeave, setShowApplyLeave] = useState(false);
   const { id } = useParams();

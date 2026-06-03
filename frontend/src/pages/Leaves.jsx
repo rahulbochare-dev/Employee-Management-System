@@ -7,12 +7,14 @@ import LeaveCard from "../components/LeaveCard.jsx";
 import EmptyState from "../components/Empty.jsx";
 import LeaveDetails from "../components/LeaveDetails.jsx";
 import { useAdminLeaveStore } from "../store/adminLeaveStore.js";
+import { useUserStore } from "../store/userStore.js";
 import toast from "react-hot-toast";
 import { Menu, X } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
 import Loading from "../components/Loading.jsx";
 
 const Leaves = () => {
+  const { user, isLoggedIn } = useUserStore();
   const {
     getLeavesDetails,
     updateLeaveStatus,
@@ -29,10 +31,16 @@ const Leaves = () => {
   const showLeaveDetails = !!id;
 
   useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/login")
+      return
+    }
+  }, [isLoggedIn])
+
+  useEffect(() => {
     const callApi = async () => {
       const response = await getLeaves();
     };
-
     callApi();
   }, []);
 
@@ -93,7 +101,7 @@ const Leaves = () => {
               <div className="w-full max-w-380 flex justify-center items-center">
                 <LeaveDetails
                   leaveDetails={leavesDetails}
-                  cb={closeLeaveDetails}/>
+                  cb={closeLeaveDetails} />
               </div>
             </div>
           </div>)}
@@ -122,7 +130,7 @@ const Leaves = () => {
                   <img
                     className="w-8"
                     src="/src/assets/leave-dark.svg"
-                    alt=""/>
+                    alt="" />
                   <h2 className="text-xl font-medium">All Leaves</h2>
                 </div>
                 <div className="w-full flex flex-col xl:flex-row gap-4 xl:gap-0 px-4 sm:px-7 py-4">
@@ -132,7 +140,7 @@ const Leaves = () => {
                       title={"Status"}
                       values={["Pending", "Rejected", "Approved"]}
                       onChange={handleStatusChange}
-                      name={"status"}/>
+                      name={"status"} />
                   </div>
                 </div>
                 <Seperator marginY={"my-2"} width="w-369" />
@@ -144,7 +152,8 @@ const Leaves = () => {
                         cb={handleShowLeaveDetails}
                         cb2={handleUpdateLeaveStatus}
                         key={value._id}
-                        leave={value}/>)})}
+                        leave={value} />)
+                  })}
                   {leaves ? null : (
                     <div className="col-span-full flex items-center justify-center min-h-80 lg:mb-42">
                       <EmptyState title="No Leaves Available" />

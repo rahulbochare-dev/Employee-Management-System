@@ -12,7 +12,8 @@ import { useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
 const Dashboard = () => {
-  const { user } = useUserStore();
+  const { user, isLoggedIn } = useUserStore();
+  const navigate = useNavigate();
   const {
     totalEmployees,
     onLeaveToday,
@@ -50,12 +51,12 @@ const Dashboard = () => {
   });
 
   useEffect(() => {
-    // if (!user) {
-    //   navigate("/login")
-    //   return
-    // }
+    if (!isLoggedIn) {
+      navigate("/login")
+      return
+    }
     getKPIData();
-  }, [user]);
+  }, [isLoggedIn]);
 
   useEffect(() => {
     if (!totalEmployees || !onLeaveToday || !newJoines || !pendingLeave) return;
