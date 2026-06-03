@@ -10,7 +10,7 @@ const useUserStore = create((set) => ({
   signup: async (data) => {
     try {
       const response = await signup(data);
-      set({ user: response.data, loading: false, isLoggedIn: true });
+      set({ user: response.data.user, loading: false, isLoggedIn: true });
       return response.data;
     } catch (err) {
       set({ error: err, loading: false });
