@@ -1,23 +1,38 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
 const DateSelectApplyLeave = ({ name, placeholder, value, onChange }) => {
-    const [inputValue, setInputValue] = useState("")
+  const [inputValue, setInputValue] = useState("");
 
-    const handleDateChange = (e) => {
-        setInputValue(e.target.value)
-    }
-    
+  const handleDateChange = (e) => {
+    setInputValue(e.target.value);
+  };
+
   return (
     <div className="w-fit h-fit flex flex-col justify-between">
-        <div className="w-36 h-8.75 rounded-xl flex items-center relative bg-transparent">
-            <div className="w-full h-full bg-[#F1F1F1] rounded-xl flex items-center justify-between bg pl-5 pr-3 z-3 pointer-events-none">
-                <h3 className={`text-[0.90rem] truncate ${inputValue? "text-black" : "text-[#787878]"} font-medium`}>{inputValue || "Select Date"}</h3>
-                <img className='w-5 pointer-events-none' src="/src/assets/calender.svg" alt="" srcset="" />
-            </div>
-            <input className='absolute w-full h-6 text-[0.90rem] text font-medium pl-3'  placeholder={placeholder} type="date" name={name} id="selectFile" value={value} onInput={handleDateChange} onChange={onChange}/>
+      <div className="w-36 h-8.75 rounded-xl flex items-center relative bg-transparent">
+        <div className="w-full h-full bg-[#F1F1F1] rounded-xl flex items-center justify-between bg pl-5 pr-3 z-3 pointer-events-none">
+          <h3
+            className={`text-[0.90rem] truncate ${inputValue ? "text-black" : "text-[#787878]"} font-medium`}>
+            {inputValue || "Select Date"}
+          </h3>
+          <img
+            className="w-5 pointer-events-none"
+            src="/src/assets/calender.svg"
+            alt=""
+            srcset=""/>
         </div>
-    </div>  
-  )
-}
+        <input
+          className="absolute w-full h-6 text-[0.90rem] text font-medium pl-3"
+          placeholder={placeholder}
+          type="date"
+          name={name}
+          id="selectFile"
+          value={value}
+          onInput={handleDateChange}
+          onChange={onChange}/>
+      </div>
+    </div>
+  );
+};
 
-export default DateSelectApplyLeave
+export default DateSelectApplyLeave;

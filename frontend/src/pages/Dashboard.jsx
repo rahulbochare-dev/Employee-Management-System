@@ -1,128 +1,134 @@
-import React, { useEffect, useState } from 'react'
-import Sidebar from '../components/Sidebar.jsx'
-import WelcomeText from '../components/WelcomeText.jsx'
-import DateTime from '../components/DateTime.jsx'
-import KPICard from '../components/KPICard.jsx'
-import NewJoiningChart from '../components/NewJoiningChart.jsx'
-import LeaveChart from '../components/LeaveChart.jsx'
-import InsightCard from '../components/InsightCard.jsx'
-import Seperator from '../components/Seperator.jsx'
-import { useUserStore } from '../store/userStore.js'
-import { useDashboardStore } from '../store/dashboardStore.js'
-import { Form, Link, useNavigate } from "react-router-dom";
-import { Menu, X } from 'lucide-react'
+import React, { useEffect, useState } from "react";
+import Sidebar from "../components/Sidebar.jsx";
+import WelcomeText from "../components/WelcomeText.jsx";
+import DateTime from "../components/DateTime.jsx";
+import KPICard from "../components/KPICard.jsx";
+import NewJoiningChart from "../components/NewJoiningChart.jsx";
+import LeaveChart from "../components/LeaveChart.jsx";
+import InsightCard from "../components/InsightCard.jsx";
+import { useUserStore } from "../store/userStore.js";
+import { useDashboardStore } from "../store/dashboardStore.js";
+import { useNavigate } from "react-router-dom";
+import { Menu, X } from "lucide-react";
 
 const Dashboard = () => {
-  const { user } = useUserStore()
-  const { totalEmployees, onLeaveToday, newJoines, pendingLeave, lastWeeksLeaves, mostEmployeeCountry, totalPayrollThisMonth, employeeGenderRatioPercent, averageEmployeeAge, newJoinesByMonth, getKPIData } = useDashboardStore()
-  const navigate = useNavigate()
-  const [showSideBar, setShowSideBar] = useState(false)
-  
+  const { user } = useUserStore();
+  const {
+    totalEmployees,
+    onLeaveToday,
+    newJoines,
+    pendingLeave,
+    lastWeeksLeaves,
+    mostEmployeeCountry,
+    totalPayrollThisMonth,
+    employeeGenderRatioPercent,
+    averageEmployeeAge,
+    newJoinesByMonth,
+    getKPIData,
+  } = useDashboardStore();
+  const [showSideBar, setShowSideBar] = useState(false);
+
   const [KPICardFirst, setKPICardFirst] = useState({
-    mainCount: null ,
+    mainCount: null,
     icon2Count: null,
-    icon3Count: null
-  })
+    icon3Count: null,
+  });
   const [KPICardSecond, setKPICardSecond] = useState({
-    mainCount: null ,
+    mainCount: null,
     icon2Count: null,
-    icon3Count: null
-  })
+    icon3Count: null,
+  });
   const [KPICardThird, setKPICardThird] = useState({
-    mainCount: null ,
+    mainCount: null,
     icon2Count: null,
-    icon3Count: null
-  })
+    icon3Count: null,
+  });
   const [KPICardForth, setKPICardForth] = useState({
-    mainCount: null ,
+    mainCount: null,
     icon2Count: null,
-    icon3Count: null
-  })
-  
+    icon3Count: null,
+  });
+
   useEffect(() => {
     // if (!user) {
     //   navigate("/login")
     //   return
     // }
-    getKPIData()
-  }, [user])
-  
+    getKPIData();
+  }, [user]);
+
   useEffect(() => {
-    if(!totalEmployees || !onLeaveToday || !newJoines || !pendingLeave) return
-    
+    if (!totalEmployees || !onLeaveToday || !newJoines || !pendingLeave) return;
+
     setKPICardFirst({
       mainCount: totalEmployees?.data[0]?.totalEmplyees[0]?.totalEmployees,
       icon2Count: totalEmployees?.data[0]?.genderTotal[1]?.total,
-      icon3Count: totalEmployees?.data[0]?.genderTotal[0]?.total
-    })
+      icon3Count: totalEmployees?.data[0]?.genderTotal[0]?.total,
+    });
     setKPICardSecond({
       mainCount: onLeaveToday?.data[0]?.todayTotalLeaves[0]?.totalLeaves,
       icon2Count: onLeaveToday?.data[0]?.catagoryTotal[1]?.catagoryTotal,
-      icon3Count: onLeaveToday?.data[0]?.catagoryTotal[0]?.catagoryTotal
-    })
+      icon3Count: onLeaveToday?.data[0]?.catagoryTotal[0]?.catagoryTotal,
+    });
     setKPICardThird({
       mainCount: newJoines?.data[0]?.totalNewJoines[0]?.totalNewJoines,
       icon2Count: newJoines?.data[0]?.genderWiseTotal[1]?.total,
-      icon3Count: newJoines?.data[0]?.genderWiseTotal[0]?.total
-    })
+      icon3Count: newJoines?.data[0]?.genderWiseTotal[0]?.total,
+    });
     setKPICardForth({
       mainCount: pendingLeave?.data[0]?.allCatagoryTotal[0]?.totalLeaves,
       icon2Count: pendingLeave?.data[0]?.catagoryTotal[1]?.total,
-      icon3Count: pendingLeave?.data[0]?.catagoryTotal[0]?.total
-    })
-  }, [totalEmployees, onLeaveToday, newJoines, pendingLeave])
+      icon3Count: pendingLeave?.data[0]?.catagoryTotal[0]?.total,
+    });
+  }, [totalEmployees, onLeaveToday, newJoines, pendingLeave]);
 
   const totalPayroll = {
     value1: totalPayrollThisMonth?.totalPayrollThisMonth,
-    value2: totalPayrollThisMonth?.salaryCurrency
-  }
+    value2: totalPayrollThisMonth?.salaryCurrency,
+  };
 
   const employeeCountry = {
     value1: mostEmployeeCountry?.mostEmployeeCountry,
-    value2: mostEmployeeCountry?.mostEmployeeCountryPercent
-  }
+    value2: mostEmployeeCountry?.mostEmployeeCountryPercent,
+  };
 
   const genderRatioPercent = {
     value1: employeeGenderRatioPercent?.malePercent,
-    value2: employeeGenderRatioPercent?.femalePercent
-  }
+    value2: employeeGenderRatioPercent?.femalePercent,
+  };
 
   const averageAge = {
     value1: "Average age",
-    value2: averageEmployeeAge?.averageAge
-  }
-  console.log(lastWeeksLeaves?.data.lastWeekLeavesformatted)  
-  console.log(newJoinesByMonth)  
+    value2: averageEmployeeAge?.averageAge,
+  };
+  console.log(lastWeeksLeaves?.data.lastWeekLeavesformatted);
+  console.log(newJoinesByMonth);
   return (
     <>
       <div className="w-full min-h-screen mb-3 lg:mb-0 lg:h-svh flex flex-col lg:flex-row bg-[#fcfcfe] lg:overflow-hidden">
-      <div className="hidden lg:block w-87.75 h-screen p-4">
-  <Sidebar />
-</div>
-
-{showSideBar && (
-  <div className="lg:hidden w-80 h-screen p-4 absolute top-0 left-0 z-50 ">
-    <Sidebar />
-  </div>
-)}
-        <div className='flex-1 min-h-screen lg:h-svh bg-[#fcfcfe] px-3 sm:pr-5 relative overflow-y-visible lg:overflow-y-auto'>
-        <div className="w-full min-h-22 flex items-center border-b border-[#eaeaea] sm:flex-row justify-between sm:items-center pr-0 lg:pr-6 py-4 gap-3">
-    <div className='w-fit h-fit'>
-      <WelcomeText name={user?.firstName}/>
-    </div>
-
-    <div className="block lg:hidden">
-    {showSideBar ? (
-  <X onClick={() => setShowSideBar(!showSideBar)} />
-) : (
-  <Menu onClick={() => setShowSideBar(!showSideBar)} />
-)}
-</div>
-
-    <div className="hidden lg:block w-fit h-fit">
-      <DateTime/>
-    </div>
-</div>
+        <div className="hidden lg:block w-87.75 h-screen p-4">
+          <Sidebar />
+        </div>
+        {showSideBar && (
+          <div className="lg:hidden w-80 h-screen p-4 absolute top-0 left-0 z-50 ">
+            <Sidebar />
+          </div>)}
+        <div className="flex-1 min-h-screen lg:h-svh bg-[#fcfcfe] px-3 sm:pr-5 relative overflow-y-visible lg:overflow-y-auto">
+          <div className="w-full min-h-22 flex items-center border-b border-[#eaeaea] sm:flex-row justify-between sm:items-center pr-0 lg:pr-6 py-4 gap-3">
+            <div className="w-fit h-fit">
+              <WelcomeText name={user?.firstName} />
+            </div>
+            <div className="block lg:hidden">
+              {showSideBar ? (
+                <X onClick={() => setShowSideBar(!showSideBar)} />
+              ) : (
+                <Menu onClick={() => setShowSideBar(!showSideBar)} />
+              )}
+            </div>
+            <div className="hidden lg:block w-fit h-fit">
+              <DateTime />
+            </div>
+          </div>
           <div className="w-full h-fit pb-4">
             <div className="w-full h-15.25 flex items-center">
               <h2 className="text-[1.875rem] font-medium">Dashboard</h2>
@@ -170,7 +176,8 @@ const Dashboard = () => {
                 icon3Text={"Casual"}/>
             </div>
           </div>
-          <div className="w-full
+          <div
+            className="w-full
                 h-fit
                 flex 
                 flex-col 
@@ -182,11 +189,14 @@ const Dashboard = () => {
                 lg:gap-8 pt-4
                 pr-0
                 ">
-            <NewJoiningChart data={newJoinesByMonth} thisMonthJoines={newJoines}/>
-            <LeaveChart data={lastWeeksLeaves?.data}/>
+            <NewJoiningChart
+              data={newJoinesByMonth}
+              thisMonthJoines={newJoines}/>
+            <LeaveChart data={lastWeeksLeaves?.data} />
           </div>
           <div className="mt-6 md:mt-3  lg:mt-[calc(0rem+1.5rem)] w-full min-h-44 flex lg:min-h-36">
-            <div className="w-full 
+            <div
+              className="w-full 
                     2xl:w-384 
                     min-h-[90%] 
                     bg-white 
@@ -234,7 +244,7 @@ const Dashboard = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;

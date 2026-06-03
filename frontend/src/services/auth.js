@@ -1,23 +1,23 @@
 import { callApi } from "../utils/callAPI.js";
 
-const signup = async function(data){
-    const response = await callApi("POST", "/user/register", data)
-    return response
-}
+const signup = async function (data) {
+  const response = await callApi("POST", "/user/register", data);
+  return response;
+};
 
-const login = async function(data){
-    const response = await callApi("POST", "/user/login", data)
-    return response
-}
+const login = async function (data) {
+  const response = await callApi("POST", "/user/login", data);
+  return response;
+};
 
-const logout = async function(data){
-    const response = await callApi("POST", "/user/logout", data)
-    return response
-}
+const logout = async function (data) {
+  const response = await callApi("POST", "/user/logout", data);
+  return response;
+};
 
-const getCurrentUser = async function(data){
-    const response = await callApi("GET", "/user/current-user")
-    return response
-}
+const getCurrentUser = async function (data) {
+  const response = await callApi("GET", "/user/current-user");
+  return response;
+};
 
-export { signup, login, logout, getCurrentUser }
+export { signup, login, logout, getCurrentUser };

@@ -1,106 +1,101 @@
-import React, {useEffect, useState} from 'react'
-import Separator from './Seperator'
+import React, { useEffect, useState } from "react";
+import Separator from "./Seperator";
 
-const EmployeeCard = ({firstName, lastName, jobTitle, gender, empID, workMode, salary, salaryCurrency, email, func}) => {
-    const [initials, setInitials] = useState({
-        first: "",
-        last: ""
-      })
-    
-      useEffect(() => {
-        const firstIn = firstName? firstName.charAt(0) : ""
-        const lastIn = lastName? lastName.charAt(0) : ""
-    
-        setInitials({
-          first: firstIn,
-          last: lastIn
-        })
-      }, [firstName, lastName])
+const EmployeeCard = ({
+  firstName,
+  lastName,
+  jobTitle,
+  gender,
+  empID,
+  workMode,
+  salary,
+  salaryCurrency,
+  email,
+  func,
+}) => {
+  const [initials, setInitials] = useState({
+    first: "",
+    last: "",
+  });
 
-    return (
-        <div className='w-85 sm:w-85 w-full h-65 bg-white border border-[#eaeaea] rounded-xl'>
-        <div className="w-full h-17 flex justify-start gap-3 items-center pl-4 sm:pl-5">
-        {/* <div className="w-[16%] h-[70%] rounded-full overflow-clip">
-        <img className='w-full h-full' src={avatar} alt=""/>
-        </div>  */}
-        <div className='w-[15%] h-[70%] rounded-full bg-[#d1d1d1] flex justify-center items-center'>
-            <h1 className='text-[#898989] text-lg font-bold'>{initials.first}{initials.last}</h1>
+  useEffect(() => {
+    const firstIn = firstName ? firstName.charAt(0) : "";
+    const lastIn = lastName ? lastName.charAt(0) : "";
+
+    setInitials({
+      first: firstIn,
+      last: lastIn,
+    });
+  }, [firstName, lastName]);
+
+  return (
+    <div className="w-85 sm:w-85 h-65 bg-white border border-[#eaeaea] rounded-xl">
+      <div className="w-full h-17 flex justify-start gap-3 items-center pl-4 sm:pl-5">
+        <div className="w-[15%] h-[70%] rounded-full bg-[#d1d1d1] flex justify-center items-center">
+          <h1 className="text-[#898989] text-lg font-bold">
+            {initials.first}
+            {initials.last}
+          </h1>
         </div>
         <div className="w-[78%] h-[75%] flex flex-col overflow-hidden">
-            <h2 className="text-base font-medium sm:text-lg truncate">
-                {firstName} {lastName}
-            </h2>
-
-            <h2 className="text-xs font-medium sm:text-sm text-[#9c9c9c] truncate">
-                {email}
-            </h2>
+          <h2 className="text-base font-medium sm:text-lg truncate">
+            {firstName} {lastName}
+          </h2>
+          <h2 className="text-xs font-medium sm:text-sm text-[#9c9c9c] truncate">
+            {email}
+          </h2>
         </div>
-    </div>
-
-    <Separator width='w-74' />
-
-    <div className="w-full h-[45%] flex flex-col gap-2 pt-2">
-        <div className='w-full h-[20%] flex pl-4 sm:pl-5 justify-between pr-6 sm:pr-10'>
-            <h3 className="text-xs sm:text-sm text-[#9c9c9c] font-medium">
-                Job Title:
-            </h3>
-
-            <h3 className="text-xs sm:text-sm text-black font-medium">
-                {jobTitle}
-            </h3>
+      </div>
+      <Separator width="w-74" />
+      <div className="w-full h-[45%] flex flex-col gap-2 pt-2">
+        <div className="w-full h-[20%] flex pl-4 sm:pl-5 justify-between pr-6 sm:pr-10">
+          <h3 className="text-xs sm:text-sm text-[#9c9c9c] font-medium">
+            Job Title:
+          </h3>
+          <h3 className="text-xs sm:text-sm text-black font-medium">
+            {jobTitle}
+          </h3>
         </div>
-
-        <div className='w-full h-[20%] flex pl-4 sm:pl-5 justify-between pr-6 sm:pr-10'>
-            <h3 className="text-xs sm:text-sm text-[#9c9c9c] font-medium">
-                Gender:
-            </h3>
-
-            <h3 className="text-xs sm:text-sm text-black font-medium">
-                {gender}
-            </h3>
+        <div className="w-full h-[20%] flex pl-4 sm:pl-5 justify-between pr-6 sm:pr-10">
+          <h3 className="text-xs sm:text-sm text-[#9c9c9c] font-medium">
+            Gender:
+          </h3>
+          <h3 className="text-xs sm:text-sm text-black font-medium">
+            {gender}
+          </h3>
         </div>
-
-        <div className='w-full h-[20%] flex pl-4 sm:pl-5 justify-between pr-6 sm:pr-10'>
-            <h3 className="text-xs sm:text-sm text-[#9c9c9c] font-medium">
-                Birthday:
-            </h3>
-
-            <h3 className="text-xs sm:text-sm text-black font-medium">
-                {empID}
-            </h3>
+        <div className="w-full h-[20%] flex pl-4 sm:pl-5 justify-between pr-6 sm:pr-10">
+          <h3 className="text-xs sm:text-sm text-[#9c9c9c] font-medium">
+            Birthday:
+          </h3>
+          <h3 className="text-xs sm:text-sm text-black font-medium">{empID}</h3>
         </div>
-
-        <div className='w-full h-[20%] flex pl-4 sm:pl-5 justify-between pr-6 sm:pr-10'>
-            <h3 className="text-xs sm:text-sm text-[#9c9c9c] font-medium">
-                Workmode:
-            </h3>
-
-            <h3 className="text-xs sm:text-sm text-black font-medium">
-                {workMode}
-            </h3>
+        <div className="w-full h-[20%] flex pl-4 sm:pl-5 justify-between pr-6 sm:pr-10">
+          <h3 className="text-xs sm:text-sm text-[#9c9c9c] font-medium">
+            Workmode:
+          </h3>
+          <h3 className="text-xs sm:text-sm text-black font-medium">
+            {workMode}
+          </h3>
         </div>
-    </div>
-
-    <div className="w-full h-[28%] flex items-center">
+      </div>
+      <div className="w-full h-[28%] flex items-center">
         <div className="w-2/4 h-[70%] flex flex-col pl-4 sm:pl-5">
-            <h2 className="text-base font-medium sm:text-lg">
-                {salary} {salaryCurrency}
-            </h2>
-
-            <h3 className="text-xs sm:text-sm text-[#9c9c9c] font-medium">
-                Salary
-            </h3>
+          <h2 className="text-base font-medium sm:text-lg">
+            {salary} {salaryCurrency}
+          </h2>
+          <h3 className="text-xs sm:text-sm text-[#9c9c9c] font-medium">
+            Salary
+          </h3>
         </div>
-
         <button
-            onClick={(e) => (func(e, empID))}
-            className='w-[45%] h-[45%] text-sm sm:text-base text-white bg-blue-400 rounded-xl transition-all hover:bg-blue-500 active:bg-blue-600'
-        >
-            View Details
+          onClick={(e) => func(e, empID)}
+          className="w-[45%] h-[45%] text-sm sm:text-base text-white bg-blue-400 rounded-xl transition-all hover:bg-blue-500 active:bg-blue-600">
+          View Details
         </button>
+      </div>
     </div>
-</div>
-    )
-}
+  );
+};
 
-export default EmployeeCard
+export default EmployeeCard;

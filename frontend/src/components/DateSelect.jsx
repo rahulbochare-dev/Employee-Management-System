@@ -1,47 +1,43 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
 const DateSelect = ({ label, placeholder, value, onChange }) => {
-    const [inputValue, setInputValue] = useState("")
+  const [inputValue, setInputValue] = useState("");
 
-    const handleDateChange = (e) => {
-        setInputValue(e.target.value)
-    }
-    
+  const handleDateChange = (e) => {
+    setInputValue(e.target.value);
+  };
+
   return (
-    <div className='w-56 h-16 flex flex-col justify-between'>
-        <label className='text-[0.9375rem] font-medium truncate' htmlFor="selectFile">{label}</label>
-
-        <div className="w-full h-8.75 rounded-xl flex items-center relative bg-transparent">
-
-            <div className="w-full h-full bg-[#F1F1F1] rounded-xl flex items-center justify-between pl-5 pr-3 z-3 pointer-events-none">
-                
-                <h3 className={`text-[0.85rem] sm:text-[0.90rem] truncate ${inputValue? "text-black" : "text-[#787878]"} font-medium`}>
-                    {inputValue || "Select Date"}
-                </h3>
-
-                <img
-                    className='w-4 sm:w-5 pointer-events-none shrink-0'
-                    src="/src/assets/calender.svg"
-                    alt=""
-                    srcset=""
-                />
-
-            </div>
-
-            <input
-                className='absolute w-full h-full text-[0.85rem] sm:text-[0.90rem] font-medium pl-3 opacity-0 cursor-pointer'
-                placeholder={placeholder}
-                type="date"
-                name="selectFile"
-                id="selectFile"
-                value={value}
-                onInput={handleDateChange}
-                onChange={onChange}
-            />
-
+    <div className="w-56 h-16 flex flex-col justify-between">
+      <label
+        className="text-[0.9375rem] font-medium truncate"
+        htmlFor="selectFile">
+        {label}
+      </label>
+      <div className="w-full h-8.75 rounded-xl flex items-center relative bg-transparent">
+        <div className="w-full h-full bg-[#F1F1F1] rounded-xl flex items-center justify-between pl-5 pr-3 z-3 pointer-events-none">
+          <h3
+            className={`text-[0.85rem] sm:text-[0.90rem] truncate ${inputValue ? "text-black" : "text-[#787878]"} font-medium`}>
+            {inputValue || "Select Date"}
+          </h3>
+          <img
+            className="w-4 sm:w-5 pointer-events-none shrink-0"
+            src="/src/assets/calender.svg"
+            alt=""
+            srcset=""/>
         </div>
-    </div>  
-  )
-}
+        <input
+          className="absolute w-full h-full text-[0.85rem] sm:text-[0.90rem] font-medium pl-3 opacity-0 cursor-pointer"
+          placeholder={placeholder}
+          type="date"
+          name="selectFile"
+          id="selectFile"
+          value={value}
+          onInput={handleDateChange}
+          onChange={onChange}/>
+      </div>
+    </div>
+  );
+};
 
-export default DateSelect
+export default DateSelect;
