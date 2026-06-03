@@ -24,12 +24,12 @@ const EmployeeSelf = () => {
 
   useEffect(() => {
     if (location.pathname == "/employee/apply-leave") {
-      setShowApplyLeave(!showApplyLeave);
+      setShowApplyLeave(true);
     }
-    if (location.pathname == "/employees") {
-      setShowApplyLeave(!showApplyLeave);
+    if (location.pathname == "/employee") {
+      setShowApplyLeave(false);
     }
-  }, [location]);
+  }, [location.pathname]);
 
   const handleGetLeaveDetails = async (e, leaveId) => {
     navigate(`/employee/leave/${leaveId}`);

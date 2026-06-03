@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Separator from "./Seperator.jsx";
 import DateSelectApplyLeave from "./DateSelectApplyLeave.jsx";
 import DropdownLeaveType from "./DropdownLeaveType.jsx";
@@ -8,7 +8,12 @@ import { X } from "lucide-react";
 import { useEmployeeStore } from "../store/employeeStore.js";
 
 const LeaveDetails = ({ cb }) => {
-  const { getMyLeaves, applyLeave  } = useEmployeeLeaveStore();
+  const [initials, setInitials] = useState({
+    first: "",
+    last: "",
+  });
+
+  const { getMyLeaves, applyLeave } = useEmployeeLeaveStore();
   const { employee } = useEmployeeStore();
 
   const [leaveData, setLeaveData] = useState({
@@ -38,6 +43,16 @@ const LeaveDetails = ({ cb }) => {
     }
   };
 
+  useEffect(() => {
+      const firstIn = employee.firstName ? employee.firstName.charAt(0) : "";
+      const lastIn = employee.lastName ? employee.lastName.charAt(0) : "";
+  
+      setInitials({
+        first: firstIn,
+        last: lastIn,
+      });
+    }, [employee?.firstName, employee?.lastName]);
+
   return (
     <div className="w-[95vw] max-w-5xl max-h-[90vh] bg-white rounded-2xl px-5 sm:px-8 pt-6 pb-6 overflow-y-auto transition-all flex flex-col">
       <Toaster position="bottom-center" />
@@ -52,19 +67,21 @@ const LeaveDetails = ({ cb }) => {
         <div className="w-full lg:w-105 shrink-0 lg:pr-8 lg:border-r border-[#dddddd]">
           <h2 className="text-2xl font-medium text-black">Employee</h2>
           <div className="w-full flex items-center gap-5 py-5">
-            <img
-              className="size-14 sm:size-17 rounded-full object-cover shrink-0"
-              src="/src/assets/businessman.png"
-              alt=""/>
+            <div className="w-[18%] h-17 rounded-full bg-[#d1d1d1] flex justify-center items-center">
+              <h1 className="text-[#898989] text-2xl font-bold">
+                {initials.first}
+                {initials.last}
+              </h1>
+            </div>
             <div className="flex flex-col min-w-0">
               <h2 className="text-[1.375rem] font-medium text-black leading-none truncate">
-                { employee?.firstName } { employee?.lastName }
+                {employee?.firstName} {employee?.lastName}
               </h2>
               <h3 className="text-[1rem] text-[#7a7a7a] font-medium mt-2 leading-none">
-              { employee?.jobTitle }
+                {employee?.jobTitle}
               </h3>
               <h3 className="text-[0.875rem] text-[#7a7a7a] font-medium mt-2 leading-none break-all">
-                ID: { employee?.empID } • { employee?.email }
+                ID: {employee?.empID} • {employee?.email}
               </h3>
             </div>
           </div>
@@ -100,7 +117,7 @@ const LeaveDetails = ({ cb }) => {
               <div className="mt-1.5">
                 <DateSelectApplyLeave
                   name={"from"}
-                  onChange={handleChangeLeaveData}/>
+                  onChange={handleChangeLeaveData} />
               </div>
             </div>
             <div className="flex flex-col">
@@ -110,7 +127,7 @@ const LeaveDetails = ({ cb }) => {
               <div className="mt-1.5">
                 <DateSelectApplyLeave
                   name={"to"}
-                  onChange={handleChangeLeaveData}/>
+                  onChange={handleChangeLeaveData} />
               </div>
             </div>
             <div className="flex flex-col">
@@ -126,7 +143,7 @@ const LeaveDetails = ({ cb }) => {
                 Applied On:
               </h3>
               <h2 className="text-[1rem] text-black font-medium mt-1.5">
-              {new Date().toLocaleDateString("en-GB", {
+                {new Date().toLocaleDateString("en-GB", {
                   day: "numeric",
                   month: "short",
                   year: "numeric",
@@ -142,7 +159,7 @@ const LeaveDetails = ({ cb }) => {
               className="w-full h-full min-h-45 lg:min-h-0 resize-none outline-none bg-transparent align-top"
               name="description"
               id="description"
-              onChange={handleChangeLeaveData}/>
+              onChange={handleChangeLeaveData} />
           </div>
           <div className="w-full flex justify-end items-center gap-4 mt-6 shrink-0">
             <button

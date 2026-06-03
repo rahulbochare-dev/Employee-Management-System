@@ -6,6 +6,11 @@ import { X } from "lucide-react";
 import { useParams } from "react-router-dom";
 
 const LeaveDetails = ({ leaveDetails, cb }) => {
+  const [initials, setInitials] = useState({
+    first: "",
+    last: "",
+  });
+
   const {
     getLeaves,
     getLeavesDetails,
@@ -50,6 +55,16 @@ const LeaveDetails = ({ leaveDetails, cb }) => {
     }
   };
 
+  useEffect(() => {
+    const firstIn = leaveDetails.employee.firstName ? leaveDetails.employee.firstName.charAt(0) : "";
+    const lastIn = leaveDetails.employee.lastName ? leaveDetails.employee.lastName.charAt(0) : "";
+
+    setInitials({
+      first: firstIn,
+      last: lastIn,
+    });
+  }, [leaveDetails?.firstName, leaveDetails?.lastName]);
+
   return (
     <div className="w-[95%] sm:w-[92%] lg:w-full max-w-6xl mx-auto bg-white rounded-2xl px-4 sm:px-6 lg:px-8 py-5 sm:py-6 overflow-hidden">
       <div className="w-full flex justify-between items-center">
@@ -69,9 +84,12 @@ const LeaveDetails = ({ leaveDetails, cb }) => {
             Employee Details
           </h2>
           <div className="w-full flex items-center gap-4">
-            <img
-              className="w-14 h-14 sm:w-16 sm:h-16 lg:size-17 rounded-full object-cover shrink-0"
-              src="frontend\src\assets\businessman.png"/>
+            <div className="w-[16%] h-17 rounded-full bg-[#d1d1d1] flex justify-center items-center">
+              <h1 className="text-[#898989] text-2xl font-bold">
+                {initials.first}
+                {initials.last}
+              </h1>
+            </div>
             <div className="flex flex-col min-w-0">
               <h2 className="text-[1rem] sm:text-[1.15rem] lg:text-[1.375rem] font-medium text-black leading-none truncate">
                 {leave?.employee.firstName || "N/A"} {leave?.employee.lastName}
@@ -92,22 +110,20 @@ const LeaveDetails = ({ leaveDetails, cb }) => {
               </h3>
               <div
                 className={`w-fit px-3 sm:px-4 h-7 sm:h-8 rounded-xl flex justify-center items-center mt-2
-              ${
-                leave?.leaveType === "Casual"
-                  ? "bg-indigo-200"
-                  : leave?.leaveType === "Sick"
-                    ? "bg-orange-200"
-                    : "bg-[#929292]"
-              }`}>
+              ${leave?.leaveType === "Casual"
+                    ? "bg-indigo-200"
+                    : leave?.leaveType === "Sick"
+                      ? "bg-orange-200"
+                      : "bg-[#929292]"
+                  }`}>
                 <h2
                   className={`text-[0.8rem] sm:text-[0.9rem] font-medium
-                ${
-                  leave?.leaveType === "Casual"
-                    ? "text-indigo-500"
-                    : leave?.leaveType === "Sick"
-                      ? "text-orange-500"
-                      : "text-[#929292]"
-                }`}>
+                ${leave?.leaveType === "Casual"
+                      ? "text-indigo-500"
+                      : leave?.leaveType === "Sick"
+                        ? "text-orange-500"
+                        : "text-[#929292]"
+                    }`}>
                   {leave?.leaveType}
                 </h2>
               </div>
@@ -119,21 +135,21 @@ const LeaveDetails = ({ leaveDetails, cb }) => {
               <div
                 className={`w-fit px-3 sm:px-4 h-7 sm:h-8 rounded-xl flex justify-center items-center mt-2
               ${leave?.status === "Pending"
-                  ? "bg-yellow-200"
-                  : leave?.status === "Rejected"
-                    ? "bg-red-200"
-                    : leave?.status === "Approved"
-                      ? "bg-green-200"
-                      : "bg-[#929292]"}`}>
+                    ? "bg-yellow-200"
+                    : leave?.status === "Rejected"
+                      ? "bg-red-200"
+                      : leave?.status === "Approved"
+                        ? "bg-green-200"
+                        : "bg-[#929292]"}`}>
                 <h2
                   className={`text-[0.8rem] sm:text-[0.9rem] font-medium
                 ${leave?.status === "Pending"
-                    ? "text-yellow-500"
-                    : leave?.status === "Rejected"
-                      ? "text-red-500"
-                      : leave?.status === "Approved"
-                        ? "text-green-500"
-                        : "text-[#929292]" }`}>
+                      ? "text-yellow-500"
+                      : leave?.status === "Rejected"
+                        ? "text-red-500"
+                        : leave?.status === "Approved"
+                          ? "text-green-500"
+                          : "text-[#929292]"}`}>
                   {leave?.status}
                 </h2>
               </div>
