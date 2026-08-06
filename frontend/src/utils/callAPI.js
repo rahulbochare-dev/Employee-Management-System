@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
+console.log("BASE URL:", BASE_URL);
 
 const callApi = async function (method, url, data) {
   try {
