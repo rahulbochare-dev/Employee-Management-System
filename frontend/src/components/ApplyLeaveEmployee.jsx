@@ -22,6 +22,7 @@ const ApplyLeaveEmployee = ({ cb }) => {
     to: "",
     description: "",
   });
+  console.log(leaveData)
 
   const handleChangeLeaveData = async (e) => {
     const updatedData = {

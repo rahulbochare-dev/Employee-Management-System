@@ -13,7 +13,7 @@ router.route("/register").post(upload.fields(
             maxCount: 1
         }
     ]
-),protectAdminRegister, registerUser)
+), registerUser)
 
 router.route("/login").post(loginUser)
 

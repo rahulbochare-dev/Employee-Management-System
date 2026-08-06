@@ -4,7 +4,7 @@ import { addLeave, getLeaves, getLeaveDetails, deleteLeave } from "../controller
 
 const router = Router()
 
-router.route("/add-leave").post(addLeave)
+router.route("/add-leave").post(checkIsEmployee, addLeave)
 router.route("/leaves").get(checkIsEmployee, getLeaves)
 router.route("/leave-details").get(checkIsEmployee, getLeaveDetails)
 router.route("/delete-leave").post(checkIsEmployee, deleteLeave)
