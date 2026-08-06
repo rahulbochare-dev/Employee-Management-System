@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { AnimatePresence } from "motion/react"
 import Sidebar from "../components/Sidebar.jsx";
 import Search from "../components/Search.jsx";
 import Dropdown from "../components/Dropdown.jsx";
@@ -62,7 +63,6 @@ const Leaves = () => {
     navigate(`/admin/leaves/${id}`);
     try {
       const response = await getLeavesDetails(id);
-      console.log(response);
     } catch (error) {
       throw error;
     }
@@ -95,16 +95,18 @@ const Leaves = () => {
   return (
     <>
       <div className="w-screen h-screen relative bg-[#fcfcfe]">
-        {showLeaveDetails && (
-          <div className="fixed inset-0 z-50 bg-black/25 backdrop-blur-md overflow-y-auto">
-            <div className="min-h-full flex justify-center items-center px-3 sm:px-5 py-5">
-              <div className="w-full max-w-380 flex justify-center items-center">
-                <LeaveDetails
-                  leaveDetails={leavesDetails}
-                  cb={closeLeaveDetails} />
+        <AnimatePresence>
+          {showLeaveDetails && (
+            <div className="fixed inset-0 z-50 bg-black/25 backdrop-blur-md overflow-y-auto">
+              <div className="min-h-full flex justify-center items-center px-3 sm:px-5 py-5">
+                <div className="w-full max-w-380 flex justify-center items-center">
+                  <LeaveDetails
+                    leaveDetails={leavesDetails}
+                    cb={closeLeaveDetails} />
+                </div>
               </div>
-            </div>
-          </div>)}
+            </div>)}
+        </AnimatePresence>
         <div className="w-full min-h-screen flex flex-col lg:flex-row">
           <div className="hidden lg:block w-87.75 h-screen p-4 shrink-0">
             <Sidebar />

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { motion } from "motion/react"
 import Separator from "./Seperator.jsx";
 import { useAdminLeaveStore } from "../store/adminLeaveStore.js";
 import toast from "react-hot-toast";
@@ -66,7 +67,13 @@ const LeaveDetails = ({ leaveDetails, cb }) => {
   }, [leaveDetails?.employee.firstName, leaveDetails?.employee.lastName]);
 
   return (
-    <div className="w-[95%] sm:w-[92%] lg:w-full max-w-6xl mx-auto bg-white rounded-2xl px-4 sm:px-6 lg:px-8 py-5 sm:py-6 overflow-hidden">
+    <motion.div initial={{ opacity: 0, scale: 0.96 }}
+    animate={{ opacity: 1, scale: 1 }}
+    exit={{ opacity: 0, scale: 0.96 }}
+    transition={{
+      duration: 0.18,
+      ease: [0.16, 1, 0.3, 1],
+    }} className="w-[95%] sm:w-[92%] lg:w-full max-w-6xl mx-auto bg-white rounded-2xl px-4 sm:px-6 lg:px-8 py-5 sm:py-6 overflow-hidden">
       <div className="w-full flex justify-between items-center">
         <h1 className="text-[1.35rem] sm:text-2xl lg:text-[1.75rem] font-medium text-black">
           Leave Application
@@ -232,7 +239,7 @@ const LeaveDetails = ({ leaveDetails, cb }) => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

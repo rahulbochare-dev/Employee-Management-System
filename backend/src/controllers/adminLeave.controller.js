@@ -11,7 +11,6 @@ const getLeaves = asyncHandler( async (req, res) => {
     }
     
     const totalLeaves = await Leave.find(filter).populate("employee", "avatar firstName lastName empID jobTitle workMode email")
-    console.log(filter)
     
     res.status(200).json(new ApiResponse(200, totalLeaves, "Leaves fetched successfully"))
 })

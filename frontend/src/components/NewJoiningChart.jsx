@@ -2,12 +2,52 @@ import React from "react";
 import {
   ResponsiveContainer,
   BarChart,
+  AreaChart,
+  Area,
   CartesianGrid,
   XAxis,
   YAxis,
   Bar,
   Tooltip,
 } from "recharts";
+
+export const CustomTooltip = ({ active, payload, label }) => {
+  if (!active || !payload?.length) return null;
+
+  return (
+    <div
+      style={{
+        background: "white",
+        border: "1px solid #eaeaea",
+        borderRadius: 12,
+        padding: "10px 12px",
+        color: "#fff",
+        width: 120,
+        boxShadow: "0 8px 20px rgba(0,0,0,0.25)",
+      }}
+    >
+      <p
+        style={{
+          fontSize: 12,
+          color: "black",
+          marginBottom: 4,
+        }}
+      >
+        {label}
+      </p>
+
+      <p
+        style={{
+          fontSize: 18,
+          fontWeight: 600,
+          color: "black",
+        }}
+      >
+        {payload[0].value} Joines
+      </p>
+    </div>
+  );
+};
 
 const NewJoiningChart = ({ data, thisMonthJoines }) => {
   return (
@@ -37,36 +77,70 @@ const NewJoiningChart = ({ data, thisMonthJoines }) => {
       </div>
       <div className="w-full h-[70%] sm:h-74 rounded-b-[0.9375rem] pt-3 sm:pt-5">
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart
+          <AreaChart
             data={data?.newJoinesByMonthFormatted}
-            layout="horizontal"
-            margin={{ top: 5, right: 20, left: -15, bottom: 5 }}>
-            <CartesianGrid
-              vertical={false}
-              stroke="#9c9c9c"
-              strokeWidth={0.3}
-              syncWithTicks={true}/>
+            margin={{
+              top: 0,
+              right: 40,
+              left: 40,
+              bottom: 15,
+            }}>
+            <defs>
+              <linearGradient id="purpleGradient" x1="0" y1="0" x2="0" y2="1">
+                <stop
+                  offset="0%"
+                  stopColor="#9E6EFF"
+                  stopOpacity={0.55}
+                />
+                <stop
+                  offset="55%"
+                  stopColor="#9E6EFF"
+                  stopOpacity={0.22}
+                />
+                <stop
+                  offset="100%"
+                  stopColor="#9E6EFF"
+                  stopOpacity={0}
+                />
+              </linearGradient>
+            </defs>
+            <Tooltip
+              content={<CustomTooltip />}
+              cursor={false} />
             <XAxis
-              dataKey="month"
-              type="category"
-              axisLine={false}
+              dataKey={"month"}
+              interval={0}
+              axisLine={true}
+              strokeWidth={0.5}
               tickLine={false}
-              padding={{ left: 10, right: 10 }}
-              tick={{ fontSize: 12 }}/>
-            <YAxis
-              type="number"
-              axisLine={false}
-              tickLine={false}
-              domain={[0, "auto"]}
-              allowDataOverflow={false}
-              tick={{ fontSize: 12 }}/>
-            <Bar
-              dataKey="joinings"
-              fill="#9E6EFF"
-              radius={[5, 5, 0, 0]}
-              barSize={window.innerWidth < 640 ? 18 : 35}/>
-            <Tooltip />
-          </BarChart>
+              tick={({ x, y, payload }) => (
+                <g>
+                  <line
+                    x1={x}
+                    y1={y - 8}
+                    x2={x}
+                    y2={y - 3}
+                    stroke="#666"
+                    strokeWidth={1} />
+                  <text
+                    x={x}
+                    y={y + 16}
+                    textAnchor="middle"
+                    fill="#8A8A8A"
+                    fontSize={12}
+                    fontWeight={500}>
+                    {payload.value}
+                  </text>
+                </g>
+              )}
+              tickMargin={8} />
+            <Area
+              dataKey={"joinings"}
+              type="monotone"
+              stroke="#9E6EFF"
+              strokeWidth={2}
+              fill="url(#purpleGradient)" />
+          </AreaChart>
         </ResponsiveContainer>
       </div>
     </div>

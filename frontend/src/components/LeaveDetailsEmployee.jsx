@@ -4,8 +4,7 @@ import { useParams } from "react-router-dom";
 import { useEmployeeLeaveStore } from "../store/employeeLeaveStore.js";
 
 const LeaveDetailsEmployee = ({ leaveDetails, cb }) => {
-  const { getMyLeaves, myLeaveDetails, getLeaveDetails, deleteLeave } =
-    useEmployeeLeaveStore();
+  const { getMyLeaves, myLeaveDetails, getLeaveDetails, deleteLeave } = useEmployeeLeaveStore();
   const { id } = useParams();
 
   useEffect(() => {

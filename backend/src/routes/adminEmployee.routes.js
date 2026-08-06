@@ -12,7 +12,7 @@ router.route("/onboard-employee").post(upload.fields(
             maxCount: 1
         }
     ]
-), checkIsAdmin, onboardEmployee)
+), onboardEmployee)
 
 router.route("/employees").get(checkIsAdmin, getEmployees)
 router.route("/terminate-employee").post(checkIsAdmin, terminateEmployee)

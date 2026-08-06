@@ -1,20 +1,30 @@
 import React, { useState } from "react";
+import { motion } from "motion/react"
 
 const DropdownModal = ({ value, onChange }) => {
   const [showModal, setShowModal] = useState(false);
 
   return (
     <>
-      <div className="w-[54%] sm:w-fit relative">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.96 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.96 }}
+        transition={{
+          duration: 0.18,
+          ease: [0.16, 1, 0.3, 1],
+        }} 
+        className="w-[54%] sm:w-fit relative">
         <div
           onClick={() => {
-            setShowModal(!showModal)}}
+            setShowModal(!showModal)
+          }}
           className="w-full sm:w-37.5 h-9 border border-[#eaeaea] rounded-xl pr-2 pl-3 flex justify-between items-center relative">
           <h3 className="text-sm sm:text-base truncate">Salary</h3>
           <img
             className="w-4 sm:w-5 shrink-0"
             src="/src/assets/arrowDown.svg"
-            alt=""/>
+            alt="" />
         </div>
         {showModal && (
           <div className="w-full sm:w-50 min-h-60 border bg-white mt-2 z-10 absolute border-[#eaeaea] rounded-xl flex flex-col items-center pt-2 px-2 shadow-md">
@@ -31,7 +41,7 @@ const DropdownModal = ({ value, onChange }) => {
                   name="minSalary"
                   id=""
                   value={value}
-                  onChange={onChange}/>
+                  onChange={onChange} />
               </div>
             </div>
             <div className="w-full h-15 flex flex-col justify-center pl-1 sm:pl-3">
@@ -44,7 +54,7 @@ const DropdownModal = ({ value, onChange }) => {
                   name="maxSalary"
                   id=""
                   value={value}
-                  onChange={onChange}/>
+                  onChange={onChange} />
               </div>
             </div>
             <button
@@ -56,7 +66,7 @@ const DropdownModal = ({ value, onChange }) => {
             </button>
           </div>
         )}
-      </div>
+      </motion.div>
     </>
   );
 };

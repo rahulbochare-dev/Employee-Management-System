@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion } from "motion/react"
 import Separator from "./Seperator.jsx";
 import TextInput from "./TextInput.jsx";
 import DropdownAddEmployee from "./DropdownAddEmployee.jsx";
@@ -74,7 +75,27 @@ const AddEmployeeModal = ({ handleShowModal }) => {
 
   return (
     <>
-      <div className="fixed inset-0 z-10 flex justify-center items-start sm:items-center px-3 sm:px-4 py-4 overflow-y-auto">
+      <motion.div
+        initial={{
+          opacity: 0,
+          scale: 0.985,
+        }}
+        
+        animate={{
+          opacity: 1,
+          scale: 1,
+        }}
+        
+        exit={{
+          opacity: 0,
+          scale: 0.985,
+        }}
+        
+        transition={{
+          duration: 0.16,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+        className="fixed inset-0 z-10 flex justify-center items-start sm:items-center px-3 sm:px-4 py-4 overflow-y-auto">
         <Toaster position="bottom-center" />
         <div className="w-full max-w-330.5 bg-white border border-[#eaeaea] rounded-2xl overflow-hidden my-auto">
           <div className="w-full min-h-15 flex items-center pt-5 px-5 sm:px-10">
@@ -88,122 +109,122 @@ const AddEmployeeModal = ({ handleShowModal }) => {
                 placeholder={"Emp ID"}
                 onChange={(e) =>
                   setFormData({ ...formData, empId: e.target.value })
-                }/>
+                } />
               <TextInput
                 label={"Contact No:"}
                 placeholder={"Contact No"}
                 onChange={(e) =>
                   setFormData({ ...formData, contactNo: e.target.value })
-                }/>
+                } />
               <TextInput
                 label={"City:"}
                 placeholder={"City"}
                 onChange={(e) =>
                   setFormData({ ...formData, city: e.target.value })
-                }/>
+                } />
               <TextInput
                 label={"Salary:"}
                 placeholder={"Salary"}
                 onChange={(e) =>
                   setFormData({ ...formData, salary: e.target.value })
-                }/>
+                } />
               <TextInput
                 label={"First Name:"}
                 placeholder={"First Name"}
                 onChange={(e) =>
                   setFormData({ ...formData, firstName: e.target.value })
-                }/>
+                } />
               <TextInput
                 label={"Postal Code:"}
                 placeholder={"Postal Code"}
                 onChange={(e) =>
                   setFormData({ ...formData, postalCode: e.target.value })
-                }/>
+                } />
               <TextInput
                 label={"Education:"}
                 placeholder={"Education"}
                 onChange={(e) =>
                   setFormData({ ...formData, education: e.target.value })
-                }/>
+                } />
               <TextInput
                 label={"Salary Currency:"}
                 placeholder={"Salary Currency"}
                 onChange={(e) =>
                   setFormData({ ...formData, salaryCurrency: e.target.value })
-                }/>
+                } />
               <TextInput
                 label={"Middle Name:"}
                 placeholder={"Middle Name"}
                 onChange={(e) =>
                   setFormData({ ...formData, middleName: e.target.value })
-                }/>
+                } />
               <TextInput
                 label={"Email:"}
                 placeholder={"Email"}
                 onChange={(e) =>
                   setFormData({ ...formData, email: e.target.value })
-                }/>
+                } />
               <TextInput
                 label={"Address:"}
                 placeholder={"Address"}
                 onChange={(e) =>
                   setFormData({ ...formData, address: e.target.value })
-                }/>
+                } />
               <TextInput
                 label={"Password:"}
                 placeholder={"Password"}
                 onChange={(e) =>
                   setFormData({ ...formData, password: e.target.value })
-                }/>
+                } />
               <TextInput
                 label={"Last Name:"}
                 placeholder={"Last Name"}
                 onChange={(e) =>
                   setFormData({ ...formData, lastName: e.target.value })
-                }/>
+                } />
               <DateSelect
                 label={"Date of Birth:"}
                 onChange={(e) =>
                   setFormData({ ...formData, dateOfBirth: e.target.value })
-                }/>
+                } />
               <TextInput
                 label={"Job Title:"}
                 placeholder={"Job Title"}
                 onChange={(e) =>
                   setFormData({ ...formData, jobTitle: e.target.value })
-                }/>
+                } />
               <FileSelect
                 label={"Avatar:"}
                 placeholder={"Choose Avatar"}
-                onChange={(file) => setFormData({ ...formData, avatar: file })}/>
+                onChange={(file) => setFormData({ ...formData, avatar: file })} />
               <DropdownAddEmployee
                 label={"Gender:"}
                 title={"Gender"}
                 values={["Male", "Female"]}
                 onChange={(e) =>
                   setFormData({ ...formData, gender: e.target.value })
-                }/>
+                } />
               <DropdownAddEmployee
                 label={"Country:"}
                 title={"Country"}
                 values={countries}
                 onChange={(e) =>
                   setFormData({ ...formData, country: e.target.value })
-                }/>
+                } />
               <DropdownAddEmployee
                 label={"Workmode:"}
                 title={"Workmode"}
                 values={["On-Site", "Remote", "Hybrid"]}
                 onChange={(e) =>
                   setFormData({ ...formData, workMode: e.target.value })
-                }/>
+                } />
               <DropdownAddEmployee
                 label={"Employement Type:"}
                 title={"Employement Type"}
                 values={["Full Time", "Contract", "Freelance", "Intern"]}
                 onChange={(e) =>
                   setFormData({ ...formData, empType: e.target.value })
-                }/>
+                } />
             </div>
             <div className="w-full flex flex-col xl:flex-row border-t border-[#eaeaea]">
               <div className="w-full xl:w-4/6 py-4 sm:py-6 flex flex-col justify-center">
@@ -217,17 +238,17 @@ const AddEmployeeModal = ({ handleShowModal }) => {
                   type={"button"}
                   width={"w-full sm:w-36"}
                   secondary={true}
-                  onClick={handleShowModal}/>
+                  onClick={handleShowModal} />
                 <Button
                   title={"Add Employee"}
                   type={"submit"}
                   icon={"/src/assets/employeeAdd-Light.svg"}
-                  width={"w-full sm:w-48"}/>
+                  width={"w-full sm:w-48"} />
               </div>
             </div>
           </form>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };

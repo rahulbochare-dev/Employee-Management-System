@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "motion/react"
 import Sidebar from "../components/Sidebar.jsx";
 import EmployeeCard from "../components/EmployeeCard.jsx";
 import Pagination from "../components/Pagination.jsx";
@@ -102,11 +103,9 @@ const Employees = () => {
           salaryData.minSalary,
           salaryData.maxSalary
         );
-        console.log(response);
       }
     };
     callAPI();
-    console.log(salaryData);
   }, [salaryData]);
 
   const handleFilterChange = async (e) => {
@@ -129,8 +128,6 @@ const Employees = () => {
       params.append("workMode", updatedFilters.workMode);
     if (updatedFilters.jobTitle)
       params.append("jobTitle", updatedFilters.jobTitle);
-
-    console.log(params.toString());
 
     try {
       const response = await getEmployeeByFilter(params);
@@ -261,10 +258,44 @@ const Employees = () => {
             </div>
           </div>
         </div>
-        {showModal && (
-          <div className="fixed inset-0 z-50 w-screen h-screen flex justify-center items-center bg-black/25 backdrop-blur-md px-4">
-            <AddEmployeeModal handleShowModal={handleShowModal} />
-          </div>)}
+        <AnimatePresence>
+          {showModal && (
+            <motion.div
+              className="fixed inset-0 z-50 w-screen h-screen flex justify-center items-center bg-black/25 backdrop-blur-md px-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{
+                duration: 0.35,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+            >
+              <motion.div
+                initial={{
+                  opacity: 0,
+                  scale: 0.985,
+                  y: 4,
+                }}
+                animate={{
+                  opacity: 1,
+                  scale: 1,
+                  y: 0,
+                }}
+                exit={{
+                  opacity: 0,
+                  scale: 0.985,
+                  y: 4,
+                }}
+                transition={{
+                  duration: 0.16,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+              >
+                <AddEmployeeModal handleShowModal={handleShowModal} />
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </>
   );

@@ -25,8 +25,6 @@ const generateAccessTokenAndRefreshToken = async (userId) => {
 
 const registerUser = asyncHandler( async (req, res) => {
     const {firstName, lastName, userName, email, dateOfBirth, country, city, role, password, adminSecret} = req.body
-    console.log(req.body)
-    console.log(req.files)
 
     if(
         [firstName, lastName, userName, email, dateOfBirth, country, city, role, password, adminSecret].some((fields) => (fields?.trim() === ""))
@@ -148,7 +146,6 @@ const logoutUser = asyncHandler( async (req, res) => {
             new: true
         }
     )
-    console.log(user)
 
     const options = {
         httpOnly: true,
@@ -198,7 +195,6 @@ const resetPassword = asyncHandler( async (req, res) => {
 
 const getCurrentUser = asyncHandler( async (req, res) => {
     const user = req.user
-    console.log(user)
     
     return res.status(200).json(new ApiResponse(200, user, "User found successfully"))
 })

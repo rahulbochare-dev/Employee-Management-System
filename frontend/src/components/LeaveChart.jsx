@@ -9,6 +9,44 @@ import {
   Tooltip,
 } from "recharts";
 
+const CustomTooltip = ({ active, payload, label }) => {
+  if (!active || !payload?.length) return null;
+
+  return (
+    <div
+      style={{
+        background: "white",
+        border: "1px solid #eaeaea",
+        borderRadius: 12,
+        padding: "10px 12px",
+        color: "#fff",
+        width: 120,
+        boxShadow: "0 8px 20px rgba(0,0,0,0.25)",
+      }}
+    >
+      <p
+        style={{
+          fontSize: 12,
+          color: "black",
+          marginBottom: 4,
+        }}
+      >
+        {label}
+      </p>
+
+      <p
+        style={{
+          fontSize: 18,
+          fontWeight: 600,
+          color: "black",
+        }}
+      >
+        {payload[0].value} Leaves
+      </p>
+    </div>
+  );
+};
+
 const LeaveChart = ({ data }) => {
   return (
     <div className="w-full lg:w-128.5 h-104 bg-white border border-[#eaeaea] rounded-[0.9375rem] overflow-hidden">
@@ -58,7 +96,9 @@ const LeaveChart = ({ data }) => {
               fill="#9E6EFF"
               radius={[0, 5, 5, 0]}
               barSize={25}/>
-            <Tooltip />
+            <Tooltip
+              content={<CustomTooltip />}
+              cursor={false} />
           </BarChart>
         </ResponsiveContainer>
       </div>

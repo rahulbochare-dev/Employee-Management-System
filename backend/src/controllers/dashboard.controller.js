@@ -81,45 +81,62 @@ const getOnLeaveToday = asyncHandler(async (req, res) => {
 })
 
 const getNewJoinesThisMonth = asyncHandler(async (req, res) => {
-    const newJoinesThisMonth = await Employee.aggregate([{
-        $match: {
-            $expr: {
-                $and: {
-                    $eq: [
-                        { $month: "$joinedAt" },
-                        { $month: new Date() }
-                    ],
-                    $eq: [
-                        { $year: "$joinedAt" },
-                        { $year: new Date() }
+    const currentDate = new Date();
+
+    const newJoinesThisMonth = await Employee.aggregate([
+        {
+            $match: {
+                $expr: {
+                    $and: [
+                        {
+                            $eq: [
+                                { $month: "$joinedAt" },
+                                { $month: currentDate }
+                            ]
+                        },
+                        {
+                            $eq: [
+                                { $year: "$joinedAt" },
+                                { $year: currentDate }
+                            ]
+                        }
                     ]
                 }
             }
         },
-    },
-    {
-        $facet: {
-            "genderWiseTotal": [{
-                $group: {
-                    _id: "$gender",
-                    total: {
-                        $sum: 1
+        {
+            $facet: {
+                genderWiseTotal: [
+                    {
+                        $group: {
+                            _id: "$gender",
+                            total: {
+                                $sum: 1
+                            }
+                        }
                     }
-                }
-            }],
-            "totalNewJoines": [{
-                $count: "totalNewJoines"
-            }]
+                ],
+                totalNewJoines: [
+                    {
+                        $count: "totalNewJoines"
+                    }
+                ]
+            }
         }
-    }
-])
+    ]);
 
-    if(!newJoinesThisMonth){
-        throw new ApiError(400, "New joines not found")
+    if (!newJoinesThisMonth) {
+        throw new ApiError(400, "New joines not found");
     }
 
-    res.status(200).json(new ApiResponse(200, newJoinesThisMonth, "New joines this month fetched successfully"))
-})
+    res.status(200).json(
+        new ApiResponse(
+            200,
+            newJoinesThisMonth,
+            "New joines this month fetched successfully"
+        )
+    );
+});
 
 const getLastWeeksLeaves = asyncHandler( async (req, res) => {
     const date = new Date()
@@ -149,8 +166,6 @@ const getLastWeeksLeaves = asyncHandler( async (req, res) => {
             }
         }
     ])
-
-    console.log(leastWeekLeaves)
 
     const last7Days = []
     const currentDate = new Date()

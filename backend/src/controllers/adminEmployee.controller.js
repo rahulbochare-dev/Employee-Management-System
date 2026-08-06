@@ -4,41 +4,41 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 import { ApiError } from "../utils/ApiError.js";
 import { Employee } from "../models/employee.model.js"
 
-const onboardEmployee = asyncHandler( async (req, res) => {
-    const {empID, firstName, middleName, lastName, email, gender, contactNo, avatar, dateOfBirth, country, city, postalCode, education, address, jobTitle, workMode, empType, salary, salaryCurrency, password} = req.body
+const onboardEmployee = asyncHandler(async (req, res) => {
+    const { empID, firstName, middleName, lastName, email, gender, contactNo, avatar, dateOfBirth, country, city, postalCode, education, address, jobTitle, workMode, empType, salary, salaryCurrency, password, joinedAt } = req.body
 
-    console.log(req.body)
-    
-    if(
-        [empID, firstName, middleName, lastName, email, gender, contactNo, avatar, dateOfBirth, country, city, postalCode, education, address, jobTitle, workMode, empType, salary, salaryCurrency, password].some((fields) => (fields === ""))
-    ){
+    if (
+        [empID, firstName, middleName, lastName, email, gender, contactNo, dateOfBirth, country, city, postalCode, education, address, jobTitle, workMode, empType, salary, salaryCurrency, password].some((fields) => (fields === ""))
+    ) {
         throw new ApiError(400, "Empty fields are not accepted!")
     }
 
-    if(password.length < 8){
-        throw new ApiError(400, "Password length must be minimum of 8 charecters!")
-    }
-    
-    if(!email.includes("@")){
+    // if (password.length < 8) {
+    //     throw new ApiError(400, "Password length must be minimum of 8 charecters!")
+    // }
+
+    if (!email.includes("@")) {
         throw new ApiError(400, "Please enter a valid email!")
     }
 
-    const alreadyExistEmployee = await Employee.findOne({email}).lean()
-    
-    if(alreadyExistEmployee){
+    const alreadyExistEmployee = await Employee.findOne({ email }).lean()
+
+    if (alreadyExistEmployee) {
         throw new ApiError(400, "Employee already exists!")
     }
 
-    const avatarLocalPath = req.files?.avatar[0].path
-    
-    if(!avatarLocalPath){
-        throw new ApiError(400, "Avatar is required!")
-    }
+    if (avatar) {
+        const avatarLocalPath = req.files?.avatar[0].path
 
-    const avatarUploadResponse = await uploadOnCloudinary(avatarLocalPath)
+        if (!avatarLocalPath) {
+            throw new ApiError(400, "Avatar is required!")
+        }
 
-    if(!avatarUploadResponse){
-        throw new ApiError(409, "An error occured while uploading avatar!")
+        const avatarUploadResponse = await uploadOnCloudinary(avatarLocalPath)
+
+        if (!avatarUploadResponse) {
+            throw new ApiError(409, "An error occured while uploading avatar!")
+        }
     }
 
     const currentDate = new Date()
@@ -52,7 +52,6 @@ const onboardEmployee = asyncHandler( async (req, res) => {
         email: email.toLowerCase(),
         gender,
         contactNo,
-        avatar,
         dateOfBirth,
         country,
         city,
@@ -66,79 +65,78 @@ const onboardEmployee = asyncHandler( async (req, res) => {
         salaryCurrency,
         password,
         isActive: true,
-        joinedAt: currentDate,
+        joinedAt: joinedAt,
     })
 
     return res.status(200)
-    .json(
-        new ApiResponse(200, createdEmployee, "Employee created successfully")
-    )
+        .json(
+            new ApiResponse(200, createdEmployee, "Employee created successfully")
+        )
 })
 
-const getEmployees = asyncHandler( async (req, res) => {
+const getEmployees = asyncHandler(async (req, res) => {
     const page = req.query.page || 1
     const limit = req.query.limit || 10
-    console.log(page, limit)
 
     const offset = (page - 1) * limit
-    const allEmployees = await Employee.find({isActive: true}).select("-password -refreshToken")
-    .sort({createdAt: -1})
-    .skip(offset)
-    .limit(limit)
+    const allEmployees = await Employee.find({ isActive: true }).select("-password -refreshToken")
+        .sort({ createdAt: -1 })
+        .skip(offset)
+        .limit(limit)
 
     const totalNoOfEmployees = await Employee.countDocuments({})
     const totalPages = Math.ceil(totalNoOfEmployees / limit)
-    
+
     return res.status(200)
-    .json(new ApiResponse(200, {employees: allEmployees, totalEmployeesCount: totalNoOfEmployees, currentPage: Number(page), totalPages}, "Employees fetched succesfully"))
+        .json(new ApiResponse(200, { employees: allEmployees, totalEmployeesCount: totalNoOfEmployees, currentPage: Number(page), totalPages }, "Employees fetched succesfully"))
 })
 
-const terminateEmployee = asyncHandler( async (req, res) => {
+const terminateEmployee = asyncHandler(async (req, res) => {
     const id = req.query.id
 
-    const terminatedEmployee = await Employee.findByIdAndUpdate(id, {isActive: false}, {new: true}).select("-password -refreshToken")
+    const terminatedEmployee = await Employee.findByIdAndUpdate(id, { isActive: false }, { new: true }).select("-password -refreshToken")
 
-    if(!terminatedEmployee){
+    if (!terminatedEmployee) {
         throw new ApiError(404, "Employee cannot be terminated")
     }
 
     return res.status(200)
-    .json(new ApiResponse(200, {terminateEmployee: terminatedEmployee}, "Employee terminated successfully"))
+        .json(new ApiResponse(200, { terminateEmployee: terminatedEmployee }, "Employee terminated successfully"))
 })
 
-const getEmployeeByFilter = asyncHandler( async (req, res) => {
-    const {gender, workMode, jobTitle} =req.query
+const getEmployeeByFilter = asyncHandler(async (req, res) => {
+    const { gender, workMode, jobTitle } = req.query
 
-    let filterParams = {isActive: true};
+    let filterParams = { isActive: true };
 
-    if(gender) filterParams.gender = gender
-    if(workMode) filterParams.workMode = workMode
-    if(jobTitle) filterParams.jobTitle = {$regex: jobTitle, $options: "i"}    
+    if (gender) filterParams.gender = gender
+    if (workMode) filterParams.workMode = workMode
+    if (jobTitle) filterParams.jobTitle = { $regex: jobTitle, $options: "i" }
 
     const employeeFound = await Employee.find(filterParams).select("-password -refreshToken")
 
     return res.status(200)
-    .json(new ApiResponse(200, employeeFound, "Employees fetched by filter successfully"))
+        .json(new ApiResponse(200, employeeFound, "Employees fetched by filter successfully"))
 })
 
-const getEmployeeBySalary = asyncHandler( async (req,res) => {
-    const {minSalary, maxSalary} = req.query
+const getEmployeeBySalary = asyncHandler(async (req, res) => {
+    const { minSalary, maxSalary } = req.query
 
-    if(!minSalary || !maxSalary){
+    if (!minSalary || !maxSalary) {
         throw new ApiError(400, "Salary values are required!")
     }
 
-    const employeeFound = await Employee.find({salary: {$gte: minSalary, $lte: maxSalary}})
+    const employeeFound = await Employee.find({ salary: { $gte: minSalary, $lte: maxSalary } })
 
-    if(employeeFound.length === 0){
+    if (employeeFound.length === 0) {
         throw new ApiError(404, "Employee not found!")
     }
 
-    return res.status(200).json(new ApiResponse(200, {employees: employeeFound}, "Employee fetched by salary successfully"))
+    return res.status(200).json(new ApiResponse(200, { employees: employeeFound }, "Employee fetched by salary successfully"))
 })
 
-const searchEmployee = asyncHandler( async (req, res) => {
-    const {searchName} = req.query
+const searchEmployee = asyncHandler(async (req, res) => {
+    const { searchName } = req.query
 
     const employeeFound = await Employee.find({
         isActive: true,
@@ -158,17 +156,17 @@ const searchEmployee = asyncHandler( async (req, res) => {
         ]
     }).select("-password -refreshToken")
 
-    return res.status(200).json(new ApiResponse(200, {employee: employeeFound}, "Employee searched successfully"))
+    return res.status(200).json(new ApiResponse(200, { employee: employeeFound }, "Employee searched successfully"))
 })
 
-const getEmployeeDetails = asyncHandler( async (req, res) => {
-    const {empID} = req.query
-    
-    const employeeInDB = await Employee.findOne({empID}).select("-password -refreshToken -accessToken")
-    if(!employeeInDB){
+const getEmployeeDetails = asyncHandler(async (req, res) => {
+    const { empID } = req.query
+
+    const employeeInDB = await Employee.findOne({ empID }).select("-password -refreshToken -accessToken")
+    if (!employeeInDB) {
         throw new ApiError(404, "Employee not found!")
     }
-    
+
     res.status(200).json(new ApiResponse(200, employeeInDB, "Employee details fetched successfully"))
 })
 

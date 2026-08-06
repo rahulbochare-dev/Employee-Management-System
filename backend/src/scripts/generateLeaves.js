@@ -7,18 +7,18 @@ dotenv.config({
 })
 
 const employeeIds = [
-  "6a0c0f30fbd3c6dee1126bf0",
-  "6a0c0f31fbd3c6dee1126bf3",
-  "6a0c0f31fbd3c6dee1126bfc",
-  "6a0c0f32fbd3c6dee1126bff",
-  "6a0c0f32fbd3c6dee1126c02",
-  "6a0c0f32fbd3c6dee1126c05",
-  "6a0c0f32fbd3c6dee1126c08",
-  "6a0c0f33fbd3c6dee1126c0b",
-  "6a0c0f33fbd3c6dee1126c0e",
-  "6a0c0f33fbd3c6dee1126c11",
-  "6a0c0f34fbd3c6dee1126c1d",
-  "6a0c0f34fbd3c6dee1126c20"
+  "6a6df9a6aed647ca2c1d2bd3",
+  "6a6df9a7aed647ca2c1d2bd9",
+  "6a6df9a7aed647ca2c1d2bdc",
+  "6a6df9a7aed647ca2c1d2bdf",
+  "6a6df9a7aed647ca2c1d2be2",
+  "6a6df9a8aed647ca2c1d2be8",
+  "6a6df9a8aed647ca2c1d2bee",
+  "6a6df9a9aed647ca2c1d2bf4",
+  "6a6df9a9aed647ca2c1d2bf7",
+  "6a6df9aaaed647ca2c1d2bfd",
+  "6a6df9aaaed647ca2c1d2c03",
+  "6a6df9aaaed647ca2c1d2c06"
 ];
 
 const leaveTypes = [
@@ -58,7 +58,7 @@ function randomDate(start, end) {
 
 async function generateLeaves() {
   try {
-    await mongoose.connect("");
+    await mongoose.connect("mongodb://localhost:27017/");
     
     const leaves = [];
     

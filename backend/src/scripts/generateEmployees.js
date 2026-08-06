@@ -7,33 +7,48 @@ dotenv.config({
 
 const PASSWORD = process.env.EMPLOYEE_PASSWORD;
 
-const firstNames = [
-    "Armin", "Eren", "Levi", "Mikasa", "Jean", "Connie", "Sasha",
-    "Reiner", "Annie", "Erwin", "Hange", "Zeke", "Historia",
-    "Ymir", "Marco", "Falco", "Gabi",
+const maleFirstNames = [
+    "Armin", "Eren", "Levi", "Jean", "Connie",
+    "Reiner", "Erwin", "Zeke", "Marco", "Falco",
 
-    "James", "Michael", "Robert", "John", "David", "William",
-    "Richard", "Joseph", "Thomas", "Charles", "Daniel", "Matthew",
-    "Anthony", "Mark", "Donald", "Steven", "Paul", "Andrew",
+    "James", "Michael", "Robert", "John", "David",
+    "William", "Richard", "Joseph", "Thomas", "Charles",
+    "Daniel", "Matthew", "Anthony", "Mark", "Donald",
+    "Steven", "Paul", "Andrew",
 
-    "Liam", "Noah", "Oliver", "Elijah", "Lucas", "Mason",
-    "Logan", "Ethan", "Jacob", "Henry", "Alexander",
+    "Liam", "Noah", "Oliver", "Elijah", "Lucas",
+    "Mason", "Logan", "Ethan", "Jacob", "Henry",
+    "Alexander",
 
-    "Aarav", "Vivaan", "Aditya", "Krishna", "Arjun", "Sai",
-    "Rohan", "Aryan", "Kabir", "Ishaan", "Rahul",
+    "Aarav", "Vivaan", "Aditya", "Krishna", "Arjun",
+    "Sai", "Rohan", "Aryan", "Kabir", "Ishaan",
+    "Rahul",
 
-    "Yuki", "Haruto", "Ren", "Takumi", "Sora", "Minho",
-    "Jisoo", "Hyun", "Jiho", "Chen", "Wei",
+    "Yuki", "Haruto", "Ren", "Takumi", "Sora",
+    "Minho", "Hyun", "Jiho", "Chen", "Wei",
 
-    "Carlos", "Mateo", "Diego", "Luis", "Antonio", "Miguel",
+    "Carlos", "Mateo", "Diego", "Luis",
+    "Antonio", "Miguel"
+];
 
-    "Emma", "Olivia", "Sophia", "Isabella", "Mia", "Charlotte",
-    "Amelia", "Harper", "Evelyn", "Abigail", "Emily",
+const femaleFirstNames = [
 
-    "Ava", "Ella", "Scarlett", "Grace", "Chloe", "Luna",
-    "Priya", "Ananya", "Aisha", "Saanvi", "Meera", "Emmelia", "Rem",
+    "Emma", "Olivia", "Sophia", "Isabella",
+    "Mia", "Charlotte", "Amelia", "Harper",
+    "Evelyn", "Abigail", "Emily",
 
-    "Yuna", "Hina", "Sakura", "Jiyoon", "Nina", "Elena"
+    "Ava", "Ella", "Scarlett", "Grace",
+    "Chloe", "Luna",
+
+    "Emmelia",
+    "Rem",
+
+    "Yuna",
+    "Hina",
+    "Sakura",
+    "Jiyoon",
+    "Nina",
+    "Elena"
 ];
 
 const middleNames = [
@@ -275,29 +290,53 @@ const genders = [
     "Female"
 ];
 
+function randomJoiningDateLast12Months() {
+    const end = Date.now();
+    const start = new Date();
+    start.setFullYear(start.getFullYear() - 1);
+
+    const randomTimestamp =
+        start.getTime() +
+        Math.floor(Math.random() * (end - start.getTime()));
+
+    return new Date(randomTimestamp).toISOString().split("T")[0];
+}
+
+console.log(randomJoiningDateLast12Months())
+
 function randomItem(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
 }
 
 async function generateEmployees() {
-    for (let i = 1; i <= 216; i++) {
-        const firstName = randomItem(firstNames);
+    for (let i = 1; i <= 36; i++) {
+        const gender = Math.random() < 0.5 ? "Male" : "Female";
+
+        const firstName =
+            gender === "Male"
+                ? randomItem(maleFirstNames)
+                : randomItem(femaleFirstNames);
+
         const middleName = randomItem(middleNames);
         const lastName = randomItem(lastNames);
 
         const employee = {
-            empID: `EMP-${1000 + i}`,
+            empID: `EMP-${1654 + i}`,
             firstName,
             middleName,
             lastName,
             email: `${firstName.toLowerCase()}${i}@gmail.com`,
-            gender: randomItem(genders),
+            gender,
             contactNo: `+91${Math.floor(
                 1000000000 + Math.random() * 9000000000
             )}`,
-            avatar: `https://api.dicebear.com/9.x/personas/svg?seed=${firstName}${lastName}${i}`,
+            avatar: "",
             dateOfBirth: `199${Math.floor(Math.random() * 10)}-0${Math.floor(Math.random() * 9) + 1
                 }-${Math.floor(Math.random() * 28) + 1}`,
+
+            // 👇 Random joining date within the last 12 months
+            joinedAt: new Date(),
+
             country: randomItem(countries),
             city: randomItem(cities),
             postalCode: `${Math.floor(100000 + Math.random() * 900000)}`,
@@ -308,8 +347,10 @@ async function generateEmployees() {
             empType: randomItem(empTypes),
             salary: Math.floor(40000 + Math.random() * 120000),
             salaryCurrency: "USD",
-            password: PASSWORD,
+            password: "EMS12345",
         };
+
+        console.log(employee.empID, employee.dateOfJoining);
 
         try {
             const response = await axios.post(

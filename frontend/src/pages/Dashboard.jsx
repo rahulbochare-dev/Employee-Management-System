@@ -102,8 +102,7 @@ const Dashboard = () => {
     value1: "Average age",
     value2: averageEmployeeAge?.averageAge,
   };
-  console.log(lastWeeksLeaves?.data.lastWeekLeavesformatted);
-  console.log(newJoinesByMonth);
+  
   return (
     <>
       <div className="w-full min-h-screen mb-3 lg:mb-0 lg:h-svh flex flex-col lg:flex-row bg-[#fcfcfe] lg:overflow-hidden">
