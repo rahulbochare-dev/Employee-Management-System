@@ -1,4 +1,5 @@
 import React from "react";
+import { ChevronDown } from "lucide-react";
 
 const DropdownLeaveType = ({ title, values, value, onChange, name }) => {
   return (
@@ -18,10 +19,7 @@ const DropdownLeaveType = ({ title, values, value, onChange, name }) => {
             {value}
           </option>))}
       </select>
-      <img
-        className="w-4 sm:w-5 shrink-0 pointer-events-none"
-        src="/src/assets/arrowDown.svg"
-        alt=""/>
+      <ChevronDown size={20} color="black" />
     </div>
   );
 };

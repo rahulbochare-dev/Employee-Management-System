@@ -136,9 +136,9 @@ const Dashboard = () => {
             <div className="grid grid-cols-1 gap-4 justify-items-center justify-center sm:grid-cols-2 pt-1 xl:grid-cols-3 2xl:grid-cols-4 lg:gap-16">
               <KPICard
                 title={"Total Employees"}
-                mainIcon={"/src/assets/employee-dark.svg"}
-                icon2={"/src/assets/male.svg"}
-                icon3={"/src/assets/female.svg"}
+                mainIcon={"Users"}
+                icon2={"Mars"}
+                icon3={"Venus"}
                 icon2Text={"Male"}
                 mainCount={KPICardFirst.mainCount}
                 icon2Count={KPICardFirst.icon2Count}
@@ -146,9 +146,9 @@ const Dashboard = () => {
                 icon3Text={"Female"}/>
               <KPICard
                 title={"On Leave Today"}
-                mainIcon={"/src/assets/leave-dark.svg"}
-                icon2={"/src/assets/sick.svg"}
-                icon3={"/src/assets/casual.svg"}
+                mainIcon={"LandPlot"}
+                icon2={"Pill"}
+                icon3={"LandPlot"}
                 icon2Text={"Sick"}
                 mainCount={KPICardSecond.mainCount}
                 icon2Count={KPICardSecond.icon2Count}
@@ -156,9 +156,9 @@ const Dashboard = () => {
                 icon3Text={"Casual"}/>
               <KPICard
                 title={"Hires this Month"}
-                mainIcon={"/src/assets/employeeAdd-Dark.svg"}
-                icon2={"/src/assets/male.svg"}
-                icon3={"/src/assets/female.svg"}
+                mainIcon={"UserPlus"}
+                icon2={"Mars"}
+                icon3={"Venus"}
                 icon2Text={"Male"}
                 mainCount={KPICardThird.mainCount}
                 icon2Count={KPICardThird.icon2Count}
@@ -166,9 +166,9 @@ const Dashboard = () => {
                 icon3Text={"Female"}/>
               <KPICard
                 title={"Leave Requests"}
-                mainIcon={"/src/assets/leave-dark.svg"}
-                icon2={"/src/assets/sick.svg"}
-                icon3={"/src/assets/casual.svg"}
+                mainIcon={"LandPlot"}
+                icon2={"Pill"}
+                icon3={"LandPlot"}
                 icon2Text={"Sick"}
                 mainCount={KPICardForth.mainCount}
                 icon2Count={KPICardForth.icon2Count}
@@ -217,26 +217,26 @@ const Dashboard = () => {
                     py-4">
               <InsightCard
                 title={"Total Payroll this Month"}
-                icon={"/src/assets/dollar.svg"}
-                iconBgColor={"bg-[#6464FF]/15 "}
+                icon={"Landmark"}
+                iconColor={"#0054e4"}
                 data={totalPayroll}
                 cardType={"payroll"}/>
               <InsightCard
                 title={"Most employee from country"}
-                icon={"/src/assets/globe.svg"}
-                iconBgColor={"bg-[#A32AFF]/15 "}
+                icon={"Earth"}
+                iconColor={"#6e00e4"}
                 data={employeeCountry}
                 cardType={"employeeCountry"}/>
               <InsightCard
                 title={"Gender Ratio (Male/Female)"}
-                icon={"/src/assets/home-office.svg"}
-                iconBgColor={"bg-[#00B212]/15 "}
+                icon={"Building2"}
+                iconColor={"#27c200"}
                 data={genderRatioPercent}
                 cardType={"genderRatioPercent"}/>
               <InsightCard
                 title={"Average Employee Age"}
-                icon={"/src/assets/cake.svg"}
-                iconBgColor={"bg-[#FF824B]/15 "}
+                icon={"Cake"}
+                iconColor={"#ec5a00"}
                 data={averageAge}
                 cardType={"averageAge"}/>
             </div>

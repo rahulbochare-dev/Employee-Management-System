@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
+import { toast } from "react-hot-toast";
 import Separator from "./Seperator.jsx";
 import { useParams } from "react-router-dom";
+import { User } from "lucide-react";
 import { useEmployeeLeaveStore } from "../store/employeeLeaveStore.js";
 
 const LeaveDetailsEmployee = ({ leaveDetails, cb }) => {
@@ -22,10 +24,14 @@ const LeaveDetailsEmployee = ({ leaveDetails, cb }) => {
     try {
       const response = await deleteLeave(leave?._id);
       if (response.success) {
+        toast.success(response.message)
         cb();
         await getMyLeaves();
+      } else {
+        toast.error(response.message || "Something went wrong!")
       }
     } catch (error) {
+      toast.error(error.message || "Something went wrong!")
       throw error;
     }
   };
@@ -40,10 +46,7 @@ const LeaveDetailsEmployee = ({ leaveDetails, cb }) => {
         <div className="w-107.5 h-full pr-8 border-r border-[#dddddd]">
           <h2 className="text-[1.5rem] font-medium text-black">Employee</h2>
           <div className="w-full h-28 flex items-center gap-5">
-            <img
-              className="size-17 rounded-full object-cover shrink-0"
-              src="/src/assets/businessman.png"
-              alt=""/>
+            <User size={56}/>
             <div className="flex flex-col">
               <h2 className="text-[1.375rem] font-medium text-black leading-none">
                 {leave?.employee.firstName} {leave?.employee.lastName}

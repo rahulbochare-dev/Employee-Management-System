@@ -80,23 +80,22 @@ const AddEmployeeModal = ({ handleShowModal }) => {
           opacity: 0,
           scale: 0.985,
         }}
-        
+
         animate={{
           opacity: 1,
           scale: 1,
         }}
-        
+
         exit={{
           opacity: 0,
           scale: 0.985,
         }}
-        
+
         transition={{
           duration: 0.16,
           ease: [0.22, 1, 0.36, 1],
         }}
         className="fixed inset-0 z-10 flex justify-center items-start sm:items-center px-3 sm:px-4 py-4 overflow-y-auto">
-        <Toaster position="bottom-center" />
         <div className="w-full max-w-330.5 bg-white border border-[#eaeaea] rounded-2xl overflow-hidden my-auto">
           <div className="w-full min-h-15 flex items-center pt-5 px-5 sm:px-10">
             <h1 className="text-2xl sm:text-[1.75rem] font-semibold">Onboard Employee</h1>
@@ -235,15 +234,14 @@ const AddEmployeeModal = ({ handleShowModal }) => {
               <div className="w-full xl:w-2/6 flex flex-col sm:flex-row items-center gap-4 sm:gap-6 xl:gap-8 justify-end px-5 sm:px-10 py-5">
                 <Button
                   title={"Cancel"}
-                  type={"button"}
-                  width={"w-full sm:w-36"}
-                  secondary={true}
-                  onClick={handleShowModal} />
+                  type="button"
+                  icon={"X"}
+                  onClick={handleShowModal}
+                  secondary={true} />
                 <Button
-                  title={"Add Employee"}
-                  type={"submit"}
-                  icon={"/src/assets/employeeAdd-Light.svg"}
-                  width={"w-full sm:w-48"} />
+                  title={"Add employee"}
+                  type="submit"
+                  icon={"UserPlus"} />
               </div>
             </div>
           </form>

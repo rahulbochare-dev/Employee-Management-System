@@ -10,7 +10,7 @@ import LeaveDetails from "../components/LeaveDetails.jsx";
 import { useAdminLeaveStore } from "../store/adminLeaveStore.js";
 import { useUserStore } from "../store/userStore.js";
 import toast from "react-hot-toast";
-import { Menu, X } from "lucide-react";
+import { LandPlot, Menu, X } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
 import Loading from "../components/Loading.jsx";
 
@@ -129,10 +129,7 @@ const Leaves = () => {
             <div className="w-full h-fit mb-3 pt-4 lg:mb-0 lg:pt-0 lg:h-[calc(100vh-4.4rem)] flex items-baseline-last">
               <div className="w-full lg:w-384 lg:h-[98%] bg-white border border-[#eaeaea] rounded-[0.9375rem] overflow-visible lg:overflow-hidden">
                 <div className="w-full h-10 flex gap-3 items-center pl-7 pt-1">
-                  <img
-                    className="w-8"
-                    src="/src/assets/leave-dark.svg"
-                    alt="" />
+                <LandPlot size={24} />
                   <h2 className="text-xl font-medium">All Leaves</h2>
                 </div>
                 <div className="w-full flex flex-col xl:flex-row gap-4 xl:gap-0 px-4 sm:px-7 py-4">

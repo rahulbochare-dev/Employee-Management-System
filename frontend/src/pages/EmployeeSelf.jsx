@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { User } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react"
+import { toast } from "react-hot-toast";
 import DateTime from "../components/DateTime.jsx";
 import Button from "../components/Button.jsx";
 import Seperator from "../components/Seperator.jsx";
@@ -8,7 +11,6 @@ import LeaveDetailsEmployee from "../components/LeaveDetailsEmployee.jsx";
 import { useEmployeeLeaveStore } from "../store/employeeLeaveStore.js";
 import { useEmployeeStore } from "../store/employeeStore.js";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
-import toast, { Toaster } from "react-hot-toast";
 import WelcomeText from "../components/WelcomeText.jsx";
 
 const EmployeeSelf = () => {
@@ -18,6 +20,11 @@ const EmployeeSelf = () => {
   const [showApplyLeave, setShowApplyLeave] = useState(false);
   const { id } = useParams();
   const location = useLocation();
+
+  const [initials, setInitials] = useState({
+    first: "",
+    last: "",
+  });
 
   const showLeaveDetails = !!id;
 
@@ -57,7 +64,9 @@ const EmployeeSelf = () => {
       console.log(response);
       if (response.success) {
         toast.success(response.message);
-        navigate("/login-employee");
+        setTimeout(() => {
+          navigate("/login-employee");
+        }, 500);
       } else {
         toast.error(response.message);
       }
@@ -74,19 +83,47 @@ const EmployeeSelf = () => {
     callApi();
   }, []);
 
+  useEffect(() => {
+    const firstIn = employee?.firstName ? employee.firstName.charAt(0) : "";
+    const lastIn = employee?.lastName ? employee.lastName.charAt(0) : "";
+
+    setInitials({
+      first: firstIn,
+      last: lastIn,
+    });
+  }, [employee?.firstName, employee?.lastName]);
+
   return (
     <div className="w-full min-h-screen bg-[#f9f9f9] px-3 sm:px-5 relative overflow-x-hidden">
-      <Toaster position="bottom-center" />
       {showLeaveDetails && (
-        <div className="fixed inset-0 w-screen h-screen flex justify-center items-center bg-black/25 backdrop-blur-md z-50">
-          <LeaveDetailsEmployee
-            leaveDetails={myLeaveDetails}
-            cb={closeLeaveDetails}/>
-        </div>)}
+        <motion.div className="fixed inset-0 w-screen h-screen flex justify-center items-center bg-black/25 backdrop-blur-md z-50"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{
+            duration: 0.35,
+            ease: [0.22, 1, 0.36, 1],
+          }}>
+          <AnimatePresence>
+            <LeaveDetailsEmployee
+              leaveDetails={myLeaveDetails}
+              cb={closeLeaveDetails} />
+
+          </AnimatePresence>
+        </motion.div>)}
       {showApplyLeave && (
-        <div className="fixed inset-0 w-screen h-screen flex justify-center items-center bg-black/25 backdrop-blur-md z-50">
-          <ApplyLeaveEmployee cb={closeApplyLeave} />
-        </div>)}
+        <motion.div className="fixed inset-0 w-screen h-screen flex justify-center items-center bg-black/25 backdrop-blur-md z-50"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{
+            duration: 0.35,
+            ease: [0.22, 1, 0.36, 1],
+          }}>
+          <AnimatePresence>
+            <ApplyLeaveEmployee cb={closeApplyLeave} />
+          </AnimatePresence>
+        </motion.div>)}
       <div className="w-full flex items-center justify-between px-1 sm:px-0 min-h-20">
         <div className="flex items-center gap-4">
           <div className="w-25 h-10 bg-gray-200 shrink-0"></div>
@@ -100,19 +137,21 @@ const EmployeeSelf = () => {
         <div className="w-full flex flex-col sm:flex-row justify-between sm:items-center px-4 sm:px-10 py-4 gap-4">
           <h1 className="text-2xl sm:text-3xl font-medium">Employee Details</h1>
           <Button
-            width="w-68"
             onClick={handleLogout}
             title={"Logout"}
-            icon={"/src/assets/logout.svg"}/>
+            icon={"LogOut"} />
         </div>
         <Seperator width="w-full" />
         <div className="w-full flex flex-col lg:flex-row">
           <div className="w-full lg:w-1/2 min-w-0 border-b lg:border-b-0 lg:border-r border-[#b6b6b6]">
             <div className="w-full px-4 sm:px-10 py-6 flex flex-col xl:flex-row gap-6">
               <div className="w-full xl:w-auto flex items-center gap-4 min-w-0">
-                <img
-                  className="size-17 rounded-full object-cover shrink-0"
-                  src="/src/assets/businessman.png"/>
+                <div className="w-12 h-12 sm:w-24 sm:h-24 bg-[#ededed] rounded-[1.125rem] flex items-center justify-center text-2xl sm: shrink-0">
+                  <h1 className="text-[2.5rem] font-bold text-[#898989]">
+                    {initials.first}
+                    {initials.last}
+                  </h1>
+                </div>
                 <div className="flex flex-col min-w-0 flex-1 xl:flex-none xl:min-w-70">
                   <h2 className="text-[1.375rem] font-medium text-black leading-none truncate">
                     {employee?.firstName || "N/A"} {employee?.lastName}
@@ -233,15 +272,14 @@ const EmployeeSelf = () => {
                     <LeaveCardEmployee
                       cb={handleGetLeaveDetails}
                       key={leave?._id}
-                      leave={leave}/>))}
+                      leave={leave} />))}
                 </div>
               </div>
               <div className="w-full min-h-20 flex justify-center items-center p-4 shrink-0">
                 <Button
-                  width="w-68"
                   onClick={openApplyLeave}
-                  icon={"/src/assets/leave-light.svg"}
-                  title={"Apply Leave"}/>
+                  icon={"LandPlot"}
+                  title={"Apply Leave"} />
               </div>
             </div>
           </div>

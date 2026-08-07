@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "motion/react"
+import { ChevronDown } from "lucide-react";
 
 const DropdownModal = ({ value, onChange }) => {
   const [showModal, setShowModal] = useState(false);
@@ -13,7 +14,7 @@ const DropdownModal = ({ value, onChange }) => {
         transition={{
           duration: 0.18,
           ease: [0.16, 1, 0.3, 1],
-        }} 
+        }}
         className="w-[54%] sm:w-fit relative">
         <div
           onClick={() => {
@@ -21,10 +22,7 @@ const DropdownModal = ({ value, onChange }) => {
           }}
           className="w-full sm:w-37.5 h-9 border border-[#eaeaea] rounded-xl pr-2 pl-3 flex justify-between items-center relative">
           <h3 className="text-sm sm:text-base truncate">Salary</h3>
-          <img
-            className="w-4 sm:w-5 shrink-0"
-            src="/src/assets/arrowDown.svg"
-            alt="" />
+          <ChevronDown size={20} color="black" />
         </div>
         {showModal && (
           <div className="w-full sm:w-50 min-h-60 border bg-white mt-2 z-10 absolute border-[#eaeaea] rounded-xl flex flex-col items-center pt-2 px-2 shadow-md">

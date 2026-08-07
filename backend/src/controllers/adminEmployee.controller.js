@@ -5,7 +5,7 @@ import { ApiError } from "../utils/ApiError.js";
 import { Employee } from "../models/employee.model.js"
 
 const onboardEmployee = asyncHandler(async (req, res) => {
-    const { empID, firstName, middleName, lastName, email, gender, contactNo, avatar, dateOfBirth, country, city, postalCode, education, address, jobTitle, workMode, empType, salary, salaryCurrency, password, joinedAt } = req.body
+    const { empID, firstName, middleName, lastName, email, gender, contactNo, avatar, dateOfBirth, country, city, postalCode, education, address, jobTitle, workMode, empType, salary, salaryCurrency, password } = req.body
 
     if (
         [empID, firstName, middleName, lastName, email, gender, contactNo, dateOfBirth, country, city, postalCode, education, address, jobTitle, workMode, empType, salary, salaryCurrency, password].some((fields) => (fields === ""))
@@ -65,7 +65,7 @@ const onboardEmployee = asyncHandler(async (req, res) => {
         salaryCurrency,
         password,
         isActive: true,
-        joinedAt: joinedAt,
+        joinedAt: new Date(),
     })
 
     return res.status(200)

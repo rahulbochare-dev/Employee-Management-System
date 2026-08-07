@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Button from "../components/Button.jsx";
 import { X } from "lucide-react";
-import { toast, Toaster } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 import { useParams } from "react-router-dom";
 import { useAdminEmployeeStore } from "../store/adminEmployeeStore.js";
 
@@ -195,9 +195,8 @@ const EmployeeDetails = ({ onClick, empDetails, cb }) => {
               </span>
             </div>
             <Button
-              width="w-full sm:w-68"
               title={"Terminate Employee"}
-              icon={"/src/assets/terminate.svg"}
+              icon={"UserRoundX"}
               onClick={handleTerminateEmployee}/>
           </div>
         </div>

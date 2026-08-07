@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { motion } from "motion/react"
 import Separator from "./Seperator.jsx";
 import DateSelectApplyLeave from "./DateSelectApplyLeave.jsx";
 import DropdownLeaveType from "./DropdownLeaveType.jsx";
 import { useEmployeeLeaveStore } from "../store/employeeLeaveStore.js";
-import { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { X } from "lucide-react";
 import { useEmployeeStore } from "../store/employeeStore.js";
 
@@ -35,11 +36,16 @@ const ApplyLeaveEmployee = ({ cb }) => {
   const handleSubmitLeave = async () => {
     try {
       const response = await applyLeave(leaveData);
+      console.log(response)
       if (response.success) {
+        toast.success(response.message)
         cb();
         await getMyLeaves();
+      } else {
+        toast.error(response.message || "Something went wrong!");
       }
     } catch (error) {
+      toast.error(error.message || "Something went wrong!");
       throw error;
     }
   };
@@ -62,8 +68,26 @@ const ApplyLeaveEmployee = ({ cb }) => {
   }, [employee?.firstName, employee?.lastName]);
 
   return (
-    <div className="w-[95vw] max-w-5xl max-h-[90vh] bg-white rounded-2xl px-5 sm:px-8 pt-6 pb-6 overflow-y-auto transition-all flex flex-col">
-      <Toaster position="bottom-center" />
+    <motion.div
+        initial={{
+          opacity: 0,
+          scale: 0.985,
+        }}
+
+        animate={{
+          opacity: 1,
+          scale: 1,
+        }}
+
+        exit={{
+          opacity: 0,
+          scale: 0.985,
+        }}
+
+        transition={{
+          duration: 0.16,
+          ease: [0.22, 1, 0.36, 1],
+        }} className="w-[95vw] max-w-5xl max-h-[90vh] bg-white rounded-2xl px-5 sm:px-8 pt-6 pb-6 overflow-y-auto transition-all flex flex-col">
       <div className="w-full flex justify-between items-center">
         <h1 className="text-2xl sm:text-[1.75rem] font-medium text-black leading-none shrink-0">
           Leave Application
@@ -184,7 +208,7 @@ const ApplyLeaveEmployee = ({ cb }) => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -63,9 +63,8 @@ const LoginAdmin = () => {
             placeholder={"Password"}/>
           <div className="w-full flex justify-center items-center flex-col gap-5 py-4">
             <Button
-              width="w-64"
               title={"Login"}
-              icon={"/src/assets/login.svg"}/>
+              icon={"LogIn"}/>
             <h3 className="text-center">
               Don't have an account?{" "}
               <Link

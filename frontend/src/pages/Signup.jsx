@@ -135,7 +135,7 @@ const SignupAdmin = () => {
             <Button
               width="w-64"
               title={"Signup"}
-              icon={"/src/assets/login.svg"}/>
+              icon={"LogIn"}/>
             <h3 className="text-center">
               Already have an account?{" "}
               <Link

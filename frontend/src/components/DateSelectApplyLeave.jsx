@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Calendar } from "lucide-react";
 
 const DateSelectApplyLeave = ({ name, placeholder, value, onChange }) => {
   const [inputValue, setInputValue] = useState("");
@@ -15,11 +16,7 @@ const DateSelectApplyLeave = ({ name, placeholder, value, onChange }) => {
             className={`text-[0.90rem] truncate ${inputValue ? "text-black" : "text-[#787878]"} font-medium`}>
             {inputValue || "Select Date"}
           </h3>
-          <img
-            className="w-5 pointer-events-none"
-            src="/src/assets/calender.svg"
-            alt=""
-            srcset=""/>
+          <Calendar size={20} color="black" />
         </div>
         <input
           className="absolute w-full h-6 text-[0.90rem] text font-medium pl-3"
@@ -29,7 +26,7 @@ const DateSelectApplyLeave = ({ name, placeholder, value, onChange }) => {
           id="selectFile"
           value={value}
           onInput={handleDateChange}
-          onChange={onChange}/>
+          onChange={onChange} />
       </div>
     </div>
   );

@@ -1,6 +1,17 @@
 import React from "react";
+import * as Icons from "lucide-react";
 
-const InsightCard = ({ title, icon, iconBgColor, data, cardType }) => {
+function DynamicIcon({ name, size = 20, color = "currentColor" }) {
+  const IconComponent = Icons[name];
+
+  if (!IconComponent) {
+    return null;
+  }
+
+  return <IconComponent size={size} color={color} />;
+}
+
+const InsightCard = ({ title, icon, iconColor, data, cardType }) => {
   const values = {
     value1: null,
     value2: null,
@@ -26,8 +37,12 @@ const InsightCard = ({ title, icon, iconBgColor, data, cardType }) => {
     <div className="w-84.25 h-22 bg-white border border-[#eaeaea] rounded-2xl flex items-center">
       <div className="w-full h-[60%] flex items-center pl-5">
         <div
-          className={`rounded-full ${iconBgColor} w-13.5 h-13.5 flex justify-center items-center`}>
-          <img className="w-10 h-10" src={icon} alt="" />
+          style={{ backgroundColor: `${iconColor}40` }}
+          className={`rounded-full w-13.5 h-13.5 flex justify-center items-center`}>
+          <DynamicIcon
+            name={icon}
+            size={28}
+            color={iconColor}/>
         </div>
         <div className="w-[75%] ml-2 h-full flex flex-col justify-evenly">
           <h3 className="text-sm font-medium text-[#9c9c9c]">{title}</h3>

@@ -50,18 +50,15 @@ const Sidebar = () => {
           <SidebarButton
             name={"Dashboard"}
             to={"/admin/dashboard"}
-            iconDark={"/src/assets/dashboard-dark.svg"}
-            iconLight={"/src/assets/dashboard-light.svg"}/>
+            icon={"LayoutDashboard"}/>
           <SidebarButton
             name={"Employees"}
             to={"/admin/employees"}
-            iconDark={"/src/assets/employee-dark.svg"}
-            iconLight={"/src/assets/employee-light.svg"}/>
+            icon={"Users"}/>
           <SidebarButton
             name={"Leaves"}
             to={"/admin/leaves"}
-            iconDark={"/src/assets/leave-dark.svg"}
-            iconLight={"/src/assets/leave-light.svg"}/>
+            icon={"LandPlot"}/>
         </div>
       </div>
       <div className="w-full flex flex-col items-center lg:items-start mt-4">
@@ -78,7 +75,7 @@ const Sidebar = () => {
           onClick={handleLogout}
           marginY={"mt-5"}
           title={"Log Out"}
-          icon={"/src/assets/logout.svg"}/>
+          icon={"LogOut"}/>
       </div>
     </div>
   );

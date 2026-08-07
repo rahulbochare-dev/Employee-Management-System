@@ -10,6 +10,7 @@ import LoginEmployee from "./pages/LoginEmployee.jsx";
 import { BrowserRouter, Routes, Route } from "react-router";
 import { useUserStore } from "./store/userStore.js";
 import { useEffect } from "react";
+import { Toaster } from "react-hot-toast";
 import Loading from "./components/Loading.jsx";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
 
   return (
     <>
+    <Toaster position="bottom-center" />
       {loading ? (
         <Loading />
       ) : (

@@ -1,11 +1,12 @@
 import React from "react";
 import Separator from "./Seperator";
+import { User, Info } from "lucide-react";
 
 const LeaveCardEmployee = ({ leave, cb }) => {
   return (
     <div className="w-85 sm:w-85 h-65 bg-white border border-[#eaeaea] rounded-xl px-4 sm:px-5 overflow-hidden">
       <div className="w-full h-17 flex justify-start gap-3 items-center">
-        <img className="w-11 h-11" src="/src/assets/businessman.png" alt="" />
+        <User size={32}/>
         <div className="w-[78%] h-[75%] flex flex-col">
           <h2 className="text-lg font-semibold">
             {leave?.employee?.firstName} {leave?.employee?.lastName}
@@ -28,7 +29,7 @@ const LeaveCardEmployee = ({ leave, cb }) => {
         <button
           onClick={(e) => cb(e, leave?._id)}
           className="w-8.5 h-8.5 rounded-full bg-[#F8F8F8] flex justify-center items-center shrink-0 transition-all hover:bg-[#f0f0f0] active:bg-[#dcdcdc]">
-          <img className="w-5.5" src="/src/assets/info.svg" alt="" />
+          <Info size={20} color="#bababa"/>
         </button>
       </div>
       <Separator width="w-74" />

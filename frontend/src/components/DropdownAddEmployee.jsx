@@ -1,4 +1,5 @@
 import React from "react";
+import { ChevronDown } from "lucide-react";
 
 const DropdownAddEmployee = ({ title, label, values, value, onChange }) => {
   return (
@@ -23,11 +24,7 @@ const DropdownAddEmployee = ({ title, label, values, value, onChange }) => {
                 {value}
               </option>);})}
         </select>
-        <img
-          className="w-4 sm:w-5 shrink-0"
-          src="/src/assets/arrowDown.svg"
-          alt=""
-          srcset=""/>
+        <ChevronDown size={20} color="black"/>
       </div>
     </div>
   );

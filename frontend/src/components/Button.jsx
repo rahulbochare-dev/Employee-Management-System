@@ -1,4 +1,15 @@
 import React from "react";
+import * as Icons from "lucide-react";
+
+function DynamicIcon({ name, size = 20, color = "currentColor" }) {
+  const IconComponent = Icons[name];
+
+  if (!IconComponent) {
+    return null;
+  }
+
+  return <IconComponent size={size} color={color} />;
+}
 
 const Button = ({
   title,
@@ -18,7 +29,13 @@ const Button = ({
           ? "bg-white border border-[#eaeaea] hover:bg-gray-200 active:bg-gray-300"
           : "bg-black hover:bg-gray-800 active:bg-gray-900"
       }`}>
-      {secondary || <img className="w-5 sm:w-6 shrink-0" src={icon} alt="" />}
+      {icon && (
+    <DynamicIcon
+      name={icon}
+      size={18}
+      color={secondary ? "black" : "white"}
+    />
+  )}
       <h3
         className={`text-sm sm:text-base font-medium truncate ${secondary ? "text-black" : "text-white"}`}>
         {title}

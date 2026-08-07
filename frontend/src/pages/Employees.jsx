@@ -15,7 +15,7 @@ import { useAdminEmployeeStore } from "../store/adminEmployeeStore.js";
 import { useUserStore } from "../store/userStore.js";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Users } from "lucide-react";
 import EmptyState from "../components/Empty.jsx";
 
 const Employees = () => {
@@ -195,10 +195,7 @@ const Employees = () => {
               ) : (
                 <div className="w-full lg:w-384 lg:h-[99%] bg-white border border-[#eaeaea] rounded-[0.9375rem] overflow-visible lg:overflow-hidden">
                   <div className="w-full h-10 flex gap-3 items-center pl-7 pt-2">
-                    <img
-                      className="w-8"
-                      src="/src/assets/employee-dark.svg"
-                      alt="" />
+                    <Users size={24} />
                     <h2 className="text-xl font-medium">All Employees</h2>
                   </div>
                   <div className="w-full flex flex-col xl:flex-row gap-4 xl:gap-0 px-4 sm:px-7 py-4">
@@ -223,8 +220,9 @@ const Employees = () => {
                     </div>
                     <div className="w-full xl:w-1/4 flex xl:justify-end">
                       <Button
-                        title={"Onboard Employee"}
-                        icon={"/src/assets/employeeAdd-Light.svg"}
+                        width="w-64"
+                        title={"Onboard employee"}
+                        icon={"UserPlus"}
                         onClick={handleShowModal} />
                     </div>
                   </div>

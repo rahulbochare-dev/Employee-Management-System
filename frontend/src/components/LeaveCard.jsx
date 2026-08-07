@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Separator from "./Seperator";
+import { Info } from "lucide-react";
 
 const LeaveCard = ({ leave, cb, cb2 }) => {
   const [initials, setInitials] = useState({
@@ -115,7 +116,7 @@ const LeaveCard = ({ leave, cb, cb2 }) => {
         <button
           onClick={(e) => cb(e, leave?._id)}
           className="w-8.5 h-8.5 rounded-full bg-[#F8F8F8] flex justify-center items-center shrink-0 transition-all hover:bg-[#f0f0f0] active:bg-[#dcdcdc]">
-          <img className="w-5" src="/src/assets/info.svg" alt="" />
+          <Info size={20} color="#bababa"/>
         </button>
       </div>
     </div>
