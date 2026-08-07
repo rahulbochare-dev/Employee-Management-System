@@ -12,12 +12,18 @@ const SignupRoleSelect = () => {
           <h1 className="text-4xl text-center">Continue as</h1>
         </div>
         <SignupRoleButton
-          onclick={() => {navigate("/signup")}}
-          name={"Admin"}/>
+          onclick={() => { navigate("/signup") }}
+          name={"Admin"} />
         <SignupRoleButton
-          onclick={() => {navigate("/login-employee")}}
-          name={"Employee"}/>
+          onclick={() => { navigate("/login-employee") }}
+          name={"Employee"} />
       </div>
+      <h2>Demo login credentials</h2>
+      <h2>Admin</h2>
+      <h2>Username: admin1234 Password: admin1234</h2>
+      <h2>-------------</h2>
+      <h2>Employee</h2>
+      <h2>email: james15@gmail.com Password: EMS12345</h2>
     </div>
   );
 };

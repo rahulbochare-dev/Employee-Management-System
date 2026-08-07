@@ -32,7 +32,7 @@ const LoginAdmin = () => {
   };
 
   return (
-    <div className="w-screen min-h-screen flex justify-center items-center bg-[#fcfcfe] px-4 py-6 overflow-x-hidden">
+    <div className="w-screen min-h-screen flex flex-col justify-center items-center bg-[#fcfcfe] px-4 py-6 overflow-x-hidden">
       <div className="bg-white w-full sm:w-[90%] md:w-[60%] lg:w-[40%] xl:w-1/5 rounded-3xl py-4">
         <div className="w-full h-20 flex justify-center items-center px-4">
           <h1 className="text-4xl text-center">Login as Employee</h1>
@@ -42,21 +42,24 @@ const LoginAdmin = () => {
           className="w-full flex flex-col gap-8 items-center pt-8 px-4">
           <TextInput
             onChange={(e) =>
-            setFromData({ ...formData, email: e.target.value })}
+              setFromData({ ...formData, email: e.target.value })}
             label={"Email:"}
-            placeholder={"Email"}/>
+            placeholder={"Email"} />
           <PasswordInput
             onChange={(e) =>
-            setFromData({ ...formData, password: e.target.value })}
+              setFromData({ ...formData, password: e.target.value })}
             label={"Enter Password:"}
-            placeholder={"Password"}/>
+            placeholder={"Password"} />
           <div className="w-full flex justify-center items-center flex-col gap-5 py-4">
             <Button
               title={"Login"}
-              icon={"LogIn"}/>
+              icon={"LogIn"} />
           </div>
         </form>
       </div>
+      <h2>Demo login credentials</h2>
+      <h2>Employee</h2>
+      <h2>email: james15@gmail.com Password: EMS12345</h2>
     </div>
   );
 };

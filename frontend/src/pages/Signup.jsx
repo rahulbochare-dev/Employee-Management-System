@@ -76,66 +76,66 @@ const SignupAdmin = () => {
               label={"First Name:"}
               placeholder={"First Name"}
               onChange={(e) =>
-              setFromData({ ...formData, firstName: e.target.value })}/>
+                setFromData({ ...formData, firstName: e.target.value })} />
             <TextInput
               label={"Middle Name:"}
               placeholder={"Middle Name"}
               onChange={(e) =>
-              setFromData({ ...formData, middleName: e.target.value })}/>
+                setFromData({ ...formData, middleName: e.target.value })} />
             <TextInput
               label={"Last Name:"}
               placeholder={"Last Name"}
               onChange={(e) =>
-              setFromData({ ...formData, lastName: e.target.value })}/>
+                setFromData({ ...formData, lastName: e.target.value })} />
             <TextInput
               label={"Username:"}
               placeholder={"Username"}
               onChange={(e) =>
-              setFromData({ ...formData, userName: e.target.value })}/>
+                setFromData({ ...formData, userName: e.target.value })} />
             <TextInput
               label={"Email:"}
               placeholder={"Email"}
               onChange={(e) =>
-              setFromData({ ...formData, email: e.target.value })}/>
+                setFromData({ ...formData, email: e.target.value })} />
             <FileSelect
               label={"Choose Avatar:"}
               placeholder={"Choose Avatar"}
-              onChange={(file) => setFromData({ ...formData, avatar: file })}/>
+              onChange={(file) => setFromData({ ...formData, avatar: file })} />
             <DateSelect
               label={"Date of Birth:"}
               onChange={(e) =>
-              setFromData({ ...formData, dateOfBirth: e.target.value })}/>
+                setFromData({ ...formData, dateOfBirth: e.target.value })} />
             <TextInput
               label={"Country:"}
               placeholder={"Country"}
               onChange={(e) =>
-              setFromData({ ...formData, country: e.target.value })}/>
+                setFromData({ ...formData, country: e.target.value })} />
             <TextInput
               label={"City:"}
               placeholder={"City"}
               onChange={(e) =>
-              setFromData({ ...formData, city: e.target.value })}/>
+                setFromData({ ...formData, city: e.target.value })} />
             <DropdownAddEmployee
               label={"Select Role:"}
               values={["admin", "employee"]}
               onChange={(e) =>
-              setFromData({ ...formData, role: e.target.value })}/>
+                setFromData({ ...formData, role: e.target.value })} />
             <PasswordInput
               placeholder={"Password"}
               label={"Enter Password"}
               onChange={(e) =>
-              setFromData({ ...formData, password: e.target.value })}/>
+                setFromData({ ...formData, password: e.target.value })} />
             <PasswordInput
               label={"Enter Admin Secret:"}
               placeholder={"Admin Secret"}
               onChange={(e) =>
-              setFromData({ ...formData, adminSecret: e.target.value })}/>
+                setFromData({ ...formData, adminSecret: e.target.value })} />
           </div>
           <div className="w-full flex justify-center items-center flex-col gap-5 py-8">
             <Button
               width="w-64"
               title={"Signup"}
-              icon={"LogIn"}/>
+              icon={"LogIn"} />
             <h3 className="text-center">
               Already have an account?{" "}
               <Link
@@ -147,6 +147,10 @@ const SignupAdmin = () => {
           </div>
         </form>
       </div>
+      <h2>Tip: Go to login beacause there is only one admin account for security!</h2>
+      <h2>Demo login credentials</h2>
+      <h2>Admin</h2>
+      <h2>Username: admin1234 Password: admin1234</h2>
     </div>
   );
 };
